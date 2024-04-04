@@ -1,0 +1,79 @@
+$primary-color: #0C356A;
+$error-color: red;
+
+// for form
+.c-primary{
+  color: $primary-color;
+}
+
+form {
+    box-shadow: 5px 5px 5px 5px rgba(black, 0.2);
+    padding: 10%;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+}
+
+// Input group fields
+.input-group {
+    margin: 8px 0;
+    box-shadow: 5px 0px 10px 0px rgba($primary-color, 0.2);
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+
+    .input-group-prepend .input-group-text {
+        border-right: none;
+        background-color: white;
+        // border-color: $primary-color;
+        padding: 14px 15px;
+    
+        i {
+          color: $primary-color;
+        }
+      }
+    
+      .input-group-append .input-group-text {
+        border-left: none;
+        background-color: white;
+        // border-color: $primary-color;
+        padding: 14px 15px;
+    
+        i {
+          color: $primary-color;
+        }
+      }
+
+    .form-control {
+        border-left: none;
+        border-right: none;
+        // border-color: $primary-color;
+        padding: 10px 5px;
+    }
+
+    .form-control:focus{
+        border-color: #ced4da;
+        box-shadow: none;
+      }
+
+}
+
+//button
+
+.btn {
+    background-color: $primary-color;
+    border-radius: 5px;
+    margin-top: 2%;
+    border-color: $primary-color;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-shadow: 5px 0px 10px 0px rgba($primary-color, 0.2);
+    color: white;
+}
+
+// For register text
+a {
+    text-decoration: none;
+}
+a:hover{
+    font-weight: 500;
+}

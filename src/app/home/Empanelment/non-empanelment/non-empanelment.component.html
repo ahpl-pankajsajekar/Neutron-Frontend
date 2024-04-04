@@ -1,0 +1,347 @@
+<div>
+    <div class="heading">
+        <h5><span class="heading-left-line"></span>Non Empanelment Form</h5>
+        <hr>
+    </div>
+    <div>
+        <div class="box">
+            <div class="box-card">
+                <div class="box-card-body">
+                        <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+                            <mat-step [stepControl]="firstFormGroup">
+                              <form [formGroup]="firstFormGroup" #formone="ngForm" (ngSubmit)="firstFormSubmit()">
+                                <ng-template matStepLabel>DC Details</ng-template>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PROVIDER NAME <code>*</code></label></div>
+                                                <div><input type="text" formControlName="providerName" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PROVIDER TYPE <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="providerType">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PAN NUMBER <code>*</code></label></div>
+                                                <div><input type="text" formControlName="panNumber" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>NAME ON PAN CARD <code>*</code></label></div>
+                                                <div><input type="text" placeholder="" formControlName="nameOnPanCard" required></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                    <button mat-button matStepperNext type="submit">Next</button>
+                                    </div>  
+                                </div>
+                              </form>
+                            </mat-step>
+                            <mat-step [stepControl]="secondFormGroup">
+                              <form [formGroup]="secondFormGroup" #formtwo="ngForm" (ngSubmit)="secondFormSubmit()">
+                                <ng-template matStepLabel>Contact Details</ng-template>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ADDRESS 1 <code>*</code></label></div>
+                                                <div><textarea type="text" rows="2" formControlName="address1" required></textarea></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ADDRESS 2 <code>*</code></label></div>
+                                                <div><textarea type="text" rows="2" formControlName="address2" required></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>AHPL LOCATION <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="ahplLocation">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>LC LOCATION <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="lcLocation">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>STATE <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="state">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CITY <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="city">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PINCODE <code>*</code></label></div>
+                                                <div><input type="text" formControlName="pincode" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>Zone <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="zone">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CONTACT PERSON NAME 1 <code>*</code></label></div>
+                                                <div><input type="text" formControlName="contactPersonName1" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>MOBILE NUMBER <code>*</code></label></div>
+                                                <div><input type="text" formControlName="mobileNumber" required></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CONTACT PERSON NAME 2 <code>*</code></label></div>
+                                                <div><input type="text" formControlName="contactPersonName2" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ALT MOBILE NUMBER <code>*</code></label></div>
+                                                <div><input type="text" formControlName="altMobileNumber" required></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>EMAIL ID <code>*</code></label></div>
+                                                <div><input type="text" formControlName="emailId" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>EMAIL ID 2<code>*</code></label></div>
+                                                <div><input type="text" formControlName="emailId2" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>FAX <code>*</code></label></div>
+                                                <div><input type="text" formControlName="fax" required></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                  <button mat-button matStepperPrevious>Back</button>
+                                  <button mat-button matStepperNext type="submit" >Next</button>
+                                </div>
+                              </form>
+                            </mat-step>
+                            <mat-step [stepControl]="thirdFormGroup">
+                                <form [formGroup]="thirdFormGroup" #formthird="ngForm" (ngSubmit)="thirdFormSubmit()">
+                                  <ng-template matStepLabel>Bank Details</ng-template>
+                                  <div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ACCOUNT NUMBER <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="accountNumber" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ACCOUNT NAME <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="accountName">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>BANK NAME <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="bankName">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>IFSC CODE <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="ifscCode" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>BRANCH NAME <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="branchName">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ACCOUNT TYPE <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="accountType">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PAYMENT TO BE MADE IN FAVOR OF <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="paymentToBeMadeInFavorOf" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PAYMENT MODE<code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="paymentMode">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="mt-3">
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button matStepperNext type="submit">Next</button>
+                                  </div>
+                                </form>
+                            </mat-step>
+                            <mat-step>
+                              <ng-template matStepLabel>Process flow</ng-template>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <div><label>Document <code>*</code></label></div>
+                                            <div>
+                                                <input type="file"   required>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </div>
+                              <div class="mt-3">
+                                <button mat-button matStepperPrevious>Back</button>
+                                <button mat-button (click)="stepper.reset()">Reset</button>
+                                <button mat-button (click)="formone.ngSubmit.emit();formtwo.ngSubmit.emit();formthird.ngSubmit.emit();">Submit</button>
+                              </div>
+                            </mat-step>
+                        </mat-stepper>
+
+                        <!-- <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-group-box">
+                                    <div><label>PROVIDER NAME <code>*</code></label></div>
+                                    <div><input type="text" placeholder=""></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-box">
+                                    <div><label>PROVIDER TYPE <code>*</code></label></div>
+                                    <div>
+                                        <select>
+                                            <option>----select----</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-group-box">
+                                    <div><label>PAN NUMBER <code>*</code></label></div>
+                                    <div><input type="text" placeholder=""></div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group-box">
+                                    <div><label>NAME ON PAN CARD <code>*</code></label></div>
+                                    <div><input type="text" placeholder=""></div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-center">
+                                <button>Save & Next</button>
+                            </div>
+                        </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

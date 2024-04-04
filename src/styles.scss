@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+// backend error in login
+.http-errors{
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    color: rgb(88, 21, 28);
+    background-color: rgb(248, 215, 218);
+    border: 1px solid rgb(241, 174, 181);
+    border-radius: 0.25rem;
+    text-align: start;
+    ul{
+        padding: 0.3rem;
+        margin: 0;
+        margin-left: 1rem;
+    }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,265 @@
+<section class="dc-search-section">
+  <div class="container hero">
+    <div class="row d-flex justify-content-center">
+      <!-- Centering the row -->
+      <div class="">
+        <h1 class="hero-heading">Search Your DC</h1>
+        <div class="row d-flex justify-content-center">
+          <div class="search-box">
+            <form [formGroup]="DCSerachForm" (ngSubmit)="onSubmit()">
+              <div
+                class="d-flex flex-row justify-content-center align-items-center"
+              >
+                <!-- Centering the search inputs and button -->
+                <div class="input-search-group-box">
+                  <p class="text-left input-label">Enter Provider ID,Name,Pincode,City</p>
+                  <input
+                    type="search"
+                    placeholder="Enter Provider ID,Name,Pincode,City"
+                    formControlName="q"
+                  />
+                </div>
+                <div class="input-search-group-box">
+                  <p class="text-left input-label">Enter Test Name</p>
+                  <!-- <input
+                    type="search"
+                    placeholder="Enter TestName"
+                    formControlName="t"
+                  /> -->
+                  <ng-multiselect-dropdown
+                  type="search" 
+                  [placeholder]="'Select Tests'"
+                  formControlName="t" [settings]="dropdownSettings"
+                  [data]="dropdownList" 
+                [(ngModel)]="selectedItems"
+                >
+              </ng-multiselect-dropdown>
+                </div>
+                <div class="search-button-container">
+                  <p class="text-left input-label" style="height: 17px;"></p>
+                  <button
+                    class="search-button"
+                    type="submit"
+                    (click)="onSubmit()"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+              <div
+                class="d-flex flex-row justify-content-center align-items-center"
+              >
+                <!-- <div class="label-search-group-box">
+                  <label>Comma (,) seperate value DCID, DC Name, City, Pincode</label>
+                </div> -->
+                <div class="label-search-group-box">
+                    <label *ngFor="let item of selectedItems">{{item.item_label}}, </label>
+                </div>
+                <div class="search-button-container">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+  <!-- Advanced View Link -->
+  <div class="advanced-view text-center mt-3">
+    <a href="#"></a>
+  </div>
+
+  <div class="row" style="display: none">
+    <div class="col-md-3">
+      <div class="newcard">
+        <img
+          class="card-img-top"
+          src="/assets/images/no-image.png"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h6 class="card-title"><a>HOSPITAL NAme</a></h6>
+          <h6 class="card-title2"><a>(72398)</a></h6>
+          <div class="card-detail">
+            <p class="card-text">
+              <span>email</span>: pacnjsjsdnssdfsdfsnjkcss@gmail.com
+            </p>
+            <p class="card-text">
+              <span>contact name</span>: abs dnc scmsncscndsbcsc zyx
+            </p>
+            <p class="card-text"><span>contact no.</span>: abcsbcsjcjsk</p>
+            <p class="card-text">
+              <span>Address</span>: abcsbcsjcj sdnbcjsndcnkn nskndn sdnkn
+              sninsdnsnck nsk
+            </p>
+            <p class="card-text"><span>City</span>: abcsbcsjcj</p>
+            <p class="card-text"><span>Pincode</span>: 1236871</p>
+          </div>
+          <div class="card-footer">
+            <p class="card-text">
+              <span>Status</span>: <span class="card-status">active</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Display search results here -->
+  <section style="background-color: aliceblue; min-height: 40em;" *ngIf="dcSearchDisplayResponseData && isSubmit"
+  >
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md-2">
+          <div>
+            <h6>Visit Type</h6>
+            <input
+              type="checkbox"
+              value="homeVisit"
+              (change)="visitFilterChanged($event)"
+            />
+            Home Visit <br />
+            <input
+              type="checkbox"
+              value="centerVisit"
+              (change)="visitFilterChanged($event)"
+            />
+            Center Visit 
+          </div>
+        </div>
+        <div class="col-md-10">
+
+          <div class="row mb-1">
+            <div class="col">
+          <h6>Total {{ totalItems }} result found.</h6>
+            </div>
+            <div class="col col-lg-2 col-md-2 col-sm-2 ">
+              <div class="mb-2">
+                View :
+              <!-- Button to switch to View -->
+              <i class="bi bi-table" (click)="currentView = 'table'"></i>
+              <i class="bi bi-card-heading" (click)="currentView = 'card'"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Not Found in Additional Filter -->
+          <ng-container *ngIf="dcSearchDisplayResponseData.length == 0">
+            <div class="d-flex justify-content-center">
+              <div class="alert alert-warning" role="alert" style="width: 50em">
+                No DC Found For the Search Criteria!!
+              </div>
+            </div>
+        </ng-container>
+
+            
+            <!-- Card View -->
+            <div class="row" *ngIf="currentView === 'card'">
+          <!-- Loop through and display search results -->
+          <div  class="col-md-3"  *ngFor="let dc of dcSearchDisplayResponseData" >
+            <!-- Card for displaying search result -->
+            <div class="newcard">
+              <img
+                *ngIf="dc['Home Visit Facility'] == 'Yes'"
+                class="card-img-top"
+                loading="lazy"
+                src="/assets/images/laboratory.jpg"
+                alt="Card image cap"
+              />
+              <img
+                *ngIf="dc['Home Visit Facility'] == 'No'"
+                class="card-img-top"
+                loading="lazy"
+                src="/assets/images/no-image.png"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <h6 class="card-title">
+                  <a>{{ dc["DC Name"] }}</a>
+                </h6>
+                <h6 class="card-title2">
+                  <a>( {{ dc.DCID }} )</a>
+                </h6>
+                <div class="card-detail">
+                    
+                  <p class="card-text"><span>City</span>: {{ dc.City }}</p>
+                  <p class="card-text">
+                    <span>Pincode</span>: {{ dc.Pincode }}
+                  </p>
+                  <p class="card-text">
+                    <span>Address</span>: {{ dc.Address }}
+                  </p>
+                  <p class="card-text">
+                    <span>contact name</span>: {{ dc["Contact Person Name 1"] }}
+                  </p>
+                  <p class="card-text">
+                    <span>contact no.</span>: {{ dc["Mobile number 1"] }}
+                  </p>
+                  <p class="card-text"><span>email</span>: {{ dc.E_Mail }}</p>
+                  <p class="card-text">
+                    <span>Accreditation Type</span>:
+                    {{ dc["Accreditation Type"] }}
+                  </p>
+                  <p class="card-text">
+                    <span>Visit Type</span>:
+                    <ng-container
+                      *ngIf="
+                        dc['Home Visit Facility'] == 'Yes';
+                        else elseVisitBlock
+                      "
+                    >
+                      Home Visit
+                    </ng-container>
+                    <ng-template #elseVisitBlock> Center Visit </ng-template>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <p class="card-text" (click)="viewMoreDetails(dc)"><span class="card-status">View More</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+            <!-- Table View -->
+            <div *ngIf="currentView === 'table'">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">City</th>
+                      <th scope="col">Pincode</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Contact Name</th>
+                      <th scope="col">Mobile</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr  *ngFor="let dc of dcSearchDisplayResponseData">
+                      <th>{{dc.DCID}}</th>
+                      <td>{{ dc["DC Name"] }}</td>
+                      <td>{{ dc.City }}</td>
+                      <td>{{ dc.Pincode }}</td>
+                      <td>{{ dc.Address }}</td>
+                      <td>{{ dc["Contact Person Name 1"] }}</td>
+                      <td>{{ dc["Mobile number 1"] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+            </div>
+
+          <mat-paginator *ngIf="dcSearchDisplayResponseData.length != 0" 
+            [length]="totalItems" [pageSize]="pageSize" 
+            [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions" 
+            (page)="onPageChange($event)">
+        </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</section>

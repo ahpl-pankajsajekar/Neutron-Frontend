@@ -1,0 +1,72 @@
+<section class="container">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/empanelment/dc-search">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{selectedItem['DC Name']}} </li>
+        </ol>
+    </nav>
+
+    <div class="d-flex flex-row">
+        <div>
+            <img
+                class=""
+                loading="lazy"
+                src="/assets/images/laboratory.jpg"
+                alt="Card image cap"
+              />
+        </div>
+        <div class="m-2" >
+            <h6>{{selectedItem['DC Name']}} <small>( in {{selectedItem.City}} )</small></h6>
+            <p>Address: {{selectedItem.Address}} </p>
+            <p >Dc Status <span class="dcstatus">( Active )</span></p>
+            <p class="mt-2"><a routerLink="#">Update DC</a> </p>
+        </div>
+    </div>
+    <div class="mt-4">
+        <h6>Booking History of {{selectedItem['DC Name']}} </h6>
+        <p>Insurance Company</p>
+        <div class="mt-2">
+              <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      HDFC ERGO
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ol>
+                    <li>Rahul, Mumbai, 400102, 24 April 25</li>
+                    <li>Faraz, Mumbai, 400204, 26 April 25</li>
+                    <li>Rshan, Mumbai, 400210, 27 April 25</li>
+                  </ol>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      HDFC LIFE
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ol>
+                    <li>Rahul, Mumbai, 400102, 24 April 25</li>
+                    <li>Faraz, Mumbai, 400204, 26 April 25</li>
+                    <li>Rshan, Mumbai, 400210, 27 April 25</li>
+                  </ol>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      IPRU
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ol>
+                    <li>Rahul, Mumbai, 400102, 24 April 25</li>
+                    <li>Faraz, Mumbai, 400204, 26 April 25</li>
+                    <li>Rshan, Mumbai, 400210, 27 April 25</li>
+                  </ol>
+                </mat-expansion-panel>
+
+              </mat-accordion>
+              
+        </div>
+    </div>
+</section>

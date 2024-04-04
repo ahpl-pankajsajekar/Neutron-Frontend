@@ -1,0 +1,48 @@
+:root {
+    --green : #138a86;
+    --white: #ffffff;
+    --black: #000000;
+  }
+
+
+img{
+    width: 17em;
+    height: 12em;
+}
+
+h6{
+    font-size: 16px;
+}
+
+p{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+
+.dcstatus{
+        font-size: 16px;
+        color: var(--green);
+        font-weight: 500;
+}
+
+.breadcrumb{
+    font-size: 14px;
+    margin-top: 25px;
+}
+
+
+
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
+  }
+
+  mat-panel-title {
+    font-weight: 400;
+  }
