@@ -24,8 +24,7 @@ export class DcSearchComponent {
   DCSerachForm = this._formBuilder.group({
     q : ['', []],
     t : [[], []],
-  },
-  );
+  });
 
   dcSearchDisplayResponseData : any[] = [];
   isSubmit = false;

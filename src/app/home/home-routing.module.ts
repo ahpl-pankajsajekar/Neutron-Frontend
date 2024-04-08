@@ -9,12 +9,12 @@ const routes: Routes = [
   {
     path: 'empanelment',
     loadChildren: empanelmentModule,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: '',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
 ];
 
