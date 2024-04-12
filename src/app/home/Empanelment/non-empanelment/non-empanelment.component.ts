@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
 
 @Component({
@@ -11,9 +12,10 @@ export class NonEmpanelmentComponent {
 
   documents: File[] = [];
 
-  
+  ticketId : any = null
   constructor(private _formBuilder: FormBuilder,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private activatedRoute: ActivatedRoute,
   ) {
   }
 
@@ -147,45 +149,8 @@ export class NonEmpanelmentComponent {
     {value: 'South', viewValue: 'South'},  
   ];
   
-
-  
-  // firstFormGroup = this._formBuilder.group({
-  //   providerName: ['', Validators.required],
-  //   providerType: ['', Validators.required],
-  //   panNumber: ['', Validators.required],
-  //   nameOnPanCard: ['', Validators.required],
-  // });
-  // secondFormGroup = this._formBuilder.group({
-  //   address1: ['', Validators.required],
-  //   address2: ['', Validators.required],
-  //   ahplLocation: ['', Validators.required],
-  //   lcLocation: ['', Validators.required],
-  //   state: ['', Validators.required],
-  //   city: ['', Validators.required],
-  //   pincode: ['', Validators.required],
-  //   zone: ['', Validators.required],
-  //   contactPersonName1: ['', Validators.required],
-  //   mobileNumber: ['', Validators.required],
-  //   contactPersonName2: ['', ],
-  //   altMobileNumber: ['', ],
-  //   emailId: ['', Validators.required],
-  //   emailId2: ['',],
-  //   fax: ['', ],
-  // });
-  // thirdFormGroup = this._formBuilder.group({
-  //   accountNumber: ['', Validators.required],
-  //   accountName: ['', Validators.required],
-  //   bankName: ['', Validators.required],
-  //   ifscCode: ['', Validators.required],
-  //   branchName: ['', Validators.required],
-  //   accountType: ['', Validators.required],
-  //   paymentToBeMadeInFavorOf: ['', Validators.required],
-  //   paymentMode : ['', Validators.required],
-  // });
   
   isLinear = false;
-  // fourthFormGroup = this._formBuilder.group({
-  // });
 
   ngOnInit(){
     this.initForm()
@@ -371,14 +336,15 @@ export class NonEmpanelmentComponent {
   }
 
     console.log("Form submitted!", this.formgroup.value);
-
+    
     // if (this.formgroup.invalid) {
     //   alert('All required values should be provided!')
     //   return;
     // }
     // else {
-      const url = "/selfempanelment/add/570927/"
-      this.commonService.postMethod(url, this.formData).subscribe(
+      this.ticketId = this.activatedRoute.snapshot.queryParamMap.get('id');
+      const url = "/selfempanelment/add/" + this.ticketId + '/'
+      this.commonService.postMethod(url, this.formgroup.value).subscribe(
         (res: any) => {
           console.log("res", res)
         },
