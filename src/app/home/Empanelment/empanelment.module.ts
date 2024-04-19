@@ -26,6 +26,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     EmpanelmentRequestComponent,
     DcRegistrationComponent,
     DcDetailsComponent,
+    
   ],
   imports: [
     CommonModule,

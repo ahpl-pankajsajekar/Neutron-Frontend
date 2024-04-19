@@ -36,6 +36,10 @@ const routes: Routes = [
         path: 'dc-reg',
         component: DcRegistrationComponent,
       },
+      {
+        path: 'dcverification',
+        component: DcRegistrationComponent,
+      },
     ]
   }
     

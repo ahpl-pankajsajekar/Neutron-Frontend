@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row d-flex align-items-center vh-100">
+        <div class="col-md-4 offset-md-4">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="c-primary">User Registration</h2>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user-circle" aria-hidden="true"></i></div>
+                            </div>
+                            <input type="text" class="form-control" formControlName="username" placeholder="Username *">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+                            </div>
+                            <input type="password" class="form-control"
+                                formControlName="password" placeholder="Password *">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
+                            </div>
+                            <input type="password" class="form-control"
+                                formControlName="Confirm-password" placeholder="Confirm-password *">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                            </div>
+                            <input type="text" class="form-control" formControlName="Email" placeholder="Email *">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                            </div>
+                            <input type="text" class="form-control" formControlName="Phone_Number" placeholder="Phone Number *">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="d-grid gap-2 mx-auto col-md-12 col-sm-12">
+                            <button class="btn" type="submit">
+                                Register
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <small><a class="c-primary" routerLink="/account/login">Back to login page</a></small>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

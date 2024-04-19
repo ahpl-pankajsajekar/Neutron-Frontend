@@ -1,9 +1,16 @@
-$primary-color: #0C356A;
+$primary-color: #08ac20;
 $error-color: red;
 
 // for form
 .c-primary{
   color: $primary-color;
+  font-size:medium;
+  text-align:center;
+}
+
+.container-fluid {
+  background-image: url("/assets/images/space.jpg");
+  background-size: cover;
 }
 
 form {

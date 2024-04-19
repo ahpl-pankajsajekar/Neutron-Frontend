@@ -54,17 +54,4 @@ export class LoginComponent {
       }
     })
   }
-
-  // temp register here
-  register(){
-    this.accountService.register(this.loginForm.value).pipe(first()).subscribe({
-      next: () => {
-        console.log("register")
-      },
-      error: () => {
-        this.loading = false
-      }
-    })
-  }
-
 }

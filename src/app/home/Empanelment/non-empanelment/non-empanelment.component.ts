@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-non-empanelment',
@@ -66,6 +67,11 @@ export class NonEmpanelmentComponent {
   StationType = [
     {value: 'Instation', viewValue: 'Instation'},
     {value: 'Outstation', viewValue: 'Outstation'},
+  ];
+
+  ACType = [
+    {value: 'Saving', viewValue: 'Saving'},
+    {value: 'Currunt', viewValue: 'Currunt'},
   ];
 
   TyreType = [
@@ -233,7 +239,19 @@ export class NonEmpanelmentComponent {
   FMR: ['', ],
   STOOL_ROUTINE: ['', ],
   CARDIOLOGY_OUTSOURCED_CENTRE: ['', ],
-
+  PATHOLOGY_OUTSOURCED_CENTR: ['', ],
+  GYNAECOLOGY_OUTSOURCED_CENTRE: ['', ],
+  DENTAL_OUTSOURCED_CENTRE: ['', ],
+  PULMONOLOGY_OUTSOURCED_CENTRE: ['', ],
+  RADIOLOGY_OUTSOURCED_CENTRE: ['', ],
+  pan: ['', ],
+  aadhar: ['', ],
+  Accreditation: ['', ],
+  Registration_Number: ['', ],
+  Ownership: ['', ],
+  TDS: ['', ],
+  Start_Date: ['', ],
+  End_Date: ['', ],
     })
   }
 
@@ -263,73 +281,80 @@ export class NonEmpanelmentComponent {
   this.formData.append('address1', this.formgroup.value.address1)
   this.formData.append('address2', this.formgroup.value.address2)
   this.formData.append('ahplLocation', this.formgroup.value.ahplLocation)
-  // this.formData.append('lcLocation', this.formgroup.value.lcLocation)
-  // this.formData.append('state', this.formgroup.value.state)
-  // this.formData.append('city', this.formgroup.value.city)
-  // this.formData.append('pincode', this.formgroup.value.pincode)
-  // this.formData.append('zone', this.formgroup.value.zone)
-  // this.formData.append('emailId', this.formgroup.value.emailId)
-  // this.formData.append('emailId2', this.formgroup.value.emailId2)
-  // this.formData.append('Cantact_person1', this.formgroup.value.Cantact_person1)
-  // this.formData.append('Cantact_person2', this.formgroup.value.Cantact_person2)
-  // this.formData.append('fax', this.formgroup.value.fax)
-  // this.formData.append('accountNumber', this.formgroup.value.accountNumber)
-  // this.formData.append('accountName', this.formgroup.value.accountName)
-  // this.formData.append('bankName', this.formgroup.value.bankName)
-  // this.formData.append('ifscCode', this.formgroup.value.ifscCode)
-  // this.formData.append('branchName', this.formgroup.value.branchName)
-  // this.formData.append('accountType', this.formgroup.value.accountType)
-  // this.formData.append('paymentToBeMadeInFavorOf', this.formgroup.value.paymentToBeMadeInFavorOf)
-  // this.formData.append('paymentMode', this.formgroup.value.paymentMode)
-  // this.formData.append('Opthlmologya', this.formgroup.value.Opthlmologya)
-  // this.formData.append('MBBS_PHYSICIAN', this.formgroup.value.MBBS_PHYSICIAN)
-  // this.formData.append('GYNECOLOGY', this.formgroup.value.GYNECOLOGY)
-  // this.formData.append('MD_PHYSICIAN', this.formgroup.value.MD_PHYSICIAN)
-  // this.formData.append('MD_PATHOLOGIST', this.formgroup.value.MD_PATHOLOGIST)
-  // this.formData.append('MD_RADIOLOGIST', this.formgroup.value.MD_RADIOLOGIST)
-  // this.formData.append('MBBS_PHYSICIAN', this.formgroup.value.MBBS_PHYSICIAN)
-  // this.formData.append('DMLT', this.formgroup.value.DMLT)
-  // this.formData.append('MD_CARDIOLOGY', this.formgroup.value.MD_CARDIOLOGY)
-  // this.formData.append('XRAY_TECHNICIAN', this.formgroup.value.XRAY_TECHNICIAN)
-  // this.formData.append('ECG_TECHNICIAN', this.formgroup.value.ECG_TECHNICIAN)
-  // this.formData.append('BAMS_BHMS', this.formgroup.value.BAMS_BHMS)
-  // this.formData.append('ENT', this.formgroup.value.ENT)
-  // this.formData.append('DENTAL', this.formgroup.value.DENTAL)
-  // this.formData.append('DIET', this.formgroup.value.DIET)
-  // this.formData.append('ECG_FACILITY', this.formgroup.value.ECG_FACILITY)
-  // this.formData.append('USG', this.formgroup.value.USG)
-  // this.formData.append('TREAD_MILL_TEST', this.formgroup.value.TREAD_MILL_TEST)
-  // this.formData.append('TMT_WT_CAPACITY', this.formgroup.value.TMT_WT_CAPACITY)
-  // this.formData.append('ECHOCARDIOGRAPHY', this.formgroup.value.ECHOCARDIOGRAPHY)
-  // this.formData.append('MD_RADIOLOGIST', this.formgroup.value.MD_RADIOLOGIST)
-  // this.formData.append('FUNDOSCOPY_TEST', this.formgroup.value.FUNDOSCOPY_TEST)
-  // this.formData.append('DMLT_LABORATORY_TECHNICIAN', this.formgroup.value.DMLT_LABORATORY_TECHNICIAN)
-  // this.formData.append('BASIC_EYE_TEST', this.formgroup.value.BASIC_EYE_TEST)
-  // this.formData.append('X_RAY', this.formgroup.value.X_RAY)
-  // this.formData.append('ELISA_HIV', this.formgroup.value.ELISA_HIV)
-  // this.formData.append('PSA', this.formgroup.value.PSA)
-  // this.formData.append('ENT', this.formgroup.value.ENT)
-  // this.formData.append('PAP_SMEAR', this.formgroup.value.PAP_SMEAR)
-  // this.formData.append('MAMMOGRAM', this.formgroup.value.MAMMOGRAM)
-  // this.formData.append('WESTERN_BLOT', this.formgroup.value.WESTERN_BLOT)
-  // this.formData.append('PULMONARY_FUNCTION_TEST', this.formgroup.value.PULMONARY_FUNCTION_TEST)
-  // this.formData.append('URINE_NICOTINE_QUALITITATIVE', this.formgroup.value.URINE_NICOTINE_QUALITITATIVE)
-  // this.formData.append('HBA1C', this.formgroup.value.HBA1C)
-  // this.formData.append('HBEAG', this.formgroup.value.HBEAG)
-  // this.formData.append('AUDIOMETRY', this.formgroup.value.AUDIOMETRY)
-  // this.formData.append('GYNAECOLOGIST', this.formgroup.value.GYNAECOLOGIST)
-  // this.formData.append('MER', this.formgroup.value.MER)
-  // this.formData.append('DENTAL', this.formgroup.value.DENTAL)
-  // this.formData.append('PATHOLOGY', this.formgroup.value.PATHOLOGY)
-  // this.formData.append('FMR', this.formgroup.value.FMR)
-  // this.formData.append('STOOL_ROUTINE', this.formgroup.value.STOOL_ROUTINE)
-  // this.formData.append('CARDIOLOGY_OUTSOURCED_CENTRE', this.formgroup.value.CARDIOLOGY_OUTSOURCED_CENTRE)
-  // this.formData.append('Inception', this.formgroup.value.Inception)
-  // this.formData.append('Inception', this.formgroup.value.Inception)
-  // this.formData.append('Inception', this.formgroup.value.Inception)
-
-
-  
+  this.formData.append('lcLocation', this.formgroup.value.lcLocation)
+  this.formData.append('state', this.formgroup.value.state)
+  this.formData.append('city', this.formgroup.value.city)
+  this.formData.append('pincode', this.formgroup.value.pincode)
+  this.formData.append('zone', this.formgroup.value.zone)
+  this.formData.append('emailId', this.formgroup.value.emailId)
+  this.formData.append('emailId2', this.formgroup.value.emailId2)
+  this.formData.append('Cantact_person1', this.formgroup.value.Cantact_person1)
+  this.formData.append('Cantact_person2', this.formgroup.value.Cantact_person2)
+  this.formData.append('fax', this.formgroup.value.fax)
+  this.formData.append('accountNumber', this.formgroup.value.accountNumber)
+  this.formData.append('accountName', this.formgroup.value.accountName)
+  this.formData.append('bankName', this.formgroup.value.bankName)
+  this.formData.append('ifscCode', this.formgroup.value.ifscCode)
+  this.formData.append('branchName', this.formgroup.value.branchName)
+  this.formData.append('accountType', this.formgroup.value.accountType)
+  this.formData.append('paymentToBeMadeInFavorOf', this.formgroup.value.paymentToBeMadeInFavorOf)
+  this.formData.append('paymentMode', this.formgroup.value.paymentMode)
+  this.formData.append('Opthlmologya', this.formgroup.value.Opthlmologya)
+  this.formData.append('MBBS_PHYSICIAN', this.formgroup.value.MBBS_PHYSICIAN)
+  this.formData.append('GYNECOLOGY', this.formgroup.value.GYNECOLOGY)
+  this.formData.append('MD_PHYSICIAN', this.formgroup.value.MD_PHYSICIAN)
+  this.formData.append('MD_PATHOLOGIST', this.formgroup.value.MD_PATHOLOGIST)
+  this.formData.append('MD_RADIOLOGIST', this.formgroup.value.MD_RADIOLOGIST)
+  this.formData.append('MBBS_PHYSICIAN', this.formgroup.value.MBBS_PHYSICIAN)
+  this.formData.append('DMLT', this.formgroup.value.DMLT)
+  this.formData.append('MD_CARDIOLOGY', this.formgroup.value.MD_CARDIOLOGY)
+  this.formData.append('XRAY_TECHNICIAN', this.formgroup.value.XRAY_TECHNICIAN)
+  this.formData.append('ECG_TECHNICIAN', this.formgroup.value.ECG_TECHNICIAN)
+  this.formData.append('BAMS_BHMS', this.formgroup.value.BAMS_BHMS)
+  this.formData.append('ENT', this.formgroup.value.ENT)
+  this.formData.append('DENTAL', this.formgroup.value.DENTAL)
+  this.formData.append('DIET', this.formgroup.value.DIET)
+  this.formData.append('ECG_FACILITY', this.formgroup.value.ECG_FACILITY)
+  this.formData.append('USG', this.formgroup.value.USG)
+  this.formData.append('TREAD_MILL_TEST', this.formgroup.value.TREAD_MILL_TEST)
+  this.formData.append('TMT_WT_CAPACITY', this.formgroup.value.TMT_WT_CAPACITY)
+  this.formData.append('ECHOCARDIOGRAPHY', this.formgroup.value.ECHOCARDIOGRAPHY)
+  this.formData.append('MD_RADIOLOGIST', this.formgroup.value.MD_RADIOLOGIST)
+  this.formData.append('FUNDOSCOPY_TEST', this.formgroup.value.FUNDOSCOPY_TEST)
+  this.formData.append('DMLT_LABORATORY_TECHNICIAN', this.formgroup.value.DMLT_LABORATORY_TECHNICIAN)
+  this.formData.append('BASIC_EYE_TEST', this.formgroup.value.BASIC_EYE_TEST)
+  this.formData.append('X_RAY', this.formgroup.value.X_RAY)
+  this.formData.append('ELISA_HIV', this.formgroup.value.ELISA_HIV)
+  this.formData.append('PSA', this.formgroup.value.PSA)
+  this.formData.append('ENT', this.formgroup.value.ENT)
+  this.formData.append('PAP_SMEAR', this.formgroup.value.PAP_SMEAR)
+  this.formData.append('MAMMOGRAM', this.formgroup.value.MAMMOGRAM)
+  this.formData.append('WESTERN_BLOT', this.formgroup.value.WESTERN_BLOT)
+  this.formData.append('PULMONARY_FUNCTION_TEST', this.formgroup.value.PULMONARY_FUNCTION_TEST)
+  this.formData.append('URINE_NICOTINE_QUALITITATIVE', this.formgroup.value.URINE_NICOTINE_QUALITITATIVE)
+  this.formData.append('HBA1C', this.formgroup.value.HBA1C)
+  this.formData.append('HBEAG', this.formgroup.value.HBEAG)
+  this.formData.append('AUDIOMETRY', this.formgroup.value.AUDIOMETRY)
+  this.formData.append('GYNAECOLOGIST', this.formgroup.value.GYNAECOLOGIST)
+  this.formData.append('MER', this.formgroup.value.MER)
+  this.formData.append('DENTAL', this.formgroup.value.DENTAL)
+  this.formData.append('PATHOLOGY', this.formgroup.value.PATHOLOGY)
+  this.formData.append('FMR', this.formgroup.value.FMR)
+  this.formData.append('STOOL_ROUTINE', this.formgroup.value.STOOL_ROUTINE)
+  this.formData.append('CARDIOLOGY_OUTSOURCED_CENTRE', this.formgroup.value.CARDIOLOGY_OUTSOURCED_CENTRE)
+  this.formData.append('PATHOLOGY_OUTSOURCED_CENTR', this.formgroup.value.PATHOLOGY_OUTSOURCED_CENTR)
+  this.formData.append('GYNAECOLOGY_OUTSOURCED_CENTRE', this.formgroup.value.GYNAECOLOGY_OUTSOURCED_CENTRE)
+  this.formData.append('DENTAL_OUTSOURCED_CENTRE', this.formgroup.value.DENTAL_OUTSOURCED_CENTRE)
+  this.formData.append('PULMONOLOGY_OUTSOURCED_CENTRE', this.formgroup.value.PULMONOLOGY_OUTSOURCED_CENTRE)
+  this.formData.append('RADIOLOGY_OUTSOURCED_CENTRE', this.formgroup.value.RADIOLOGY_OUTSOURCED_CENTRE)
+  this.formData.append('pan', this.formgroup.value.pan)
+  this.formData.append('aadhar', this.formgroup.value.aadhar)
+  this.formData.append('Accreditation', this.formgroup.value.Accreditation)
+  this.formData.append('Registration_Number', this.formgroup.value.Registration_Number)
+  this.formData.append('Ownership', this.formgroup.value.Ownership)
+  this.formData.append('TDS', this.formgroup.value.TDS)
+  this.formData.append('Start_Date', this.formgroup.value.Start_Date)
+  this.formData.append('End_Date', this.formgroup.value.End_Date  )
 
   if (this.profileFile) {
     this.formData.append('comp_profile', this.profileFile);
@@ -353,5 +378,7 @@ export class NonEmpanelmentComponent {
         })
       // }
   }
+
+  
 }
 
