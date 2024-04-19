@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CommonService } from 'src/app/_services/common.service';
+import { FormBuilder, FormGroup } from '@angular/forms'; // Import FormBuilder and FormGroup
 
 @Component({
   selector: 'app-dcgp-list',
@@ -8,43 +7,31 @@ import { CommonService } from 'src/app/_services/common.service';
   styleUrls: ['./dcgp-list.component.scss']
 })
 export class DcgpListComponent implements OnInit {
-  form: FormGroup;
-  providerNames: string[] = [];
-  providerIDs: string[] = [];
-  isLinear = false;
+  form: FormGroup = new FormGroup({}); // Declare form as FormGroup
+  providerNames: string[] = []; // Initialize providerNames as an empty array
+  providerIDs: string[] = []; // Initialize providerIDs as an empty array
+  isLinear = true; // Initialize isLinear property
 
-  constructor(private formBuilder: FormBuilder, private commonService: CommonService) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.commonService.getProviderNames().subscribe((names: string[]) => {
-      this.providerNames = names;
-    });
-    this.commonService.getProviderIDs().subscribe((ids: string[]) => {
-      this.providerIDs = ids;
-    });
+    // Initialize providerNames and providerIDs arrays if needed
   }
 
-  onDCSelected() {
-    // Retrieve the selected DC from the form control
-    const selectedName = this.form.get('Name').value;
-    const selectedID = this.form.get('ID').value;
-    console.log('Selected Provider Name:', selectedName);
-    console.log('Selected Provider ID:', selectedID);
-  }
-
-  initForm() {
-    this.form = this.formBuilder.group({
-      Name: ['', Validators.required],
-      ID: ['', Validators.required],
+  initForm(): void {
+    this.form = this.fb.group({
+      Name: [''], // Initialize form controls with default values if needed
+      ID: ['']
     });
   }
 
-  onSubmit() {
-    console.log('Form submitted:', this.form.value);
+  onSubmit(): void {
     if (this.form.valid) {
-      // Process form submission
       console.log('Form submitted:', this.form.value);
+      // Perform form submission actions here
+    } else {
+      // Handle form validation errors
     }
   }
 }
