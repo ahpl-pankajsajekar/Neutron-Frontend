@@ -20,7 +20,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
-    DcSearchComponent,
+    // DcSearchComponent,
     DcgpListComponent,
     NonEmpanelmentComponent,
     EmpanelmentRequestComponent,

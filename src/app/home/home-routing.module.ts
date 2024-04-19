@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../_helpers/auth.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DcSearchComponent } from './Empanelment/dc-search/dc-search.component';
 
 const empanelmentModule = () => import('./Empanelment/empanelment.module').then(x=>x.EmpanelmentModule)
 
@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: DashboardComponent,
+    component: DcSearchComponent,
     // canActivate: [AuthGuard],
   },
 ];

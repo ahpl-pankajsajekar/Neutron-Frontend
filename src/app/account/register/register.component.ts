@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.registerForm.value)
     if (this.registerForm.valid) {
       this.loading = true;
       this.accountService.register(this.registerForm.value)
@@ -45,6 +46,9 @@ export class RegisterComponent implements OnInit {
             this.loading = false;
           }
         );
+    }
+    else{
+      alert("please fill up valid form");
     }
   }
 

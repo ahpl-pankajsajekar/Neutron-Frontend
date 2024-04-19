@@ -29,7 +29,7 @@ export class LoginComponent {
 
   InitFrom() {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required,]],
+      email: ['', [Validators.required,]],
       password: ['', [Validators.required]]
     });
   }
@@ -44,13 +44,14 @@ export class LoginComponent {
         return;
     }
     this.loading = true
-    this.accountService.login(this.f['username'].value, this.f['password'].value).pipe(first()).subscribe({
+    this.accountService.login(this.f['email'].value, this.f['password'].value).pipe(first()).subscribe({
       next: () => {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.router.navigateByUrl(returnUrl)
       },
-      error: () => {
+      error: (error:any) => {
         this.loading = false;
+        alert(error.error.non_field_errors[0]);
       }
     })
   }
