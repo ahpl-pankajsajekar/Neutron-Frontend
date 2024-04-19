@@ -7,6 +7,7 @@ import { NonEmpanelmentComponent } from './non-empanelment/non-empanelment.compo
 import { HomeComponent } from '../home.component';
 import { DcRegistrationComponent } from './dc-registration/dc-registration.component';
 import { DcDetailsComponent } from './dc-search/dc-details/dc-details.component';
+import { DcVerifyComponent } from './dc-verify/dc-verify.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'dcgp-list',
         component: DcgpListComponent,
+      },
+      {
+        path: 'dc-verify',
+        component: DcVerifyComponent,
       },
       {
         path: 'dc-reg',

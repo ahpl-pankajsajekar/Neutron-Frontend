@@ -1,6 +1,6 @@
 <div>
     <div class="heading">
-        <h5><span class="heading-left-line"></span> DC Update</h5>
+        <h5><span class="heading-left-line"></span> DC Update Detail</h5>
         <hr>
     </div>
     <div>
@@ -10,6 +10,30 @@
                     <form [formGroup]="formgroup">
                         <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
                             <mat-step>
+                                <!-- <mat-step [stepControl]="secondFormGroup">
+                                  <form [formGroup]="secondFormGroup" #formtwo="ngForm"> -->
+                                    <ng-template matStepLabel>Empalment Duration</ng-template>
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>Start Date<code>*</code></label></div>
+                                                <div><input type="date" formControlName="Start_Date" required></div>
+                                            </div>
+                                          </div>
+                                      
+                                      <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <div><label>End Date<code>*</code></label></div>
+                                            <div><input type="date" formControlName="End_Date" required></div>
+                                          </div>
+                                      </div>
+                                      <div class="mt-3">
+                                        <button mat-button matStepperNext type="submit">Next</button>
+                                        </div>  
+                                    </div>
+                              <!-- </form> -->
+                                </mat-step>
+                            <mat-step>
                             <!-- <mat-step [stepControl]="firstFormGroup">
                               <form [formGroup]="firstFormGroup" #formone="ngForm"> -->
                                 <ng-template matStepLabel>DC Details</ng-template>
@@ -17,8 +41,14 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group-box">
+                                                <div><label>PROVIDER ID <code>*</code></label></div>
+                                                <div><input type="text" formControlName="providerID" readonly required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
                                                 <div><label>PROVIDER NAME <code>*</code></label></div>
-                                                <div><input type="text" formControlName="providerName" required></div>
+                                                <div><input type="text" formControlName="providerName" readonly required></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -158,6 +188,7 @@
                                         
                                     </div>
                                     <div class="mt-3">
+                                    <button mat-button matStepperPrevious>Back</button>
                                     <button mat-button matStepperNext type="submit">Next</button>
                                     </div>  
                                 </div>
@@ -866,7 +897,50 @@
                             <button mat-button (click)="formone.ngSubmit.emit();formtwo.ngSubmit.emit();formthird.ngSubmit.emit();">Submit</button>
                             </div>
                             </mat-step> -->
-                         
+
+                            <mat-step>
+                                <ng-template matStepLabel>Upload Document</ng-template>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <div><label>Document</label></div>
+                                              <div>
+                                                <label for="pan">  DC Owner PAN :</label>
+                                                <input type="file" id="pan" formControlName="pan" readonly required />
+                                              </div>
+                                              <div>
+                                                <label for="aadhar"> DC Owner Aadhar :</label>
+                                                <input type="file" id="aadhar" formControlName="aadhar" readonly required />
+                                              </div>
+                                              <div>
+                                                <label for="Accreditation">Accreditation Certificates :</label>
+                                                <input type="file" id="pan" formControlName="Accreditation" readonly required/>
+                                              </div>
+                                              <div>
+                                                <label for="Registration_Number">Dr Registration Number/Certificate :</label>
+                                                <input type="file" id="aadhar" formControlName="Registration_Number" readonly required />
+                                              </div>
+                                              <div>
+                                                <label for="Ownership">Ownership Documents :</label>
+                                                <input type="file" id="pan" formControlName="Ownership" readonly required />
+                                              </div>
+                                              <div>
+                                                <label for="TDS">TDS certificate :</label>
+                                                <input type="file" id="aadhar" formControlName="TDS" />
+                                              </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button (click)="stepper.reset()">Reset</button>
+                                    <button mat-button (click)="onSubmit()">Submit</button>
+                                </div>
+                            </mat-step>
+                            
+                              
                       </mat-stepper>
                     </form>
                 </div>

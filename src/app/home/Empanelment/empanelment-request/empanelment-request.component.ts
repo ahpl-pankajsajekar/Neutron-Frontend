@@ -1,11 +1,11 @@
-
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
-  selector: 'app-non-empanelment',
+  selector: 'app-empanelment-request',
   templateUrl: './empanelment-request.component.html',
   styleUrls: ['./empanelment-request.component.scss']
 })
@@ -250,6 +250,8 @@ export class EmpanelmentRequestComponent {
   Registration_Number: ['', ],
   Ownership: ['', ],
   TDS: ['', ],
+  Start_Date: ['', ],
+  End_Date: ['', ],
     })
   }
 
@@ -351,6 +353,8 @@ export class EmpanelmentRequestComponent {
   this.formData.append('Registration_Number', this.formgroup.value.Registration_Number)
   this.formData.append('Ownership', this.formgroup.value.Ownership)
   this.formData.append('TDS', this.formgroup.value.TDS)
+  this.formData.append('Start_Date', this.formgroup.value.Start_Date)
+  this.formData.append('End_Date', this.formgroup.value.End_Date  )
 
   if (this.profileFile) {
     this.formData.append('comp_profile', this.profileFile);

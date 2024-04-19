@@ -16,6 +16,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { DcDetailsComponent } from './dc-search/dc-details/dc-details.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DcVerifyComponent } from './dc-verify/dc-verify.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     EmpanelmentRequestComponent,
     DcRegistrationComponent,
     DcDetailsComponent,
+    DcVerifyComponent,
     
   ],
   imports: [
