@@ -1,47 +1,55 @@
-  <div>
+<div>
   <div class="heading">
-    <h5><span class="heading-left-line"></span> DC Verification</h5>
-    <hr>
+    <h5><span class="heading-left-line"></span>Self Emapanelment</h5>
+    <hr/>
   </div>
   <div>
     <div class="box">
       <div class="box-card">
         <div class="box-card-body">
-          <form [formGroup]="form">
-            <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-              <mat-step>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="input-group-box">
-                      <div><label>Select Provider Name<code>*</code></label></div>
-                      <div>
-                        <select formControlName="Name">
-                          <option [value]="">----select----</option>
-                          <option *ngFor="let name of providerNames" [value]="name">{{ name }}</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="input-group-box">
-                      <div><label>Select Provider ID <code>*</code></label></div>
-                      <div>
-                        <select formControlName="ID">
-                          <option [value]="">----select----</option>
-                          <option *ngFor="let id of providerIDs" [value]="id">{{ id }}</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="mt-3">
-                      <button mat-button matStepperNext type="submit">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </mat-step>
-            </mat-stepper>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div>
+              <label for="dcName">DC Name:</label>
+              <input type="text" id="dcName" formControlName="dcName" />
+            </div>
+            <div>
+              <label for="pan">PAN:</label>
+              <input type="file" id="pan" formControlName="pan_image" />
+            </div>
+            <div>
+              <label for="aadhar">Aadhar Number:</label>
+              <input type="text" id="aadhar" formControlName="aadhar_number" />
+            </div>
+            <div>
+              <label for="aadhar">Pan Number:</label>
+              <input type="text" id="aadhar" formControlName="pan_number" />
+            </div>
+            <div>
+              <label for="client">Client:</label>
+              <select id="client" formControlName="client">
+                <option value="">Select Client</option>
+                <option value="client1">Client 1</option>
+                <option value="client2">Client 2</option>
+                <option value="client3">Client 3</option>
+              </select>
+            </div>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>
     </div>
   </div>
+
+  <div>
+    <h6>Verify Emapanelment</h6>
+    <div *ngFor="let item of employementData">
+      <span>{{item.dcname}}</span><br>
+      <span>{{item.pan_number}}</span><br>
+      <span>{{item.pan_number}}</span><br>
+      <span>{{item.text_field}}</span><br>
+      <img src="data:image/png;base64,{{ item.pan_image }}" width="200" height="200">
+
+    </div>
+  </div>
+
 </div>
