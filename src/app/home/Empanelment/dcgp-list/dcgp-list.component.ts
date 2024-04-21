@@ -11,7 +11,6 @@ export class DcgpListComponent {
   form: any = FormGroup;
   formData: FormData = new FormData();
 
-  PanImageFile: any;
 
   constructor(
     private fb: FormBuilder, 
@@ -26,20 +25,23 @@ export class DcgpListComponent {
   initForm() {
     this.form = this.fb.group({
       dcName: ['', Validators.required],
-      pan_image: [this.PanImageFile],
+      pan_image: ['', Validators.required],
       aadhar_number: ['', ],
       pan_number: ['', ],
       client: ['', ],
     });
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formData.append('pan_image', file);
+    }
+  }
+
   onSubmit() {
     console.log('Form submitted:');
     this.formData.append('dcName', this.form.value.dcName)
-    // this.formData.append('pan_image', this.form.value.pan_image)
-    if (this.PanImageFile) {
-      this.formData.append('pan_image', this.PanImageFile);
-    }
     this.formData.append('pan_number', this.form.value.pan_number)
     this.formData.append('aadhar_number', this.form.value.aadhar_number)
     this.formData.append('client', this.form.value.client)
