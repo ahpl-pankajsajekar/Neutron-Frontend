@@ -23,6 +23,7 @@
           <h6>{{ selectedItem['DC Name'] }} <small>( in {{ selectedItem.City }} )</small></h6>
           <p>Address: {{ selectedItem.Address }}, {{ selectedItem.City }}, {{ selectedItem.State }}, {{ selectedItem.Pincode }}</p>
           <p>DC <span class="dcstatus">Active</span></p>
+          <p>VisitFacility {{DCdetailsData.VisitFacility}}</p>
           <p class="mt-2"><a [routerLink]="['/empanelment/dc-request']">Update Detail</a></p>
       </div>
     </div>

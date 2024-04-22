@@ -14,7 +14,7 @@
             </div>
             <div>
               <label for="pan">PAN:</label>
-              <input type="file" id="pan"  formControlName="pan_image" />
+              <input type="file" id="pan" (change)="onFileSelected($event)"  formControlName="pan_image" />
             </div>
             <div>
               <label for="aadhar">Aadhar Number:</label>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommonService } from 'src/app/_services/common.service';
 import { GeocodingService } from 'src/app/_services/geocoding.service';
  
 // import { google } from '@types/googlemaps'
@@ -15,11 +16,15 @@ export class DcDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private geocodingService: GeocodingService,
+    private commonService: CommonService,
   ) { }
  
   selectedItem: any;
   geocodingResponse: any;
   map!: google.maps.Map;
+
+  
+  DCdetailsData : any;
  
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -31,6 +36,21 @@ export class DcDetailsComponent implements OnInit {
         this.geocodeAddress(address);
       }
     });
+    
+    this.DCdetailsData = []
+    this.loadData()
+  }
+
+  loadData(){
+    const dcId = history.state.data.DCID
+    const url = "/DC/detail/?dc="+dcId
+      this.commonService.getMethod(url).subscribe(
+        (res: any) => {
+          this.DCdetailsData = res.data[0]
+        },
+        (err: any) => {
+          console.warn(err)
+        })
   }
  
   // show cordinate purpos only

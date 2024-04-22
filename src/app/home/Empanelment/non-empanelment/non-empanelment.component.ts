@@ -256,8 +256,43 @@ export class NonEmpanelmentComponent {
   }
 
   formData: FormData = new FormData();
-  // This variable use for getting choose file value
-  profileFile: any;
+
+  onPanImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formData.append('pan_image', file);
+    }
+  }
+  onAadharImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formData.append('aadhar_image', file);
+    }
+  }
+  onAccreditationImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formData.append('Accreditation_image', file);
+    }
+  }
+  onRegistrationNumberImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formData.append('Registration_Number_image', file);
+    }
+  }
+  onOwnershipImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formData.append('Ownership_image', file);
+    }
+  }
+  onTDSImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.formData.append('TDS_image', file);
+    }
+  }
 
   formgroup: any = FormGroup;
   onSubmit() {
@@ -347,20 +382,19 @@ export class NonEmpanelmentComponent {
   this.formData.append('DENTAL_OUTSOURCED_CENTRE', this.formgroup.value.DENTAL_OUTSOURCED_CENTRE)
   this.formData.append('PULMONOLOGY_OUTSOURCED_CENTRE', this.formgroup.value.PULMONOLOGY_OUTSOURCED_CENTRE)
   this.formData.append('RADIOLOGY_OUTSOURCED_CENTRE', this.formgroup.value.RADIOLOGY_OUTSOURCED_CENTRE)
-  this.formData.append('pan', this.formgroup.value.pan)
-  this.formData.append('aadhar', this.formgroup.value.aadhar)
-  this.formData.append('Accreditation', this.formgroup.value.Accreditation)
-  this.formData.append('Registration_Number', this.formgroup.value.Registration_Number)
-  this.formData.append('Ownership', this.formgroup.value.Ownership)
-  this.formData.append('TDS', this.formgroup.value.TDS)
+  // this.formData.append('pan_image', this.formgroup.value.pan)
+  // this.formData.append('aadhar_image', this.formgroup.value.aadhar)
+  // this.formData.append('Accreditation_image', this.formgroup.value.Accreditation)
+  // this.formData.append('Registration_Number_image', this.formgroup.value.Registration_Number)
+  // this.formData.append('Ownership_image', this.formgroup.value.Ownership)
+  // this.formData.append('TDS_image', this.formgroup.value.TDS)
   this.formData.append('Start_Date', this.formgroup.value.Start_Date)
   this.formData.append('End_Date', this.formgroup.value.End_Date  )
+  
 
-  if (this.profileFile) {
-    this.formData.append('comp_profile', this.profileFile);
-  }
-
+  // comp_profile
     console.log("Form submitted!", this.formgroup.value);
+    
     
     // if (this.formgroup.invalid) {
     //   alert('All required values should be provided!')
