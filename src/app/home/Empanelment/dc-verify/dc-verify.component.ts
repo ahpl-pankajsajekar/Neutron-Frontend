@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from 'src/app/_services/common.service';
 
 @Component({
@@ -18,18 +18,14 @@ export class DcVerifyComponent {
     private commonService: CommonService
   ) { }
 
-  
-
   ngOnInit(): void {
     this.initForm();
-    // this.loadData();
-    // Initialize providerNames and providerIDs arrays if needed
+    this.loadData();
   }
 
   initForm(): void {
     this.form = this.fb.group({
-      Name: [''], // Initialize form controls with default values if needed
-      ID: ['']
+      providerName: ['', Validators.required], 
     });
   }
 
@@ -48,16 +44,14 @@ export class DcVerifyComponent {
       (res:any)=>{
         console.log(res);
         // Iterate over the records
-        this.providerNames = res.data.map((item: { dcID: any; dcName: any;}) => {
-          if (!item.dcID) {
-              return {
-                  itemValue: item.dcID,  
-                  itemName: `${item.dcID} - ${item.dcName}`
-              };
-          } else {
-              return null; // Explicitly return null 
-          }
-        }).filter((item: any) => item !== null); // Filter out null values 
+        this.providerNames = res.data
+          .filter((item: { providerName: any }) => item.providerName !== undefined) // Filter out records with undefined providerName
+          .map((item: { providerName: any }) => ({
+            itemValue: item.providerName,
+            itemName: `${item.providerName}`
+          }));
+
+        console.log(this.providerNames)
       },
       (error:any)=>{},
     )
