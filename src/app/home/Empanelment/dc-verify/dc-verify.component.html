@@ -10,13 +10,13 @@
           <form [formGroup]="form">
             <div class="d-flex flex-row">
               <div class="p-2">
-                <select formControlName="providerName">
+                <select formControlName="id">
                   <option>----select----</option>
                   <option
                     *ngFor="let item of providerNames"
-                    [value]="item.itemValue"
+                    [value]="item.id"
                   >
-                    {{ item.itemName }}
+                    {{ item.providerName }}
                   </option>
                 </select>
               </div>
@@ -25,7 +25,22 @@
               </div>
             </div>
           </form>
+        </div >
+
+        <div *ngIf="selfemployementData" >
+          <h6>Verify SelfEmapanelment</h6>
+          <div>{{selfemployementData.providerName}}</div>
+          <img src="data:image/png;base64,{{ selfemployementData.pan_image }}" width="400" height="200">
+          <div>
+            Remark:
+            <textarea rows="3"></textarea>
+          </div>
+          <div class="mt-2">
+            <button (click)="verification('value')"> Verify</button>
+            <button (click)="verification('partilVerify')"> Partial Verify</button>
+          </div>
         </div>
+
       </div>
     </div>
   </div>

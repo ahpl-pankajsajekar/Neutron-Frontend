@@ -17,7 +17,9 @@ export class NonEmpanelmentComponent {
     private _formBuilder: FormBuilder,
     private commonService: CommonService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.ticketId = this.activatedRoute.snapshot.queryParamMap.get('id');
+  }
 
   onFileSelect(event: Event, index: number) {
     const inputElement = event.target as HTMLInputElement;
@@ -286,6 +288,8 @@ export class NonEmpanelmentComponent {
 
   formgroup: any = FormGroup;
   onSubmit() {
+    this.formData.append('TicketID', this.ticketId);
+    this.formData.append('DCID', this.ticketId);
     this.formData.append('providerName', this.formgroup.value.providerName);
     this.formData.append('providerType', this.formgroup.value.providerType);
     this.formData.append('DC_Chain', this.formgroup.value.DC_Chain);
@@ -296,7 +300,6 @@ export class NonEmpanelmentComponent {
     this.formData.append('nameOnPanCard', this.formgroup.value.nameOnPanCard);
     this.formData.append('Adhar_number', this.formgroup.value.Adhar_number);
     this.formData.append('Adhar_name', this.formgroup.value.Adhar_name);
-    this.formData.append('Owner_name', this.formgroup.value.Owner_name);
     this.formData.append('Center_name', this.formgroup.value.Center_name);
     this.formData.append('Grade', this.formgroup.value.Grade);
     this.formData.append('Tier', this.formgroup.value.Tier);
@@ -439,7 +442,6 @@ export class NonEmpanelmentComponent {
     //   return;
     // }
     // else {
-    this.ticketId = this.activatedRoute.snapshot.queryParamMap.get('id');
     const url = '/selfempanelment/add/' + this.ticketId + '/';
     this.commonService.postMethod(url, this.formData).subscribe(
       (res: any) => {
