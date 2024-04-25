@@ -1,0 +1,20 @@
+
+<div class="container">
+    <!-- Download File Option -->
+    <div class="option">
+        <label class="label" for="downloadFile">Download File:</label>
+        <button class="button" id="downloadFile" (click)="downloadFile()">Download</button>
+    </div>
+
+    <!-- Upload File Option -->
+    <div class="option">
+        <label class="label" for="fileUpload">Upload File:</label>
+        <input type="file" id="fileUpload" style="display: none;" (change)="onFileSelected($event)">
+        <label class="upload-button" for="fileUpload">Choose File</label>
+        <span class="selected-file">{{ selectedFileName }}</span>
+    </div>
+    <!-- Submit Button Option -->
+    <div class="option">
+        <button class="button submit" type="button" (click)="submit()">Submit</button>
+    </div>
+</div>

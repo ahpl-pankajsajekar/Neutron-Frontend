@@ -8,6 +8,8 @@ import { HomeComponent } from '../home.component';
 import { DcRegistrationComponent } from './dc-registration/dc-registration.component';
 import { DcDetailsComponent } from './dc-search/dc-details/dc-details.component';
 import { DcVerifyComponent } from './dc-verify/dc-verify.component';
+import { DcDocusignComponent } from './dc-docusign/dc-docusign.component';
+import {  SuccessModalComponent } from './success-modal/success-modal.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,14 @@ const routes: Routes = [
       {
         path: 'dcverification',
         component: DcRegistrationComponent,
+      },
+      {
+        path: 'dc-docusign',
+        component: DcDocusignComponent,
+      },
+      {
+        path: 'success-modal',
+        component:  SuccessModalComponent,
       },
     ]
   }

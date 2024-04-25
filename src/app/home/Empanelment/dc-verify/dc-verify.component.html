@@ -1,6 +1,6 @@
 <div>
   <div class="heading">
-    <h5><span class="heading-left-line"></span> DC Verification</h5>
+    <h5><span class="heading-left-line"></span>DC Verification</h5>
     <hr />
   </div>
   <div>
@@ -11,7 +11,7 @@
             <div class="d-flex flex-row">
               <div class="p-2">
                 <select formControlName="id">
-                  <option>----select----</option>
+                  <option>------------Select DC -----------</option>
                   <option
                     *ngFor="let item of providerNames"
                     [value]="item.id"
@@ -27,20 +27,23 @@
           </form>
         </div >
 
-        <div *ngIf="selfemployementData" >
-          <h6>Verify SelfEmapanelment</h6>
-          <div>{{selfemployementData.providerName}}</div>
-          <img src="data:image/png;base64,{{ selfemployementData.pan_image }}" width="400" height="200">
-          <div>
-            Remark:
-            <textarea rows="3"></textarea>
-          </div>
-          <div class="mt-2">
-            <button (click)="verification('verify')"> Verify</button>
-            <button (click)="verification('partilVerify')"> Partial Verify</button>
-          </div>
-        </div>
+<div *ngIf="selfemployementData" class="verification-container">
+  <h6 class="verification-title">Verify Self-Empanelment</h6>
+  <div class="provider-details">
+    <div class="provider-name">{{ selfemployementData.providerName }}</div>
+    <img class="pan-image" src="data:image/png;base64,{{ selfemployementData.pan_image }}" alt="Pan Image">
+  </div>
 
+  <div class="remark-container">
+    <label for="remark">Remark:</label>
+    <textarea id="remark" rows="3" placeholder="Enter your remark here..."></textarea>
+  </div>
+
+  <div class="button-container">
+    <button class="verify-button" (click)="verification('verify')">Verify</button>
+    <button class="partial-verify-button" (click)="verification('partialVerify')">Partial Verify</button>
+  </div>
+</div>
       </div>
     </div>
   </div>

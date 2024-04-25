@@ -1,120 +1,161 @@
-$primary-color: #0C356A;
-$error-color: red;
+/* Add hover effect to buttons */
+button:hover {
+    background-color: #138a86;
+    color: white;
+  }
+  
+  /* Style select box */
+  select {
+    width: 200px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Style textarea */
+  textarea {
+    width: 300%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-color: #138a86;
+  }
+  
+  /* Style buttons */
+  button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f0f0f0;
+    color: #138a86;
+    cursor: pointer;
+  }
+  
+  /* Style heading */
+  .heading {
+    display: flex;
+    align-items: center;
+  }
+  
+  .heading h5 {
+    margin: 0;
+    color: #138a86;
+  }
+  
+  /* Add line before heading */
+  .heading-left-line {
+   
+    width: 100px;
+    height: 2px;
+    background-color: #138a86;
+    margin-right: 50px;
+  }
+  
+  /* Style box */
+  .box {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 20px;
+    border-color: #138a86;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style card */
+  .box-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border-color: #138a86;
+  }
+  
+  /* Add shadow to card */
+  .box-card-body {
+    padding: 20px;
+  }
+  
+  /* Add margin to buttons */
+  .mt-2 {
+    margin-top: 20px;
+  }
+  
+  /* Add margin to elements */
+  .p-2 {
+    margin-right: 10px;
+  }
+  
 
-
-
-.heading{
-    padding: 1.5rem 2rem 0rem 2rem;
-    h5{
-        color: $primary-color;
-    }
-    hr{
-        height: 2px;
-    }
-}
-
-.heading-left-line{
-    color: $primary-color;
-    border-left: solid;
-    border-style: 2px solid;
-    border-color: $primary-color;
-    margin-right: 1rem;
-}
-
-.DCName {
-    text-align: center;
-    margin-top: 20px; /* Example margin top */
-    padding: 10px; /* Example padding */
-    background-color: #f0f0f0; /* Example background color */
-    border: 1px solid #ccc; /* Example border */
-    border-radius: 5px; /* Example border radius */
-    font-size: 15px;
-}
-
-.Detail {
-    text-align: center;
-    margin-top: 20px; /* Example margin top */
-    padding: 10px; /* Example padding */
-    background-color: #f0f0f0; /* Example background color */
-    border: 1px solid #ccc; /* Example border */
-    border-radius: 5px; /* Example border radius */
-    font-size: 15px;
-}
-
-
-.box{
-    padding: 0 2rem; 
-    .box-card{
-        padding: 0.7rem;
-        border: 1px solid rgba(19, 0, 109, 0.456);
-        border-radius: 10px;
-    }
-    .box-card-header{
-        padding: 1rem;
-    }
-    .box-card-body{
-        padding:  0.4rem 1rem 1rem 1rem;
-    }
-}
-
-.input-group-box{
-    padding-top: 0.7rem;
-    label{
-        color: #212529;
-        font-size: 0.8rem;
-        font-weight: 500;
-    }
-    input, select{
-        color: #4f4f4fd4;
-        padding: 1rem;
-        width: 100%;
-    }
-    input[type="radio"]{
-        width: 10%;
-    }
-}
-
-button{
-    padding: 0.35rem 1rem;
-    background-color: #0C356A;
+  .verification-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .verification-title {
+    font-size: 1.2rem;
+    color: #138a86;
+    margin-bottom: 15px;
+  }
+  
+  .provider-details {
+    margin-bottom: 20px;
+  }
+  
+  .provider-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .pan-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .remark-container {
+    margin-bottom: 20px;
+  }
+  
+  .remark-container label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-color: #138a86;
+    resize: vertical;
+  }
+  
+  .button-container button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .verify-button {
+    background-color: #138a86;
     color: #fff;
-    border-radius: 100px;
-    &:hover{
-        background-color: gold;
-        color: #0C356A;
-        border-color: gold;
-    }
-    .newcard{
-        background-color: #fff;
-        min-height: 500px;
-        border-radius: 8px;
-        margin-bottom: 2rem;
-        box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-        .card-img-top{
-            border-radius: 2px;
-        }
-        .card-body{
-            padding: 10px;
-        }
-        .card-title2{
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-        .card-detail{
-            font-size: 13px;
-        }
-        .card-text{
-            margin-bottom: 0px;
-            text-wrap: wrap;
-        }
-        .card-text span{
-            font-weight: 500;
-        }
-        .card-status{
-            color: var(--green);
-            border: 1px solid var(--green);
-            padding: 2px 4px;
-            font-size: 14px;
-        }
-    }
-}
+  }
+  
+  .partial-verify-button {
+    background-color: #ffc107;
+    color: #333;
+    margin-left: 10px;
+  }
+  
+  .button-container button:hover {
+    background-color: #0d6e6b;
+  }
+  

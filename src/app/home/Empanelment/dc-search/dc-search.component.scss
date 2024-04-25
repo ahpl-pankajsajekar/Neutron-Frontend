@@ -15,27 +15,30 @@
 }
  
 .search-box {
-    // width: 1200px;
-    color: var(--green);
+    width: 100%; /* Adjust width as needed */
+    max-width: 1200px; /* Max width if needed */
+    color: #138a86;
     padding: 2rem;
+    display: flex;
     justify-content: center; 
     align-items: center; 
     margin: auto; 
     border-radius: 20px; 
-    border-color: green;
-}
- 
+    border: 2px solid rgb(24, 131, 131); /* Specify border color and style */
+  }
+
 .input-search-group-box{
     height: fit-content;
     width: 350px;
-    color: var(--green);
+    color: #138a86;
     margin-right: 3px;
 }
  
+
 .input-search-group-box input {
     width: 100%;
     background-color: transparent;
-    color: var(--green);
+    color: #138a86;
     border-radius: 10px; 
     border: 1px solid var(--green);
     padding: 1.263em; 
@@ -52,11 +55,11 @@
 // }
  
 .input-search-group-box input::placeholder {
-    color: var(--green);
+    color: #138a86;
 }
  
 .input-search-group-box input:focus {
-    border: 1px solid var(--green);
+    border: 1px solid #138a86;
 }
  
 .input-search-group-box input::after {
@@ -66,16 +69,22 @@
  
 .search-button {
     color: #fff;
-    width: 100%;
-    background-color: var(--green);
+    width: 150%;
+    background-color:#138a86;
     border-radius: 10px; 
-    border: 0;
+    border: 5;
     padding: 1.263em; 
     font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+.search-button:hover {
+    background-color: #8a1559; /* Example hover background color */
+  }
+
  
 .hero-heading{
-    color: var(--green);
+    color: #138a86;
 }
 .dc-search-section {
     background-color: var(--white);
@@ -129,7 +138,7 @@
 }
 
 .bi{  
-    color: #28a745;
+    color: #138a86;
     margin-left: 10px;
     font-size: 18px;
     cursor: pointer;
@@ -152,7 +161,7 @@ ng-multiselect-dropdown div.multiselect-dropdown div span.dropdown-btn {
 ng-multiselect-dropdown {
     width: 100%;
     background-color: transparent;
-    color: var(--green);
+    color: #138a86;
     border-radius: 10px; 
     // border: 1px solid var(--green);
     // padding: 1.263em;
@@ -162,7 +171,7 @@ ng-multiselect-dropdown {
 ::ng-deep ng-multiselect-dropdown .dropdown-btn {
     padding: 1.263em !important;
     border-radius: 10px !important;
-    border: 1px solid var(--green) !important;
+    border: 1px solid #138a86 !important;
 }
 ::ng-deep ng-multiselect-dropdown .dropdown-multiselect__caret{
     display: none !important;

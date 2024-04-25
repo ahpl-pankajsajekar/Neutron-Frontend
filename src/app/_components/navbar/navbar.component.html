@@ -1,49 +1,50 @@
-<nav class="navbar navbar-expand-lg c-white bg-green" [ngClass]="{'navbar-hidden': isScrolled}">
+<!-- Navigation bar with green background -->
+<nav class="navbar navbar-expand-lg navbar-light bg-green" [ngClass]="{'navbar-hidden': isScrolled}">
   <div class="container-fluid">
+    <!-- Logo or brand -->
     <div class="navbar-brand" href="#">
+      <!-- Your logo here -->
     </div>
+    <!-- Navigation links -->
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="account/register">Mumbai</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " aria-current="page" routerLink="account/login"><i class="fa fa-user" aria-hidden="true"></i> <span class="ms-1" (click)="logout()">Logout</span></a>
+          <a class="nav-link" aria-current="page" routerLink="account/login"><i class="fa fa-user" aria-hidden="true"></i> <span class="ms-1" (click)="logout()">Logout</span></a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<nav class="navbar navbar-expand-lg bg-white fixed-top" [ngClass]="{'fixed-top': isScrolled}">
+<!-- Navigation bar with white background -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" [ngClass]="{'fixed-top': isScrolled}">
   <div class="container">
+    <!-- Logo or brand -->
     <div class="navbar-brand" routerLink="empanelment/dc-search">
       <img src="/assets/images/LK-transformed-2x.jpeg" class="responsive_logo" alt="alinea_logo">
     </div>
+    <!-- Toggle button for mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <!-- Navigation links -->
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <!-- <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/dc-search">DC </a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#"><i class="fa fa-file-text nav-icon" aria-hidden="true"></i> Empanelment Request</a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="home/dashboard"><i class="fa fa-upload nav-icon" aria-hidden="true"></i> DC Update</a>
-        </li> -->
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/non-empanelment"><i class="fa fa-file-text-o nav-icon" aria-hidden="true"></i> DC Empanelment</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/non-empanelment"><i class="fa fa-plus nav-icon" aria-hidden="true"></i> DC Empanelment</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/dc-verify"><i class="fa fa-files-o nav-icon" aria-hidden="true"></i> DC Verification</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/dc-verify"><i class="fa fa-check nav-icon" aria-hidden="true"></i> DC Verification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="empanelment/dc-docusign"><i class="fa fa-upload nav-icon" aria-hidden="true"></i> Doc-sign</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- <section style="height: 100em;"></section> -->
-
+<!-- Add your additional styling and effects here -->

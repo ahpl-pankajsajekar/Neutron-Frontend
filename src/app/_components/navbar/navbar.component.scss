@@ -20,10 +20,10 @@ body {
 }
 
 .bg-green{
-  background-color: var(--green);
+  background-color: #138a86;
 }
 .bg-white{
-  background-color: var(--white);
+  background-color:#d4e591;
 }
 .c-white{
   color:  var(--white);
@@ -36,8 +36,9 @@ body {
 .nav-link{
   padding:  0;
   color: var(--black);
+  font-weight: bold;
   .nav-icon{
-    color: var(--green);
+    color: #054240;
   }
 }
 

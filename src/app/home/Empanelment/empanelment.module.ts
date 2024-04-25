@@ -17,6 +17,8 @@ import { DcDetailsComponent } from './dc-search/dc-details/dc-details.component'
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DcVerifyComponent } from './dc-verify/dc-verify.component';
+import { DcDocusignComponent } from './dc-docusign/dc-docusign.component';
+import { SuccessModalComponent } from './success-modal/success-modal.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { DcVerifyComponent } from './dc-verify/dc-verify.component';
     DcRegistrationComponent,
     DcDetailsComponent,
     DcVerifyComponent,
+    DcDocusignComponent,
+    SuccessModalComponent,
     
   ],
   imports: [

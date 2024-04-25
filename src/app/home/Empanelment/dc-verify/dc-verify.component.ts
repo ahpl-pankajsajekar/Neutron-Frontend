@@ -62,21 +62,26 @@ export class DcVerifyComponent {
   }
 
   loadData(){
-    const url = '/selfemp/select/'
+    const url = '/selfemp/select/';
     this.commonService.getMethod(url).subscribe(
-      (res:any)=>{
+      (res: any) => {
         console.log(res);
         // Iterate over the records
-        this.providerNames = res
-  // .filter((item: { id: any, providerName: any }) => item.providerName !== undefined) // Filter out records with undefined providerName
-  // .map((item: { id: any, providerName: any }) => ({
-  //   itemValue: item.id,
-  //   itemName: `${item.providerName}`
-  // }));
-        console.log(this.providerNames)
+        this.providerNames = res.map((item: any) => ({
+          itemValue: item.id,
+          itemName: `${item.providerName}`,
+          // Add additional fields here
+          field1: item.field1,
+          field2: item.field2,
+          // Add more fields as needed
+        }));
+        console.log(this.providerNames);
       },
-      (error:any)=>{},
-    )
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
+  
 
 }
