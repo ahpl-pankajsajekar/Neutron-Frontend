@@ -450,6 +450,7 @@ export class NonEmpanelmentComponent {
     this.commonService.postMethod(url, this.formData).subscribe(
       (res: any) => {
         console.log('res', res);
+        alert("Form Submitted Successfully")
       },
       (err: any) => {
         console.warn(err);

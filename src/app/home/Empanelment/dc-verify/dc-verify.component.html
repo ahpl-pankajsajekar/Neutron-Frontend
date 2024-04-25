@@ -21,7 +21,7 @@
                 </select>
               </div>
               <div class="p-2">
-                <button type="submit" (click)="onSubmit()">Search</button>
+                <button type="submit" (click)="onSearch()">Search</button>
               </div>
             </div>
           </form>
@@ -29,14 +29,39 @@
 
 <div *ngIf="selfemployementData" class="verification-container">
   <h6 class="verification-title">Verify Self-Empanelment</h6>
-  <div class="provider-details">
+  <div class="provider-details row">
     <div class="provider-name">{{ selfemployementData.providerName }}</div>
-    <img class="pan-image" src="data:image/png;base64,{{ selfemployementData.pan_image }}" alt="Pan Image">
+    <div class="col-md-6" *ngIf="selfemployementData.PanCard_number && selfemployementData.pan_image">
+      <p>Pan Name: {{selfemployementData.nameOnPanCard}} <br>
+      Pan Number: {{selfemployementData.PanCard_number}}</p>
+      <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.pan_image }}" alt="Pan Image">
+    </div>
+    <div class="col-md-6" *ngIf="selfemployementData.Adhar_number && selfemployementData.Adhar_name && selfemployementData.aadhar_image">
+      <p>Aadhar Name: {{selfemployementData.Adhar_name}}<br>
+      Aadhar Number: {{selfemployementData.Adhar_number}}</p>
+      <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.aadhar_image }}" alt="Pan Image">
+    </div>
+    <div class="col-md-6" *ngIf="selfemployementData.Accredation && selfemployementData.Accreditation_image">
+      <p>Accredation: {{selfemployementData.Accredation}}</p>
+      <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Accreditation_image }}" alt="Aadhar Image">
+    </div>
+    <div class="col-md-6" *ngIf="selfemployementData.TDS_image">
+      <!-- <p>Accredation: {{selfemployementData.Accredation}}</p> -->
+      <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.TDS_image }}" alt="Pan Image">
+    </div>
+    <div class="col-md-6" *ngIf="selfemployementData.Ownership_image">
+      <!-- <p>Accredation: {{selfemployementData.Accredation}}</p> -->
+      <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Ownership_image }}" alt="Pan Image">
+    </div>
+    <div class="col-md-6" *ngIf="selfemployementData.Registration_Number_image">
+      <!-- <p>Accredation: {{selfemployementData.Accredation}}</p> -->
+      <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Registration_Number_image }}" alt="Pan Image">
+    </div>
   </div>
 
   <div class="remark-container">
     <label for="remark">Remark:</label>
-    <textarea id="remark" rows="3" placeholder="Enter your remark here..."></textarea>
+    <textarea id="remark" rows="3" name="remark" placeholder="Enter your remark here..." [(ngModel)]="remark"></textarea>
   </div>
 
   <div class="button-container">
