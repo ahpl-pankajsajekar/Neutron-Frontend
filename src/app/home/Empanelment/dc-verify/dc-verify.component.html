@@ -32,20 +32,24 @@
   <div class="provider-details row">
     <div class="provider-name">{{ selfemployementData.providerName }}</div>
     <div class="col-md-6" *ngIf="selfemployementData.PanCard_number && selfemployementData.pan_image">
+      <input type="checkbox" [(ngModel)]="isPanVerify" [ngModelOptions]="{standalone: true}"/> 
       <p>Pan Name: {{selfemployementData.nameOnPanCard}} <br>
       Pan Number: {{selfemployementData.PanCard_number}}</p>
       <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.pan_image }}" alt="Pan Image">
     </div>
     <div class="col-md-6" *ngIf="selfemployementData.Adhar_number && selfemployementData.Adhar_name && selfemployementData.aadhar_image">
+      <input type="checkbox" [(ngModel)]="isAadharVerify" [ngModelOptions]="{standalone: true}"/> 
       <p>Aadhar Name: {{selfemployementData.Adhar_name}}<br>
       Aadhar Number: {{selfemployementData.Adhar_number}}</p>
       <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.aadhar_image }}" alt="Pan Image">
     </div>
     <div class="col-md-6" *ngIf="selfemployementData.Accredation && selfemployementData.Accreditation_image">
+      <input type="checkbox" [(ngModel)]="isAccredationVerify" [ngModelOptions]="{standalone: true}"/> 
       <p>Accredation: {{selfemployementData.Accredation}}</p>
       <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Accreditation_image }}" alt="Aadhar Image">
     </div>
     <div class="col-md-6" *ngIf="selfemployementData.TDS_image">
+      <input type="checkbox" [(ngModel)]="isTDSVerify" [ngModelOptions]="{standalone: true}"/> 
       <!-- <p>Accredation: {{selfemployementData.Accredation}}</p> -->
       <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.TDS_image }}" alt="Pan Image">
     </div>

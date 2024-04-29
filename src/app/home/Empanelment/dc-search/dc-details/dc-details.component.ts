@@ -84,7 +84,6 @@ export class DcDetailsComponent implements OnInit {
     );
     const geocoder = new google.maps.Geocoder();
     const infowindow = new google.maps.InfoWindow();
- 
   }
  
   // initMap(location: any) {

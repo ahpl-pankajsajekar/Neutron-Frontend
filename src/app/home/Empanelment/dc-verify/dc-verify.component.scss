@@ -11,6 +11,12 @@ button:hover {
     border-radius: 5px;
     border: 1px solid #ccc;
   }
+
+  // 
+  input[type="checkbox"]{
+    width: 25px;
+    height: 25px;
+  }
   
   /* Style textarea */
   textarea {

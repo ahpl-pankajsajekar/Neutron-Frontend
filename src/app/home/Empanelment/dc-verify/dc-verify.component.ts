@@ -23,9 +23,17 @@ export class DcVerifyComponent {
     this.loadData();
   }
 
+  isPanVerify: boolean = false;
+  isAadharVerify: boolean = false;
+  isAccredationVerify: boolean = false;
+  isTDSVerify: boolean = false;
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
+      isPanVerify: [this.isPanVerify], 
+      isAadharVerify: [this.isAadharVerify], 
+      isAccredationVerify: [this.isAccredationVerify], 
+      isTDSVerify: [this.isTDSVerify], 
     });
   }
 
@@ -50,7 +58,9 @@ export class DcVerifyComponent {
   remark: string = '';
   verification(value:string){
     const url = '/selfemp/verification/'
-    const body = {"DCVerificationStatus": value, "id": this.form.get('id')?.value,  "verificationRemark": this.remark}
+    const body = {"DCVerificationStatus": value, "id": this.form.get('id')?.value,  "verificationRemark": this.remark,
+     "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
+     "isTDSVerify": this.isTDSVerify }
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{
