@@ -86,3 +86,15 @@ a {
 a:hover{
     font-weight: 500;
 }
+
+.selectfield{
+  width: 85%;
+}
+
+.errormessage {
+  text-align: start;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: red;
+}

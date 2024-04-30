@@ -13,6 +13,11 @@
                             </div>
                             <input type="text" class="form-control" formControlName="name" placeholder="Name *">
                         </div>
+                        <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].touched)" class="errormessage">
+                            <div *ngIf="registerForm.controls['name'].errors">
+                            Please enter Name
+                          </div>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="input-group">
@@ -20,6 +25,27 @@
                                 <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
                             </div>
                             <input type="text" class="form-control" formControlName="email" placeholder="Email *">
+                        </div>
+                        <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].touched)" class="errormessage">
+                            <div *ngIf="registerForm.controls['email'].errors">
+                            Please enter Valid Email
+                          </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-tasks" aria-hidden="true"></i></div>
+                            </div>
+                            <select formControlName="role" class="selectfield">
+                                <option *ngFor="let item of rolelist" [value]="item.textValue">{{item.textName}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="registerForm.controls['role'].invalid && (registerForm.controls['role'].touched)" class="errormessage">
+                            <div *ngIf="registerForm.controls['role'].errors">
+                            Please enter role
+                          </div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -30,6 +56,11 @@
                             <input type="password" class="form-control"
                                 formControlName="password" placeholder="Password *">
                         </div>
+                        <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].touched)" class="errormessage">
+                            <div *ngIf="registerForm.controls['password'].errors">
+                            Please enter password
+                          </div>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="input-group">
@@ -37,7 +68,12 @@
                                 <div class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></div>
                             </div>
                             <input type="password" class="form-control"
-                                formControlName="confirmPassword" placeholder="Confirm-password *">
+                                formControlName="password2" placeholder="Confirm-password *">
+                        </div>
+                        <div *ngIf="registerForm.controls['password2'].invalid && (registerForm.controls['name'].touched)" class="errormessage">
+                            <div *ngIf="registerForm.controls['password2'].errors">
+                            Please enter Confirm password
+                          </div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -45,7 +81,12 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></div>
                             </div>
-                            <input type="text" class="form-control" formControlName="phoneNumber" placeholder="Phone Number *">
+                            <input type="text" class="form-control" formControlName="phone" placeholder="Phone Number *">
+                        </div>
+                        <div *ngIf="registerForm.controls['phone'].invalid && (registerForm.controls['phone'].touched)" class="errormessage">
+                            <div *ngIf="registerForm.controls['phone'].errors">
+                            Please enter Phone Number
+                          </div>
                         </div>
                     </div>
                     <div class="col-md-12">

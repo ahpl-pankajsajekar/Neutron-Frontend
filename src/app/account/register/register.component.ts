@@ -22,13 +22,20 @@ export class RegisterComponent implements OnInit {
     private accountService: AccountService,
   ) {}
 
+  rolelist = [
+    {textValue: 1, textName: "Network"},
+    {textValue: 2, textName: "legal"},
+    {textValue: 3, textName: "IT"},
+  ]
+
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      name: ['', Validators.required], 
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required]
+      role: ['', Validators.required], 
+      password: ['', Validators.required],
+      password2: ['', Validators.required],
+      phone: ['', Validators.required]
     });
   }
 

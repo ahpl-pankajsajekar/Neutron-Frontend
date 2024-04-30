@@ -47,7 +47,7 @@ export class LoginComponent {
     this.accountService.login(this.f['email'].value, this.f['password'].value).pipe(first()).subscribe({
       next: () => {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigateByUrl(returnUrl)
+        this.router.navigateByUrl(returnUrl);
       },
       error: (error:any) => {
         this.loading = false;
