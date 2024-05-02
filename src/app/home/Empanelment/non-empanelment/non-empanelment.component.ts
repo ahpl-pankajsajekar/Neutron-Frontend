@@ -152,6 +152,12 @@ export class NonEmpanelmentComponent {
     { value: 'South', viewValue: 'South' },
   ];
 
+  DCFirmType = [  
+    { value: 'Sole Proprietorship Firm', viewValue: 'Sole Proprietorship Firm' },
+    { value: 'LLP/Partnership Firm', viewValue: 'LLP/Partnership Firm' },
+    { value: 'Private Limited Company', viewValue: 'Private Limited Company' },
+  ];
+
   isLinear = false;
 
   ngOnInit() {
@@ -246,8 +252,7 @@ export class NonEmpanelmentComponent {
       Registration_Number: [''],
       Ownership: [''],
       TDS: [''],
-      Start_Date: [''],
-      End_Date: [''],
+      FirmType: [''],
     });
   }
 
@@ -429,14 +434,9 @@ export class NonEmpanelmentComponent {
       'RADIOLOGY_OUTSOURCED_CENTRE',
       this.formgroup.value.RADIOLOGY_OUTSOURCED_CENTRE
     );
-    // this.formData.append('pan_image', this.formgroup.value.pan)
-    // this.formData.append('aadhar_image', this.formgroup.value.aadhar)
-    // this.formData.append('Accreditation_image', this.formgroup.value.Accreditation)
-    // this.formData.append('Registration_Number_image', this.formgroup.value.Registration_Number)
-    // this.formData.append('Ownership_image', this.formgroup.value.Ownership)
-    // this.formData.append('TDS_image', this.formgroup.value.TDS)
-    this.formData.append('Start_Date', this.formgroup.value.Start_Date);
-    this.formData.append('End_Date', this.formgroup.value.End_Date);
+    // this.formData.append('Start_Date', this.formgroup.value.Start_Date);
+    // this.formData.append('End_Date', this.formgroup.value.End_Date);
+    this.formData.append('FirmType', this.formgroup.value.End_Date);
 
     // comp_profile
     console.log('Form submitted!', this.formgroup.value);

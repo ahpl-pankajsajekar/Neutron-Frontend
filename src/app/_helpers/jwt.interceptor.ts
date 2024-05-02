@@ -12,14 +12,19 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private accountService: AccountService) { }
+    urlsToNotUse : Array<string> = [
+        'empanelment/non-empanelment/',
+    ];
+
+    constructor(private accountService: AccountService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add auth header with jwt if user is logged in and request is to the api url
         const user = this.accountService.userValue;
         const isLoggedIn = user && user.token;
         const isApiUrl = request.url.startsWith(environment.apiUrl);
-        if (isLoggedIn && isApiUrl) {
+        const isExcludedUrl = this.urlsToNotUse.some(url => request.url.includes(url));
+        if (isLoggedIn && isApiUrl && !isExcludedUrl) {
             request = request.clone({
                 setHeaders: {
                     Authorization: `${user.token}`,
@@ -28,4 +33,5 @@ export class JwtInterceptor implements HttpInterceptor {
         }
         return next.handle(request);
     }
+    
 }
