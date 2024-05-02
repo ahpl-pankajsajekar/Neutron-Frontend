@@ -12,6 +12,9 @@ import { SideNavbarComponent } from './_components/side-navbar/side-navbar.compo
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './_components/footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
+import { SelfEmpanlementComponent } from './dc/self-empanlement/self-empanlement.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { FooterComponent } from './_components/footer/footer.component';
     SideNavbarComponent,
     NavbarComponent,
     FooterComponent,
+    SelfEmpanlementComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +31,11 @@ import { FooterComponent } from './_components/footer/footer.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
+    // self empanelment
+    ReactiveFormsModule,
+    FormsModule,
+    MatStepperModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

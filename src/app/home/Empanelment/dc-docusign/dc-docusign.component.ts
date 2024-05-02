@@ -11,10 +11,6 @@ export class DcDocusignComponent {
 
   constructor() { }
 
-  downloadFile() {
-    // Implement download logic here
-  }
-
   onFileSelected(event: any) {
     // Implement file selection logic here
     const file = event.target.files[0];

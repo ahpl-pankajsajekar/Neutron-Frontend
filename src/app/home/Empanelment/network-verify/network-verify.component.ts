@@ -1,27 +1,24 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { CommonService } from 'src/app/_services/common.service';
-import { routes } from 'src/app/app-routing.module';
 
 @Component({
-  selector: 'app-dc-verify',
-  templateUrl: './dc-verify.component.html',
-  styleUrls: ['./dc-verify.component.scss']
+  selector: 'app-network-verify',
+  templateUrl: './network-verify.component.html',
+  styleUrls: ['./network-verify.component.scss']
 })
-export class DcVerifyComponent {
+export class NetworkVerifyComponent {
   form: FormGroup = new FormGroup({}); // Declare form as FormGroup
   providerNames: any[] = []; // Initialize providerNames as an empty array
   providerIDs: any[] = []; // Initialize providerIDs as an empty array
   isLinear = true; // Initialize isLinear property
 
-  showAnalytics:any;
+  showAnalytics:any
 
   constructor(private fb: FormBuilder,
-    private commonService: CommonService,
-    private router: Router
-  ) { 
-  }
+    private commonService: CommonService
+  ) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -35,10 +32,10 @@ export class DcVerifyComponent {
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
-      isPanVerify: [this.isPanVerify], 
-      isAadharVerify: [this.isAadharVerify], 
-      isAccredationVerify: [this.isAccredationVerify], 
-      isTDSVerify: [this.isTDSVerify], 
+      isPanVerify: [this.isPanVerify, Validators.required], 
+      isAadharVerify: [this.isAadharVerify, Validators.required], 
+      isAccredationVerify: [this.isAccredationVerify, Validators.required], 
+      isTDSVerify: [this.isTDSVerify, Validators.required], 
     });
   }
 
@@ -46,7 +43,7 @@ export class DcVerifyComponent {
   onSearch(): void {
     if (this.form.valid) {
       console.log('Form submitted:', this.form.value);
-      const url = "/empanelment/details/legal/" 
+      const url = "/empanelment/" 
       this.commonService.postMethod(url, {"id": this.form.get('id')?.value}).subscribe(
         (res: any) => {
           console.log("res", res)
@@ -62,29 +59,28 @@ export class DcVerifyComponent {
 
   remark: string = '';
   verification(value:string){
-    const url = '/selfemp/verification/legal/'
-    const body = {"DCVerificationStatusByLegal": value, "id": this.form.get('id')?.value,  "verificationRemark": this.remark,
+    const url = '/selfemp/verification/'
+    const body = {"DCVerificationStatus": value, "id": this.form.get('id')?.value,  "verificationRemark": this.remark,
      "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
      "isTDSVerify": this.isTDSVerify }
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{
         console.log(res);
-        alert("Thank you, Your DC verified successful");
-        this.router.navigateByUrl("/empanelment/dc-docusign")
+        alert("Document verified by Network Team")
       },
       (error:any)=>{},
     )
   }
 
   loadData(){
-    const url = '/selfemp/select/legal/';
+    const url = '/selfemp/select/';
     this.commonService.getMethod(url).subscribe(
       (res: any) => {
         console.log(res);
         // Iterate over the records
-        this.providerNames = res.selectDropdown
         this.showAnalytics = res.networkAnalyticsData
+        this.providerNames = res.selectDropdown
         // this.providerNames = res.map((item: any) => ({
         //   itemValue: item.id,
         //   itemName: `${item.providerName}`,
@@ -98,4 +94,23 @@ export class DcVerifyComponent {
   }
   
 
+  // multi select dropdown
+  selectedItems:any =[];
+  dropdownList:any = [
+  ]
+  dropdownSettings:IDropdownSettings = {
+    singleSelection: true,
+    defaultOpen: false,
+    idField: "id",
+    textField: "providerName" ,
+    // selectAllText: "Select All",
+    // unSelectAllText: "UnSelect All",
+    enableCheckAll: false,
+    itemsShowLimit: 1,
+    allowSearchFilter: true,
+    // limitSelection: 2,
+    noDataAvailablePlaceholderText: "Data not found."
+  };
+
 }
+

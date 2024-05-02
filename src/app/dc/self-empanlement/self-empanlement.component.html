@@ -1,0 +1,931 @@
+<app-navbar></app-navbar>
+<div>
+    <div class="heading">
+        <h5><span class="heading-left-line"></span> DC Empanelment</h5>
+        <hr>
+    </div>
+    <div>
+        <div class="box">
+            <div class="box-card">
+                <div class="box-card-body">
+                    <form [formGroup]="formgroup">
+                        <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+                            <!-- <mat-step>
+                                    <ng-template matStepLabel>Empanelment Duration:</ng-template>
+                                  <div class="row">
+                                      <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>Start Date<code>*</code></label></div>
+                                                <div><input type="date" formControlName="Start_Date" required></div>
+                                            </div>
+                                          </div>
+                                      <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <div><label>End Date<code>*</code></label></div>
+                                            <div><input type="date" formControlName="End_Date" required></div>
+                                          </div>
+                                      </div>
+                                      <div class="mt-3">
+                                        <button mat-button matStepperNext type="submit">Next</button>
+                                        </div>  
+                                    </div>
+                            </mat-step> -->
+                            <mat-step>
+                            <!-- <mat-step [stepControl]="firstFormGroup">
+                              <form [formGroup]="firstFormGroup" #formone="ngForm"> -->
+                                <ng-template matStepLabel>DC Details</ng-template>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PROVIDER NAME <code>*</code></label></div>
+                                                <div><input type="text" formControlName="providerName" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PROVIDER TYPE <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="providerType">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>DC CHAIN/STANDALONE <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="DC_Chain">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of DCchainType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>REGISTRATION NUMBER <code>*</code></label></div>
+                                                <div><input type="text" formControlName="Regi_number" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>DATE OF INCEPTION<code>*</code></label></div>
+                                                <div><input type="date" placeholder="" formControlName="Inception" required></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>OWNER'S NAME<code>*</code></label></div>
+                                                <div><input type="text" placeholder="" formControlName="Owner_name" required></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PAN NUMBER<code>*</code></label></div>
+                                                <div><input type="text" placeholder="" formControlName="PanCard_number" required></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>NAME ON PAN CARD<code>*</code></label></div>
+                                                <div><input type="text" placeholder="" formControlName="nameOnPanCard" required></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>AADHAR CARD NUMBER<code>*</code></label></div>
+                                                <div><input type="text" placeholder="" formControlName="Adhar_number" required></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label> NAME ON AADHAR CARD<code>*</code></label></div>
+                                                <div><input type="text" placeholder="" formControlName="Adhar_name" required></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>OWNER NAME AS PER OWNERSHIP DOCUMENT<code>*</code></label></div>
+                                                <div><input type="text" placeholder="" formControlName="Owner_name" required></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CENTER NAME AS PER OWNERSHIP DOCUMENT<code>*</code></label></div>
+                                                <div><input type="text" placeholder="" formControlName="Center_name" required></div>
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>GRADE<code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="Grade">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of GradeType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>TIER<code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="Tier">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of TyreType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ACCREDITATION<code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="Accredation">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of ACCREDITATIONType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>INSTATION/OUTSTATION<code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="Station">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of StationType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="mt-3">
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button matStepperNext type="submit">Next</button>
+                                    </div>  
+                                </div>
+                              <!-- </form> -->
+                            </mat-step>
+                            <mat-step>
+                            <!-- <mat-step [stepControl]="secondFormGroup">
+                              <form [formGroup]="secondFormGroup" #formtwo="ngForm"> -->
+                                <ng-template matStepLabel>Contact Details</ng-template>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ADDRESS 1 <code>*</code></label></div>
+                                                <div><textarea type="text" rows="2" formControlName="address1" required></textarea></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ADDRESS 2 <code>*</code></label></div>
+                                                <div><textarea type="text" rows="2" formControlName="address2" required></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>AHPL LOCATION <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="ahplLocation">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of AHPLLocationType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>LC LOCATION <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="lcLocation">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of LCLocationType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>STATE <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="state">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of stateType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CITY <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="city">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of stateType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PINCODE <code>*</code></label></div>
+                                                <div><input type="text" formControlName="pincode" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>Zone <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="zone">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of ZoneType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>EMAIL ID <code>*</code></label></div>
+                                                <div><input type="text" formControlName="emailId" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>EMAIL ID 2<code>*</code></label></div>
+                                                <div><input type="text" formControlName="emailId2" required></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CONTACT PERSON NAME 1 <code>*</code></label></div>
+                                                <div><input type="text" formControlName="Cantact_person1" required></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CONTACT PERSON NAME 2 <code>*</code></label></div>
+                                                <div><input type="text" formControlName="Cantact_person2" required></div>
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>FAX <code>*</code></label></div>
+                                                <div><input type="text" formControlName="fax" required></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                  <button mat-button matStepperPrevious>Back</button>
+                                  <button mat-button matStepperNext type="submit" >Next</button>
+                                </div>
+                              <!-- </form> -->
+                            </mat-step>
+                            <mat-step>
+                            <!-- <mat-step [stepControl]="thirdFormGroup"> -->
+                                <!-- <form [formGroup]="thirdFormGroup" #formthird="ngForm" > -->
+                                  <ng-template matStepLabel>Bank Details</ng-template>
+                                  <div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ACCOUNT NUMBER <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="accountNumber" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ACCOUNT NAME <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="accountName" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>BANK NAME <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="bankName" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>IFSC CODE <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="ifscCode" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>BRANCH NAME <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="branchName" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ACCOUNT TYPE <code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="accountType">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of ACType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PAYMENT TO BE MADE IN FAVOR OF <code>*</code></label></div>
+                                                <div>
+                                                    <input type="text"  formControlName="paymentToBeMadeInFavorOf" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>PAYMENT MODE<code>*</code></label></div>
+                                                <div>
+                                                    <select formControlName="paymentMode">
+                                                        <option [value]="">----select----</option>
+                                                        <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="mt-3">
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button matStepperNext type="submit">Next</button>
+                                  </div>
+                                <!-- </form> -->
+                            </mat-step>
+                            <mat-step>
+                            <!-- <mat-step [stepControl]="secondFormGroup">
+                                <form [formGroup]="secondFormGroup" #formtwo="ngForm"> -->
+                                  <ng-template matStepLabel>Doctor Details</ng-template>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="1" name="OPHTHALMOLOGY"  formControlName="Opthlmologya" value="yes">
+                                            <label for="option1">Ophthalmology</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="2" name="MBBS PHYSICIAN" formControlName="MBBS_PHYSICIAN" value="yes">
+                                            <label for="option2">MBBS Physician</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="3" name="GYNECOLOGY" formControlName="GYNECOLOGY" value="yes">
+                                            <label for="option3">Gynecology</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="4" name="MD PHYSICIAN"  formControlName="MD_PHYSICIAN" value="yes">
+                                            <label for="option1">MD Physician</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="5" name="MD PATHOLOGIST" formControlName="MD_PATHOLOGIST" value="yes">
+                                            <label for="option2">MD Pathologist</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="6" name="MD RADIOLOGIST" formControlName="MD_RADIOLOGIST" value="yes">
+                                            <label for="option3">MD Radiologist</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="7" name="MBBS PHYSICIAN" formControlName="MBBS_PHYSICIAN" value="yes">
+                                            <label for="option1">MBBS Physician</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="8" name="DMLT LABORATORY TECHNICIAN" formControlName="DMLT" value="yes">
+                                            <label for="option2">DMLT Laboratory Technician</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="9" name="MD CARDIOLOGY" formControlName="MD_CARDIOLOGY" value="yes">
+                                            <label for="option3">MD Cardialogy</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="10" name="X-RAY TECHNICIAN" formControlName="XRAY_TECHNICIAN" value="yes">
+                                            <label for="option1">X-RAY Technician</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="11" name="ECG TECHNICIAN" formControlName="ECG_TECHNICIAN" value="yes">
+                                            <label for="option2">ECG Technician</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="12" name="BAMS/BHMS"  formControlName="BAMS_BHMS" value="yes">
+                                            <label for="option3">BAMS/BHMS</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="13" name="ENT" formControlName="ENT" value="yes">
+                                            <label for="option1">ENT</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="14" name="DENTAL" formControlName="DENTAL" value="yes">
+                                            <label for="option2">Dental</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box1">
+                                            <input type="checkbox" id="15" name="DIET" formControlName="DIET" value="yes">
+                                            <label for="option3">Diet</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                         
+
+                                <div class="mt-3">
+                                  <button mat-button matStepperPrevious>Back</button>
+                                  <button mat-button matStepperNext type="submit">Next</button>
+                                </div>
+                            <!-- </form> -->
+                              </mat-step>
+                              <mat-step>
+
+                      
+                          
+                          <!-- <mat-step [stepControl]="secondFormGroup">
+                            <form [formGroup]="secondFormGroup" #formtwo="ngForm" > -->
+                              <ng-template matStepLabel>Available Test </ng-template>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="16" name="ECG FACILITY" formControlName="ECG_FACILITY" value="yes">
+                                        <label for="option1">ECG Facility</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="17" name="USG" formControlName="USG" value="yes">
+                                        <label for="option2">USG</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="18" name="TREAD MILL TEST" formControlName="TREAD_MILL_TEST" value="yes">
+                                        <label for="option3">TMT - Treadmill Test</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="19" name="TMT WT CAPACITY" formControlName="TMT_WT_CAPACITY" value="yes">
+                                        <label for="option1">TMT - Stress Test Capacity</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="20" name="2D ECHOCARDIOGRAPHY" formControlName="ECHOCARDIOGRAPHY" value="yes">
+                                        <label for="option2">2D Echocardiography</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="21" name="MD RADIOLOGIST" formControlName="MD_RADIOLOGIST" value="yes">
+                                        <label for="option3">MD Radiologist</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="22" name="FUNDOSCOPY TEST" formControlName="FUNDOSCOPY_TEST" value="yes">
+                                        <label for="option1">Fundoscopy Test</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="23" name="DMLT LABORATORY TECHNICIAN" formControlName="DMLT_LABORATORY_TECHNICIAN" value="yes">
+                                        <label for="option2">DMLT Laboratory Technician</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="24" name="BASIC EYE TEST" formControlName="BASIC_EYE_TEST" value="yes">
+                                        <label for="option3">Basic Eye Test</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="25" name="X-RAY" formControlName="X_RAY" value="yes">
+                                        <label for="option1">X_RAY</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="26" name="ELISA- HIV" formControlName="ELISA_HIV" value="yes">
+                                        <label for="option2">ELISA- HIV</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="27" name="PSA" formControlName="PSA" value="yes">
+                                        <label for="option3">PSA</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="28" name="ENT" formControlName="ENT" value="yes">
+                                        <label for="option1">ENT</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="29" name="PAP SMEAR" formControlName="PAP_SMEAR" value="yes">
+                                        <label for="option2">Pap Smear</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="30" name="MAMMOGRAM" formControlName="MAMMOGRAM" value="yes">
+                                        <label for="option3">Mammogram</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="31" name="WESTERN BLOT" formControlName="WESTERN_BLOT" value="yes">
+                                        <label for="option3">Western blot</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="32" name="PULMONARY FUNCTION TEST"  formControlName="PULMONARY_FUNCTION_TEST"  value="yes">
+                                        <label for="option3"></label>
+                                        <label for="option3">Pulmonary Function Test</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="33" name="URINE NICOTINE QUALITITATIVE" formControlName="URINE_NICOTINE_QUALITITATIVE" value="yes">
+                                        <label for="option3">Urinary Nicotine Qualitative Testing</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="34" name="HBA1C" formControlName="HBA1C" value="yes">
+                                        <label for="option3">Hemoglobin A1c (HbA1c)</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="35" name="HBEAG" formControlName="HBEAG"  value="yes">
+                                        <label for="option3">Hepatitis B e Antigen (HBeAg)</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="36" name="AUDIOMETRY" formControlName="AUDIOMETRY" value="yes">
+                                        <label for="option3">Audiometry</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="37" name="GYNAECOLOGIST" formControlName="GYNAECOLOGIST" value="yes">
+                                        <label for="option3">Gynaecologist</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="38" name="MER" formControlName="MER"  value="yes">
+                                        <label for="option3">Mer</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="39" name="DENTAL" formControlName="DENTAL"  value="yes">
+                                        <label for="option3">Dental</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="40" name="PATHOLOGY" formControlName="PATHOLOGY" value="yes">
+                                        <label for="option3">Pathology</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="41" name="MEDICAL EXAMINATION REPORT (FMR)" formControlName="FMR" value="yes">
+                                        <label for="option3">Medical Examination Report (FMR)</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="42" name="STOOL ROUTINE" formControlName="STOOL_ROUTINE" value="yes">
+                                        <label for="option3">Stool Routine</label>
+                                    </div>
+                                </div>
+
+                              <!-- <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="ROUTINE URINE ANALYSIS" value="yes">
+                                        <label for="option3">ROUTINE URINE ANALYSIS</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="HBSAG" value="yes">
+                                        <label for="option3">HBSAG</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="HIV FACILITY" value="yes">
+                                        <label for="option3">HIV FACILITY</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="HEPATITIS C" value="yes">
+                                        <label for="option3">HEPATITIS C</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="EYE CHECK-COLOR VISION / REFRACTION TEST" value="yes">
+                                        <label for="option3">EYE CHECK-COLOR VISION / REFRACTION TEST</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="THYROID FUNCTION TESTS" value="yes">
+                                        <label for="option3">THYROID FUNCTION TESTS</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="WIDAL TEST( FOR TYPHOID)" value="yes">
+                                        <label for="option3">WIDAL TEST( FOR TYPHOID)</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="MANTOUX TEST (FOR TB)" value="yes">
+                                        <label for="option3">MANTOUX TEST (FOR TB)</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="VDRL(SYPHILIS)" value="yes">
+                                        <label for="option3">VDRL(SYPHILIS)</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="BONE MINERAL DENSITY" value="yes">
+                                        <label for="option3">BONE MINERAL DENSITY</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="VITAMIN D3" value="yes">
+                                        <label for="option3">VITAMIN D3</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="VITAMIN B12" value="yes">
+                                        <label for="option3">VITAMIN B12</label>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="STRESS THALLIUM" value="yes">
+                                        <label for="option3">STRESS THALLIUM</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="DOBUTAMINE STRESS ECHO" value="yes">
+                                        <label for="option3">DOBUTAMINE STRESS ECHO</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="option3" name="STRESS ECHO" value="yes">
+                                        <label for="option3">STRESS ECHO</label>
+                                    </div>
+                                </div>
+ -->
+
+                            </div>
+                            <div class="mt-3">
+                              <button mat-button matStepperPrevious>Back</button>
+                              <button mat-button matStepperNext type="submit">Next</button>
+                            </div>
+                        <!-- </form> -->
+                          </mat-step>
+
+                          
+                      <mat-step>
+                          <!-- <mat-step [stepControl]="secondFormGroup">
+                            <form [formGroup]="secondFormGroup" #formtwo="ngForm"> -->
+                              <ng-template matStepLabel>Outsoursed Center Details</ng-template>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="43" name="CARDIOLOGY OUTSOURCED CENTRE" formControlName="CARDIOLOGY_OUTSOURCED_CENTRE" value="yes">
+                                        <label for="option1">Cardiology Outsourced Centre</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="44" name="PATHOLOGY OUTSOURCED CENTR" formControlName="PATHOLOGY_OUTSOURCED_CENTR" value="yes">
+                                        <label for="option1">Pathology Outsourced Center</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                <div class="input-group-box1">
+                                    <input type="checkbox" id="49" name="RADIOLOGY OUTSOURCED CENTRE" formControlName="RADIOLOGY_OUTSOURCED_CENTRE" value="yes">
+                                    <label for="option1">Radiology Outsourced Centre</label>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="46" name="GYNAECOLOGY OUTSOURCED CENTRE" formControlName="GYNAECOLOGY_OUTSOURCED_CENTRE" value="yes">
+                                        <label for="option1">Gynaecology Outsourced Centre</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="47" name="DENTAL OUTSOURCED CENTRE" formControlName="DENTAL_OUTSOURCED_CENTRE" value="yes">
+                                        <label for="option1">Dental Outsourced Centre</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box1">
+                                        <input type="checkbox" id="48" name="PULMONOLOGY OUTSOURCED CENTRE" formControlName="PULMONOLOGY_OUTSOURCED_CENTRE" value="yes">
+                                        <label for="option1">Pulmonology Outsourced Centre</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                              <button mat-button matStepperPrevious>Back</button>
+                              <button mat-button matStepperNext type="submit">Next</button>
+                            </div>
+                        <!-- </form> -->
+                          </mat-step>
+
+                            <mat-step>
+                                <ng-template matStepLabel>Upload Document</ng-template>
+                                <div class="row">
+                                    <div class="input-group-box">
+                                        <div><label>Select Firm type :</label></div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                    <select formControlName="FirmType">
+                                                        <option *ngFor="let type of DCFirmType" [value]="type.value">{{type.viewValue}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <div><label>Document</label></div>
+                                              <div>
+                                                <label for="pan">  DC Owner PAN :</label>
+                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan" />
+                                              </div>
+                                              <div>
+                                                <label for="aadhar"> DC Owner Aadhar :</label>
+                                                <input type="file" id="aadhar" (change)="onAadharImageSelected($event)" formControlName="aadhar" />
+                                              </div>
+                                              <div>
+                                                <label for="Accreditation">Accreditation Certificates :</label>
+                                                <input type="file" id="pan" (change)="onAccreditationImageSelected($event)" formControlName="Accreditation" />
+                                              </div>
+                                              <div>
+                                                <label for="Registration_Number">Dr Registration Number/Certificate :</label>
+                                                <input type="file" id="Registration_Number" (change)="onRegistrationNumberImageSelected($event)" formControlName="Registration_Number" />
+                                              </div>
+                                              <div>
+                                                <label for="Ownership">Ownership Documents :</label>
+                                                <input type="file" id="Ownership" (change)="onOwnershipImageSelected($event)" formControlName="Ownership" />
+                                              </div>
+                                              <div>
+                                                <label for="TDS">TDS certificate :</label>
+                                                <input type="file" id="TDS" (change)="onTDSImageSelected($event)" formControlName="TDS" />
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button mat-button matStepperPrevious>Back</button>
+                                    <button mat-button (click)="stepper.reset()">Reset</button>
+                                    <button mat-button (click)="onSubmit()">Submit</button>
+                                </div>
+                            </mat-step>
+                            
+                              
+                      </mat-stepper>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
