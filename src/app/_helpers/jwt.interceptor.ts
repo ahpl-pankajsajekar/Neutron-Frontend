@@ -27,7 +27,8 @@ export class JwtInterceptor implements HttpInterceptor {
         if (isLoggedIn && isApiUrl && !isExcludedUrl) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: `${user.token}`,
+                    Authorization: `${user.email}`,
+                    // email: `${user.email}`,
                 }
             });
         }
