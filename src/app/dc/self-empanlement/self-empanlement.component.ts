@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
 
@@ -61,18 +61,14 @@ export class SelfEmpanlementComponent {
       { value: 'Other', viewValue: 'Other' },
     ];
   
-    StationType = [
-      { value: 'Instation', viewValue: 'Instation' },
-      { value: 'Outstation', viewValue: 'Outstation' },
-    ];
+    // StationType = [
+    //   { value: 'Instation', viewValue: 'Instation' },
+    //   { value: 'Outstation', viewValue: 'Outstation' },
+    // ];
   
     ACType = [
       { value: 'Saving', viewValue: 'Saving' },
       { value: 'Current ', viewValue: 'Current ' },
-      { value: 'Salary', viewValue: 'Salary' },
-      { value: 'Fixed deposit', viewValue: 'Fixed deposit' },
-      { value: 'Recurring deposit', viewValue: 'Recurring deposit' },
-      { value: ' NRI', viewValue: 'NRI' },
     ];
   
     TyreType = [
@@ -82,13 +78,13 @@ export class SelfEmpanlementComponent {
       { value: 'Tyre4', viewValue: 'Tyre4' },
     ];
   
-    GradeType = [
-      { value: 'A+', viewValue: 'A+' },
-      { value: 'A', viewValue: 'A' },
-      { value: 'B', viewValue: 'B' },
-      { value: 'C', viewValue: 'C' },
-      { value: 'D', viewValue: 'D' },
-    ];
+    // GradeType = [
+    //   { value: 'A+', viewValue: 'A+' },
+    //   { value: 'A', viewValue: 'A' },
+    //   { value: 'B', viewValue: 'B' },
+    //   { value: 'C', viewValue: 'C' },
+    //   { value: 'D', viewValue: 'D' },
+    // ];
   
     stateType = [
       { value: 'Assam', viewValue: 'Assam' },
@@ -106,42 +102,6 @@ export class SelfEmpanlementComponent {
       { value: 'Arunachal Pradesh', viewValue: 'Arunachal Pradesh' },
       { value: 'Andhra Pradesh', viewValue: 'Andhra Pradesh' },
       { value: 'Kerala', viewValue: 'Kerala' },
-    ];
-  
-    AHPLLocationType = [
-      { value: 'Mumbai', viewValue: 'Mumbai' },
-      { value: 'Benglore', viewValue: 'Benglore' },
-      { value: 'New Delhi', viewValue: 'New Delhi' },
-      { value: 'Hyderabad', viewValue: 'Hyderabad' },
-      { value: 'Chennai', viewValue: 'Chennai' },
-      { value: 'Kolkata', viewValue: 'Kolkata' },
-      { value: 'Kochi', viewValue: 'Kochi' },
-      { value: 'Ahmedabad', viewValue: 'Ahmedabad' },
-      { value: 'Delhi', viewValue: 'Delhi' },
-      { value: 'Jammu', viewValue: 'Jammu' },
-      { value: 'Pune', viewValue: 'Pune' },
-      { value: 'Chandigarh', viewValue: 'Chandigarh' },
-      { value: 'Jaipur', viewValue: 'Arunachal PJaipurradesh' },
-      { value: 'Indore', viewValue: 'Indore' },
-      { value: 'LK-HO', viewValue: 'LK-HO' },
-    ];
-  
-    LCLocationType = [
-      { value: 'Mumbai', viewValue: 'Mumbai' },
-      { value: 'Benglore', viewValue: 'Benglore' },
-      { value: 'New Delhi', viewValue: 'New Delhi' },
-      { value: 'Hyderabad', viewValue: 'Hyderabad' },
-      { value: 'Chennai', viewValue: 'Chennai' },
-      { value: 'Kolkata', viewValue: 'Kolkata' },
-      { value: 'Kochi', viewValue: 'Kochi' },
-      { value: 'Ahmedabad', viewValue: 'Ahmedabad' },
-      { value: 'Delhi', viewValue: 'Delhi' },
-      { value: 'Jammu', viewValue: 'Jammu' },
-      { value: 'Pune', viewValue: 'Pune' },
-      { value: 'Chandigarh', viewValue: 'Chandigarh' },
-      { value: 'Jaipur', viewValue: 'Arunachal PJaipurradesh' },
-      { value: 'Indore', viewValue: 'Indore' },
-      { value: 'LK-HO', viewValue: 'LK-HO' },
     ];
   
     ZoneType = [
@@ -166,94 +126,114 @@ export class SelfEmpanlementComponent {
     initForm() {
       this.formgroup = this._formBuilder.group({
         providerName: ['', Validators.required],
-        providerType: ['', Validators.required],
-        DC_Chain: ['', Validators.required],
+        providerType: ['', ],
+        DC_Chain: ['', ],
         Regi_number: ['', Validators.required],
-        Inception: ['', Validators.required],
+        Inception: ['', ],
         Owner_name: ['', Validators.required],
         PanCard_number: ['', Validators.required],
         nameOnPanCard: ['', Validators.required],
-        Adhar_number: ['', Validators.required],
-        Adhar_name: ['', Validators.required],
-        Center_name: ['', Validators.required],
-        Grade: ['', Validators.required],
-        Tier: ['', Validators.required],
-        Accredation: ['', Validators.required],
-        Station: ['', Validators.required],
-        address1: ['', Validators.required],
-        address2: ['', Validators.required],
-        ahplLocation: ['', Validators.required],
-        lcLocation: ['',Validators.required],
-        state: ['',Validators.required],
-        city: ['',Validators.required],
-        pincode: ['',Validators.required],
-        zone: ['',Validators.required],
-        emailId: ['',Validators.required],
-        emailId2: ['',Validators.required],
-        Cantact_person1: ['',Validators.required],
-        Cantact_person2: ['',Validators.required],
-        fax: ['',Validators.required],
-        accountNumber: ['',Validators.required],
-        accountName: ['',Validators.required],
-        bankName: ['',Validators.required],
-        ifscCode: ['',Validators.required],
-        branchName: ['',Validators.required],
-        accountType: ['',Validators.required],
-        paymentToBeMadeInFavorOf: ['',Validators.required],
-        paymentMode: ['',Validators.required],
-        Opthlmologya: ['',Validators.required],
-        MBBS_PHYSICIAN: ['',Validators.required],
-        GYNECOLOGY: ['',Validators.required],
-        MD_PHYSICIAN: ['',Validators.required],
-        MD_PATHOLOGIST: ['',Validators.required],
-        MD_RADIOLOGIST: ['',Validators.required],
-        DMLT: ['',Validators.required],
-        MD_CARDIOLOGY: ['',Validators.required],
-        XRAY_TECHNICIAN: ['',Validators.required],
-        ECG_TECHNICIAN: ['',Validators.required],
-        BAMS_BHMS: ['',Validators.required],
-        ENT: ['',Validators.required],
-        DENTAL: ['',Validators.required],
-        DIET: ['',Validators.required],
-        ECG_FACILITY: ['',Validators.required],
-        USG: ['',Validators.required],
-        TREAD_MILL_TEST: ['',Validators.required],
-        TMT_WT_CAPACITY: ['',Validators.required],
-        ECHOCARDIOGRAPHY: ['',Validators.required],
-        FUNDOSCOPY_TEST: ['',Validators.required],
-        DMLT_LABORATORY_TECHNICIAN: ['',Validators.required],
-        BASIC_EYE_TEST: ['',Validators.required],
-        X_RAY: ['',Validators.required],
-        ELISA_HIV: ['',Validators.required],
-        PSA: ['',Validators.required],
-        PAP_SMEAR: ['',Validators.required],
-        MAMMOGRAM: ['',Validators.required],
-        WESTERN_BLOT: ['',Validators.required],
-        PULMONARY_FUNCTION_TEST: ['',Validators.required],
-        URINE_NICOTINE_QUALITITATIVE: ['',Validators.required],
-        HBA1C: ['',Validators.required],
-        HBEAG: ['',Validators.required],
-        AUDIOMETRY: ['',Validators.required],
-        GYNAECOLOGIST: ['',Validators.required],
-        MER: ['',Validators.required],
-        PATHOLOGY: ['',Validators.required],
-        FMR: ['',Validators.required],
-        STOOL_ROUTINE: ['',Validators.required],
-        CARDIOLOGY_OUTSOURCED_CENTRE: ['',Validators.required],
-        PATHOLOGY_OUTSOURCED_CENTR: ['',Validators.required],
-        GYNAECOLOGY_OUTSOURCED_CENTRE: ['',Validators.required],
-        DENTAL_OUTSOURCED_CENTRE: ['',Validators.required],
-        PULMONOLOGY_OUTSOURCED_CENTRE: ['',Validators.required],
-        RADIOLOGY_OUTSOURCED_CENTRE: ['',Validators.required],
-        pan: [''],
+        Adhar_number: ['', ],
+        Adhar_name: ['', ],
+        Center_name: ['', ],
+        Accredation: ['', ],
+        address1: ['', ],
+        address2: ['', ],
+        state: ['',],
+        city: ['',],
+        pincode: ['',],
+        emailId: ['', [Validators.required, Validators.email ] ],
+        confirmEmailId: ['', [Validators.required ]],
+        emailId2: ['', []],
+        Cantact_person1: ['',],
+        Cantact_person2: ['',],
+        fax: ['',],
+        accountNumber: ['',],
+        accountName: ['',],
+        bankName: ['',],
+        ifscCode: ['',],
+        branchName: ['',],
+        accountType: ['',],
+        paymentToBeMadeInFavorOf: ['',],
+
+        Opthlmologya: ['',],
+        MBBS_PHYSICIAN: ['',],
+        GYNECOLOGY: ['',],
+        MD_PHYSICIAN: ['',],
+        MD_PATHOLOGIST: ['',],
+        MD_RADIOLOGIST: ['',],
+        DMLT: ['',],
+        MD_CARDIOLOGY: ['',],
+        XRAY_TECHNICIAN: ['',],
+        ECG_TECHNICIAN: ['',],
+        BAMS_BHMS: ['',],
+        ENT: ['',],
+        DENTAL: ['',],
+        DIET: ['',],
+        ECG_FACILITY: ['',],
+        USG: ['',],
+        TREAD_MILL_TEST: ['',],
+        TMT_WT_CAPACITY: ['',],
+        ECHOCARDIOGRAPHY: ['',],
+        FUNDOSCOPY_TEST: ['',],
+        DMLT_LABORATORY_TECHNICIAN: ['',],
+        BASIC_EYE_TEST: ['',],
+        X_RAY: ['',],
+        ELISA_HIV: ['',],
+        PSA: ['',],
+        PAP_SMEAR: ['',],
+        MAMMOGRAM: ['',],
+        WESTERN_BLOT: ['',],
+        PULMONARY_FUNCTION_TEST: ['',],
+        URINE_NICOTINE_QUALITITATIVE: ['',],
+        HBA1C: ['',],
+        HBEAG: ['',],
+        AUDIOMETRY: ['',],
+        GYNAECOLOGIST: ['',],
+        MER: ['',],
+        PATHOLOGY: ['',],
+        FMR: ['',],
+        STOOL_ROUTINE: ['',],
+        CARDIOLOGY_OUTSOURCED_CENTRE: ['',],
+        PATHOLOGY_OUTSOURCED_CENTR: ['',],
+        GYNAECOLOGY_OUTSOURCED_CENTRE: ['',],
+        DENTAL_OUTSOURCED_CENTRE: ['',],
+        PULMONOLOGY_OUTSOURCED_CENTRE: ['',],
+        RADIOLOGY_OUTSOURCED_CENTRE: ['',],
+        pan_image: ['',],
         aadhar: [''],
         Accreditation: [''],
         Registration_Number: [''],
         Ownership: [''],
         TDS: [''],
-        FirmType: [''],
-      });
+        FirmType: ['', Validators.required],
+      },
+      {
+        Validators : this.emailMatchValidator
+      }
+    );
     }
+    
+    get f() { return this.formgroup.controls; }
+
+    // not working 
+    emailMatchValidator(group: FormGroup) {
+      const email = group.get('emailId')?.value;
+      const confirmEmail = group.get('confirmEmailId')?.value;
+      console.log(email, confirmEmail)
+      return email === confirmEmail ? null : { emailMismatch: true };
+    }
+    // not working 
+    emailMatcher(control: AbstractControl) {
+      const email = control.get('emailId');
+      const confirmEmail = control.get('confirmEmailId');
+      console.log(email, confirmEmail)
+      if (!email || !confirmEmail) {
+        return null;
+      }
+      return email.value === confirmEmail.value ? null : { emailMismatch: true };
+    }
+
   
     formData: FormData = new FormData();
   
@@ -293,6 +273,8 @@ export class SelfEmpanlementComponent {
         this.formData.append('TDS_image', file);
       }
     }
+
+    selectedCompanyFirmType: string | undefined;
   
     formgroup: any;
     onSubmit() {
@@ -309,18 +291,18 @@ export class SelfEmpanlementComponent {
       this.formData.append('Adhar_number', this.formgroup.value.Adhar_number);
       this.formData.append('Adhar_name', this.formgroup.value.Adhar_name);
       this.formData.append('Center_name', this.formgroup.value.Center_name);
-      this.formData.append('Grade', this.formgroup.value.Grade);
-      this.formData.append('Tier', this.formgroup.value.Tier);
+      // this.formData.append('Grade', this.formgroup.value.Grade);
+      // this.formData.append('Tier', this.formgroup.value.Tier);
       this.formData.append('Accredation', this.formgroup.value.Accredation);
-      this.formData.append('Station', this.formgroup.value.Station);
+      // this.formData.append('Station', this.formgroup.value.Station);
       this.formData.append('address1', this.formgroup.value.address1);
       this.formData.append('address2', this.formgroup.value.address2);
-      this.formData.append('ahplLocation', this.formgroup.value.ahplLocation);
-      this.formData.append('lcLocation', this.formgroup.value.lcLocation);
+      // this.formData.append('ahplLocation', this.formgroup.value.ahplLocation);
+      // this.formData.append('lcLocation', this.formgroup.value.lcLocation);
       this.formData.append('state', this.formgroup.value.state);
       this.formData.append('city', this.formgroup.value.city);
       this.formData.append('pincode', this.formgroup.value.pincode);
-      this.formData.append('zone', this.formgroup.value.zone);
+      // this.formData.append('zone', this.formgroup.value.zone);
       this.formData.append('emailId', this.formgroup.value.emailId);
       this.formData.append('emailId2', this.formgroup.value.emailId2);
       this.formData.append(
@@ -342,7 +324,7 @@ export class SelfEmpanlementComponent {
         'paymentToBeMadeInFavorOf',
         this.formgroup.value.paymentToBeMadeInFavorOf
       );
-      this.formData.append('paymentMode', this.formgroup.value.paymentMode);
+      // this.formData.append('paymentMode', this.formgroup.value.paymentMode);
       this.formData.append('Opthlmologya', this.formgroup.value.Opthlmologya);
       this.formData.append('MBBS_PHYSICIAN', this.formgroup.value.MBBS_PHYSICIAN);
       this.formData.append('GYNECOLOGY', this.formgroup.value.GYNECOLOGY);

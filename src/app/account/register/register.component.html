@@ -70,7 +70,7 @@
                             <input type="password" class="form-control"
                                 formControlName="password2" placeholder="Confirm-password *">
                         </div>
-                        <div *ngIf="registerForm.controls['password2'].invalid && (registerForm.controls['name'].touched)" class="errormessage">
+                        <div *ngIf="registerForm.controls['password2'].invalid && (registerForm.controls['password2'].touched)" class="errormessage">
                             <div *ngIf="registerForm.controls['password2'].errors">
                             Please enter Confirm password
                           </div>

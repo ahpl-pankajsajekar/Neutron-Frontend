@@ -129,7 +129,7 @@
                                         </div>
 
                                         
-                                        <div class="col-md-4">
+                                        <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>GRADE<code>*</code></label></div>
                                                 <div>
@@ -139,9 +139,8 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-4">
+                                        </div> -->
+                                        <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>TIER<code>*</code></label></div>
                                                 <div>
@@ -151,7 +150,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="col-md-4">
                                             <div class="input-group-box">
@@ -165,7 +164,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>INSTATION/OUTSTATION<code>*</code></label></div>
                                                 <div>
@@ -175,7 +174,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                     </div>
                                     <div class="mt-3">
@@ -205,7 +204,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>AHPL LOCATION <code>*</code></label></div>
                                                 <div>
@@ -215,8 +214,8 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
+                                        </div> -->
+                                        <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>LC LOCATION <code>*</code></label></div>
                                                 <div>
@@ -226,7 +225,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>STATE <code>*</code></label></div>
@@ -255,7 +254,7 @@
                                                 <div><input type="text" formControlName="pincode" required></div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>Zone <code>*</code></label></div>
                                                 <div>
@@ -265,20 +264,35 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group-box">
-                                                <div><label>EMAIL ID <code>*</code></label></div>
-                                                <div><input type="text" formControlName="emailId" required></div>
+                                                <div><label>EMAIL<code>*</code></label></div>
+                                                <div><input type="email" formControlName="emailId" required></div>
+                                                <div *ngIf="formgroup.controls['emailId'].invalid && (formgroup.controls['emailId'].touched)" class="errormessage">
+                                                    <div *ngIf="formgroup.controls['emailId'].errors.email">Please Enter Valid Email.</div>
+                                                  <div *ngIf="f.emailId.errors.required">Email is required.</div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
-                                                <div><label>EMAIL ID 2<code>*</code></label></div>
-                                                <div><input type="text" formControlName="emailId2" required></div>
+                                                <div><label>CONFIRM EMAIL<code>*</code></label></div>
+                                                <div><input type="email" formControlName="confirmEmailId" required></div>
+                                            </div>
+                                            <div *ngIf="formgroup.controls['confirmEmailId'].invalid && (formgroup.controls['confirmEmailId'].touched)" class="errormessage">
+                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors">Please Enter Valid Email. </div>
+                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors?.emailMismatch">Cofirm Email and Email do not match</div>
+                                            </div>
+                                            <div *ngIf="formgroup.controls['confirmEmailId'].errors?.emailMismatch">Cofirm Email and Email do not match</div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>ANOTHER EMAIL<code></code></label></div>
+                                                <div><input type="email" formControlName="emailId2" required></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -290,7 +304,7 @@
 
                                         <div class="col-md-4">
                                             <div class="input-group-box">
-                                                <div><label>CONTACT PERSON NAME 2 <code>*</code></label></div>
+                                                <div><label>CONTACT PERSON NAME 2 </label></div>
                                                 <div><input type="text" formControlName="Cantact_person2" required></div>
                                             </div>
                                         </div>
@@ -298,7 +312,7 @@
                                         
                                         <div class="col-md-4">
                                             <div class="input-group-box">
-                                                <div><label>FAX <code>*</code></label></div>
+                                                <div><label>FAX</label></div>
                                                 <div><input type="text" formControlName="fax" required></div>
                                             </div>
                                         </div>
@@ -374,13 +388,13 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group-box">
-                                                <div><label>PAYMENT TO BE MADE IN FAVOR OF <code>*</code></label></div>
+                                                <div><label>PAYMENT TO BE MADE IN FAVOUR OF <code></code></label></div>
                                                 <div>
                                                     <input type="text"  formControlName="paymentToBeMadeInFavorOf" required>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>PAYMENT MODE<code>*</code></label></div>
                                                 <div>
@@ -390,7 +404,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                   <div class="mt-3">
@@ -873,21 +887,21 @@
                                 <ng-template matStepLabel>Upload Document</ng-template>
                                 <div class="row">
                                     <div class="input-group-box">
-                                        <div><label>Select Firm type :</label></div>
+                                        <div><label>Select Firm type : <code>*</code></label></div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
-                                                    <select formControlName="FirmType">
+                                                    <select formControlName="FirmType" [(ngModel)]="selectedCompanyFirmType">
                                                         <option *ngFor="let type of DCFirmType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box">
+                                        <div class="input-group-box" *ngIf="selectedCompanyFirmType === 'Sole Proprietorship Firm'">
                                             <div><label>Document</label></div>
                                               <div>
                                                 <label for="pan">  DC Owner PAN :</label>
-                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan" />
+                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" />
                                               </div>
                                               <div>
                                                 <label for="aadhar"> DC Owner Aadhar :</label>
@@ -908,6 +922,40 @@
                                               <div>
                                                 <label for="TDS">TDS certificate :</label>
                                                 <input type="file" id="TDS" (change)="onTDSImageSelected($event)" formControlName="TDS" />
+                                              </div>
+                                        </div>
+                                        <div class="input-group-box" *ngIf="selectedCompanyFirmType=== 'LLP/Partnership Firm'">
+                                            <div><label>Document</label></div>
+                                              <div>
+                                                <label for="pan">  DC Owner PAN :</label>
+                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" />
+                                              </div>
+                                              <div>
+                                                <label for="aadhar"> DC Owner Aadhar :</label>
+                                                <input type="file" id="aadhar" (change)="onAadharImageSelected($event)" formControlName="aadhar" />
+                                              </div>
+                                              <div>
+                                                <label for="Ownership">Ownership Documents :</label>
+                                                <input type="file" id="Ownership" (change)="onOwnershipImageSelected($event)" formControlName="Ownership" />
+                                              </div>
+                                        </div>
+                                        <div class="input-group-box" *ngIf="selectedCompanyFirmType=== 'Private Limited Company'">
+                                            <div><label>Document</label></div>
+                                              <div>
+                                                <label for="pan"> DC Owner PAN :</label>
+                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" />
+                                              </div>
+                                              <div>
+                                                <label for="Accreditation">Accreditation Certificates :</label>
+                                                <input type="file" id="Accreditation" (change)="onAccreditationImageSelected($event)" formControlName="Accreditation" />
+                                              </div>
+                                              <div>
+                                                <label for="Registration_Number">Dr Registration Number/Certificate :</label>
+                                                <input type="file" id="Registration_Number" (change)="onRegistrationNumberImageSelected($event)" formControlName="Registration_Number" />
+                                              </div>
+                                              <div>
+                                                <label for="Ownership">Ownership Documents :</label>
+                                                <input type="file" id="Ownership" (change)="onOwnershipImageSelected($event)" formControlName="Ownership" />
                                               </div>
                                         </div>
                                     </div>
