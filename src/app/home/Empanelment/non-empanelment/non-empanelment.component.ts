@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 })
 export class NonEmpanelmentComponent {
   documents: File[] = [];
+  fileInputsToShow: { id: string, label: string, controlName: string }[] = [];
 
   ticketId: any = null;
   constructor(
@@ -294,6 +295,59 @@ export class NonEmpanelmentComponent {
       this.formData.append('TDS_image', file);
     }
   }
+  
+
+
+
+  onFirmTypeChange(event: any) {
+    console.log("myyyevent:", event.target.value);
+    this.updateFileInputsToShow();
+  }
+  updateFileInputsToShow() {
+    const selectedFirmType = this.formgroup.get('FirmType').value;
+    switch (selectedFirmType) {
+      case 'Sole Proprietorship Firm':
+        this.fileInputsToShow = [
+          { id: 'pan', label: 'DC Owner PAN:', controlName: 'pan' },
+          { id: 'aadhar', label: 'DC Owner Aadhar:', controlName: 'aadhar' },
+          { id: 'Accreditation', label: 'Accreditation Certificates:', controlName: 'Accreditation' },
+          { id: 'Registration_Number', label: 'Dr Registration Number/Certificate:', controlName: 'Registration_Number' },
+          { id: 'Ownership', label: 'Ownership Documents:', controlName: 'Ownership' },
+          { id: 'TDS', label: 'TDS certificate:', controlName: 'TDS' }
+        ];
+        break;
+      case 'LLP/Partnership Firm':
+        this.fileInputsToShow = [
+          { id: 'pan', label: 'DC Owner PAN:', controlName: 'pan' },
+          { id: 'aadhar', label: 'DC Owner Aadhar:', controlName: 'aadhar' },
+          { id: 'Signing Authority Letter', label: 'Accreditation Certificates:', controlName: 'Signing_Authority_Letter' },
+          { id: 'Clinical Establishment Certificate', label: 'Dr Registration Number/Certificate:', controlName: 'Clinical_Establishment_Certificate' },
+          { id: 'Ownership', label: 'Ownership Documents:', controlName: 'Ownership' },
+          { id: '	Signing Authority Letter', label: 'TDS certificate:', controlName: '	Signing_Authority_Letter' }
+        ];
+        break;
+      case 'Private Limited Company':
+        this.fileInputsToShow = [
+          { id: 'pan', label: 'DC Owner PAN:', controlName: 'pan' },
+          { id: 'aadhar', label: 'DC Owner Aadhar:', controlName: 'aadhar' },
+          { id: 'Accreditation', label: 'Accreditation Certificates:', controlName: 'Accreditation' },
+          { id: 'Registration_Number', label: 'Dr Registration Number/Certificate:', controlName: 'Registration_Number' },
+          { id: 'Ownership', label: 'Ownership Documents:', controlName: 'Ownership' },
+          { id: 'Legal', label: 'Legal agreement:', controlName: 'Legal' }
+        ];
+        break;
+      default:
+        this.fileInputsToShow = [];
+        break;
+    }
+  }
+  onFileInputChange(event: any, controlName: string) {
+    // Handle file input change here
+  }
+
+
+ 
+
 
   formgroup: any = FormGroup;
   onSubmit() {
