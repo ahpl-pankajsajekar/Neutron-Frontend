@@ -29,6 +29,7 @@ export class NetworkVerifyComponent {
   isAadharVerify: boolean = false;
   isAccredationVerify: boolean = false;
   isTDSVerify: boolean = false;
+  isRegistrationVerify :boolean =false;
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
@@ -36,6 +37,7 @@ export class NetworkVerifyComponent {
       isAadharVerify: [this.isAadharVerify, Validators.required], 
       isAccredationVerify: [this.isAccredationVerify, Validators.required], 
       isTDSVerify: [this.isTDSVerify, Validators.required], 
+      isRegistrationVerify:[this.isRegistrationVerify, Validators.required],
     });
   }
 
@@ -62,7 +64,7 @@ export class NetworkVerifyComponent {
     const url = '/selfemp/verification/'
     const body = {"DCVerificationStatus": value, "id": this.form.get('id')?.value,  "verificationRemark": this.remark,
      "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
-     "isTDSVerify": this.isTDSVerify }
+     "isTDSVerify": this.isTDSVerify ,"isRegistrationVerify": this.isRegistrationVerify}
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{

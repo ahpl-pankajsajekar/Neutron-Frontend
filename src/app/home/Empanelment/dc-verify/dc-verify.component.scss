@@ -167,6 +167,7 @@ textarea {
 .dashboard-container {
   padding: 20px;
   text-align: center;
+  color: #0d6e6b;
 
   h1 {
     color: #333;
@@ -214,9 +215,81 @@ textarea {
     font-size: 18px;
   }
 
-  .tile:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  .tile animated{
+    color: #042a29;
   }
+
+  .tile:hover {
+    background-color: #8cbdb5;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(81, 27, 27, 0.2);
+  }
+}
+.tile {
+  width: calc(15% - 20px);
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #2ad7e7;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.tile a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tile:hover {
+  transform: scale(1.05);
+}
+
+.tile1 {
+  animation: fadeIn 1s ease-out 0.2s forwards;
+}
+
+.tile2 {
+  animation: fadeIn 1s ease-out 0.4s forwards;
+}
+
+.tile3 {
+  animation: fadeIn 1s ease-out 0.6s forwards;
+}
+
+.tile4 {
+  animation: fadeIn 1s ease-out 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.radio-container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.radio-container input[type="radio"] {
+  margin-right: 5px; /* Adjust spacing between radio buttons */
+}
+
+.radio-container label {
+  cursor: pointer;
+}
+
+/* Style for the checked radio button */
+.radio-container input[type="radio"]:checked + label::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #007bff; /* Blue color for checked radio button */
+  border-radius: 50%;
+  margin-right: 5px; /* Adjust spacing */
 }
