@@ -143,8 +143,8 @@ export class SelfEmpanlementComponent {
         city: ['',],
         pincode: ['',],
         emailId: ['', [Validators.required, Validators.email ] ],
-        confirmEmailId: ['', [Validators.required ]],
-        emailId2: ['', []],
+        confirmEmailId: ['', [Validators.required, Validators.email]],
+        emailId2: ['', [ Validators.email ]],
         Cantact_person1: ['',],
         Cantact_person2: ['',],
         fax: ['',],
@@ -209,29 +209,22 @@ export class SelfEmpanlementComponent {
         FirmType: ['', Validators.required],
       },
       {
-        Validators : this.emailMatchValidator
+        validator : this.emailMatchValidator
       }
     );
     }
     
     get f() { return this.formgroup.controls; }
 
-    // not working 
-    emailMatchValidator(group: FormGroup) {
-      const email = group.get('emailId')?.value;
-      const confirmEmail = group.get('confirmEmailId')?.value;
-      console.log(email, confirmEmail)
-      return email === confirmEmail ? null : { emailMismatch: true };
-    }
-    // not working 
-    emailMatcher(control: AbstractControl) {
-      const email = control.get('emailId');
-      const confirmEmail = control.get('confirmEmailId');
-      console.log(email, confirmEmail)
-      if (!email || !confirmEmail) {
+    emailMatchValidator(control: AbstractControl) {
+      const email = control.get('emailId')?.value;
+      const confirmEmail = control.get('confirmEmailId')?.value;
+      if (email !== confirmEmail ) {
+        control.get('confirmEmailId')?.setErrors({ match: true });
+        return { match: true }; 
+      } else {
         return null;
       }
-      return email.value === confirmEmail.value ? null : { emailMismatch: true };
     }
 
   

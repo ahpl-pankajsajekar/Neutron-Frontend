@@ -284,15 +284,18 @@
                                                 <div><input type="email" formControlName="confirmEmailId" required></div>
                                             </div>
                                             <div *ngIf="formgroup.controls['confirmEmailId'].invalid && (formgroup.controls['confirmEmailId'].touched)" class="errormessage">
-                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors">Please Enter Valid Email. </div>
-                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors?.emailMismatch">Cofirm Email and Email do not match</div>
+                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors.required">Please Enter Valid Email. </div>
+                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors.email">Please Enter Valid Email. </div>
+                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors?.match">Cofirm Email & Email do not match</div>
                                             </div>
-                                            <div *ngIf="formgroup.controls['confirmEmailId'].errors?.emailMismatch">Cofirm Email and Email do not match</div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>ANOTHER EMAIL<code></code></label></div>
                                                 <div><input type="email" formControlName="emailId2" required></div>
+                                            <div *ngIf="formgroup.controls['emailId2'].invalid && (formgroup.controls['emailId2'].touched)" class="errormessage">
+                                                <div *ngIf="formgroup.controls['emailId2'].errors.email">Please Enter Valid Email. </div>
+                                            </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
