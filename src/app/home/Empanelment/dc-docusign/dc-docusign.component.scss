@@ -1,47 +1,15 @@
 .container {
-    max-width: 600px; /* Adjust container width as needed */
-    margin: 0 auto; /* Center the container horizontally */
+    max-width: 600px;
+    margin: 0 auto; 
 }
 
-.option {
-    margin-bottom: 20px; /* Add spacing between options */
-}
-
-.label {
-    font-weight: bold; /* Make labels bold */
-    margin-right: 10px; /* Add spacing between label and input/button */
-}
-
-.button {
-    padding: 8px 16px; /* Add padding to buttons */
-    background-color: #007bff; /* Button background color */
-    color: #fff; /* Button text color */
-    border: none; /* Remove button border */
-    border-radius: 5px; /* Add button border radius */
-    cursor: pointer; /* Change cursor to pointer on hover */
-}
-
-.submit {
-    background-color: #28a745; /* Submit button background color */
-}
-
-/* Style file input */
-input[type="file"] {
-    display: none; /* Hide file input by default */
-}
-
-/* Style file upload button */
-.upload-button {
-    background-color: #007bff; /* Button background color */
-    color: #fff; /* Button text color */
-    padding: 8px 16px; /* Add padding to button */
-    border: none; /* Remove button border */
-    border-radius: 5px; /* Add button border radius */
-    cursor: pointer; /* Change cursor to pointer on hover */
-}
-
-/* Style selected file name display */
-.selected-file {
-    font-style: italic; /* Italicize selected file name */
-    color: #6c757d; /* Text color for selected file name */
-}
+.drop-container {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .selected-file {
+    margin-top: 10px;
+  }
+  

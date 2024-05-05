@@ -28,6 +28,16 @@ export class DcVerifyComponent {
     this.loadData();
   }
 
+  
+  showDetails: number | null = null;
+  toggleDetails(boxNumber: number) {
+    if (this.showDetails === boxNumber) {
+      this.showDetails = null; // Hide details if already open
+    } else {
+      this.showDetails = boxNumber; // Show details for the clicked box
+    }
+  }
+
   isPanVerify: boolean = false;
   isAadharVerify: boolean = false;
   isAccredationVerify: boolean = false;

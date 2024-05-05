@@ -27,12 +27,20 @@ export class RegisterComponent implements OnInit {
     {textValue: 2, textName: "legal"},
     {textValue: 3, textName: "IT"},
   ]
+  zoneList = [
+    {textValue: 'North', textName: "North"},
+    {textValue: 'South', textName: "South"},
+    {textValue: "East", textName: "East"},
+    {textValue: "West", textName: "West"},
+    {textValue: "All", textName: "All"},
+  ]
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required], 
       email: ['', [Validators.required, Validators.email]],
       role: ['', Validators.required], 
+      zone: ['', Validators.required], 
       password: ['', Validators.required],
       password2: ['', Validators.required],
       phone: ['', Validators.required]

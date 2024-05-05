@@ -21,6 +21,7 @@ import { DcDocusignComponent } from './dc-docusign/dc-docusign.component';
 import { SuccessModalComponent } from './success-modal/success-modal.component';
 import { NetworkVerifyComponent } from './network-verify/network-verify.component';
 
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,8 @@ import { NetworkVerifyComponent } from './network-verify/network-verify.componen
 
     MatIconModule,
     MatExpansionModule,
+
+    MatTabsModule,
 
   ]
 })

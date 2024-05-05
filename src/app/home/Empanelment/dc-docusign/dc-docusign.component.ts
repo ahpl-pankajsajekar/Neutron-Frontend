@@ -7,14 +7,26 @@ import { Component } from '@angular/core';
 })
 export class DcDocusignComponent {
 
-  selectedFileName: string = '';  
 
   constructor() { }
+  
+  selectedFile: File | null = null;
+  fileExtension: string = '';
 
   onFileSelected(event: any) {
-    // Implement file selection logic here
-    const file = event.target.files[0];
-    console.log('Selected file:', file);
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile)
+  }
+
+  onDrop(event: any) {
+    event.preventDefault();
+    this.selectedFile = event.dataTransfer.files[0];
+    console.log(this.selectedFile)
+    this.fileExtension = this.selectedFile?.name.split('.')[1] || '';
+  }
+
+  onDragOver(event: any) {
+    event.preventDefault();
   }
 
   submit() {

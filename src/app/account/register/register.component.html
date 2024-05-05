@@ -31,7 +31,6 @@
                             Please enter Valid Email
                           </div>
                         </div>
-                        
                     </div>
                     <div class="col-md-12">
                         <div class="input-group">
@@ -44,7 +43,22 @@
                         </div>
                         <div *ngIf="registerForm.controls['role'].invalid && (registerForm.controls['role'].touched)" class="errormessage">
                             <div *ngIf="registerForm.controls['role'].errors">
-                            Please enter role
+                            Please select role
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-globe" aria-hidden="true"></i></div>
+                            </div>
+                            <select formControlName="zone" class="selectfield">
+                                <option *ngFor="let item of zoneList" [value]="item.textValue">{{item.textName}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="registerForm.controls['zone'].invalid && (registerForm.controls['zone'].touched)" class="errormessage">
+                            <div *ngIf="registerForm.controls['zone'].errors">
+                            Please select zone
                           </div>
                         </div>
                     </div>
