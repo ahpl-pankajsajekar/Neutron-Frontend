@@ -67,6 +67,7 @@
                 <th scope="col">DCID</th>
                 <th scope="col">Pincode</th>
                 <th scope="col">Network</th>
+                <th scope="col">DocuSign</th>
               </tr>
             </thead>
             <tbody>
@@ -76,7 +77,7 @@
                 <td>{{item.DCID}}</td>
                 <td>{{item.pincode}}</td>
                 <td>{{item?.verifiedByNetworkUser}}</td>
-                <td><button *ngIf="item?.ds_envelope_status!='completed'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button></td>
+                <td><button *ngIf="item?.ds_envelope_status!='completed'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button> <span *ngIf="item?.ds_envelope_status=='completed'">Completed</span></td>
               </tr>
               <tr *ngIf="showAnalytics.verify.length == 0">
                 <td colspan="100%" class="text-center">Data Not found!</td>
@@ -102,6 +103,7 @@
                 <td>{{item.DCID}}</td>
                 <td>{{item.pincode}}</td>
                 <td>{{item?.verifiedByNetworkUser}}</td>
+                <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td>
               </tr>
               <tr *ngIf="showAnalytics.partialVerify.length == 0">
                 <td colspan="100%" class="text-center">Data Not found!</td>
@@ -196,7 +198,7 @@
   </div>
   <div class="button-container">
     <button class="verify-button" (click)="verification('verify')">Save & Submit</button>
-    <!-- <button class="partial-verify-button" (click)="verification('partialVerify')">Partial Verify</button> -->
+    <button class="partial-verify-button" (click)="verification('partialVerify')">Partial Verify</button>
   </div>
 </div>
       </div>

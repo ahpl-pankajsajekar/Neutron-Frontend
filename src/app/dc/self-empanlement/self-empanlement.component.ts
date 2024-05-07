@@ -224,6 +224,7 @@ export class SelfEmpanlementComponent {
         Opthlmologya: ['',],
         MBBS_PHYSICIAN: ['',],
         GYNECOLOGY: ['',],
+        OPHTHALMOLOGY: ['',],
         MD_PHYSICIAN: ['',],
         MD_PATHOLOGIST: ['',],
         MD_RADIOLOGIST: ['',],
