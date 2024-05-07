@@ -10,7 +10,7 @@ import { routes } from 'src/app/app-routing.module';
   styleUrls: ['./dc-verify.component.scss']
 })
 export class DcVerifyComponent {
-  form: FormGroup = new FormGroup({}); // Declare form as FormGroup
+  form: FormGroup = new FormGroup({}); 
   providerNames: any[] = []; // Initialize providerNames as an empty array
   providerIDs: any[] = []; // Initialize providerIDs as an empty array
   isLinear = true; // Initialize isLinear property
@@ -56,8 +56,17 @@ export class DcVerifyComponent {
   onSearch(): void {
     if (this.form.valid) {
       console.log('Form submitted:', this.form.value);
-      const url = "/empanelment/details/legal/" 
-      this.commonService.postMethod(url, {"id": this.form.get('id')?.value}).subscribe(
+      const id = this.form.get('id')?.value
+      this.sendRequestForSearch(id)
+    } 
+    else {
+      alert("Please Select DC.");
+    }
+  }
+
+  sendRequestForSearch(id:string){
+    const url = "/empanelment/details/legal/" 
+      this.commonService.postMethod(url, {"id": id}).subscribe(
         (res: any) => {
           console.log("res", res)
           this.selfemployementData = res.data
@@ -65,9 +74,6 @@ export class DcVerifyComponent {
         (err: any) => {
           console.warn(err)
         })
-    } else {
-      // Handle form validation errors
-    }
   }
 
   remark: string = '';
@@ -105,6 +111,23 @@ export class DcVerifyComponent {
         console.error(error);
       }
     );
+  }
+
+
+  checkStatus(id:string){
+    const url = '/docusignAgreement/envelope/checkstatus/'
+    const params = {'id': id}
+    console.log(params)
+    this.commonService.getMethodWithParams(url, params).subscribe(
+      (res:any)=>{
+        console.log(res);
+        const temp = "Envelope Status: " + res.data['status'] + "\nEnvelope ID: "+ res.data['envelopeId']
+        alert("Envelope Status: " + res.data['status'])
+      },
+      (error:any)=>{
+        console.log(error);
+      },
+    )
   }
   
 

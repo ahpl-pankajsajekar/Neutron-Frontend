@@ -45,16 +45,46 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of showAnalytics.pending; index as i">
-                <th scope="row">{{i+1}}</th>
-                <td>{{item.providerName}}</td>
-                <td>{{item.DCID}}</td>
-                <td>{{item.pincode}}</td>
-                <td>{{item?.verifiedByNetworkUser}}</td>
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{item.providerName}}</td>
+                  <td>{{item.DCID}}</td>
+                  <td>{{item.pincode}}</td>
+                  <td>{{item?.verifiedByNetworkUser}}</td>
+                  <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td>
+              </tr>
+              <tr *ngIf="showAnalytics.pending.length == 0">
+                <td colspan="100%" class="text-center">Data Not found!</td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="details d-flex justify-content-center" *ngIf="showDetails === 2">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">DC Name</th>
+                <th scope="col">DCID</th>
+                <th scope="col">Pincode</th>
+                <th scope="col">Network</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of showAnalytics.verify; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.providerName}}</td>
+                <td>{{item.DCID}}</td>
+                <td>{{item.pincode}}</td>
+                <td>{{item?.verifiedByNetworkUser}}</td>
+                <td><button *ngIf="item?.ds_envelope_status!='completed'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button></td>
+              </tr>
+              <tr *ngIf="showAnalytics.verify.length == 0">
+                <td colspan="100%" class="text-center">Data Not found!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="details d-flex justify-content-center" *ngIf="showDetails === 3">
           <table class="table">
             <thead>
               <tr>
@@ -73,27 +103,8 @@
                 <td>{{item.pincode}}</td>
                 <td>{{item?.verifiedByNetworkUser}}</td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="details d-flex justify-content-center" *ngIf="showDetails === 3">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">DC Name</th>
-                <th scope="col">DCID</th>
-                <th scope="col">Pincode</th>
-                <th scope="col">Network</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of showAnalytics.verify; index as i">
-                <th scope="row">{{i+1}}</th>
-                <td>{{item.providerName}}</td>
-                <td>{{item.DCID}}</td>
-                <td>{{item.pincode}}</td>
-                <td>{{item?.verifiedByNetworkUser}}</td>
+              <tr *ngIf="showAnalytics.partialVerify.length == 0">
+                <td colspan="100%" class="text-center">Data Not found!</td>
               </tr>
             </tbody>
           </table>

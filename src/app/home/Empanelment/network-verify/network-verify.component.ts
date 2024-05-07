@@ -40,13 +40,22 @@ export class NetworkVerifyComponent {
       isRegistrationVerify:[this.isRegistrationVerify, Validators.required],
     });
   }
-
+  
   selfemployementData : any;
   onSearch(): void {
     if (this.form.valid) {
       console.log('Form submitted:', this.form.value);
-      const url = "/empanelment/" 
-      this.commonService.postMethod(url, {"id": this.form.get('id')?.value}).subscribe(
+      const id = this.form.get('id')?.value
+      this.sendRequestForSearch(id)
+    } 
+    else {
+      alert("Please Select DC.");
+    }
+  }
+
+  sendRequestForSearch(id:string){
+    const url = "/empanelment/" 
+      this.commonService.postMethod(url, {"id": id}).subscribe(
         (res: any) => {
           console.log("res", res)
           this.selfemployementData = res.data
@@ -54,10 +63,8 @@ export class NetworkVerifyComponent {
         (err: any) => {
           console.warn(err)
         })
-    } else {
-      // Handle form validation errors
-    }
   }
+
 
   remark: string = '';
   verification(value:string){
@@ -70,6 +77,7 @@ export class NetworkVerifyComponent {
       (res:any)=>{
         console.log(res);
         alert("Document verified by Network Team")
+        window.location.reload();
       },
       (error:any)=>{},
     )
@@ -94,6 +102,17 @@ export class NetworkVerifyComponent {
       }
     );
   }
+
+  
+  showDetails: number | null = null;
+  toggleDetails(boxNumber: number) {
+    if (this.showDetails === boxNumber) {
+      this.showDetails = null; // Hide details if already open
+    } else {
+      this.showDetails = boxNumber; // Show details for the clicked box
+    }
+  }
+
   
 
   // multi select dropdown

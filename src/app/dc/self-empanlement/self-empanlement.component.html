@@ -230,9 +230,9 @@
                                             <div class="input-group-box">
                                                 <div><label>STATE <code>*</code></label></div>
                                                 <div>
-                                                    <select formControlName="state">
+                                                    <select formControlName="state" (change)="onStateChange($event)">
                                                         <option [value]="">----select----</option>
-                                                        <option *ngFor="let type of stateType" [value]="type.value">{{type.viewValue}}</option>
+                                                        <option *ngFor="let type of states" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -243,11 +243,12 @@
                                                 <div>
                                                     <select formControlName="city">
                                                         <option [value]="">----select----</option>
-                                                        <option *ngFor="let type of stateType" [value]="type.value">{{type.viewValue}}</option>
+                                                        <option *ngFor="let city of cities" [value]="city">{{city}}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>PINCODE <code>*</code></label></div>
@@ -302,6 +303,10 @@
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NAME 1 <code>*</code></label></div>
                                                 <div><input type="text" formControlName="Cantact_person1" required></div>
+                                                <div *ngIf="formgroup.controls['Cantact_person1'].invalid && (formgroup.controls['Cantact_person1'].touched)" class="errormessage">
+                                                    <div *ngIf="formgroup.controls['Cantact_person1'].errors.name">Please Enter Valid name.</div>
+                                                  <div *ngIf="f.Cantact_person1.errors.required">Name is required.</div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -309,6 +314,10 @@
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NAME 2 </label></div>
                                                 <div><input type="text" formControlName="Cantact_person2" required></div>
+                                                <div *ngIf="formgroup.controls['Cantact_person2'].invalid && (formgroup.controls['Cantact_person2'].touched)" class="errormessage">
+                                                    <div *ngIf="formgroup.controls['Cantact_person2'].errors.name1">Please Enter Valid name.</div>
+                                                  <div *ngIf="f.Cantact_person2.errors.required">Name is required.</div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -339,6 +348,10 @@
                                                 <div><label>ACCOUNT NUMBER <code>*</code></label></div>
                                                 <div>
                                                     <input type="text"  formControlName="accountNumber" required>
+                                                    <div *ngIf="formgroup.controls['accountNumber'].invalid && (formgroup.controls['accountNumber'].touched)" class="errormessage">
+                                                        <div *ngIf="formgroup.controls['accountNumber'].accountNumber">Please Enter Valid accountNumber.</div>
+                                                      <div *ngIf="f.accountNumber.errors.required">Account Number is required.</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -347,14 +360,19 @@
                                                 <div><label>ACCOUNT NAME <code>*</code></label></div>
                                                 <div>
                                                     <input type="text"  formControlName="accountName" required>
+                                                    <div *ngIf="formgroup.controls['accountName'].invalid && (formgroup.controls['accountName'].touched)" class="errormessage">
+                                                        <div *ngIf="formgroup.controls['accountName'].accountName">Please Enter Valid accountName.</div>
+                                                      <div *ngIf="f.accountName.errors.required">Account Name is required.</div>
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
-                                                <div><label>BANK NAME <code>*</code></label></div>
+                                                <div><label>IFSC CODE <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text"  formControlName="bankName" required>
+                                                    <input type="text" formControlName="ifscCode" (input)="fetchBankDetails($event)" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -362,9 +380,9 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group-box">
-                                                <div><label>IFSC CODE <code>*</code></label></div>
+                                                <div><label>BANK NAME <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text"  formControlName="ifscCode" required>
+                                                    <input type="text" id="bankNameInput"  formControlName="bankName" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -372,7 +390,7 @@
                                             <div class="input-group-box">
                                                 <div><label>BRANCH NAME <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text"  formControlName="branchName" required>
+                                                    <input type="text" id="branchNameInput" formControlName="branchName" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -422,106 +440,98 @@
                                   <ng-template matStepLabel>Doctor Details</ng-template>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="1" name="OPHTHALMOLOGY"  formControlName="Opthlmologya" value="yes">
-                                            <label for="option1">Ophthalmology</label>
+                                        <div class="input-group-box">
+                                            <label>Ophthalmology</label>
+                                            <input type="text" formControlName="OPHTHALMOLOGY" placeholder="Enter Doctor Name" >
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="2" name="MBBS PHYSICIAN" formControlName="MBBS_PHYSICIAN" value="yes">
-                                            <label for="option2">MBBS Physician</label>
+                                        <div class="input-group-box">
+                                            <label>MBBS Physician</label>
+                                            <input type="text" formControlName="MBBS_PHYSICIAN" placeholder="Enter Doctor Name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="3" name="GYNECOLOGY" formControlName="GYNECOLOGY" value="yes">
-                                            <label for="option3">Gynecology</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="4" name="MD PHYSICIAN"  formControlName="MD_PHYSICIAN" value="yes">
-                                            <label for="option1">MD Physician</label>
+                                        <div class="input-group-box">
+                                            <label>Gynecology</label>
+                                            <input type="text" formControlName="GYNECOLOGY" placeholder="Enter Doctor Name" >
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="5" name="MD PATHOLOGIST" formControlName="MD_PATHOLOGIST" value="yes">
-                                            <label for="option2">MD Pathologist</label>
+                                        <div class="input-group-box">
+                                            <label>MD Physician</label>
+                                            <input type="text" formControlName="MD_PHYSICIAN" placeholder="Enter Doctor Name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="6" name="MD RADIOLOGIST" formControlName="MD_RADIOLOGIST" value="yes">
-                                            <label for="option3">MD Radiologist</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="7" name="MBBS PHYSICIAN" formControlName="MBBS_PHYSICIAN" value="yes">
-                                            <label for="option1">MBBS Physician</label>
+                                        <div class="input-group-box">
+                                            <label>MD Pathologist</label>
+                                            <input type="text" formControlName="MD_PATHOLOGIST" placeholder="Enter Doctor Name" >
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="8" name="DMLT LABORATORY TECHNICIAN" formControlName="DMLT" value="yes">
-                                            <label for="option2">DMLT Laboratory Technician</label>
+                                        <div class="input-group-box">
+                                            <label>MD Radiologist</label>
+                                            <input type="text" formControlName="MD_RADIOLOGIST" placeholder="Enter Doctor Name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="9" name="MD CARDIOLOGY" formControlName="MD_CARDIOLOGY" value="yes">
-                                            <label for="option3">MD Cardialogy</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="10" name="X-RAY TECHNICIAN" formControlName="XRAY_TECHNICIAN" value="yes">
-                                            <label for="option1">X-RAY Technician</label>
+                                        <div class="input-group-box">
+                                            <label>MBBS Physician</label>
+                                            <input type="text" formControlName="MBBS_PHYSICIAN" placeholder="Enter Doctor Name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="11" name="ECG TECHNICIAN" formControlName="ECG_TECHNICIAN" value="yes">
-                                            <label for="option2">ECG Technician</label>
+                                        <div class="input-group-box">
+                                            <label>DMLT Laboratory Technician</label>
+                                            <input type="text" formControlName="DMLT" placeholder="Enter Doctor Name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="12" name="BAMS/BHMS"  formControlName="BAMS_BHMS" value="yes">
-                                            <label for="option3">BAMS/BHMS</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="13" name="ENT" formControlName="ENT" value="yes">
-                                            <label for="option1">ENT</label>
+                                        <div class="input-group-box">
+                                            <label>MD Cardiology</label>
+                                            <input type="text" formControlName="MD_CARDIOLOGY" placeholder="Enter Doctor Name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="14" name="DENTAL" formControlName="DENTAL" value="yes">
-                                            <label for="option2">Dental</label>
+                                        <div class="input-group-box">
+                                            <label>X-RAY Technician</label>
+                                            <input type="text" formControlName="XRAY_TECHNICIAN" placeholder="Enter Doctor Name">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="input-group-box1">
-                                            <input type="checkbox" id="15" name="DIET" formControlName="DIET" value="yes">
-                                            <label for="option3">Diet</label>
+                                        <div class="input-group-box">
+                                            <label>ECG Technician</label>
+                                            <input type="text" formControlName="ECG_TECHNICIAN" placeholder="Enter Doctor Name">
                                         </div>
                                     </div>
-                                </div>
-                                         
-
+                                    <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <label>BAMS/BHMS</label>
+                                            <input type="text" formControlName="BAMS_BHMS" placeholder="Enter Doctor Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <label>ENT</label>
+                                            <input type="text" formControlName="ENT"  placeholder="Enter Doctor Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <label>Dental</label>
+                                            <input type="text" formControlName="DENTAL" placeholder="Enter Doctor Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-box">
+                                            <label>Diet</label>
+                                            <input type="text" formControlName="DIET" value="yes" placeholder="Enter Doctor Name">
+                                        </div>
+                                    </div>
+                                </div>                                                                       
+                                    
+                        
                                 <div class="mt-3">
                                   <button mat-button matStepperPrevious>Back</button>
                                   <button mat-button matStepperNext type="submit">Next</button>
@@ -530,13 +540,33 @@
                               </mat-step>
                               <mat-step>
 
-                      
-                          
                           <!-- <mat-step [stepControl]="secondFormGroup">
                             <form [formGroup]="secondFormGroup" #formtwo="ngForm" > -->
                               <ng-template matStepLabel>Available Test </ng-template>
-                            <div class="row">
-                                <div class="col-md-4">
+                                <div class="row">
+                                    <div class="input-search-group-box1">
+                                        <p class="text-left input-label">Enter Test Name</p>
+                                        <ng-multiselect-dropdown
+                                        type="search" 
+                                        formControlName="DIET" [settings]="dropdownSettings"
+                                        [data]="DC_TESTS_DATA" 
+                                        [(ngModel)]="selectedItems"
+                                        
+                                      >
+                                    </ng-multiselect-dropdown>
+                                      </div>
+                                    </div>
+                                      <!-- <div class="search-button-container">
+                                        <p class="text-left input-label" style="height: 17px;"></p>
+                                        <button
+                                          class="search-button"
+                                          type="submit"
+                                          (click)="onSubmit()">
+                                          <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                      </div> -->
+                                    
+                                    <!-- <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="16" name="ECG FACILITY" formControlName="ECG_FACILITY" value="yes">
                                         <label for="option1">ECG Facility</label>
@@ -553,9 +583,8 @@
                                         <input type="checkbox" id="18" name="TREAD MILL TEST" formControlName="TREAD_MILL_TEST" value="yes">
                                         <label for="option3">TMT - Treadmill Test</label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
+                                </div> -->
+                            <!-- <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="19" name="TMT WT CAPACITY" formControlName="TMT_WT_CAPACITY" value="yes">
@@ -574,8 +603,8 @@
                                         <label for="option3">MD Radiologist</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+                            </div> -->
+                            <!-- <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="22" name="FUNDOSCOPY TEST" formControlName="FUNDOSCOPY_TEST" value="yes">
@@ -594,15 +623,15 @@
                                         <label for="option3">Basic Eye Test</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="25" name="X-RAY" formControlName="X_RAY" value="yes">
                                         <label for="option1">X_RAY</label>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
+                                </div> -->
+                                <!-- <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="26" name="ELISA- HIV" formControlName="ELISA_HIV" value="yes">
                                         <label for="option2">ELISA- HIV</label>
@@ -613,10 +642,10 @@
                                         <input type="checkbox" id="27" name="PSA" formControlName="PSA" value="yes">
                                         <label for="option3">PSA</label>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="28" name="ENT" formControlName="ENT" value="yes">
                                         <label for="option1">ENT</label>
@@ -639,24 +668,24 @@
                                         <input type="checkbox" id="31" name="WESTERN BLOT" formControlName="WESTERN_BLOT" value="yes">
                                         <label for="option3">Western blot</label>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="32" name="PULMONARY FUNCTION TEST"  formControlName="PULMONARY_FUNCTION_TEST"  value="yes">
                                         <label for="option3"></label>
                                         <label for="option3">Pulmonary Function Test</label>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="33" name="URINE NICOTINE QUALITITATIVE" formControlName="URINE_NICOTINE_QUALITITATIVE" value="yes">
                                         <label for="option3">Urinary Nicotine Qualitative Testing</label>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="input-group-box1">
                                         <input type="checkbox" id="34" name="HBA1C" formControlName="HBA1C" value="yes">
                                         <label for="option3">Hemoglobin A1c (HbA1c)</label>
@@ -717,7 +746,7 @@
                                         <input type="checkbox" id="42" name="STOOL ROUTINE" formControlName="STOOL_ROUTINE" value="yes">
                                         <label for="option3">Stool Routine</label>
                                     </div>
-                                </div>
+                                </div> -->
 
                               <!-- <div class="col-md-4">
                                     <div class="input-group-box1">
@@ -841,44 +870,42 @@
                               <ng-template matStepLabel>Outsoursed Center Details</ng-template>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="input-group-box1">
-                                        <input type="checkbox" id="43" name="CARDIOLOGY OUTSOURCED CENTRE" formControlName="CARDIOLOGY_OUTSOURCED_CENTRE" value="yes">
-                                        <label for="option1">Cardiology Outsourced Centre</label>
+                                    <div class="input-group-box">
+                                        <label for="CARDIOLOGY_OUTSOURCED_CENTRE">Cardiology Outsourced Centre</label>
+                                        <input type="text" formControlName="CARDIOLOGY_OUTSOURCED_CENTRE" placeholder="Enter Center Name">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="input-group-box1">
-                                        <input type="checkbox" id="44" name="PATHOLOGY OUTSOURCED CENTR" formControlName="PATHOLOGY_OUTSOURCED_CENTR" value="yes">
-                                        <label for="option1">Pathology Outsourced Center</label>
+                                    <div class="input-group-box">
+                                        <label for="PATHOLOGY_OUTSOURCED_CENTR">Pathology Outsourced Center</label>
+                                        <input type="text"  formControlName="PATHOLOGY_OUTSOURCED_CENTR" placeholder="Enter Center Name">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                <div class="input-group-box1">
-                                    <input type="checkbox" id="49" name="RADIOLOGY OUTSOURCED CENTRE" formControlName="RADIOLOGY_OUTSOURCED_CENTRE" value="yes">
-                                    <label for="option1">Radiology Outsourced Centre</label>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-group-box1">
-                                        <input type="checkbox" id="46" name="GYNAECOLOGY OUTSOURCED CENTRE" formControlName="GYNAECOLOGY_OUTSOURCED_CENTRE" value="yes">
-                                        <label for="option1">Gynaecology Outsourced Centre</label>
+                                    <div class="input-group-box">
+                                        <label for="RADIOLOGY_OUTSOURCED_CENTRE">Radiology Outsourced Centre</label>
+                                        <input type="text" formControlName="RADIOLOGY_OUTSOURCED_CENTRE" placeholder="Enter Center Name ">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="input-group-box1">
-                                        <input type="checkbox" id="47" name="DENTAL OUTSOURCED CENTRE" formControlName="DENTAL_OUTSOURCED_CENTRE" value="yes">
-                                        <label for="option1">Dental Outsourced Centre</label>
+                                    <div class="input-group-box">
+                                        <label for="GYNAECOLOGY_OUTSOURCED_CENTRE">Gynaecology Outsourced Centre</label>
+                                        <input type="text" formControlName="GYNAECOLOGY_OUTSOURCED_CENTRE" placeholder="Enter Center Name">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="input-group-box1">
-                                        <input type="checkbox" id="48" name="PULMONOLOGY OUTSOURCED CENTRE" formControlName="PULMONOLOGY_OUTSOURCED_CENTRE" value="yes">
-                                        <label for="option1">Pulmonology Outsourced Centre</label>
+                                    <div class="input-group-box">
+                                        <label for="DENTAL_OUTSOURCED_CENTRE">Dental Outsourced Centre</label>
+                                        <input type="text" formControlName="DENTAL_OUTSOURCED_CENTRE" placeholder="Enter Center Name">
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-md-4">
+                                    <div class="input-group-box">
+                                        <label for="PULMONOLOGY_OUTSOURCED_CENTRE">Pulmonology Outsourced Centre</label>
+                                        <input type="text" formControlName="PULMONOLOGY_OUTSOURCED_CENTRE" placeholder="Enter Center Name">
+                                    </div>
+                                </div>
+                            </div>                                
                             <div class="mt-3">
                               <button mat-button matStepperPrevious>Back</button>
                               <button mat-button matStepperNext type="submit">Next</button>
@@ -888,10 +915,10 @@
 
                             <mat-step>
                                 <ng-template matStepLabel>Upload Document</ng-template>
-                                <div class="row">
+                                <div class="col">
                                     <div class="input-group-box">
                                         <div><label>Select Firm type : <code>*</code></label></div>
-                                        <div class="col-md-4">
+                                        <div class="row-md-4">
                                             <div class="input-group-box">
                                                     <select formControlName="FirmType" [(ngModel)]="selectedCompanyFirmType">
                                                         <option *ngFor="let type of DCFirmType" [value]="type.value">{{type.viewValue}}</option>
@@ -899,7 +926,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <div class="col-md-4">
+                                    <div class="row-md-4">
                                         <div class="input-group-box" *ngIf="selectedCompanyFirmType === 'Sole Proprietorship Firm'">
                                             <div><label>Document</label></div>
                                               <div>
@@ -912,19 +939,19 @@
                                               </div>
                                               <div>
                                                 <label for="Accreditation">Accreditation Certificates :</label>
-                                                <input type="file" id="pan" (change)="onAccreditationImageSelected($event)" formControlName="Accreditation" />
+                                                <input type="file" id="pan" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Accreditation" />
                                               </div>
                                               <div>
-                                                <label for="Registration_Number">Dr Registration Number/Certificate :</label>
-                                                <input type="file" id="Registration_Number" (change)="onRegistrationNumberImageSelected($event)" formControlName="Registration_Number" />
+                                                <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement</label>
+                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Bank_Statement" />
                                               </div>
                                               <div>
-                                                <label for="Ownership">Ownership Documents :</label>
-                                                <input type="file" id="Ownership" (change)="onOwnershipImageSelected($event)" formControlName="Ownership" />
+                                                <label for="Establishment_Certificate">Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:</label>
+                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Establishment_Certificate" />
                                               </div>
                                               <div>
-                                                <label for="TDS">TDS certificate :</label>
-                                                <input type="file" id="TDS" (change)="onTDSImageSelected($event)" formControlName="TDS" />
+                                                <label for="Authority_Letter">Signing Authority Letter :</label>
+                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="Authority_Letter" />
                                               </div>
                                         </div>
                                         <div class="input-group-box" *ngIf="selectedCompanyFirmType=== 'LLP/Partnership Firm'">
@@ -938,8 +965,20 @@
                                                 <input type="file" id="aadhar" (change)="onAadharImageSelected($event)" formControlName="aadhar" />
                                               </div>
                                               <div>
-                                                <label for="Ownership">Ownership Documents :</label>
-                                                <input type="file" id="Ownership" (change)="onOwnershipImageSelected($event)" formControlName="Ownership" />
+                                                <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement</label>
+                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Bank_Statement" />
+                                              </div>
+                                              <div>
+                                                <label for="Establishment_Certificate">Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:</label>
+                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Establishment_Certificate" />
+                                              </div>
+                                              <div>
+                                                <label for="Authority_Letter">Signing Authority Letter :</label>
+                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="Authority_Letter" />
+                                              </div>
+                                              <div>
+                                                <label for="LLP/Partnership_Agreement">LLP/Partnership Agreement :</label>
+                                                <input type="file" id="LLP/Partnership_Agreement" (change)="onLLPPartnershipAgreementImageSelected($event)" formControlName="LLP_Partnership_Agreement" />
                                               </div>
                                         </div>
                                         <div class="input-group-box" *ngIf="selectedCompanyFirmType=== 'Private Limited Company'">
@@ -949,16 +988,16 @@
                                                 <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" />
                                               </div>
                                               <div>
-                                                <label for="Accreditation">Accreditation Certificates :</label>
-                                                <input type="file" id="Accreditation" (change)="onAccreditationImageSelected($event)" formControlName="Accreditation" />
+                                                <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement</label>
+                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Bank_Statement" />
                                               </div>
                                               <div>
-                                                <label for="Registration_Number">Dr Registration Number/Certificate :</label>
-                                                <input type="file" id="Registration_Number" (change)="onRegistrationNumberImageSelected($event)" formControlName="Registration_Number" />
+                                                <label for="Establishment_Certificate">Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:</label>
+                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Establishment_Certificate" />
                                               </div>
                                               <div>
-                                                <label for="Ownership">Ownership Documents :</label>
-                                                <input type="file" id="Ownership" (change)="onOwnershipImageSelected($event)" formControlName="Ownership" />
+                                                <label for="Authority_Letter">Signing Authority Letter :</label>
+                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="Authority_Letter" />
                                               </div>
                                         </div>
                                     </div>

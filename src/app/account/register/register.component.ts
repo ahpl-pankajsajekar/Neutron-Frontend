@@ -28,10 +28,10 @@ export class RegisterComponent implements OnInit {
     {textValue: 3, textName: "IT"},
   ]
   zoneList = [
-    {textValue: 'North', textName: "North"},
-    {textValue: 'South', textName: "South"},
-    {textValue: "East", textName: "East"},
-    {textValue: "West", textName: "West"},
+    {textValue: 'NorthZone', textName: "NorthZone"},
+    {textValue: 'SouthZone', textName: "SouthZone"},
+    {textValue: "EastZone", textName: "EastZone"},
+    {textValue: "WestZone", textName: "WestZone"},
     {textValue: "All", textName: "All"},
   ]
 

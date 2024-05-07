@@ -15,6 +15,7 @@ import { FooterComponent } from './_components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SelfEmpanlementComponent } from './dc/self-empanlement/self-empanlement.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SelfEmpanlementComponent } from './dc/self-empanlement/self-empanlement
     ReactiveFormsModule,
     FormsModule,
     MatStepperModule,
+    NgMultiSelectDropDownModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
