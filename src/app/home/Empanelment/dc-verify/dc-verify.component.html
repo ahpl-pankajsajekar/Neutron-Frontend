@@ -78,6 +78,7 @@
                 <td>{{item.pincode}}</td>
                 <td>{{item?.verifiedByNetworkUser}}</td>
                 <td><button *ngIf="item?.ds_envelope_status!='completed'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button> <span *ngIf="item?.ds_envelope_status=='completed'">Completed</span></td>
+                <td><button *ngIf="item?.ds_envelope_status=='completed'" class="btn btn-sm" (click)="viewDocument(item?.id)"><i class="fa fa-download" aria-hidden="true"></i></button></td>
               </tr>
               <tr *ngIf="showAnalytics.verify.length == 0">
                 <td colspan="100%" class="text-center">Data Not found!</td>

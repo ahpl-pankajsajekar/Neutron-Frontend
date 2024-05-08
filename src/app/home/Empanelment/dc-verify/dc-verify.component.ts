@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
 import { routes } from 'src/app/app-routing.module';
@@ -17,9 +18,13 @@ export class DcVerifyComponent {
 
   showAnalytics:any;
 
+  pdfContent: any; // PDF content in base64 format
+  pdfUrl: any;
+
   constructor(private fb: FormBuilder,
     private commonService: CommonService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) { 
   }
 
@@ -129,6 +134,48 @@ export class DcVerifyComponent {
       },
     )
   }
+
+  viewDocument(id:string){
+    const url = '/docusignAgreement/envelope/document/view/'
+    const params = {'id': id}
+    console.log(params)
+    this.commonService.getMethodWithParams(url, params).subscribe(
+      (res:any)=>{
+        console.log(res);
+        this.pdfContent = res
+        this.openPDFInNewTab()
+      },
+      (error:any)=>{
+        console.log(error);
+      },
+    )
+  }
   
+
+  openPDFInNewTab() {
+    const binaryData = atob(this.pdfContent);
+    const arrayBuffer = new ArrayBuffer(binaryData.length);
+    const byteArray = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < binaryData.length; i++) {
+      byteArray[i] = binaryData.charCodeAt(i);
+    }
+    const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+    // Create Blob URL
+    this.pdfUrl = URL.createObjectURL(blob);
+
+    // Create a temporary <a> element
+    const a = document.createElement('a');
+    a.href = this.pdfUrl;
+    a.download = 'document.pdf'; // Optional: Set the filename for download
+    document.body.appendChild(a);
+
+    // Trigger click event
+    a.click();
+
+    // Clean up
+    document.body.removeChild(a);
+    URL.revokeObjectURL(this.pdfUrl);
+  }
 
 }

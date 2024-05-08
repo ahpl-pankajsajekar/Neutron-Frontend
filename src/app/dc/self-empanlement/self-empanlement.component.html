@@ -40,6 +40,9 @@
                                             <div class="input-group-box">
                                                 <div><label>PROVIDER NAME <code>*</code></label></div>
                                                 <div><input type="text" formControlName="providerName" required></div>
+                                                <div *ngIf="formgroup.controls['providerName'].invalid && (formgroup.controls['providerName'].touched)" class="errormessage">
+                                                  <div *ngIf="f.providerName.errors?.required">Provider Name is required.</div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -50,6 +53,9 @@
                                                         <option [value]="">----select----</option>
                                                         <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
+                                                    <div *ngIf="formgroup.controls['providerType'].invalid && (formgroup.controls['providerType'].touched)" class="errormessage">
+                                                        <div *ngIf="f.providerType.errors?.required">Please select this field.</div>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,6 +67,9 @@
                                                         <option [value]="">----select----</option>
                                                         <option *ngFor="let type of DCchainType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
+                                                    <div *ngIf="formgroup.controls['DC_Chain'].invalid && (formgroup.controls['DC_Chain'].touched)" class="errormessage">
+                                                        <div *ngIf="f.DC_Chain.errors?.required">Please select this field.</div>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,13 +78,19 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>REGISTRATION NUMBER <code>*</code></label></div>
-                                                <div><input type="text" formControlName="Regi_number" required></div>
+                                                <div><input type="text" formControlName="Regi_number" maxlength="30" required></div>
+                                                <div *ngIf="formgroup.controls['Regi_number'].invalid && (formgroup.controls['Regi_number'].touched)" class="errormessage">
+                                                    <div *ngIf="f.Regi_number.errors?.required">Registration Number is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>DATE OF INCEPTION<code>*</code></label></div>
                                                 <div><input type="date" placeholder="" formControlName="Inception" required></div>
+                                                <div *ngIf="formgroup.controls['Inception'].invalid && (formgroup.controls['Inception'].touched)" class="errormessage">
+                                                    <div *ngIf="f.accountNumber.errors?.required">Date is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
@@ -83,13 +98,19 @@
                                             <div class="input-group-box">
                                                 <div><label>OWNER'S NAME<code>*</code></label></div>
                                                 <div><input type="text" placeholder="" formControlName="Owner_name" required></div>
+                                                <div *ngIf="formgroup.controls['Owner_name'].invalid && (formgroup.controls['Owner_name'].touched)" class="errormessage">
+                                                    <div *ngIf="f.Owner_name.errors?.required">Owner Name is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>PAN NUMBER<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="PanCard_number" required></div>
+                                                <div><input type="text" placeholder="" formControlName="PanCard_number" maxlength="15" required></div>
+                                                <div *ngIf="formgroup.controls['PanCard_number'].invalid && (formgroup.controls['PanCard_number'].touched)" class="errormessage">
+                                                    <div *ngIf="f.PanCard_number.errors?.required">Pan Number is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
@@ -97,13 +118,19 @@
                                             <div class="input-group-box">
                                                 <div><label>NAME ON PAN CARD<code>*</code></label></div>
                                                 <div><input type="text" placeholder="" formControlName="nameOnPanCard" required></div>
+                                                <div *ngIf="formgroup.controls['nameOnPanCard'].invalid && (formgroup.controls['nameOnPanCard'].touched)" class="errormessage">
+                                                    <div *ngIf="f.nameOnPanCard.errors?.required">PanCard Name is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>AADHAR CARD NUMBER<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="Adhar_number" required></div>
+                                                <div><input type="text" placeholder="" formControlName="Adhar_number" maxlength="15" minlength="10" required></div>
+                                                <div *ngIf="formgroup.controls['Adhar_number'].invalid && (formgroup.controls['Adhar_number'].touched)" class="errormessage">
+                                                    <div *ngIf="f.Adhar_number.errors?.required">Aadhar Number is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
@@ -111,13 +138,19 @@
                                             <div class="input-group-box">
                                                 <div><label> NAME ON AADHAR CARD<code>*</code></label></div>
                                                 <div><input type="text" placeholder="" formControlName="Adhar_name" required></div>
+                                                <div *ngIf="formgroup.controls['Adhar_name'].invalid && (formgroup.controls['Adhar_name'].touched)" class="errormessage">
+                                                    <div *ngIf="f.Adhar_name.errors?.required">Aadhar name is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>OWNER NAME AS PER OWNERSHIP DOCUMENT<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="Owner_name" required></div>
+                                                <div><input type="text" placeholder="" formControlName="Owner_name_asper_document" required></div>
+                                                <div *ngIf="formgroup.controls['Owner_name_asper_document'].invalid && (formgroup.controls['Owner_name_asper_document'].touched)" class="errormessage">
+                                                    <div *ngIf="f.Owner_name_asper_document.errors?.required">This Field is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
@@ -125,6 +158,9 @@
                                             <div class="input-group-box">
                                                 <div><label>CENTER NAME AS PER OWNERSHIP DOCUMENT<code>*</code></label></div>
                                                 <div><input type="text" placeholder="" formControlName="Center_name" required></div>
+                                                <div *ngIf="formgroup.controls['Center_name'].invalid && (formgroup.controls['Center_name'].touched)" class="errormessage">
+                                                    <div *ngIf="f.Center_name.errors?.required">This Field is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
@@ -160,7 +196,10 @@
                                                         <option [value]="">----select----</option>
                                                         <option *ngFor="let type of ACCREDITATIONType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
-                                                </div>
+                                                </div> 
+                                                <div *ngIf="formgroup.controls['Accredation'].invalid && (formgroup.controls['Accredation'].touched)" class="errormessage">
+                                                    <div *ngIf="f.Accredation.errors?.required">Please select this Field.</div>
+                                                  </div>
                                             </div>
                                         </div>
 
@@ -194,6 +233,9 @@
                                             <div class="input-group-box">
                                                 <div><label>ADDRESS 1 <code>*</code></label></div>
                                                 <div><textarea type="text" rows="2" formControlName="address1" required></textarea></div>
+                                                <div *ngIf="formgroup.controls['address1'].invalid && (formgroup.controls['address1'].touched)" class="errormessage">
+                                                    <div *ngIf="f.address1.errors?.required">This Field is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -235,6 +277,9 @@
                                                         <option *ngFor="let type of states" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
                                                 </div>
+                                                <div *ngIf="formgroup.controls['state'].invalid && (formgroup.controls['state'].touched)" class="errormessage">
+                                                    <div *ngIf="f.state.errors?.required">Please select this Field.</div>
+                                                  </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -246,6 +291,9 @@
                                                         <option *ngFor="let city of cities" [value]="city">{{city}}</option>
                                                     </select>
                                                 </div>
+                                                <div *ngIf="formgroup.controls['city'].invalid && (formgroup.controls['city'].touched)" class="errormessage">
+                                                    <div *ngIf="f.city.errors?.required">Please select this Field.</div>
+                                                  </div>
                                             </div>
                                         </div>
                                         
@@ -253,6 +301,9 @@
                                             <div class="input-group-box">
                                                 <div><label>PINCODE <code>*</code></label></div>
                                                 <div><input type="text" formControlName="pincode" required></div>
+                                                <div *ngIf="formgroup.controls['pincode'].invalid && (formgroup.controls['pincode'].touched)" class="errormessage">
+                                                    <div *ngIf="f.pincode.errors?.required">Pincode is required.</div>
+                                                  </div>
                                             </div>
                                         </div>
                                         <!-- <div class="col-md-4">
@@ -275,7 +326,7 @@
                                                 <div><input type="email" formControlName="emailId" required></div>
                                                 <div *ngIf="formgroup.controls['emailId'].invalid && (formgroup.controls['emailId'].touched)" class="errormessage">
                                                     <div *ngIf="formgroup.controls['emailId'].errors.email">Please Enter Valid Email.</div>
-                                                  <div *ngIf="f.emailId.errors.required">Email is required.</div>
+                                                  <div *ngIf="f.emailId.errors?.required">Email is required.</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -285,7 +336,7 @@
                                                 <div><input type="email" formControlName="confirmEmailId" required></div>
                                             </div>
                                             <div *ngIf="formgroup.controls['confirmEmailId'].invalid && (formgroup.controls['confirmEmailId'].touched)" class="errormessage">
-                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors.required">Please Enter Valid Email. </div>
+                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors?.required">Please Enter Valid Email. </div>
                                                 <div *ngIf="formgroup.controls['confirmEmailId'].errors.email">Please Enter Valid Email. </div>
                                                 <div *ngIf="formgroup.controls['confirmEmailId'].errors?.match">Cofirm Email & Email do not match</div>
                                             </div>
@@ -304,8 +355,7 @@
                                                 <div><label>CONTACT PERSON NAME 1 <code>*</code></label></div>
                                                 <div><input type="text" formControlName="Cantact_person1" required></div>
                                                 <div *ngIf="formgroup.controls['Cantact_person1'].invalid && (formgroup.controls['Cantact_person1'].touched)" class="errormessage">
-                                                    <div *ngIf="formgroup.controls['Cantact_person1'].errors.name">Please Enter Valid name.</div>
-                                                  <div *ngIf="f.Cantact_person1.errors.required">Name is required.</div>
+                                                  <div *ngIf="f.Cantact_person1.errors?.required">Name is required.</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -314,10 +364,6 @@
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NAME 2 </label></div>
                                                 <div><input type="text" formControlName="Cantact_person2" required></div>
-                                                <div *ngIf="formgroup.controls['Cantact_person2'].invalid && (formgroup.controls['Cantact_person2'].touched)" class="errormessage">
-                                                    <div *ngIf="formgroup.controls['Cantact_person2'].errors.name1">Please Enter Valid name.</div>
-                                                  <div *ngIf="f.Cantact_person2.errors.required">Name is required.</div>
-                                                </div>
                                             </div>
                                         </div>
 
@@ -347,10 +393,9 @@
                                             <div class="input-group-box">
                                                 <div><label>ACCOUNT NUMBER <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text"  formControlName="accountNumber" required>
+                                                    <input type="text"  formControlName="accountNumber" maxlength="30" required>
                                                     <div *ngIf="formgroup.controls['accountNumber'].invalid && (formgroup.controls['accountNumber'].touched)" class="errormessage">
-                                                        <div *ngIf="formgroup.controls['accountNumber'].accountNumber">Please Enter Valid accountNumber.</div>
-                                                      <div *ngIf="f.accountNumber.errors.required">Account Number is required.</div>
+                                                      <div *ngIf="f.accountNumber.errors?.required">Account Number is required.</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -361,8 +406,7 @@
                                                 <div>
                                                     <input type="text"  formControlName="accountName" required>
                                                     <div *ngIf="formgroup.controls['accountName'].invalid && (formgroup.controls['accountName'].touched)" class="errormessage">
-                                                        <div *ngIf="formgroup.controls['accountName'].accountName">Please Enter Valid accountName.</div>
-                                                      <div *ngIf="f.accountName.errors.required">Account Name is required.</div>
+                                                      <div *ngIf="f.accountName.errors?.required">Account Name is required.</div>
                                                     </div>
                                                     
                                                 </div>
@@ -372,8 +416,11 @@
                                             <div class="input-group-box">
                                                 <div><label>IFSC CODE <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text" formControlName="ifscCode" (input)="fetchBankDetails($event)" required>
+                                                    <input type="text" formControlName="ifscCode" maxlength="30" (input)="fetchBankDetails($event)" required>
                                                 </div>
+                                                <div *ngIf="formgroup.controls['ifscCode'].invalid && (formgroup.controls['ifscCode'].touched)" class="errormessage">
+                                                    <div *ngIf="f.ifscCode.errors?.required">Please Enter IFSC Code.</div>
+                                                  </div>
                                             </div>
                                         </div>
                                     </div>
@@ -402,6 +449,9 @@
                                                         <option [value]="">----select----</option>
                                                         <option *ngFor="let type of ACType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
+                                                    <div *ngIf="formgroup.controls['accountType'].invalid && (formgroup.controls['accountType'].touched)" class="errormessage">
+                                                        <div *ngIf="f.accountType.errors?.required">Please select this field.</div>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -545,13 +595,12 @@
                               <ng-template matStepLabel>Available Test </ng-template>
                                 <div class="row">
                                     <div class="input-search-group-box1">
-                                        <p class="text-left input-label">Enter Test Name</p>
+                                        <p class="text-left input-label">Select Tests</p>
                                         <ng-multiselect-dropdown
                                         type="search" 
-                                        formControlName="DIET" [settings]="dropdownSettings"
+                                        formControlName="availableTests" [settings]="dropdownSettings"
                                         [data]="DC_TESTS_DATA" 
-                                        [(ngModel)]="selectedItems"
-                                        
+                                        [(ngModel)]="selectedTestsItems"
                                       >
                                     </ng-multiselect-dropdown>
                                       </div>
@@ -923,6 +972,9 @@
                                                     <select formControlName="FirmType" [(ngModel)]="selectedCompanyFirmType">
                                                         <option *ngFor="let type of DCFirmType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
+                                                    <div *ngIf="formgroup.controls['FirmType'].invalid && (formgroup.controls['FirmType'].touched)" class="errormessage">
+                                                        <div *ngIf="f.FirmType.errors?.required">Please select this field.</div>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -931,15 +983,15 @@
                                             <div><label>all documents are mandatory. </label></div>
                                               <div>
                                                 <label for="pan">  DC Owner PAN :<code>*</code></label>
-                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" />
+                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
                                                 <label for="aadhar"> DC Owner Aadhar :<code>*</code></label>
-                                                <input type="file" id="aadhar" (change)="onAadharImageSelected($event)" formControlName="aadhar" />
+                                                <input type="file" id="aadhar" (change)="onAadharImageSelected($event)" formControlName="aadhar" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
                                                 <label for="Accreditation">Accreditation Certificates :<code>*</code></label>
-                                                <input type="file" id="pan" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Accreditation" />
+                                                <input type="file" id="pan" (change)="AccreditationImageSelected($event)" formControlName="Accreditation" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
                                                 <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement</label>
@@ -985,19 +1037,19 @@
                                             <div><label>Document</label></div>
                                               <div>
                                                 <label for="pan"> DC Owner PAN :<code>*</code></label>
-                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" />
+                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
                                                 <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement:<code>*</code></label>
-                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="aadhar" />
+                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="aadhar" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
                                                 <label for="Establishment_Certificate">Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:<code>*</code></label>
-                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Accreditation" />
+                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Accreditation" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
                                                 <label for="Authority_Letter">Signing Authority Letter :<code>*</code></label>
-                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="Ownership" />
+                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="Ownership" accept="image/png, image/jpeg"/>
                                               </div>
                                         </div>
                                     </div>

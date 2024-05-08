@@ -90,7 +90,7 @@ button {
 }
 
 .verification-container {
-  background-color: #f8f9fa;
+  background-color: #59c8c4;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -285,7 +285,8 @@ textarea {
 }
 
 .radio-container input[type="radio"] {
-  margin-right: 5px; /* Adjust spacing between radio buttons */
+  transform: scale(1.5); /* Increase the scale as needed */
+  margin-right: 10px; 
 }
 
 .radio-container label {
@@ -318,4 +319,13 @@ textarea {
 .viewDc{
   cursor: pointer;
   color: #007bff;
+}
+
+input[type="radio"] {
+  transform: scale(1.8); /* Increase the scale as needed */
+  margin-right: 8px; /* Optional: Add some space between the radio button and the label */
+}
+
+label {
+  margin-right: 30px; /* Add margin between the radio button and the label */
 }

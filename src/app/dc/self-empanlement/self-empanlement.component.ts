@@ -27,7 +27,7 @@ export class SelfEmpanlementComponent {
     }
 
 
-    selectedItems:any =[];
+    selectedTestsItems:any =[];
 
     dropdownSettings:IDropdownSettings = {
       singleSelection: false,
@@ -192,28 +192,30 @@ export class SelfEmpanlementComponent {
     initForm() {
       this.formgroup = this._formBuilder.group({
         providerName: ['', Validators.required],
-        providerType: ['', ],
-        DC_Chain: ['', ],
+        providerType: ['', Validators.required],
+        DC_Chain: ['', Validators.required],
         Regi_number: ['', Validators.required],
         Inception: ['', ],
         Owner_name: ['', Validators.required],
         PanCard_number: ['', Validators.required],
         nameOnPanCard: ['', Validators.required],
-        Adhar_number: ['', Validators.required ],
+        Adhar_number: ['', [Validators.required, Validators.max, Validators.min] ],
         Adhar_name: ['', Validators.required],
+        Owner_name_asper_document: ['', ],
         Center_name: ['', ],
-        Accredation: ['', ],
-        address1: ['', ],
+        Accredation: ['',],
+        address1: ['',],
         address2: ['', ],
-        state: ['',],
+        state: ['', ],
         city: ['',],
         pincode: ['',],
         emailId: ['', [Validators.required, Validators.email ] ],
         confirmEmailId: ['', [Validators.required, Validators.email]],
         emailId2: ['', [ Validators.email ]],
-        Cantact_person1: ['',],
+        Cantact_person1: ['', ],
         Cantact_person2: ['',],
         fax: ['',],
+
         accountNumber: ['',],
         accountName: ['',],
         bankName: ['',],
@@ -221,6 +223,7 @@ export class SelfEmpanlementComponent {
         branchName: ['',],
         accountType: ['',],
         paymentToBeMadeInFavorOf: ['',],
+
         Opthlmologya: ['',],
         MBBS_PHYSICIAN: ['',],
         GYNECOLOGY: ['',],
@@ -236,6 +239,9 @@ export class SelfEmpanlementComponent {
         ENT: ['',],
         DENTAL: ['',],
         DIET: ['',],
+
+        availableTests: ['',],
+
         ECG_FACILITY: ['',],
         USG: ['',],
         TREAD_MILL_TEST: ['',],
@@ -260,19 +266,21 @@ export class SelfEmpanlementComponent {
         PATHOLOGY: ['',],
         FMR: ['',],
         STOOL_ROUTINE: ['',],
+
         CARDIOLOGY_OUTSOURCED_CENTRE: ['',],
         PATHOLOGY_OUTSOURCED_CENTR: ['',],
         GYNAECOLOGY_OUTSOURCED_CENTRE: ['',],
         DENTAL_OUTSOURCED_CENTRE: ['',],
         PULMONOLOGY_OUTSOURCED_CENTRE: ['',],
         RADIOLOGY_OUTSOURCED_CENTRE: ['',],
+
+        FirmType: ['', Validators.required],
         pan_image: ['',],
         aadhar: [''],
         Accreditation: [''],
         Registration_Number: [''],
         Ownership: [''],
         TDS: [''],
-        FirmType: ['', Validators.required],
       },
       {
         validator : this.emailMatchValidator
@@ -308,6 +316,12 @@ export class SelfEmpanlementComponent {
         this.formData.append('aadhar_image', file);
       }
     }
+    AccreditationImageSelected(event: any) {
+      const file: File = event.target.files[0];
+      if (file) {
+        this.formData.append('Accreditation_image', file);
+      }
+    }
     onCurrent_Bank_StatementImageSelected(event: any) {
       const file: File = event.target.files[0];
       if (file) {
@@ -338,6 +352,10 @@ export class SelfEmpanlementComponent {
   
     formgroup: any;
     onSubmit() {
+      // if (this.formgroup.invalid) {
+      //   alert('All required values should be provided!')
+      //   return;
+      // }
       this.formData.append('TicketID', this.ticketId);
       this.formData.append('DCID', this.ticketId);
       this.formData.append('providerName', this.formgroup.value.providerName);
@@ -350,6 +368,7 @@ export class SelfEmpanlementComponent {
       this.formData.append('nameOnPanCard', this.formgroup.value.nameOnPanCard);
       this.formData.append('Adhar_number', this.formgroup.value.Adhar_number);
       this.formData.append('Adhar_name', this.formgroup.value.Adhar_name);
+      this.formData.append('Owner_name_asper_document', this.formgroup.value.Owner_name_asper_document);
       this.formData.append('Center_name', this.formgroup.value.Center_name);
       // this.formData.append('Grade', this.formgroup.value.Grade);
       // this.formData.append('Tier', this.formgroup.value.Tier);
@@ -375,7 +394,7 @@ export class SelfEmpanlementComponent {
       this.formData.append('branchName', this.formgroup.value.branchName);
       this.formData.append('accountType', this.formgroup.value.accountType);
       this.formData.append('paymentToBeMadeInFavorOf',this.formgroup.value.paymentToBeMadeInFavorOf);
-      // this.formData.append('paymentMode', this.formgroup.value.paymentMode);
+
       this.formData.append('Opthlmologya', this.formgroup.value.Opthlmologya);
       this.formData.append('MBBS_PHYSICIAN', this.formgroup.value.MBBS_PHYSICIAN);
       this.formData.append('GYNECOLOGY', this.formgroup.value.GYNECOLOGY);
@@ -391,6 +410,9 @@ export class SelfEmpanlementComponent {
       this.formData.append('ENT', this.formgroup.value.ENT);
       this.formData.append('DENTAL', this.formgroup.value.DENTAL);
       this.formData.append('DIET', this.formgroup.value.DIET);
+
+      this.formData.append('availableTests', this.selectedTestsItems);
+
       this.formData.append('ECG_FACILITY', this.formgroup.value.ECG_FACILITY);
       this.formData.append('USG', this.formgroup.value.USG);
       this.formData.append('TREAD_MILL_TEST',this.formgroup.value.TREAD_MILL_TEST);
@@ -418,19 +440,18 @@ export class SelfEmpanlementComponent {
       this.formData.append('PATHOLOGY', this.formgroup.value.PATHOLOGY);
       this.formData.append('FMR', this.formgroup.value.FMR);
       this.formData.append('STOOL_ROUTINE', this.formgroup.value.STOOL_ROUTINE);
+
       this.formData.append('CARDIOLOGY_OUTSOURCED_CENTRE',this.formgroup.value.CARDIOLOGY_OUTSOURCED_CENTRE);
       this.formData.append('PATHOLOGY_OUTSOURCED_CENTR',this.formgroup.value.PATHOLOGY_OUTSOURCED_CENTR);
       this.formData.append('GYNAECOLOGY_OUTSOURCED_CENTRE',this.formgroup.value.GYNAECOLOGY_OUTSOURCED_CENTRE);
       this.formData.append('ENTAL_OUTSOURCED_CENTRE',this.formgroup.value.DENTAL_OUTSOURCED_CENTRE);
       this.formData.append('PULMONOLOGY_OUTSOURCED_CENTRE',this.formgroup.value.PULMONOLOGY_OUTSOURCED_CENTRE);
       this.formData.append('RADIOLOGY_OUTSOURCED_CENTRE',this.formgroup.value.RADIOLOGY_OUTSOURCED_CENTRE);
-      this.formData.append('FirmType', this.formgroup.value.End_Date);
+      this.formData.append('FirmType', this.formgroup.value.FirmType);
+
       console.log('Form submitted!', this.formgroup.value);
   
-      // if (this.formgroup.invalid) {
-      //   alert('All required values should be provided!')
-      //   return;
-      // }
+      
       // else {
       const url = '/selfempanelment/add/' + this.ticketId + '/';
       this.commonService.postMethod(url, this.formData).subscribe(
@@ -440,6 +461,7 @@ export class SelfEmpanlementComponent {
         },
         (err: any) => {
           console.warn(err);
+          alert('All required values should be provided!')
         }
       );
       // }

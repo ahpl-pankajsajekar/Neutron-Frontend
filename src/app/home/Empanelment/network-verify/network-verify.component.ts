@@ -30,6 +30,12 @@ export class NetworkVerifyComponent {
   isAccredationVerify: boolean = false;
   isTDSVerify: boolean = false;
   isRegistrationVerify :boolean =false;
+  panVerified: boolean = false;
+  panVerification2: boolean = false;
+  accreditationVerified: boolean = false;
+  tdsVerified: boolean = false;
+  ownershipVerified: boolean = false;
+  registrationVerified: boolean = false;
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
@@ -65,8 +71,76 @@ export class NetworkVerifyComponent {
         })
   }
 
+  onVerificationChange(verificationType: string, event: any): void {
+    let isVerified = event.target.value === 'verify';
+    switch (verificationType) {
+      case 'pan':
+        this.panVerified = isVerified;
+        break;
+      case 'aadhar':
+        this.panVerification2 = isVerified;
+        break;
+      case 'accreditation':
+        this.accreditationVerified = isVerified;
+        break;
+      case 'tds':
+        this.tdsVerified = isVerified;
+        break;
+      case 'ownership':
+        this.ownershipVerified = isVerified;
+        break;
+      case 'registration':
+        this.registrationVerified = isVerified;
+        break;
+    }
+    if (!isVerified) {
+      console.log("inside")
+      this.updateRemark();
+    } else {
+      this.remark = ''; // Reset remark if verification passed
+    }
+  }
+  
+  updateRemark(): void {
+    let unverifiedFields: string[] = [];
+    if (!this.panVerified) {
+      unverifiedFields.push('PAN');
+    }
+    if (!this.panVerification2) {
+      unverifiedFields.push('Aadhar');
+    }
+    if (!this.accreditationVerified) {
+      unverifiedFields.push('Accreditation');
+    }
+    if (!this.tdsVerified) {
+      unverifiedFields.push('TDS');
+    }
+    if (!this.ownershipVerified) {
+      unverifiedFields.push('Ownership');
+    }
+    if (!this.registrationVerified) {
+      unverifiedFields.push('Registration');
+    }
+  
+    this.remark = `Verification failed for ${unverifiedFields.join(', ')}.`;
+  }
+  
 
-  remark: string = '';
+  areAllCheckboxesVerified(): boolean {
+    return (
+      this.panVerified &&
+      this.panVerification2 &&
+      this.accreditationVerified &&
+      this.tdsVerified &&
+      this.ownershipVerified &&
+      this.registrationVerified
+    );
+  }
+
+  unverifiedCheckboxValue: string = 'not-verify'; // Default value
+
+  remark: string = 'not-verify';
+  
   verification(value:string){
     const url = '/selfemp/verification/'
     const body = {"DCVerificationStatus": value, "id": this.form.get('id')?.value,  "verificationRemark": this.remark,
@@ -132,6 +206,11 @@ export class NetworkVerifyComponent {
     // limitSelection: 2,
     noDataAvailablePlaceholderText: "Data not found."
   };
+
+  onSubmit(): void {
+    // Placeholder method for form submission logic
+    console.log("Form submitted!");
+  }
 
 }
 
