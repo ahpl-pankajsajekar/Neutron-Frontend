@@ -71,6 +71,7 @@ export class DcVerifyComponent {
 
   sendRequestForSearch(id:string){
     const url = "/empanelment/details/legal/" 
+      this.id = id // store for send id at verification
       this.commonService.postMethod(url, {"id": id}).subscribe(
         (res: any) => {
           console.log("res", res)
@@ -81,18 +82,26 @@ export class DcVerifyComponent {
         })
   }
 
+  id : any;
   remark: string = '';
   verification(value:string){
     const url = '/selfemp/verification/legal/'
-    const body = {"DCVerificationStatusByLegal": value, "id": this.form.get('id')?.value,  "verificationRemark": this.remark,
+    const getid = this.form.get('id')?.value || this.id
+    const body = {"DCVerificationStatusByLegal": value, "id": getid,  "verificationRemark": this.remark,
      "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
      "isTDSVerify": this.isTDSVerify }
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{
         console.log(res);
-        alert("Thank you, Your DC verified successful");
-        this.router.navigateByUrl("/empanelment/dc-docusign")
+        if(value=='verify'){
+          alert("Thank you, Your DC verified successful");
+          this.router.navigateByUrl("/empanelment/dc-docusign")
+        }
+        else{
+          alert("Issue in Document")
+        }
+        window.location.reload();
       },
       (error:any)=>{},
     )

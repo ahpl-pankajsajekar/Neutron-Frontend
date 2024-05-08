@@ -79,6 +79,7 @@
                 <td>{{item?.verifiedByNetworkUser}}</td>
                 <td><button *ngIf="item?.ds_envelope_status!='completed'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button> <span *ngIf="item?.ds_envelope_status=='completed'">Completed</span></td>
                 <td><button *ngIf="item?.ds_envelope_status=='completed'" class="btn btn-sm" (click)="viewDocument(item?.id)"><i class="fa fa-download" aria-hidden="true"></i></button></td>
+                <!-- <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td> -->
               </tr>
               <tr *ngIf="showAnalytics.verify.length == 0">
                 <td colspan="100%" class="text-center">Data Not found!</td>
@@ -137,6 +138,10 @@
   <h6 class="verification-title">Welcome to DC legal verification</h6>
 
   <div class="verified">
+    <div>
+      <h6><span class="fw-bolder">DC Name:</span>  {{selfemployementData.providerName}} </h6>
+      <h6><span class="fw-bolder">Firm Type:</span>  {{selfemployementData.FirmType}} </h6>
+    </div>
     <b>N/W team Verified by :</b> {{selfemployementData.verifiedByNetworkUser.name}} ({{selfemployementData.verifiedByNetworkUser.email}}) <br> 
   <b>N/W team Verified Date : </b>{{selfemployementData.verifiedByNetworkDate  | date: 'short'  }}
   </div>
@@ -171,25 +176,25 @@
                   <input type="radio" name="accreditationVerification" [value]="'not-verify'" checked/> Not Verified  
               </div>
           </div>
-          <div class="col-md-6 border p-3" *ngIf="selfemployementData.TDS_image">
-              <p>TDS: {{selfemployementData.Remark}}</p>
-              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.TDS_image }}" alt="TDS Image">
+          <div class="col-md-6 border p-3" *ngIf="selfemployementData.Current_Bank_Statement_image">
+              <p>Cancelled Cheque/ Current Bank Statement: {{selfemployementData.Remark}}</p>
+              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Current_Bank_Statement_image }}" alt="TDS Image">
               <div><br>
                   <input type="radio" name="tdsVerification" [value]="'verify'"/> Verified
                   <input type="radio" name="tdsVerification" [value]="'not-verify'" checked/> Not Verified  
               </div>
           </div>
-          <div class="col-md-6 border p-3" *ngIf="selfemployementData.Ownership_image">
-              <p>Ownership: {{selfemployementData.Ownership}}</p>
-              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Ownership_image }}" alt="Ownership Image">
+          <div class="col-md-6 border p-3" *ngIf="selfemployementData.Shop_Establishment_Certificate_image">
+              <p>Establishment Certificate/GST Certificate/Clinical Establishment Certificate: {{selfemployementData.Ownership}}</p>
+              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Shop_Establishment_Certificate_image }}" alt="Ownership Image">
               <div><br>
                   <input type="radio" name="ownershipVerification" [value]="'verify'"/> Verified
                   <input type="radio" name="ownershipVerification" [value]="'not-verify'" checked/> Not Verified  
               </div>
           </div>
-          <div class="col-md-6 border p-3" *ngIf="selfemployementData.Registration_Number_image">
-              <p>Registration Number: {{selfemployementData.Registration_Number}}</p>
-              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Registration_Number_image }}" alt="Registration Number Image">
+          <div class="col-md-6 border p-3" *ngIf="selfemployementData.Authority_Letter_image">
+              <p>Signing Authority Letter: {{selfemployementData.Registration_Number}}</p>
+              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Authority_Letter_image }}" alt="Registration Number Image" style="max-width: 250px;">
               <div><br>
                   <input type="radio" name="registrationVerification" [value]="'verify'"/> Verified
                   <input type="radio" name="registrationVerification" [value]="'not-verify'" checked/> Not Verified

@@ -73,6 +73,7 @@
                 <td>{{item.DCID}}</td>
                 <td>{{item.pincode}}</td>
                 <td>{{item?.verifiedByNetworkUser}}</td>
+                <!-- <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td> -->
               </tr>
               <tr *ngIf="showAnalytics.verify.length == 0">
                 <td colspan="100%" class="text-center">Data Not found!</td>
@@ -129,6 +130,10 @@
         </div >
         <div *ngIf="selfemployementData" class="verification-container">
           <h6 class="verification-title">Verify Self-Empanelment</h6>
+          <div>
+            <h6>DC Name:  {{selfemployementData.providerName}} </h6>
+            <h6>Firm Type:  {{selfemployementData.FirmType}} </h6>
+          </div>
           <div class="provider-details row">
             <div class="col-md-6 border p-3" *ngIf="selfemployementData.PanCard_number || selfemployementData.pan_image">
               <p>Pan Name: {{selfemployementData.nameOnPanCard}} <br>
@@ -160,27 +165,28 @@
                       <input type="radio" name="accreditationVerified" [value]="'not-verify'" (change)="onVerificationChange('accreditation', $event)" [(ngModel)]="unverifiedCheckboxValue" checked/> Not Verified              
                           </div>
                 </div>
-                <div class="col-md-6 border p-3" *ngIf="selfemployementData.TDS_image">
-                    <p>TDS: {{selfemployementData.Remark}}</p>
-                    <a href="data:image/png;base64,{{  selfemployementData.TDS_image }}" target="_blank">
-                    <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.TDS_image }}" alt="TDS Image"></a>
+                <div class="col-md-6 border p-3" *ngIf="selfemployementData.Current_Bank_Statement_image">
+                    <p>Current Bank Statement: {{selfemployementData.Remark}}</p>
+                    <a href="data:image/png;base64,{{  selfemployementData.Current_Bank_Statement_image }}" target="_blank">
+                    <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Current_Bank_Statement_image }}" alt="TDS Image"></a>
                     <div><br>
                       <input type="radio" name="tdsVerified" [value]="'verify'" (change)="onVerificationChange('tds', $event)"/> Verified
                       <input type="radio" name="tdsVerified" [value]="'not-verify'" (change)="onVerificationChange('tds', $event)" checked/> Not Verified              
                     </div>
                 </div>
-                <div class="col-md-6 border p-3" *ngIf="selfemployementData.Ownership_image">
+                <div class="col-md-6 border p-3" *ngIf="selfemployementData.Shop_Establishment_Certificate_image">
                     <p>Ownership: {{selfemployementData.Ownership}}</p>
-                    <a href="data:image/png;base64,{{  selfemployementData.Ownership_image }}" target="_blank">
-                    <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Ownership_image }}" alt="Ownership Image"></a>
+                    <a href="data:image/png;base64,{{  selfemployementData.Shop_Establishment_Certificate_image }}" target="_blank">
+                    <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Shop_Establishment_Certificate_image }}" alt="Ownership Image"></a>
                     <div><br>
                       <input type="radio" name="ownershipVerified" [value]="'verify'" (change)="onVerificationChange('ownership', $event)"/> Verified
                       <input type="radio" name="ownershipVerified" [value]="'not-verify'" (change)="onVerificationChange('ownership', $event)" checked/> Not Verified              
                     </div>
                 </div>
-                <div class="col-md-6 border p-3" *ngIf="selfemployementData.Registration_Number_image">
+                <div class="col-md-6 border p-3" *ngIf="selfemployementData.Authority_Letter_image">
                     <p>Registration Number: {{selfemployementData.Registration_Number}}</p>
-                    <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Registration_Number_image }}" alt="Registration Number Image">
+                    <a href="data:image/png;base64,{{  selfemployementData.Shop_Establishment_Certificate_image }}" target="_blank">
+                    <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Authority_Letter_image }}" alt="Registration Number Image" style="max-width: 250px;"></a>
                     <div><br>
                       <input type="radio" name="registrationVerified" [value]="'verify'" (change)="onVerificationChange('registration', $event)"/> Verified
                       <input type="radio" name="registrationVerified" [value]="'not-verify'" (change)="onVerificationChange('registration', $event)" checked/> Not Verified              
@@ -193,7 +199,7 @@
   </div>
 
   <div class="button-container">
-    <button class="verify-button" *ngIf="areAllCheckboxesVerified()" (click)="onSubmit()" [disabled]="!form.valid">Submit</button>    <button class="partial-verify-button" (click)="verification('partialVerify')">Partial Verify</button>
+    <button class="verify-button" *ngIf="areAllCheckboxesVerified()" (click)="verification('verify')" [disabled]="!form.valid">Submit</button>    <button class="partial-verify-button" (click)="verification('partialVerify')">Partial Verify</button>
   </div>
 </div>
       </div>

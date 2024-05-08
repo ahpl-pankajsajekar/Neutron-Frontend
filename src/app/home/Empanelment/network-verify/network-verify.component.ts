@@ -28,14 +28,14 @@ export class NetworkVerifyComponent {
   isPanVerify: boolean = false;
   isAadharVerify: boolean = false;
   isAccredationVerify: boolean = false;
-  isTDSVerify: boolean = false;
+  isTDSVerify: boolean = false;    // Current_Bank_Statement_image
   isRegistrationVerify :boolean =false;
   panVerified: boolean = false;
   panVerification2: boolean = false;
   accreditationVerified: boolean = false;
-  tdsVerified: boolean = false;
-  ownershipVerified: boolean = false;
-  registrationVerified: boolean = false;
+  tdsVerified: boolean = false;    // Current_Bank_Statement_image
+  ownershipVerified: boolean = false;  // Shop_Establishment_Certificate_image
+  registrationVerified: boolean = false; // Authority_Letter_image
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
@@ -61,7 +61,8 @@ export class NetworkVerifyComponent {
 
   sendRequestForSearch(id:string){
     const url = "/empanelment/" 
-      this.commonService.postMethod(url, {"id": id}).subscribe(
+    this.id = id
+    this.commonService.postMethod(url, {"id": id}).subscribe(
         (res: any) => {
           console.log("res", res)
           this.selfemployementData = res.data
@@ -113,13 +114,13 @@ export class NetworkVerifyComponent {
       unverifiedFields.push('Accreditation');
     }
     if (!this.tdsVerified) {
-      unverifiedFields.push('TDS');
+      unverifiedFields.push('Cancelled Cheque/ Current Bank Statement');
     }
     if (!this.ownershipVerified) {
-      unverifiedFields.push('Ownership');
+      unverifiedFields.push('Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate');
     }
     if (!this.registrationVerified) {
-      unverifiedFields.push('Registration');
+      unverifiedFields.push('Signing Authority');
     }
   
     this.remark = `Verification failed for ${unverifiedFields.join(', ')}.`;
@@ -140,17 +141,24 @@ export class NetworkVerifyComponent {
   unverifiedCheckboxValue: string = 'not-verify'; // Default value
 
   remark: string = 'not-verify';
-  
+  id: any;
   verification(value:string){
+    console.log("Form submitted!");
     const url = '/selfemp/verification/'
-    const body = {"DCVerificationStatus": value, "id": this.form.get('id')?.value,  "verificationRemark": this.remark,
+    const getid = this.form.get('id')?.value || this.id
+    const body = {"DCVerificationStatus": value, "id": getid,  "verificationRemark": this.remark,
      "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
      "isTDSVerify": this.isTDSVerify ,"isRegistrationVerify": this.isRegistrationVerify}
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{
         console.log(res);
-        alert("Document verified by Network Team")
+        if(value=='verify'){
+          alert("Document verified by Network Team")
+        }
+        else{
+          alert("Issue in Document")
+        }
         window.location.reload();
       },
       (error:any)=>{},
