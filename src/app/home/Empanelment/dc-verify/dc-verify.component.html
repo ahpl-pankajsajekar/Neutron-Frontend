@@ -8,7 +8,6 @@
   <div>
     <div class="box">
       <div class="box-card">
-        
         <div class="dashboard-container">
           <div class="tiles-container">
             <div class="tile animated" (click)="toggleDetails(1)">
@@ -18,20 +17,19 @@
               </a>
             </div>
             <div class="tile animated" (click)="toggleDetails(2)">
-              <a >
+              <a>
                 <h2>Verified</h2>
                 <p class="count">{{showAnalytics.verify.length || 0}}</p>
               </a>
             </div>
             <div class="tile animated" (click)="toggleDetails(3)">
-              <a >
+              <a>
                 <h2>Partial Verified</h2>
                 <p class="count">{{showAnalytics.partialVerify.length || 0}}</p>
               </a>
             </div>
           </div>
         </div>
-        
         <div class="details d-flex justify-content-center" *ngIf="showDetails === 1">
           <table class="table">
             <thead>
@@ -67,16 +65,18 @@
                 <th scope="col">DCID</th>
                 <th scope="col">Pincode</th>
                 <th scope="col">Network</th>
+                <th scope="col">Date Time</th>
                 <th scope="col">DocuSign</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of showAnalytics.verify; index as i">
                 <th scope="row">{{i+1}}</th>
-                <td>{{item.providerName}}</td>
+                <td (click)="sendRequestForSearch(item.id)" >{{item.providerName}}</td>
                 <td>{{item.DCID}}</td>
                 <td>{{item.pincode}}</td>
                 <td>{{item?.verifiedByNetworkUser}}</td>
+                <td>{{item?.verifiedByLegalDate | date: 'medium'}}</td>
                 <td><button *ngIf="item?.ds_envelope_status!='completed'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button> <span *ngIf="item?.ds_envelope_status=='completed'">Completed</span></td>
                 <td><button *ngIf="item?.ds_envelope_status=='completed'" class="btn btn-sm" (click)="viewDocument(item?.id)"><i class="fa fa-download" aria-hidden="true"></i></button></td>
                 <!-- <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td> -->
@@ -113,6 +113,7 @@
             </tbody>
           </table>
         </div>
+
         <div class="box-card-body">
           <form [formGroup]="form">
             <div class="d-flex flex-row">

@@ -49,10 +49,10 @@ export class DcDocusignComponent {
       this.formData.append("agreement_file", this.selectedFile)
       this.formData.append("id", selectedIDValue)
       const url = '/docusignAgreement/'
-      alert("Document Submited.");
+      alert("Initializing Documents for DocuSign");
       this.commonService.postMethod(url, this.formData).subscribe(
         (res:any) => {
-          alert("Document Sent to DC");
+          alert("Document has been sent Successfully.");
           console.log(res)
         },
         (error:any) => {

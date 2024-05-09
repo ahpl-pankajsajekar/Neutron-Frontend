@@ -37,7 +37,6 @@
                 <th scope="col">DC Name</th>
                 <th scope="col">DCID</th>
                 <th scope="col">Pincode</th>
-                <th scope="col">Network</th>
               </tr>
             </thead>
             <tbody>
@@ -46,7 +45,6 @@
                   <td>{{item.providerName}}</td>
                   <td>{{item.DCID}}</td>
                   <td>{{item.pincode}}</td>
-                  <td>{{item?.verifiedByNetworkUser}}</td>
                   <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td>
               </tr>
               <tr *ngIf="showAnalytics.pending.length == 0">
@@ -69,10 +67,11 @@
             <tbody>
               <tr *ngFor="let item of showAnalytics.verify; index as i">
                 <th scope="row">{{i+1}}</th>
-                <td>{{item.providerName}}</td>
+                <td (click)="sendRequestForSearch(item.id)" >{{item.providerName}}</td>
                 <td>{{item.DCID}}</td>
                 <td>{{item.pincode}}</td>
                 <td>{{item?.verifiedByNetworkUser}}</td>
+                <td>{{item?.verifiedByNetworkDate | date: 'medium'}}</td>
                 <!-- <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td> -->
               </tr>
               <tr *ngIf="showAnalytics.verify.length == 0">

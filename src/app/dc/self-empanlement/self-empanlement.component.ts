@@ -222,7 +222,6 @@ export class SelfEmpanlementComponent {
         ifscCode: ['',],
         branchName: ['',],
         accountType: ['',],
-        paymentToBeMadeInFavorOf: ['',],
 
         Opthlmologya: ['',],
         MBBS_PHYSICIAN: ['',],
