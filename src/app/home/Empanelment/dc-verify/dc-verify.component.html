@@ -148,7 +148,7 @@
   </div>
   <div *ngIf="selfemployementData" class="verification-container">
     <div class="provider-details row">
-      <div class="col-md-6 border p-3" *ngIf="selfemployementData.PanCard_number || selfemployementData.pan_image">
+      <div class="col-md-6 border p-3" *ngIf="selfemployementData.pan_image">
         <p>Pan Name: {{selfemployementData.nameOnPanCard}} <br>
             Pan Number: {{selfemployementData.PanCard_number}}</p>
         <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.pan_image }}" alt="Pan Image">
@@ -157,7 +157,7 @@
             <input type="radio" name="panVerification1" [value]="'not-verify'" checked/> Not Verified
         </div>
     </div>
-    <div class="col-md-6 border p-3" *ngIf="selfemployementData.Adhar_number || selfemployementData.Adhar_name || selfemployementData.aadhar_image">
+    <div class="col-md-6 border p-3" *ngIf="selfemployementData.aadhar_image">
         <p>Aadhar Name: {{selfemployementData.Adhar_name}}<br>
             Aadhar Number: {{selfemployementData.Adhar_number}}</p>
         <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.aadhar_image }}" alt="Aadhar Image">
@@ -186,7 +186,7 @@
               </div>
           </div>
           <div class="col-md-6 border p-3" *ngIf="selfemployementData.Shop_Establishment_Certificate_image">
-              <p>Establishment Certificate/GST Certificate/Clinical Establishment Certificate: {{selfemployementData.Ownership}}</p>
+              <p>Establishment Certificate/GST Certificate/Clinical Establishment Certificate: </p>
               <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Shop_Establishment_Certificate_image }}" alt="Ownership Image">
               <div><br>
                   <input type="radio" name="ownershipVerification" [value]="'verify'"/> Verified
@@ -194,7 +194,7 @@
               </div>
           </div>
           <div class="col-md-6 border p-3" *ngIf="selfemployementData.Authority_Letter_image">
-              <p>Signing Authority Letter: {{selfemployementData.Registration_Number}}</p>
+              <p>Signing Authority Letter:</p>
               <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Authority_Letter_image }}" alt="Registration Number Image" style="max-width: 250px;">
               <div><br>
                   <input type="radio" name="registrationVerification" [value]="'verify'"/> Verified

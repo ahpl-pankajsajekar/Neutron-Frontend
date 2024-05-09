@@ -134,7 +134,7 @@
             <h6>Firm Type:  {{selfemployementData.FirmType}} </h6>
           </div>
           <div class="provider-details row">
-            <div class="col-md-6 border p-3" *ngIf="selfemployementData.PanCard_number || selfemployementData.pan_image">
+            <div class="col-md-6 border p-3" *ngIf="selfemployementData.pan_image">
               <p>Pan Name: {{selfemployementData.nameOnPanCard}} <br>
                   Pan Number: {{selfemployementData.PanCard_number}}</p>
                   <a href="data:image/png;base64,{{ selfemployementData.pan_image }}" target="_blank">
@@ -145,7 +145,7 @@
               <input type="radio" name="panVerification" [value]="'not-verify'" (change)="onVerificationChange('pan', $event)" checked/> Not Verified
               </div>
           </div>
-          <div class="col-md-6 border p-3" *ngIf="selfemployementData.Adhar_number || selfemployementData.Adhar_name || selfemployementData.aadhar_image">
+          <div class="col-md-6 border p-3" *ngIf="selfemployementData.aadhar_image">
               <p>Aadhar Name: {{selfemployementData.Adhar_name}}<br>
                   Aadhar Number: {{selfemployementData.Adhar_number}}</p>
                   <a href="data:image/png;base64,{{ selfemployementData.aadhar_image }}" target="_blank">
@@ -155,7 +155,7 @@
                 <input type="radio" name="panVerification2" [value]="'not-verify'" (change)="onVerificationChange('aadhar', $event)" checked/> Not Verified              
               </div>
           </div>
-                <div class="col-md-6 border p-3" *ngIf="selfemployementData.Accredation || selfemployementData.Accreditation_image">
+                <div class="col-md-6 border p-3" *ngIf="selfemployementData.Accreditation_image">
                     <p>Accredation: {{selfemployementData.Accredation}}</p>
                     <a href="data:image/png;base64,{{  selfemployementData.Accreditation_image }}" target="_blank">
                     <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Accreditation_image }}" alt="Accreditation Image"></a>
@@ -165,7 +165,7 @@
                           </div>
                 </div>
                 <div class="col-md-6 border p-3" *ngIf="selfemployementData.Current_Bank_Statement_image">
-                    <p>Current Bank Statement: {{selfemployementData.Remark}}</p>
+                    <p>Cancelled Cheque/ Current Bank Statement: {{selfemployementData.Remark}}</p>
                     <a href="data:image/png;base64,{{  selfemployementData.Current_Bank_Statement_image }}" target="_blank">
                     <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Current_Bank_Statement_image }}" alt="TDS Image"></a>
                     <div><br>
@@ -174,7 +174,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 border p-3" *ngIf="selfemployementData.Shop_Establishment_Certificate_image">
-                    <p>Ownership: {{selfemployementData.Ownership}}</p>
+                    <p>Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:</p>
                     <a href="data:image/png;base64,{{  selfemployementData.Shop_Establishment_Certificate_image }}" target="_blank">
                     <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Shop_Establishment_Certificate_image }}" alt="Ownership Image"></a>
                     <div><br>
@@ -183,8 +183,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 border p-3" *ngIf="selfemployementData.Authority_Letter_image">
-                    <p>Registration Number: {{selfemployementData.Registration_Number}}</p>
-                    <a href="data:image/png;base64,{{  selfemployementData.Shop_Establishment_Certificate_image }}" target="_blank">
+                    <p>Signing Authority Letter:</p>
+                    <a href="data:image/png;base64,{{  selfemployementData.Authority_Letter_image }}" target="_blank">
                     <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Authority_Letter_image }}" alt="Registration Number Image" style="max-width: 250px;"></a>
                     <div><br>
                       <input type="radio" name="registrationVerified" [value]="'verify'" (change)="onVerificationChange('registration', $event)"/> Verified
