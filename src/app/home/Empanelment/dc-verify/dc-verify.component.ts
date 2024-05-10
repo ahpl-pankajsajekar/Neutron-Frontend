@@ -15,6 +15,7 @@ export class DcVerifyComponent {
   providerNames: any[] = []; // Initialize providerNames as an empty array
   providerIDs: any[] = []; // Initialize providerIDs as an empty array
   isLinear = true; // Initialize isLinear property
+  activeItem: number | null = null;
 
   showAnalytics:any;
 
@@ -46,14 +47,23 @@ export class DcVerifyComponent {
   isPanVerify: boolean = false;
   isAadharVerify: boolean = false;
   isAccredationVerify: boolean = false;
-  isTDSVerify: boolean = false;
+  isTDSVerify: boolean = false;    // Current_Bank_Statement_image
+  isRegistrationVerify :boolean =false;
+  panVerified: boolean = false;
+  panVerification2: boolean = false;
+  accreditationVerified: boolean = false;
+  tdsVerified: boolean = false;    // Current_Bank_Statement_image
+  ownershipVerified: boolean = false;  // Shop_Establishment_Certificate_image
+  registrationVerified: boolean = false; // Authority_Letter_image
+
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
-      isPanVerify: [this.isPanVerify], 
-      isAadharVerify: [this.isAadharVerify], 
-      isAccredationVerify: [this.isAccredationVerify], 
-      isTDSVerify: [this.isTDSVerify], 
+      isPanVerify: [this.isPanVerify, Validators.required], 
+      isAadharVerify: [this.isAadharVerify, Validators.required], 
+      isAccredationVerify: [this.isAccredationVerify, Validators.required], 
+      isTDSVerify: [this.isTDSVerify, Validators.required], 
+      isRegistrationVerify:[this.isRegistrationVerify, Validators.required],
     });
   }
 
@@ -82,14 +92,83 @@ export class DcVerifyComponent {
         })
   }
 
+  onVerificationChange(verificationType: string, event: any): void {
+    let isVerified = event.target.value === 'verify';
+    switch (verificationType) {
+      case 'pan':
+        this.panVerified = isVerified;
+        break;
+      case 'aadhar':
+        this.panVerification2 = isVerified;
+        break;
+      case 'accreditation':
+        this.accreditationVerified = isVerified;
+        break;
+      case 'tds':
+        this.tdsVerified = isVerified;
+        break;
+      case 'ownership':
+        this.ownershipVerified = isVerified;
+        break;
+      case 'registration':
+        this.registrationVerified = isVerified;
+        break;
+    }
+    if (!isVerified) {
+      console.log("inside")
+      this.updateRemark();
+    } else {
+      this.remark = ''; // Reset remark if verification passed
+    }
+  }
+
+  updateRemark(): void {
+    let unverifiedFields: string[] = [];
+    if (!this.panVerified) {
+      unverifiedFields.push('PAN');
+    }
+    if (!this.panVerification2) {
+      unverifiedFields.push('Aadhar');
+    }
+    if (!this.accreditationVerified) {
+      unverifiedFields.push('Accreditation');
+    }
+    if (!this.tdsVerified) {
+      unverifiedFields.push('Cancelled Cheque/ Current Bank Statement');
+    }
+    if (!this.ownershipVerified) {
+      unverifiedFields.push('Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate');
+    }
+    if (!this.registrationVerified) {
+      unverifiedFields.push('Signing Authority');
+    }
+  
+    this.remark = `Verification failed for above Documents : ${unverifiedFields.join(', ')}.`;
+  }
+
+  areAllCheckboxesVerified(): boolean {
+    return (
+      this.panVerified &&
+      this.panVerification2 &&
+      this.accreditationVerified &&
+      this.tdsVerified &&
+      this.ownershipVerified &&
+      this.registrationVerified
+    );
+  }
+
+  unverifiedCheckboxValue: string = 'not-verify'; // Default value
+
+
+
   id : any;
-  remark: string = '';
+  remark: string = 'not-verify';
   verification(value:string){
     const url = '/selfemp/verification/legal/'
     const getid = this.form.get('id')?.value || this.id
     const body = {"DCVerificationStatusByLegal": value, "id": getid,  "verificationRemark": this.remark,
-     "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
-     "isTDSVerify": this.isTDSVerify }
+    "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
+    "isTDSVerify": this.isTDSVerify ,"isRegistrationVerify": this.isRegistrationVerify }
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{
@@ -185,6 +264,14 @@ export class DcVerifyComponent {
     // Clean up
     document.body.removeChild(a);
     URL.revokeObjectURL(this.pdfUrl);
+  }
+
+  toggleActiveItem(identifier: number): void {
+    if (this.activeItem === identifier) {
+      this.activeItem = null; // Deselect if already selected
+    } else {
+      this.activeItem = identifier; // Select the clicked item
+    }
   }
 
 }

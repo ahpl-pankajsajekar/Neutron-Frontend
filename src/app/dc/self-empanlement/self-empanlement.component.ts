@@ -239,7 +239,7 @@ export class SelfEmpanlementComponent {
         DENTAL: ['',],
         DIET: ['',],
 
-        availableTests: ['',],
+        availableTests: [[],],
 
         ECG_FACILITY: ['',],
         USG: ['',],
@@ -343,6 +343,12 @@ export class SelfEmpanlementComponent {
       const file: File = event.target.files[0];
       if (file) {
         this.formData.append('LLP_Partnership_Agreement_image', file);
+      }
+    }
+    onStampPaperImageSelected(event: any) {
+      const file: File = event.target.files[0];
+      if (file) {
+        this.formData.append('stamp_paper_image', file);
       }
     }
 
@@ -449,7 +455,6 @@ export class SelfEmpanlementComponent {
       this.formData.append('FirmType', this.formgroup.value.FirmType);
 
       console.log('Form submitted!', this.formgroup.value);
-  
       
       // else {
       const url = '/selfempanelment/add/' + this.ticketId + '/';

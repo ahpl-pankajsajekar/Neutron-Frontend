@@ -89,7 +89,7 @@ button {
 }
 
 .verification-container {
-  background-color: #f8f9fa;
+  background-color: #3da5a2;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -230,7 +230,7 @@ textarea {
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
-  background-color: #2ad7e7;
+  background-color: #b6d0d0;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
@@ -303,9 +303,14 @@ textarea {
 .table {
   max-width: 80%;
   margin-top: 10px;
+  border: 5px solid #84d6d3;
 }
 
 .viewDc{
   cursor: pointer;
   color: #007bff;
+}
+
+.tile.active {
+  background-color: #2ad7e7;/* Change the background color to indicate active tab */
 }
