@@ -688,7 +688,7 @@
                                         </div>
                                     <div class="row-md-4">
                                         <div class="input-group-box" *ngIf="selectedCompanyFirmType === 'Sole Proprietorship Firm'">
-                                            <div><label>all documents are mandatory. </label></div>
+                                            <div><label>All documents are mandatory. </label></div>
                                               <div>
                                                 <label for="pan">  DC Owner PAN :<code>*</code></label>
                                                 <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" accept="image/png, image/jpeg"/>
@@ -702,47 +702,47 @@
                                                 <input type="file" id="pan" (change)="AccreditationImageSelected($event)" formControlName="Accreditation" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
-                                                <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement</label>
-                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Registration_Number" />
+                                                <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement:<code>*</code></label>
+                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Registration_Number" accept="image/png, image/jpeg" />
                                               </div>
                                               <div>
-                                                <label for="Establishment_Certificate">Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:</label>
-                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Ownership" />
+                                                <label for="Establishment_Certificate">Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:<code>*</code></label>
+                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Ownership" accept="image/png, image/jpeg" />
                                               </div>
                                               <div>
-                                                <label for="Authority_Letter">Signing Authority Letter :</label>
-                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="TDS" />
+                                                <label for="Authority_Letter">Signing Authority Letter :<code>*</code></label>
+                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="TDS" accept="image/png, image/jpeg"/>
                                               </div>
                                         </div>
                                         <div class="input-group-box" *ngIf="selectedCompanyFirmType=== 'LLP/Partnership Firm'">
-                                            <div><label>Document</label></div>
+                                            <div><label>All documents are mandatory. </label></div>
                                               <div>
-                                                <label for="pan">  DC Owner PAN :</label>
-                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" />
+                                                <label for="pan">  DC Owner PAN :<code>*</code></label>
+                                                <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
-                                                <label for="aadhar"> DC Owner Aadhar :</label>
-                                                <input type="file" id="aadhar" (change)="onAadharImageSelected($event)" formControlName="aadhar" />
+                                                <label for="aadhar"> DC Owner Aadhar :<code>*</code></label>
+                                                <input type="file" id="aadhar" (change)="onAadharImageSelected($event)" formControlName="aadhar" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
-                                                <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement</label>
-                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Bank_Statement" />
+                                                <label for="Bank_Statement">Cancelled Cheque/ Current Bank Statement:<code>*</code></label>
+                                                <input type="file" id="Bank_Statement" (change)="onCurrent_Bank_StatementImageSelected($event)" formControlName="Bank_Statement" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
-                                                <label for="Establishment_Certificate">Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:</label>
-                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Establishment_Certificate" />
+                                                <label for="Establishment_Certificate">Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:<code>*</code></label>
+                                                <input type="file" id="Establishment_Certificate" (change)="onShopEstablishmentCertificateImageSelected($event)" formControlName="Establishment_Certificate" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
-                                                <label for="Authority_Letter">Signing Authority Letter :</label>
-                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="Authority_Letter" />
+                                                <label for="Authority_Letter">Signing Authority Letter :<code>*</code></label>
+                                                <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="Authority_Letter" accept="image/png, image/jpeg"/>
                                               </div>
                                               <div>
                                                 <label for="LLP/Partnership_Agreement">LLP/Partnership Agreement :</label>
-                                                <input type="file" id="LLP/Partnership_Agreement" (change)="onLLPPartnershipAgreementImageSelected($event)" formControlName="LLP_Partnership_Agreement" />
+                                                <input type="file" id="LLP/Partnership_Agreement" (change)="onLLPPartnershipAgreementImageSelected($event)" formControlName="LLP_Partnership_Agreement" accept="image/png, image/jpeg"/>
                                               </div>
                                         </div>
                                         <div class="input-group-box" *ngIf="selectedCompanyFirmType=== 'Private Limited Company'">
-                                            <div><label>Document</label></div>
+                                            <div><label>All documents are mandatory. </label></div>
                                               <div>
                                                 <label for="pan"> DC Owner PAN :<code>*</code></label>
                                                 <input type="file" id="pan" (change)="onPanImageSelected($event)" formControlName="pan_image" accept="image/png, image/jpeg"/>

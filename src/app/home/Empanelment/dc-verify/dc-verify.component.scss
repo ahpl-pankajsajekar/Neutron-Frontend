@@ -309,8 +309,31 @@ textarea {
 .viewDc{
   cursor: pointer;
   color: #007bff;
+  &:hover{
+    text-decoration: underline;
+  }
 }
+
+.link{
+  cursor: pointer;
+  &:hover{
+    color: #007bff;
+    text-decoration: underline;
+  }
+}
+
 
 .tile.active {
   background-color: #2ad7e7;/* Change the background color to indicate active tab */
+}
+
+
+.btn{
+  text-transform: capitalize;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.sub-heading{
+  color: #138a86 ;
 }

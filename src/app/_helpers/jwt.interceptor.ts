@@ -29,7 +29,6 @@ export class JwtInterceptor implements HttpInterceptor {
                 setHeaders: {
                     Authorization: `${user.email}`,
                     // email: `${user.email}`,
-                    'Content-Type': 'application/json'
                 }
             });
         }

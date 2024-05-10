@@ -68,6 +68,7 @@ export class SelfEmpanlementComponent {
           branchNameInput.value = data.BRANCH;
         }, error => {
           console.error('Error:', error);
+          alert("Please enter valid IFSC Code.")
         });
     }
   
@@ -239,7 +240,7 @@ export class SelfEmpanlementComponent {
         DENTAL: ['',],
         DIET: ['',],
 
-        availableTests: [[],],
+        availableTests: ['',],
 
         ECG_FACILITY: ['',],
         USG: ['',],
@@ -465,7 +466,7 @@ export class SelfEmpanlementComponent {
         },
         (err: any) => {
           console.warn(err);
-          alert('All required values should be provided!')
+          // alert('All required values should be provided!')
         }
       );
       // }

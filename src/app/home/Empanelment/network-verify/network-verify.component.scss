@@ -239,7 +239,7 @@ textarea {
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
-  background-color: #2ad7e7;
+  background-color: #b6d0d0;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
@@ -319,6 +319,32 @@ textarea {
 .viewDc{
   cursor: pointer;
   color: #007bff;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.link{
+  cursor: pointer;
+  &:hover{
+    color: #007bff;
+    text-decoration: underline;
+  }
+}
+
+.tile.active {
+  background-color: #2ad7e7;/* Change the background color to indicate active tab */
+}
+
+
+.btn{
+  text-transform: capitalize;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.sub-heading{
+  color: #138a86 ;
 }
 
 input[type="radio"] {

@@ -31,7 +31,9 @@
           </div>
         </div>
  
-        <div class="details d-flex justify-content-center" *ngIf="showDetails === 1">
+        <div class="details" *ngIf="showDetails === 1">
+          <h6 class="text-center sub-heading">Pending For Verification</h6>
+          <div class="d-flex justify-content-center">
           <table class="table">
             <thead>
               <tr>
@@ -56,39 +58,45 @@
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
-        <div class="details d-flex justify-content-center" *ngIf="showDetails === 2">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">DC Name</th>
-                <th scope="col">DCID</th>
-                <th scope="col">Pincode</th>
-                <th scope="col">Network</th>
-                <th scope="col">Date Time</th>
-                <th scope="col">DocuSign</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of showAnalytics.verify; index as i">
-                <th scope="row">{{i+1}}</th>
-                <td (click)="sendRequestForSearch(item.id)" >{{item.providerName}}</td>
-                <td>{{item.DCID}}</td>
-                <td>{{item.pincode}}</td>
-                <td>{{item?.verifiedByNetworkUser}}</td>
-                <td>{{item?.verifiedByLegalDate | date: 'medium'}}</td>
-                <td><button *ngIf="item?.ds_envelope_status!='completed'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button> <span *ngIf="item?.ds_envelope_status=='completed'">Completed</span></td>
-                <td><button *ngIf="item?.ds_envelope_status=='completed'" class="btn btn-sm" (click)="viewDocument(item?.id)"><i class="fa fa-download" aria-hidden="true"></i></button></td>
-                <!-- <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td> -->
-              </tr>
-              <tr *ngIf="showAnalytics.verify.length == 0">
-                <td colspan="100%" class="text-center">Data Not found!</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="details" *ngIf="showDetails === 2">
+          <h6 class="text-center sub-heading">Verified</h6>
+          <div class="d-flex justify-content-center">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">DC Name</th>
+                  <th scope="col">DCID</th>
+                  <th scope="col">Pincode</th>
+                  <th scope="col">Network</th>
+                  <th scope="col">Date Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of showAnalytics.verify; index as i">
+                  <th scope="row">{{i+1}}</th>
+                  <td (click)="sendRequestForSearch(item.id)" class="link">{{item.providerName}}</td>
+                  <td>{{item.DCID}}</td>
+                  <td>{{item.pincode}}</td>
+                  <td>{{item?.verifiedByNetworkUser}}</td>
+                  <td>{{item?.verifiedByLegalDate | date: 'medium'}}</td>
+                  <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='waiting'" (click)="sendDocuSign(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Proceed to DocuSign</button></td>
+                  <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='sent'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button> <span *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='completed'">Completed</span></td>
+                  <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='completed'" class="btn btn-sm" (click)="viewDocument(item?.id)"><i class="fa fa-download" aria-hidden="true"></i></button></td>
+                  <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td>
+                </tr>
+                <tr *ngIf="showAnalytics.verify.length == 0">
+                  <td colspan="100%" class="text-center">Data Not found!</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="details d-flex justify-content-center" *ngIf="showDetails === 3">
+        <div class="details" *ngIf="showDetails === 3">
+          <h6 class="text-center sub-heading">Partial Verified</h6>
+          <div class="d-flex justify-content-center">
           <table class="table">
             <thead>
               <tr>
@@ -113,9 +121,11 @@
               </tr>
             </tbody>
           </table>
+          </div>
         </div>
-
-        <div class="box-card-body">
+        
+        <!-- Search -->
+        <!-- <div class="box-card-body">
           <form [formGroup]="form">
             <div class="d-flex flex-row">
               <div class="p-2">
@@ -134,7 +144,7 @@
               </div>
             </div>
           </form>
-        </div >
+        </div > -->
 
 <div *ngIf="selfemployementData" class="verification-container">
   <h6 class="verification-title">Welcome to DC legal verification</h6>

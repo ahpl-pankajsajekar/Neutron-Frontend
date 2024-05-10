@@ -223,15 +223,29 @@ export class DcVerifyComponent {
     )
   }
 
+  sendDocuSign(id:string){
+    const url = '/docusignAgreement/sent/'
+    const body = {'id': id}
+    this.commonService.postMethod(url, body).subscribe(
+      (res:any)=>{
+        console.log(res);
+        alert("Document has been sent Successfully.");
+      },
+      (error:any)=>{
+        console.log(error);
+      },
+    )
+  }
+
   viewDocument(id:string){
-    const url = '/docusignAgreement/envelope/document/view/'
+    const url = '/docusignAgreement/envelope/document/saveAndview/'
     const params = {'id': id}
     console.log(params)
     this.commonService.getMethodWithParams(url, params).subscribe(
       (res:any)=>{
         console.log(res);
-        this.pdfContent = res
-        this.openPDFInNewTab()
+        this.pdfContent = res['pdf_content']
+        this.openPDFInNewTab(res['DC_name'])
       },
       (error:any)=>{
         console.log(error);
@@ -240,7 +254,7 @@ export class DcVerifyComponent {
   }
   
 
-  openPDFInNewTab() {
+  openPDFInNewTab(dc_name:string) {
     const binaryData = atob(this.pdfContent);
     const arrayBuffer = new ArrayBuffer(binaryData.length);
     const byteArray = new Uint8Array(arrayBuffer);
@@ -255,7 +269,7 @@ export class DcVerifyComponent {
     // Create a temporary <a> element
     const a = document.createElement('a');
     a.href = this.pdfUrl;
-    a.download = 'document.pdf'; // Optional: Set the filename for download
+    a.download = dc_name+'.pdf'; // Optional: Set the filename for download
     document.body.appendChild(a);
 
     // Trigger click event
@@ -264,14 +278,6 @@ export class DcVerifyComponent {
     // Clean up
     document.body.removeChild(a);
     URL.revokeObjectURL(this.pdfUrl);
-  }
-
-  toggleActiveItem(identifier: number): void {
-    if (this.activeItem === identifier) {
-      this.activeItem = null; // Deselect if already selected
-    } else {
-      this.activeItem = identifier; // Select the clicked item
-    }
   }
 
 }

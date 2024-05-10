@@ -39,11 +39,11 @@ export class NetworkVerifyComponent {
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
-      isPanVerify: [this.isPanVerify, Validators.required], 
-      isAadharVerify: [this.isAadharVerify, Validators.required], 
-      isAccredationVerify: [this.isAccredationVerify, Validators.required], 
-      isTDSVerify: [this.isTDSVerify, Validators.required], 
-      isRegistrationVerify:[this.isRegistrationVerify, Validators.required],
+      isPanVerify: [this.isPanVerify], 
+      isAadharVerify: [this.isAadharVerify,], 
+      isAccredationVerify: [this.isAccredationVerify], 
+      isTDSVerify: [this.isTDSVerify], 
+      isRegistrationVerify:[this.isRegistrationVerify],
     });
   }
   
@@ -185,7 +185,6 @@ export class NetworkVerifyComponent {
     );
   }
 
-  
   showDetails: number | null = null;
   toggleDetails(boxNumber: number) {
     if (this.showDetails === boxNumber) {
