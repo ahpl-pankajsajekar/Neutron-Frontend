@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CommonService } from 'src/app/_services/common.service';
 import { routes } from 'src/app/app-routing.module';
 
@@ -23,6 +24,7 @@ export class DcVerifyComponent {
   pdfUrl: any;
 
   constructor(private fb: FormBuilder,
+    private toastrService: ToastrService,
     private commonService: CommonService,
     private router: Router,
     private sanitizer: DomSanitizer
@@ -174,11 +176,17 @@ export class DcVerifyComponent {
       (res:any)=>{
         console.log(res);
         if(value=='verify'){
-          alert("Thank you, Your DC verified successful");
-          this.router.navigateByUrl("/empanelment/dc-docusign")
+          // alert("Thank you, Your DC verified successful");
+          this.toastrService.success('Thank you, Your DC verified successful', 'Successful', {
+            closeButton: true,
+          });
+          // this.router.navigateByUrl("/empanelment/dc-docusign")
         }
         else{
-          alert("Issue in Document")
+          this.toastrService.info('Issue in Document', 'Successful', {
+            closeButton: true,
+          });
+          // alert("Issue in Document")
         }
         window.location.reload();
       },
@@ -194,10 +202,6 @@ export class DcVerifyComponent {
         // Iterate over the records
         this.providerNames = res.selectDropdown
         this.showAnalytics = res.networkAnalyticsData
-        // this.providerNames = res.map((item: any) => ({
-        //   itemValue: item.id,
-        //   itemName: `${item.providerName}`,
-        // }));
         console.log(this.providerNames);
       },
       (error: any) => {
@@ -215,7 +219,11 @@ export class DcVerifyComponent {
       (res:any)=>{
         console.log(res);
         const temp = "Envelope Status: " + res.data['status'] + "\nEnvelope ID: "+ res.data['envelopeId']
-        alert("Envelope Status: " + res.data['status'])
+        // alert("Envelope Status: " + res.data['status'])
+        this.toastrService.success('Envelope Status: ' + res.data['status'], 'Successful', {
+          closeButton: true,
+          timeOut: 5000,
+        });
       },
       (error:any)=>{
         console.log(error);
@@ -226,10 +234,16 @@ export class DcVerifyComponent {
   sendDocuSign(id:string){
     const url = '/docusignAgreement/sent/'
     const body = {'id': id}
+    this.toastrService.success('Initializing Documents for DocuSign.', 'Successful', {
+      closeButton: true,
+    });
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{
         console.log(res);
-        alert("Document has been sent Successfully.");
+        // alert("Document has been sent Successfully.");
+        this.toastrService.success('Document has been sent Successfully.', 'Successful', {
+          closeButton: true,
+        });
       },
       (error:any)=>{
         console.log(error);
