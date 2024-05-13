@@ -1,0 +1,10 @@
+<!-- thank-you.component.html -->
+
+<div class="thank-you-overlay">
+    <div class="thank-you-window" (click)="$event.stopPropagation()">
+      <img src="/assets/images/thank-you-image.jpg" alt="Thank You Image">
+      <p class="message">Thank you for submitting the form!</p>
+      <button class="close-button" (click)="onClose()">OK</button>
+    </div>
+  </div>
+  

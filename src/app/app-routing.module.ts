@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { SelfEmpanlementComponent } from './dc/self-empanlement/self-empanlement.component';
+import { ThankYouComponent } from './dc/self-empanlement/thank-you/thank-you.component';
+
 
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule)
@@ -22,6 +24,10 @@ export const routes: Routes = [
     {
         path: 'selfempanelment',
         component: SelfEmpanlementComponent
+    },
+    {
+        path: 'thankyou',
+        component: ThankYouComponent
     }
 ];
 

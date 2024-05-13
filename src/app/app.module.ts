@@ -17,6 +17,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { SelfEmpanlementComponent } from './dc/self-empanlement/self-empanlement.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ToastrModule } from 'ngx-toastr';
+import { ThankYouComponent } from './dc/self-empanlement/thank-you/thank-you.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     FooterComponent,
     SelfEmpanlementComponent,
+    ThankYouComponent,
   ],
   imports: [
     BrowserModule,
