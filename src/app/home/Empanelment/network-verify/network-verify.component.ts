@@ -25,11 +25,11 @@ export class NetworkVerifyComponent {
     this.loadData();
   }
 
-  isPanVerify: boolean = false;
-  isAadharVerify: boolean = false;
-  isAccredationVerify: boolean = false;
-  isTDSVerify: boolean = false;    // Current_Bank_Statement_image
-  isRegistrationVerify :boolean =false;
+  isPanVerified: boolean = false;
+  isAadharVerified: boolean = false;
+  isAccreditationVerified: boolean = false;
+  isCurrentBankStatementVerified: boolean = false;    // Current_Bank_Statement_image
+  isEstablishmentCertificateVerified :boolean =false;
   panVerified: boolean = false;
   panVerification2: boolean = false;
   accreditationVerified: boolean = false;
@@ -39,11 +39,11 @@ export class NetworkVerifyComponent {
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
-      isPanVerify: [this.isPanVerify], 
-      isAadharVerify: [this.isAadharVerify,], 
-      isAccredationVerify: [this.isAccredationVerify], 
-      isTDSVerify: [this.isTDSVerify], 
-      isRegistrationVerify:[this.isRegistrationVerify],
+      isPanVerified: [this.isPanVerified], 
+      isAadharVerified: [this.isAadharVerified,], 
+      isAccreditationVerified: [this.isAccreditationVerified], 
+      isCurrentBankStatementVerified: [this.isCurrentBankStatementVerified], 
+      isEstablishmentCertificateVerified:[this.isEstablishmentCertificateVerified],
     });
   }
   
@@ -147,8 +147,8 @@ export class NetworkVerifyComponent {
     const url = '/selfemp/verification/'
     const getid = this.form.get('id')?.value || this.id
     const body = {"DCVerificationStatus": value, "id": getid,  "verificationRemark": this.remark,
-     "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
-     "isTDSVerify": this.isTDSVerify ,"isRegistrationVerify": this.isRegistrationVerify}
+     "isPanVerified":  this.isPanVerified, "isAadharVerified": this.isAadharVerified, "isAccreditationVerified": this.isAccreditationVerified,
+     "isCurrentBankStatementVerified": this.isCurrentBankStatementVerified ,"isEstablishmentCertificateVerified": this.isEstablishmentCertificateVerified}
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{

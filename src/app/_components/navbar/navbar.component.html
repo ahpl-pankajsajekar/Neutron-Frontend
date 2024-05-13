@@ -34,13 +34,13 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item" *ngIf="!isUserNotLoginTemp || isNetworkRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/non-empanelment"><i class="fa fa-plus nav-icon" aria-hidden="true"></i> DC Empanelment</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/non-empanelment" routerLinkActive="active"><i class="fa fa-plus nav-icon" aria-hidden="true"></i> DC Empanelment</a>
         </li>
         <li class="nav-item" *ngIf="isLegalRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/legal-verify"><i class="fa fa-check nav-icon" aria-hidden="true"></i> legal Verification</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/legal-verify" routerLinkActive="active"><i class="fa fa-check nav-icon" aria-hidden="true"></i> legal Verification</a>
         </li>
         <li class="nav-item" *ngIf="isNetworkRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/network-verify"><i class="fa fa-check nav-icon" aria-hidden="true"></i> Network Verification</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/network-verify" routerLinkActive="active"><i class="fa fa-check nav-icon" aria-hidden="true"></i> Network Verification</a>
         </li>
         <!-- <li class="nav-item" *ngIf="isLegalRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/dc-docusign"><i class="fa fa-upload nav-icon" aria-hidden="true"></i> Doc-sign</a>
