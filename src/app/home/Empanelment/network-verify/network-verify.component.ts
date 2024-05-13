@@ -191,6 +191,7 @@ export class NetworkVerifyComponent {
       this.showDetails = null; // Hide details if already open
     } else {
       this.showDetails = boxNumber; // Show details for the clicked box
+      this.selfemployementData = false  // as per tab change data become hide 
     }
   }
 

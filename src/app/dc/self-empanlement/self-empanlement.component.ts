@@ -38,6 +38,7 @@ export class SelfEmpanlementComponent {
       textField: "item_Standard_Description",
       // selectAllText: "Select All",
       // unSelectAllText: "UnSelect All",
+      enableCheckAll: false,
       itemsShowLimit: 0,
       allowSearchFilter: true,
       // limitSelection: 2,
@@ -185,6 +186,7 @@ export class SelfEmpanlementComponent {
   
     initForm() {
       this.formgroup = this._formBuilder.group({
+        isConfirmCheckbox: [Boolean, Validators.required],
         providerName: ['', Validators.required],
         providerType: ['', Validators.required],
         DC_Chain: ['', Validators.required],
@@ -276,6 +278,7 @@ export class SelfEmpanlementComponent {
         Registration_Number: [''],
         Ownership: [''],
         TDS: [''],
+        dateOnStampPaper: ['', [Validators.required]],
       },
       {
         validator : this.emailMatchValidator

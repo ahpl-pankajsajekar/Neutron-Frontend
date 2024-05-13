@@ -42,6 +42,7 @@
                 <th scope="col">DCID</th>
                 <th scope="col">Pincode</th>
                 <th scope="col">Network</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -72,6 +73,9 @@
                   <th scope="col">Pincode</th>
                   <th scope="col">Network</th>
                   <th scope="col">Date Time</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
@@ -85,7 +89,6 @@
                   <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='waiting'" (click)="sendDocuSign(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Proceed to DocuSign</button></td>
                   <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='sent'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button> <span *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='completed'">Completed</span></td>
                   <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='completed'" class="btn btn-sm" (click)="viewDocument(item?.id)"><i class="fa fa-download" aria-hidden="true"></i></button></td>
-                  <td><button  (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button></td>
                   <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td>
                 </tr>
                 <tr *ngIf="showAnalytics.verify.length == 0">
@@ -106,6 +109,7 @@
                 <th scope="col">DCID</th>
                 <th scope="col">Pincode</th>
                 <th scope="col">Network</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -210,7 +214,7 @@
           <div class="col-md-6 border p-3" *ngIf="selfemployementData.Authority_Letter_image">
               <p>Signing Authority Letter:</p>
               <a href="data:image/png;base64,{{  selfemployementData.Authority_Letter_image }}" target="_blank">
-              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Authority_Letter_image }}" alt="Registration Number Image" style="max-width: 250px;"></a>
+              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Authority_Letter_image }}" alt="Registration Number Image" ></a>
               <div><br>
                 <input type="radio" name="registrationVerified" [value]="'verify'" (change)="onVerificationChange('registration', $event)"/> Verified
                 <span style="margin-left: 10px;"></span>

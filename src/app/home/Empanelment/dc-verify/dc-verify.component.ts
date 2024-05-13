@@ -43,6 +43,7 @@ export class DcVerifyComponent {
       this.showDetails = null; // Hide details if already open
     } else {
       this.showDetails = boxNumber; // Show details for the clicked box
+      this.selfemployementData = false  // as per tab change data become hide 
     }
   }
 
@@ -199,10 +200,8 @@ export class DcVerifyComponent {
     this.commonService.getMethod(url).subscribe(
       (res: any) => {
         console.log(res);
-        // Iterate over the records
-        this.providerNames = res.selectDropdown
+        this.providerNames = res.selectDropdown   // not used
         this.showAnalytics = res.networkAnalyticsData
-        console.log(this.providerNames);
       },
       (error: any) => {
         console.error(error);
@@ -210,7 +209,7 @@ export class DcVerifyComponent {
     );
   }
 
-
+  // check status online in docusign
   checkStatus(id:string){
     const url = '/docusignAgreement/envelope/checkstatus/'
     const params = {'id': id}
@@ -224,6 +223,7 @@ export class DcVerifyComponent {
           closeButton: true,
           timeOut: 5000,
         });
+        this.loadData()
       },
       (error:any)=>{
         console.log(error);
@@ -231,6 +231,7 @@ export class DcVerifyComponent {
     )
   }
 
+  // send for docusign
   sendDocuSign(id:string){
     const url = '/docusignAgreement/sent/'
     const body = {'id': id}
@@ -251,6 +252,7 @@ export class DcVerifyComponent {
     )
   }
 
+  // download and save document
   viewDocument(id:string){
     const url = '/docusignAgreement/envelope/document/saveAndview/'
     const params = {'id': id}

@@ -9,7 +9,10 @@
             <div class="box-card">
                 <div class="box-card-body">
                     <form [formGroup]="formgroup">
-                        <div><input type="checkbox"><label class="mx-2"> I have review the document and ready to empanel<code>*</code></label></div>
+                        <div><input type="checkbox" formControlName="isConfirmCheckbox" required><label class="mx-2"> I have review the document and ready to empanel<code>*</code></label></div>
+                        <div *ngIf="formgroup.controls['isConfirmCheckbox'].invalid && (formgroup.controls['isConfirmCheckbox'].touched)" class="errormessage">
+                            <div *ngIf="f.isConfirmCheckbox.errors?.required">Confirm the checkbox.</div>
+                        </div>
                         <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
                             <mat-step>
                             <!-- <mat-step [stepControl]="firstFormGroup">
@@ -766,7 +769,10 @@
                                             <div class="input-group-box">
                                                 <div>
                                                     <label>On Stamp Paper Date:<code>*</code></label>
-                                                    <input type="date">
+                                                    <input type="date" formControlName="dateOnStampPaper" required>
+                                                    <div *ngIf="formgroup.controls['dateOnStampPaper'].invalid && (formgroup.controls['dateOnStampPaper'].touched)" class="errormessage">
+                                                        <div *ngIf="f.dateOnStampPaper.errors?.required">Provider Name is required.</div>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </div>
