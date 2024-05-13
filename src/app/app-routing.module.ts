@@ -26,7 +26,7 @@ export const routes: Routes = [
         component: SelfEmpanlementComponent
     },
     {
-        path: 'thankyou',
+        path: 'selfempanelment/thankyou',
         component: ThankYouComponent
     }
 ];

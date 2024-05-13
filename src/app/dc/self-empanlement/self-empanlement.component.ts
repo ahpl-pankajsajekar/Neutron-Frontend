@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
 import { HttpClient } from '@angular/common/http';
 import { DC_TESTS_DATA } from './dc_tests_list';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-self-empanlement',
@@ -21,7 +22,9 @@ export class SelfEmpanlementComponent {
       private commonService: CommonService,
       private activatedRoute: ActivatedRoute,
       private fb: FormBuilder, 
-      private http: HttpClient
+      private http: HttpClient,
+      private router: Router,
+      private toastrService: ToastrService,
     ) {
       this.ticketId = this.activatedRoute.snapshot.queryParamMap.get('id');
     }
@@ -33,8 +36,8 @@ export class SelfEmpanlementComponent {
       singleSelection: false,
       idField: "item_Standard_Code",
       textField: "item_Standard_Description",
-      selectAllText: "Select All",
-      unSelectAllText: "UnSelect All",
+      // selectAllText: "Select All",
+      // unSelectAllText: "UnSelect All",
       itemsShowLimit: 0,
       allowSearchFilter: true,
       // limitSelection: 2,
@@ -68,7 +71,11 @@ export class SelfEmpanlementComponent {
           branchNameInput.value = data.BRANCH;
         }, error => {
           console.error('Error:', error);
-          alert("Please enter valid IFSC Code.")
+          // alert("Please enter valid IFSC Code.")
+          this.toastrService.info('Please enter valid IFSC Code.', '', {
+            closeButton: true,
+            timeOut: 5000,
+          });
         });
     }
   
@@ -97,17 +104,12 @@ export class SelfEmpanlementComponent {
     ];
   
     ACCREDITATIONType = [
+      { value: 'None', viewValue: 'None' },
       { value: 'ISO', viewValue: 'ISO' },
       { value: 'NABH', viewValue: 'NABH' },
       { value: 'NABL', viewValue: 'NABL' },
-      { value: 'None', viewValue: 'None' },
       { value: 'Other', viewValue: 'Other' },
     ];
-  
-    // StationType = [
-    //   { value: 'Instation', viewValue: 'Instation' },
-    //   { value: 'Outstation', viewValue: 'Outstation' },
-    // ];
   
     ACType = [
       { value: 'Saving', viewValue: 'Saving' },
@@ -121,18 +123,10 @@ export class SelfEmpanlementComponent {
       { value: 'Tyre4', viewValue: 'Tyre4' },
     ];
   
-    // GradeType = [
-    //   { value: 'A+', viewValue: 'A+' },
-    //   { value: 'A', viewValue: 'A' },
-    //   { value: 'B', viewValue: 'B' },
-    //   { value: 'C', viewValue: 'C' },
-    //   { value: 'D', viewValue: 'D' },
-    // ];
-  
     states = [
       { value: 'Assam', viewValue: 'Assam' },
       { value: 'Bihar', viewValue: 'Bihar' },
-      { value: 'Panjab', viewValue: 'Panjab' },
+      { value: 'Punjab', viewValue: 'Punjab' },
       { value: 'Maharastra', viewValue: 'Maharastra' },
       { value: 'Delhi', viewValue: 'Delhi' },
       { value: 'Gujrat', viewValue: 'Gujrat' },
@@ -147,11 +141,10 @@ export class SelfEmpanlementComponent {
       { value: 'Kerala', viewValue: 'Kerala' },
     ];
 
-    
     stateCitiesMap: { [key: string]: string[] } = {
       'Assam': ["Abhayapuri", "Amguri", "Badarpur", "Baksa", "Barpathār", "Barpeta", "Barpeta Road", "Bāsugaon", "Bihpuriāgaon", "Bijni", "Bilāsipāra", "Bokajān", "Bokākhāt", "Bongaigaon", "Cāchār", "Chābua", "Chāpar", "Chirang", "Darrang", "Dergaon", "Dhekiajuli", "Dhemaji", "Dhemāji", "Dhing", "Dhubri", "Dhuburi", "Dibrugarh", "Digboi", "Dima Hasao District", "Diphu", "Dispur", "Duliāgaon", "Dum Duma", "Gauripur", "Goālpāra", "Gohpur", "Golaghat", "Golāghāt", "Golakganj", "Goshaingaon", "Guwahati", "Hāflong", "Hailakandi", "Hailākāndi", "Hājo", "Hojāi", "Howli", "Jogīghopa", "Jorhat", "Jorhāt", "Kāmrūp", "Kamrup Metropolitan", "Kārbi Ānglong", "Karimganj", "Karīmganj", "Khārupatia", "Kokrajhar", "Lakhimpur", "Lakhipur", "Lāla", "Lumding Railway Colony", "Mahur", "Maibong", "Mākum", "Mangaldai", "Mariāni", "Morānha", "Morigaon", "Nagaon", "Nahorkatiya", "Nalbari", "Nāmrup", "Nāzirā", "North Guwāhāti", "North Lakhimpur", "Numāligarh", "Palāsbāri", "Rahā", "Rangāpāra", "Rangia", "Sapatgrām", "Sarupathar", "Sibsāgar", "Silapathar", "Silchar", "Soalkuchi", "Sonāri", "Sonitpur", "Sorbhog", "Tezpur", "Tinsukia", "Titābar", "Udalguri"],
       'Bihar': ["Amarpur", "Araria", "Arāria", "Arrah", "Arwal", "Asarganj", "Aurangābād", "Bagaha", "Bahādurganj", "Bairāgnia", "Baisi", "Bakhtiyārpur", "Bangaon", "Bānka", "Banka", "Banmankhi", "Bar Bigha", "Barauli", "Bārh", "Barhiya", "Bariārpur", "Bāruni", "Begusarai", "Begusarāi", "Belsand", "Bettiah", "Bhabhua", "Bhāgalpur", "Bhagirathpur", "Bhawanipur", "Bhojpur", "Bihār Sharīf", "Bihārīganj", "Bikramganj", "Bīrpur", "Buddh Gaya", "Buxar", "Chākia", "Chāpra", "Chhātāpur", "Colgong", "Dalsingh Sarai", "Darbhanga", "Daudnagar", "Dehri", "Dhāka", "Dighwāra", "Dinapore", "Dumra", "Dumraon", "Fatwa", "Forbesganj", "Gaya", "Gayā", "Ghoga", "Gopālganj", "Hājīpur", "Hilsa", "Hisuā", "Islāmpur", "Jagdīspur", "Jahānābād", "Jamālpur", "Jamui", "Jamūī", "Jaynagar", "Jehanabad", "Jhā-Jhā", "Jhanjhārpur", "Jogbani", "Kaimur District", "Kasba", "Katihar", "Khagaria", "Khagaul", "Kharagpur", "Khusropur", "Kishanganj", "Koāth", "Koelwār", "Lakhisarai", "Lālganj", "Luckeesarai", "Madhepura", "Madhipura", "Madhubani", "Mahārājgani", "Mairwa", "Maner", "Manihāri", "Marhaura", "Masaurhi Buzurg", "Mohiuddinnagar", "Mokameh", "Monghyr", "Mothīhāri", "Munger", "Murlīganj", "Muzaffarpur", "Nabīnagar", "Nālanda", "Nāsriganj", "Naugachhia", "Nawāda", "Nirmāli", "Pashchim Champāran", "Patna", "Piro", "Pupri", "Pūrba Champāran", "Purnia", "Rafiganj", "Raghunāthpur", "Rājgīr", "Rāmnagar", "Raxaul", "Revelganj", "Rohtās", "Rusera", "Sagauli", "Saharsa", "Samastīpur", "Samāstipur", "Sāran", "Shahbazpur", "Shāhpur", "Sheikhpura", "Sheohar", "Sherghāti", "Silao", "Sītāmarhi", "Siwān", "Supaul", "Teghra", "Tekāri", "Thākurganj", "Vaishāli", "Waris Aliganj"],
-      'Panjab': ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda", "Hoshiarpur", "Mohali", "Batala", "Pathankot", "Moga"],
+      'Punjab': ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda", "Hoshiarpur", "Mohali", "Batala", "Pathankot", "Moga"],
       'Maharastra': ["Mumbai", "Pune", "Nagpur", "Thane", "Nashik", "Aurangabad", "Solapur", "Bhiwandi", "Amravati", "Nanded", "Kolhapur", "Sangli", "Jalgaon", "Akola", "Latur", "Dhule", "Ahmednagar", "Ichalkaranji", "Chandrapur", "Parbhani"],
       'Delhi': ["Alipur", "Bawana", "Central Delhi", "Delhi", "Deoli", "East Delhi", "Karol Bāgh", "Najafgarh", "Nāngloi Jāt", "Narela", "New Delhi", "North Delhi", "North East Delhi", "North West Delhi", "Pitampura", "Rohini", "South Delhi", "South West Delhi", "West Delhi"],
       'Gujrat': ["Aahwa", "Adalaj", "Adityana", "Advana", "Ahmedabad", "Ahmedabad Cantonment", "Alang", "Ambaji", "Ambaliyasan", "Amreli", "Anand", "Andada", "Anjar", "Anklav", "Anklesvar", "Antaliya", "Arambhada", "Asarma", "Atul", "Babra", "Bagasara", "Bagdana", "Bajva", "Balasinor", "Banaskantha", "Bansda", "Bardoli", "Barwala", "Bayad", "Bechar", "Bedi", "Bhachau", "Bhanvad", "Bharuch", "Bhavnagar", "Bhayavadar", "Bhestan", "Bhuj", "Bopal", "Boria", "Boriavi", "Borsad", "Botad", "Buhari", "Chaklasi", "Chala", "Chalala", "Chalthan", "Chanasma", "Chandkheda", "Chandlodiya", "Chhala", "Chhapra", "Chhota Udaipur", "Chikhli", "Chiloda", "Chorvad", "Chotila", "Dabhoi", "Dahod", "Dakor", "Damnagar", "Dasada", "Datavav", "Dediapada", "Deesa", "Delvada", "Devgadh Baria", "Devsar", "Dhandhuka", "Dhanera", "Dhangadhra", "Dharampur", "Dhari", "Dholka", "Dhrangadhra", "Dhrol", "Digvijaygram", "Dohad", "Dumiyani", "Dwarka", "Fatepura", "Fertilizer Township", "Freelandgunj", "Gadhada", "Gandevi", "Gandhidham", "Gandhinagar", "Gariadhar", "Ghogha", "Godhra", "Gondal", "Gota", "Govardhan", "Gujarat Refinery", "Halol", "Halvad", "Hansot", "Harij", "Himatnagar", "Ichchhapor", "Idar", "Jafrabad", "Jalalpore", "Jam Jodhpur", "Jamnagar", "Jasdan", "Jawaharnagar", "Jetalsar", "Jetpur", "Jhalod", "Jhulasan", "Jodia", "Junagadh", "Kadi", "Kadodara", "Kalavad", "Kali", "Kalol", "Kandla", "Kanjari", "Kanjari Boriawali", "Kapadvanj", "Karachiya", "Karamsad", "Karchelia", "Keshod", "Khambhaliya", "Khambhat", "Kharaghoda", "Khed Brahma", "Kheda", "Khodiyar", "Khokhra", "Koteshwar", "Kukarwada", "Kundla", "Kutch", "Kutchmandvi", "Kuvarshad", "Lakhtar", "Lalpur", "Lathi", "Limbdi", "Limla", "Lunavada", "Madhapar", "Mahesana", "Mahuva", "Mahuvar", "Makarba", "Makarpura", "Maktampur", "Maliya", "Maliya Miyana", "Malpur", "Manavadar", "Mandal", "Mandvi", "Mangrol", "Mansa", "Meghraj", "Mehmedabad", "Mehsana", "Mendarda", "Mithapur", "Modasa", "Morvi", "Mundra", "Nadiad", "Nagda", "Nagod", "Nakhatrana", "Nandej", "Nandesari", "Nandesari INA", "Nanodara", "Nanpura", "Nargol", "Nasvadi", "Navagam Ghed", "Navsari", "Ode", "Okha", "Padra", "Palanpur", "Palej", "Palitana", "Panch Mahals", "Panchmahal", "Pardi", "Parnera", "Parvat", "Patan", "Patdi", "Petlad", "Petrochemical Complex", "Porbandar", "Prantij", "Radhanpur", "Raiya", "Rajkot", "Rajpipla", "Rajula", "Ranavav", "Ranoli", "Rapar", "Sachin", "Sahij", "Salaya", "Sanand", "Sankheda", "Santrampur", "Saribujrang", "Sarigam INA", "Sayan", "Seriya", "Shahpur", "Shapar", "Shivrajpur", "Siddhapur", "Sidhpur", "Sihor", "Sikka", "Sindhnur", "Sinor", "Sojitra", "Songadh", "Surat", "Surendranagar", "Talaja", "Talod", "Tankara", "Tarsali", "Thaltej", "Thangadh", "Tharad", "Thasra", "Tirora", "Tragad", "Ukai", "Umbergaon", "Umreth", "Un", "Una", "Unjha", "Upleta", "V.U. Nagar", "Vadgam", "Vadla", "Vadnagar", "Vadodara", "Vaghodia INA", "Vagra", "Vallabh Vidyanagar", "Valsad", "Vanthali", "Vapi", "Vartej", "Vastral", "Vataman", "Vejalpur", "Veraval", "Vijalpor", "Vijapur", "Viramgam", "Visavadar", "Visnagar", "Vithal Udyognagar", "Vyara", "Wadhwan", "Waghai", "Wankaner", "Zalod"],
@@ -213,8 +206,10 @@ export class SelfEmpanlementComponent {
         emailId: ['', [Validators.required, Validators.email ] ],
         confirmEmailId: ['', [Validators.required, Validators.email]],
         emailId2: ['', [ Validators.email ]],
-        Cantact_person1: ['', ],
-        Cantact_person2: ['',],
+        contact_person1: ['',],
+        contact_person2: ['',],
+        contact_number1: ['',],
+        contact_number2: ['',],
         fax: ['',],
 
         accountNumber: ['',],
@@ -390,8 +385,10 @@ export class SelfEmpanlementComponent {
       // this.formData.append('zone', this.formgroup.value.zone);
       this.formData.append('emailId', this.formgroup.value.emailId);
       this.formData.append('emailId2', this.formgroup.value.emailId2);
-      this.formData.append('Cantact_person1',this.formgroup.value.Cantact_person1);
-      this.formData.append('Cantact_person2',this.formgroup.value.Cantact_person2);
+      this.formData.append('contact_person1',this.formgroup.value.contact_person1);
+      this.formData.append('contact_person2',this.formgroup.value.contact_person2);
+      this.formData.append('contact_number1',this.formgroup.value.contact_number1);
+      this.formData.append('contact_number2',this.formgroup.value.contact_number2);
       this.formData.append('fax', this.formgroup.value.fax);
       this.formData.append('accountNumber', this.formgroup.value.accountNumber);
       this.formData.append('accountName', this.formgroup.value.accountName);
@@ -462,10 +459,20 @@ export class SelfEmpanlementComponent {
       this.commonService.postMethod(url, this.formData).subscribe(
         (res: any) => {
           console.log('res', res);
-          alert("Form Submitted Successfully")
+          // alert("Form Submitted Successfully");
+          this.toastrService.success('Form Submitted Successfully', 'Successful', {
+            closeButton: true,
+            timeOut: 5000,
+          });
+          this.router.navigateByUrl("/selfempanelment/thankyou")
         },
         (err: any) => {
-          console.warn(err);
+          const error = err['error'] 
+          console.log(error);
+          this.toastrService.error(error, 'Error', {
+            closeButton: true,
+            timeOut: 5000,
+          });
           // alert('All required values should be provided!')
         }
       );
@@ -474,8 +481,8 @@ export class SelfEmpanlementComponent {
 
     cities: string[] = [];
 
-  onStateChange(event: Event) {
-    const selectedState = (event.target as HTMLSelectElement).value;
-    this.cities = this.stateCitiesMap[selectedState] || [];
-  }
+    onStateChange(event: Event) {
+      const selectedState = (event.target as HTMLSelectElement).value;
+      this.cities = this.stateCitiesMap[selectedState] || [];
+    }
   }

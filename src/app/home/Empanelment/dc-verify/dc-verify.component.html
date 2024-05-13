@@ -85,6 +85,7 @@
                   <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='waiting'" (click)="sendDocuSign(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Proceed to DocuSign</button></td>
                   <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='sent'" (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button> <span *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='completed'">Completed</span></td>
                   <td><button *ngIf="item?.ds_envelope_status[item?.ds_envelope_status.length - 1]=='completed'" class="btn btn-sm" (click)="viewDocument(item?.id)"><i class="fa fa-download" aria-hidden="true"></i></button></td>
+                  <td><button  (click)="checkStatus(item?.id)" type="button" class="btn btn-sm btn-outline-dark">Check Status</button></td>
                   <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td>
                 </tr>
                 <tr *ngIf="showAnalytics.verify.length == 0">
@@ -222,10 +223,10 @@
 <textarea id="remark" rows="3" name="remark" placeholder="Enter your remark here..." [(ngModel)]="remark"></textarea>
 </div>  
 
-<div class="button-container">
+<div class="button-container d-flex justify-content-center">
   <button class="verify-button" *ngIf="areAllCheckboxesVerified()" (click)="verification('verify')" >Submit</button>    
   <span style="margin-left: 10px;"></span>
-  <button class="partial-verify-button"  *ngIf="!areAllCheckboxesVerified()" (click)="verification('partialVerify')" >Submit</button>
+  <button class="verify-button"  *ngIf="!areAllCheckboxesVerified()" (click)="verification('partialVerify')" >Submit</button>
   </div>
 </div>
       </div>

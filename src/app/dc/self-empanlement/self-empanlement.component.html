@@ -9,27 +9,8 @@
             <div class="box-card">
                 <div class="box-card-body">
                     <form [formGroup]="formgroup">
+                        <div><input type="checkbox"><label class="mx-2"> I have review the document and ready to empanel<code>*</code></label></div>
                         <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-                            <!-- <mat-step>
-                                    <ng-template matStepLabel>Empanelment Duration:</ng-template>
-                                  <div class="row">
-                                      <div class="col-md-4">
-                                            <div class="input-group-box">
-                                                <div><label>Start Date<code>*</code></label></div>
-                                                <div><input type="date" formControlName="Start_Date" required></div>
-                                            </div>
-                                          </div>
-                                      <div class="col-md-4">
-                                        <div class="input-group-box">
-                                            <div><label>End Date<code>*</code></label></div>
-                                            <div><input type="date" formControlName="End_Date" required></div>
-                                          </div>
-                                      </div>
-                                      <div class="mt-3">
-                                        <button mat-button matStepperNext type="submit">Next</button>
-                                        </div>  
-                                    </div>
-                            </mat-step> -->
                             <mat-step>
                             <!-- <mat-step [stepControl]="firstFormGroup">
                               <form [formGroup]="firstFormGroup" #formone="ngForm"> -->
@@ -353,28 +334,39 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NAME 1 <code>*</code></label></div>
-                                                <div><input type="text" formControlName="Cantact_person1" required></div>
-                                                <div *ngIf="formgroup.controls['Cantact_person1'].invalid && (formgroup.controls['Cantact_person1'].touched)" class="errormessage">
-                                                  <div *ngIf="f.Cantact_person1.errors?.required">Name is required.</div>
+                                                <div><input type="text" formControlName="contact_person1" required></div>
+                                                <div *ngIf="formgroup.controls['contact_person1'].invalid && (formgroup.controls['contact_person1'].touched)" class="errormessage">
+                                                  <div *ngIf="f.contact_person1.errors?.required">Name is required.</div>
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CONTACT PERSON NUMBER 1 <code>*</code></label></div>
+                                                <div><input type="text" formControlName="contact_number1" required></div>
+                                                <div *ngIf="formgroup.controls['contact_number1'].invalid && (formgroup.controls['contact_number1'].touched)" class="errormessage">
+                                                  <div *ngIf="f.contact_number1.errors?.required">Contact Number is required.</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NAME 2 </label></div>
-                                                <div><input type="text" formControlName="Cantact_person2" required></div>
+                                                <div><input type="text" formControlName="contact_person2" required></div>
                                             </div>
                                         </div>
-
-                                        
                                         <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div><label>CONTACT PERSON NUMBER 2 </label></div>
+                                                <div><input type="text" formControlName="contact_number2" required></div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>FAX</label></div>
                                                 <div><input type="text" formControlName="fax" required></div>
                                             </div>
-                                        </div>
-
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="mt-3">
@@ -760,11 +752,23 @@
                                                 <input type="file" id="Authority_Letter" (change)="onSigningAuthorityLetterImageSelected($event)" formControlName="Ownership" accept="image/png, image/jpeg"/>
                                               </div>
                                         </div>
-                                        <div class="input-group-box">
-                                            <div>
-                                                <label> Stamp Paper :<code>*</code></label>
-                                                <input type="file" (change)="onStampPaperImageSelected($event)"  accept="image/png, image/jpeg"/>
-                                              </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div>
+                                                    <label> Stamp Paper :<code>*</code></label>
+                                                    <input type="file" (change)="onStampPaperImageSelected($event)"  accept="image/png, image/jpeg"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group-box">
+                                                <div>
+                                                    <label>On Stamp Paper Date:<code>*</code></label>
+                                                    <input type="date">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -773,9 +777,7 @@
                                     <button mat-button (click)="stepper.reset()">Reset</button>
                                     <button mat-button (click)="onSubmit()">Submit</button>
                                 </div>
-                            </mat-step>
-                            
-                              
+                            </mat-step>   
                       </mat-stepper>
                     </form>
                 </div>
