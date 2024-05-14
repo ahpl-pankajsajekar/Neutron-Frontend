@@ -1,4 +1,4 @@
-import { Component, HostListener  } from '@angular/core';
+import { Component, HostListener , OnInit } from '@angular/core';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 
@@ -7,7 +7,7 @@ import { AccountService } from 'src/app/_services/account.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   title = 'Project Neutron'
 
   // after screen scroll top navbar hide
@@ -27,10 +27,20 @@ export class NavbarComponent {
   constructor(private accountService: AccountService){
     this.accountService.user.subscribe(x => this.user = x)
     this.getRole()
+    this.emailUser()
+  }
+
+  ngOnInit(): void {
   }
 
   logout(){
     this.accountService.logout()
+  }
+
+  emailUserName:any;
+  emailUser(){
+    const user = this.accountService.userValue
+    this.emailUserName = user?.email?.split("@")[0]
   }
 
   getRole(){

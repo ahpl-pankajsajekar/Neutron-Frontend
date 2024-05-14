@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
 import { GeocodingService } from 'src/app/_services/geocoding.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
  
 // import { google } from '@types/googlemaps'
  
@@ -17,11 +19,13 @@ export class DcDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private geocodingService: GeocodingService,
     private commonService: CommonService,
+    private sanitizer: DomSanitizer
   ) { }
  
   selectedItem: any;
   geocodingResponse: any;
   map!: google.maps.Map;
+  mapUrl: any;
 
   
   DCdetailsData : any;
@@ -29,7 +33,7 @@ export class DcDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.selectedItem = history.state.data;
-      console.log(this.selectedItem);
+      console.log("test", this.selectedItem);
       // Extract address from selectedItem and perform geocoding
       if (this.selectedItem && this.selectedItem.Address) {
         const address = this.selectedItem.Address;
@@ -63,8 +67,12 @@ export class DcDetailsComponent implements OnInit {
         // Process the geocoding response here
         if (response && response.results && response.results[0]) {
           const location = response.results[0].geometry.location;
-          console.log("location:", location)
           this.locationCoordinates = location
+          const url =  `https://www.google.com/maps/embed/v1/place?key=AIzaSyCg56X2_WcULtBjPi6A5yyqe5u-odqeCCE&q=${location.lat},${location.lng}&zoom=15`;
+          // const url =  `https://www.google.com/maps/embed/v1/view?key=AIzaSyCg56X2_WcULtBjPi6A5yyqe5u-odqeCCE&center=${location.lat},${location.lng}&zoom=15`;
+          this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+          console.log('mapUrl:', this.mapUrl);
+          // console.log('mapUrl:', this.mapUrl);
           // this.initMap(location);
         }
       },
@@ -98,6 +106,19 @@ export class DcDetailsComponent implements OnInit {
   //     map: this.map,
   //     title: this.selectedItem.name // Assuming the name of the location is stored in selectedItem
   //   });
+  // }
+
+  // selectedItem: any; // Assuming selectedItem contains the details of the selected location
+
+  // generateMapUrl(selectedItem: any): string {
+  //   // Construct the Google Maps URL with the provided details
+  //   console.log("selectedItem", selectedItem)
+  //   const address = `${selectedItem.Address}, ${selectedItem.State}`;
+
+  // // Encode the address for URL
+  //  const encodedAddress = encodeURIComponent(address);
+  //   const mapUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyCg56X2_WcULtBjPi6A5yyqe5u-odqeCCE&q=${encodedAddress}`;
+  //   return mapUrl;
   // }
  
 }

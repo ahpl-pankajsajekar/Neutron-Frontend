@@ -12,7 +12,7 @@
           <a class="nav-link" aria-current="page" routerLink="account/register">Mumbai</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="account/login"><i class="fa fa-user" aria-hidden="true"></i> <span class="ms-1" (click)="logout()">Logout</span></a>
+          <a class="nav-link username" (click)="logout()" aria-current="page" routerLink="account/login"><i class="fa fa-user" aria-hidden="true"></i> {{emailUserName}} <span class="ms-1" >Logout</span></a>
         </li>
       </ul>
     </div>

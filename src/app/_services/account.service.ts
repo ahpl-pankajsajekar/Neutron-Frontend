@@ -26,6 +26,10 @@ export class AccountService {
     return this.userSubject.value;
   }
 
+  public get emailValue() {
+    return this.userSubject.value?.email;
+  }
+
   login(email: string, password: string) {
     return this.http.post<User>(`${environment.apiUrl}/api/account/login/`, { email, password })
         .pipe(map((res:any) => {
