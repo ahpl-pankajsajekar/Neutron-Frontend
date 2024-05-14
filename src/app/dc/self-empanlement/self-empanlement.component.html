@@ -9,7 +9,7 @@
             <div class="box-card">
                 <div class="box-card-body">
                     <form [formGroup]="formgroup">
-                        <div><input type="checkbox" formControlName="isConfirmCheckbox" required><label class="mx-2"> I have review the document and ready to empanel<code>*</code></label></div>
+                        <div><input type="checkbox" formControlName="isConfirmCheckbox" required><label class="mx-2"> I have read draft document and agree to the terms.<code>*</code></label></div>
                         <div *ngIf="formgroup.controls['isConfirmCheckbox'].invalid && (formgroup.controls['isConfirmCheckbox'].touched)" class="errormessage">
                             <div *ngIf="f.isConfirmCheckbox.errors?.required">Confirm the checkbox.</div>
                         </div>

@@ -13,19 +13,19 @@
             <div class="tile animated" [class.active]="showDetails === 1" (click)="toggleDetails(1)">
               <a>
                 <h2>Pending For Verification</h2>
-                <p class="count">{{showAnalytics.pending.length || 0}}</p>
+                <p class="count">{{showAnalytics?.pending.length || 0}}</p>
               </a>
             </div>
             <div class="tile animated" [class.active]="showDetails === 2" (click)="toggleDetails(2)">
               <a>
                 <h2>Verified</h2>
-                <p class="count">{{showAnalytics.verify.length || 0}}</p>
+                <p class="count">{{showAnalytics?.verify.length || 0}}</p>
               </a>
             </div>
             <div class="tile animated" [class.active]="showDetails === 3" (click)="toggleDetails(3)">
               <a>
                 <h2>Partial Verified</h2>
-                <p class="count">{{showAnalytics.partialVerify.length || 0}}</p>
+                <p class="count">{{showAnalytics?.partialVerify.length || 0}}</p>
               </a>
             </div>
           </div>
