@@ -185,8 +185,8 @@ export class SelfEmpanlementComponent {
     }
   
     initForm() {
-      this.formgroup = this._formBuilder.group({
-        isConfirmCheckbox: [Boolean, Validators.required],
+      this.formGroup = this._formBuilder.group({
+        isConfirmCheckbox: [false, Validators.required],
         providerName: ['', Validators.required],
         providerType: ['', Validators.required],
         DC_Chain: ['', Validators.required],
@@ -195,7 +195,7 @@ export class SelfEmpanlementComponent {
         Owner_name: ['', Validators.required],
         PanCard_number: ['', Validators.required],
         nameOnPanCard: ['', Validators.required],
-        Adhar_number: ['', [Validators.required, Validators.max, Validators.min] ],
+        Adhar_number: ['', [Validators.required] ],
         Adhar_name: ['', Validators.required],
         Owner_name_asper_document: ['', ],
         Center_name: ['', ],
@@ -203,21 +203,21 @@ export class SelfEmpanlementComponent {
         address1: ['',],
         address2: ['', ],
         state: ['', ],
-        city: ['',],
-        pincode: ['',],
+        city: ['', ],
+        pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
         emailId: ['', [Validators.required, Validators.email ] ],
         confirmEmailId: ['', [Validators.required, Validators.email]],
-        emailId2: ['', [ Validators.email ]],
+        emailId2: ['', [Validators.email]],
         contact_person1: ['',],
         contact_person2: ['',],
         contact_number1: ['',],
         contact_number2: ['',],
-        fax: ['',],
+        // fax: ['',],
 
-        accountNumber: ['',],
-        accountName: ['',],
-        bankName: ['',],
-        ifscCode: ['',],
+        accountNumber: ['', [Validators.required]],
+        accountName: ['', [Validators.required]],
+        ifscCode: ['', [Validators.required]],
+        bankName: ['', ],
         branchName: ['',],
         accountType: ['',],
 
@@ -239,30 +239,30 @@ export class SelfEmpanlementComponent {
 
         availableTests: ['',],
 
-        ECG_FACILITY: ['',],
-        USG: ['',],
-        TREAD_MILL_TEST: ['',],
-        TMT_WT_CAPACITY: ['',],
-        ECHOCARDIOGRAPHY: ['',],
-        FUNDOSCOPY_TEST: ['',],
-        DMLT_LABORATORY_TECHNICIAN: ['',],
-        BASIC_EYE_TEST: ['',],
-        X_RAY: ['',],
-        ELISA_HIV: ['',],
-        PSA: ['',],
-        PAP_SMEAR: ['',],
-        MAMMOGRAM: ['',],
-        WESTERN_BLOT: ['',],
-        PULMONARY_FUNCTION_TEST: ['',],
-        URINE_NICOTINE_QUALITITATIVE: ['',],
-        HBA1C: ['',],
-        HBEAG: ['',],
-        AUDIOMETRY: ['',],
-        GYNAECOLOGIST: ['',],
-        MER: ['',],
-        PATHOLOGY: ['',],
-        FMR: ['',],
-        STOOL_ROUTINE: ['',],
+        // ECG_FACILITY: ['',],
+        // USG: ['',],
+        // TREAD_MILL_TEST: ['',],
+        // TMT_WT_CAPACITY: ['',],
+        // ECHOCARDIOGRAPHY: ['',],
+        // FUNDOSCOPY_TEST: ['',],
+        // DMLT_LABORATORY_TECHNICIAN: ['',],
+        // BASIC_EYE_TEST: ['',],
+        // X_RAY: ['',],
+        // ELISA_HIV: ['',],
+        // PSA: ['',],
+        // PAP_SMEAR: ['',],
+        // MAMMOGRAM: ['',],
+        // WESTERN_BLOT: ['',],
+        // PULMONARY_FUNCTION_TEST: ['',],
+        // URINE_NICOTINE_QUALITITATIVE: ['',],
+        // HBA1C: ['',],
+        // HBEAG: ['',],
+        // AUDIOMETRY: ['',],
+        // GYNAECOLOGIST: ['',],
+        // MER: ['',],
+        // PATHOLOGY: ['',],
+        // FMR: ['',],
+        // STOOL_ROUTINE: ['',],
 
         CARDIOLOGY_OUTSOURCED_CENTRE: ['',],
         PATHOLOGY_OUTSOURCED_CENTR: ['',],
@@ -286,7 +286,7 @@ export class SelfEmpanlementComponent {
     );
     }
     
-    get f() { return this.formgroup.controls; }
+    get f() { return this.formGroup.controls; }
 
     emailMatchValidator(control: AbstractControl) {
       const email = control.get('emailId')?.value;
@@ -354,110 +354,121 @@ export class SelfEmpanlementComponent {
     
     selectedCompanyFirmType: string | undefined;
   
-    formgroup: any;
+    formGroup: any;
     onSubmit() {
-      // if (this.formgroup.invalid) {
-      //   alert('All required values should be provided!')
-      //   return;
-      // }
+      if (this.formGroup.invalid) {
+          this.toastrService.info('All required values should be Provided!', '', {
+            closeButton: true,
+            timeOut: 7000,
+          });
+          const invalidControls = this.findInvalidControls(this.formGroup);
+          const invalidFields = invalidControls.map(control => control.name);
+          this.toastrService.info(`Fields ${invalidFields.join(', ')} should be provided!`, '', {
+            closeButton: true,
+            timeOut: 7000,
+          });
+          return;
+      }
+      else{
       this.formData.append('TicketID', this.ticketId);
       this.formData.append('DCID', this.ticketId);
-      this.formData.append('providerName', this.formgroup.value.providerName);
-      this.formData.append('providerType', this.formgroup.value.providerType);
-      this.formData.append('DC_Chain', this.formgroup.value.DC_Chain);
-      this.formData.append('Regi_number', this.formgroup.value.Regi_number);
-      this.formData.append('Inception', this.formgroup.value.Inception);
-      this.formData.append('Owner_name', this.formgroup.value.Owner_name);
-      this.formData.append('PanCard_number', this.formgroup.value.PanCard_number);
-      this.formData.append('nameOnPanCard', this.formgroup.value.nameOnPanCard);
-      this.formData.append('Adhar_number', this.formgroup.value.Adhar_number);
-      this.formData.append('Adhar_name', this.formgroup.value.Adhar_name);
-      this.formData.append('Owner_name_asper_document', this.formgroup.value.Owner_name_asper_document);
-      this.formData.append('Center_name', this.formgroup.value.Center_name);
-      // this.formData.append('Grade', this.formgroup.value.Grade);
-      // this.formData.append('Tier', this.formgroup.value.Tier);
-      this.formData.append('Accredation', this.formgroup.value.Accredation);
-      // this.formData.append('Station', this.formgroup.value.Station);
-      this.formData.append('address1', this.formgroup.value.address1);
-      this.formData.append('address2', this.formgroup.value.address2);
-      // this.formData.append('ahplLocation', this.formgroup.value.ahplLocation);
-      // this.formData.append('lcLocation', this.formgroup.value.lcLocation);
-      this.formData.append('state', this.formgroup.value.state);
-      this.formData.append('city', this.formgroup.value.city);
-      this.formData.append('pincode', this.formgroup.value.pincode);
-      // this.formData.append('zone', this.formgroup.value.zone);
-      this.formData.append('emailId', this.formgroup.value.emailId);
-      this.formData.append('emailId2', this.formgroup.value.emailId2);
-      this.formData.append('contact_person1',this.formgroup.value.contact_person1);
-      this.formData.append('contact_person2',this.formgroup.value.contact_person2);
-      this.formData.append('contact_number1',this.formgroup.value.contact_number1);
-      this.formData.append('contact_number2',this.formgroup.value.contact_number2);
-      this.formData.append('fax', this.formgroup.value.fax);
-      this.formData.append('accountNumber', this.formgroup.value.accountNumber);
-      this.formData.append('accountName', this.formgroup.value.accountName);
-      this.formData.append('bankName', this.formgroup.value.bankName);
-      this.formData.append('ifscCode', this.formgroup.value.ifscCode);
-      this.formData.append('branchName', this.formgroup.value.branchName);
-      this.formData.append('accountType', this.formgroup.value.accountType);
-      this.formData.append('paymentToBeMadeInFavorOf',this.formgroup.value.paymentToBeMadeInFavorOf);
+      this.formData.append('providerName', this.formGroup.value.providerName);
+      this.formData.append('providerType', this.formGroup.value.providerType);
+      this.formData.append('DC_Chain', this.formGroup.value.DC_Chain);
+      this.formData.append('Regi_number', this.formGroup.value.Regi_number);
+      this.formData.append('Inception', this.formGroup.value.Inception);
+      this.formData.append('Owner_name', this.formGroup.value.Owner_name);
+      this.formData.append('PanCard_number', this.formGroup.value.PanCard_number);
+      this.formData.append('nameOnPanCard', this.formGroup.value.nameOnPanCard);
+      this.formData.append('Adhar_number', this.formGroup.value.Adhar_number);
+      this.formData.append('Adhar_name', this.formGroup.value.Adhar_name);
+      this.formData.append('Owner_name_asper_document', this.formGroup.value.Owner_name_asper_document);
+      this.formData.append('Center_name', this.formGroup.value.Center_name);
+      // this.formData.append('Grade', this.formGroup.value.Grade);
+      // this.formData.append('Tier', this.formGroup.value.Tier);
+      this.formData.append('Accredation', this.formGroup.value.Accredation);
+      // this.formData.append('Station', this.formGroup.value.Station);
+      this.formData.append('address1', this.formGroup.value.address1);
+      this.formData.append('address2', this.formGroup.value.address2);
+      // this.formData.append('ahplLocation', this.formGroup.value.ahplLocation);
+      // this.formData.append('lcLocation', this.formGroup.value.lcLocation);
+      this.formData.append('state', this.formGroup.value.state);
+      this.formData.append('city', this.formGroup.value.city);
+      this.formData.append('pincode', this.formGroup.value.pincode);
+      // this.formData.append('zone', this.formGroup.value.zone);
+      this.formData.append('emailId', this.formGroup.value.emailId);
+      this.formData.append('emailId2', this.formGroup.value.emailId2);
+      this.formData.append('contact_person1',this.formGroup.value.contact_person1);
+      this.formData.append('contact_person2',this.formGroup.value.contact_person2);
+      this.formData.append('contact_number1',this.formGroup.value.contact_number1);
+      this.formData.append('contact_number2',this.formGroup.value.contact_number2);
+      // this.formData.append('fax', this.formGroup.value.fax);
+      this.formData.append('accountNumber', this.formGroup.value.accountNumber);
+      this.formData.append('accountName', this.formGroup.value.accountName);
+      this.formData.append('bankName', this.formGroup.value.bankName);
+      this.formData.append('ifscCode', this.formGroup.value.ifscCode);
+      this.formData.append('branchName', this.formGroup.value.branchName);
+      this.formData.append('accountType', this.formGroup.value.accountType);
+      this.formData.append('paymentToBeMadeInFavorOf',this.formGroup.value.paymentToBeMadeInFavorOf);
 
-      this.formData.append('Opthlmologya', this.formgroup.value.Opthlmologya);
-      this.formData.append('MBBS_PHYSICIAN', this.formgroup.value.MBBS_PHYSICIAN);
-      this.formData.append('GYNECOLOGY', this.formgroup.value.GYNECOLOGY);
-      this.formData.append('MD_PHYSICIAN', this.formgroup.value.MD_PHYSICIAN);
-      this.formData.append('MD_PATHOLOGIST', this.formgroup.value.MD_PATHOLOGIST);
-      this.formData.append('MD_RADIOLOGIST', this.formgroup.value.MD_RADIOLOGIST);
-      this.formData.append('MBBS_PHYSICIAN', this.formgroup.value.MBBS_PHYSICIAN);
-      this.formData.append('DMLT', this.formgroup.value.DMLT);
-      this.formData.append('MD_CARDIOLOGY', this.formgroup.value.MD_CARDIOLOGY);
-      this.formData.append('XRAY_TECHNICIAN',this.formgroup.value.XRAY_TECHNICIAN);
-      this.formData.append('ECG_TECHNICIAN', this.formgroup.value.ECG_TECHNICIAN);
-      this.formData.append('BAMS_BHMS', this.formgroup.value.BAMS_BHMS);
-      this.formData.append('ENT', this.formgroup.value.ENT);
-      this.formData.append('DENTAL', this.formgroup.value.DENTAL);
-      this.formData.append('DIET', this.formgroup.value.DIET);
+      this.formData.append('Opthlmologya', this.formGroup.value.Opthlmologya);
+      this.formData.append('MBBS_PHYSICIAN', this.formGroup.value.MBBS_PHYSICIAN);
+      this.formData.append('GYNECOLOGY', this.formGroup.value.GYNECOLOGY);
+      this.formData.append('MD_PHYSICIAN', this.formGroup.value.MD_PHYSICIAN);
+      this.formData.append('MD_PATHOLOGIST', this.formGroup.value.MD_PATHOLOGIST);
+      this.formData.append('MD_RADIOLOGIST', this.formGroup.value.MD_RADIOLOGIST);
+      this.formData.append('MBBS_PHYSICIAN', this.formGroup.value.MBBS_PHYSICIAN);
+      this.formData.append('DMLT', this.formGroup.value.DMLT);
+      this.formData.append('MD_CARDIOLOGY', this.formGroup.value.MD_CARDIOLOGY);
+      this.formData.append('XRAY_TECHNICIAN',this.formGroup.value.XRAY_TECHNICIAN);
+      this.formData.append('ECG_TECHNICIAN', this.formGroup.value.ECG_TECHNICIAN);
+      this.formData.append('BAMS_BHMS', this.formGroup.value.BAMS_BHMS);
+      this.formData.append('ENT', this.formGroup.value.ENT);
+      this.formData.append('DENTAL', this.formGroup.value.DENTAL);
+      this.formData.append('DIET', this.formGroup.value.DIET);
 
       this.formData.append('availableTests', this.selectedTestsItems);
 
-      this.formData.append('ECG_FACILITY', this.formgroup.value.ECG_FACILITY);
-      this.formData.append('USG', this.formgroup.value.USG);
-      this.formData.append('TREAD_MILL_TEST',this.formgroup.value.TREAD_MILL_TEST);
-      this.formData.append('TMT_WT_CAPACITY',this.formgroup.value.TMT_WT_CAPACITY);
-      this.formData.append('ECHOCARDIOGRAPHY',this.formgroup.value.ECHOCARDIOGRAPHY);
-      this.formData.append('MD_RADIOLOGIST', this.formgroup.value.MD_RADIOLOGIST);
-      this.formData.append('FUNDOSCOPY_TEST',this.formgroup.value.FUNDOSCOPY_TEST);
-      this.formData.append('DMLT_LABORATORY_TECHNICIAN',this.formgroup.value.DMLT_LABORATORY_TECHNICIAN);
-      this.formData.append('BASIC_EYE_TEST', this.formgroup.value.BASIC_EYE_TEST);
-      this.formData.append('X_RAY', this.formgroup.value.X_RAY);
-      this.formData.append('ELISA_HIV', this.formgroup.value.ELISA_HIV);
-      this.formData.append('PSA', this.formgroup.value.PSA);
-      this.formData.append('ENT', this.formgroup.value.ENT);
-      this.formData.append('PAP_SMEAR', this.formgroup.value.PAP_SMEAR);
-      this.formData.append('MAMMOGRAM', this.formgroup.value.MAMMOGRAM);
-      this.formData.append('WESTERN_BLOT', this.formgroup.value.WESTERN_BLOT);
-      this.formData.append('PULMONARY_FUNCTION_TEST',this.formgroup.value.PULMONARY_FUNCTION_TEST);
-      this.formData.append('URINE_NICOTINE_QUALITITATIVE',this.formgroup.value.URINE_NICOTINE_QUALITITATIVE);
-      this.formData.append('HBA1C', this.formgroup.value.HBA1C);
-      this.formData.append('HBEAG', this.formgroup.value.HBEAG);
-      this.formData.append('AUDIOMETRY', this.formgroup.value.AUDIOMETRY);
-      this.formData.append('GYNAECOLOGIST', this.formgroup.value.GYNAECOLOGIST);
-      this.formData.append('MER', this.formgroup.value.MER);
-      this.formData.append('DENTAL', this.formgroup.value.DENTAL);
-      this.formData.append('PATHOLOGY', this.formgroup.value.PATHOLOGY);
-      this.formData.append('FMR', this.formgroup.value.FMR);
-      this.formData.append('STOOL_ROUTINE', this.formgroup.value.STOOL_ROUTINE);
+      // this.formData.append('ECG_FACILITY', this.formGroup.value.ECG_FACILITY);
+      // this.formData.append('USG', this.formGroup.value.USG);
+      // this.formData.append('TREAD_MILL_TEST',this.formGroup.value.TREAD_MILL_TEST);
+      // this.formData.append('TMT_WT_CAPACITY',this.formGroup.value.TMT_WT_CAPACITY);
+      // this.formData.append('ECHOCARDIOGRAPHY',this.formGroup.value.ECHOCARDIOGRAPHY);
+      // this.formData.append('MD_RADIOLOGIST', this.formGroup.value.MD_RADIOLOGIST);
+      // this.formData.append('FUNDOSCOPY_TEST',this.formGroup.value.FUNDOSCOPY_TEST);
+      // this.formData.append('DMLT_LABORATORY_TECHNICIAN',this.formGroup.value.DMLT_LABORATORY_TECHNICIAN);
+      // this.formData.append('BASIC_EYE_TEST', this.formGroup.value.BASIC_EYE_TEST);
+      // this.formData.append('X_RAY', this.formGroup.value.X_RAY);
+      // this.formData.append('ELISA_HIV', this.formGroup.value.ELISA_HIV);
+      // this.formData.append('PSA', this.formGroup.value.PSA);
+      // this.formData.append('ENT', this.formGroup.value.ENT);
+      // this.formData.append('PAP_SMEAR', this.formGroup.value.PAP_SMEAR);
+      // this.formData.append('MAMMOGRAM', this.formGroup.value.MAMMOGRAM);
+      // this.formData.append('WESTERN_BLOT', this.formGroup.value.WESTERN_BLOT);
+      // this.formData.append('PULMONARY_FUNCTION_TEST',this.formGroup.value.PULMONARY_FUNCTION_TEST);
+      // this.formData.append('URINE_NICOTINE_QUALITITATIVE',this.formGroup.value.URINE_NICOTINE_QUALITITATIVE);
+      // this.formData.append('HBA1C', this.formGroup.value.HBA1C);
+      // this.formData.append('HBEAG', this.formGroup.value.HBEAG);
+      // this.formData.append('AUDIOMETRY', this.formGroup.value.AUDIOMETRY);
+      // this.formData.append('GYNAECOLOGIST', this.formGroup.value.GYNAECOLOGIST);
+      // this.formData.append('MER', this.formGroup.value.MER);
+      // this.formData.append('DENTAL', this.formGroup.value.DENTAL);
+      // this.formData.append('PATHOLOGY', this.formGroup.value.PATHOLOGY);
+      // this.formData.append('FMR', this.formGroup.value.FMR);
+      // this.formData.append('STOOL_ROUTINE', this.formGroup.value.STOOL_ROUTINE);
 
-      this.formData.append('CARDIOLOGY_OUTSOURCED_CENTRE',this.formgroup.value.CARDIOLOGY_OUTSOURCED_CENTRE);
-      this.formData.append('PATHOLOGY_OUTSOURCED_CENTR',this.formgroup.value.PATHOLOGY_OUTSOURCED_CENTR);
-      this.formData.append('GYNAECOLOGY_OUTSOURCED_CENTRE',this.formgroup.value.GYNAECOLOGY_OUTSOURCED_CENTRE);
-      this.formData.append('ENTAL_OUTSOURCED_CENTRE',this.formgroup.value.DENTAL_OUTSOURCED_CENTRE);
-      this.formData.append('PULMONOLOGY_OUTSOURCED_CENTRE',this.formgroup.value.PULMONOLOGY_OUTSOURCED_CENTRE);
-      this.formData.append('RADIOLOGY_OUTSOURCED_CENTRE',this.formgroup.value.RADIOLOGY_OUTSOURCED_CENTRE);
-      this.formData.append('FirmType', this.formgroup.value.FirmType);
-
-      console.log('Form submitted!', this.formgroup.value);
+      this.formData.append('CARDIOLOGY_OUTSOURCED_CENTRE',this.formGroup.value.CARDIOLOGY_OUTSOURCED_CENTRE);
+      this.formData.append('PATHOLOGY_OUTSOURCED_CENTR',this.formGroup.value.PATHOLOGY_OUTSOURCED_CENTR);
+      this.formData.append('GYNAECOLOGY_OUTSOURCED_CENTRE',this.formGroup.value.GYNAECOLOGY_OUTSOURCED_CENTRE);
+      this.formData.append('ENTAL_OUTSOURCED_CENTRE',this.formGroup.value.DENTAL_OUTSOURCED_CENTRE);
+      this.formData.append('PULMONOLOGY_OUTSOURCED_CENTRE',this.formGroup.value.PULMONOLOGY_OUTSOURCED_CENTRE);
+      this.formData.append('RADIOLOGY_OUTSOURCED_CENTRE',this.formGroup.value.RADIOLOGY_OUTSOURCED_CENTRE);
       
-      // else {
+      this.formData.append('FirmType', this.formGroup.value.FirmType);
+      this.formData.append('dateOnStampPaper', this.formGroup.value.dateOnStampPaper);
+
+      console.log('Form submitted!', this.formGroup.value);
+      
       const url = '/selfempanelment/add/' + this.ticketId + '/';
       this.commonService.postMethod(url, this.formData).subscribe(
         (res: any) => {
@@ -477,9 +488,20 @@ export class SelfEmpanlementComponent {
             timeOut: 5000,
           });
           // alert('All required values should be provided!')
+        });
+      }
+    }
+    
+    findInvalidControls(formGroup: FormGroup) {
+      const invalidControls = [];
+      const controls = formGroup.controls;
+      for (const controlName in controls) {
+        const control = controls[controlName];
+        if (control.invalid) {
+          invalidControls.push({ name: controlName });
         }
-      );
-      // }
+      }
+      return invalidControls;
     }
 
     cities: string[] = [];

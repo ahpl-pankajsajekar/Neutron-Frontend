@@ -8,23 +8,23 @@
         <div class="box">
             <div class="box-card">
                 <div class="box-card-body">
-                    <form [formGroup]="formgroup">
-                        <div><input type="checkbox" formControlName="isConfirmCheckbox" required><label class="mx-2"> I have read draft document and agree to the terms.<code>*</code></label></div>
-                        <div *ngIf="formgroup.controls['isConfirmCheckbox'].invalid && (formgroup.controls['isConfirmCheckbox'].touched)" class="errormessage">
-                            <div *ngIf="f.isConfirmCheckbox.errors?.required">Confirm the checkbox.</div>
+                    <form [formGroup]="formGroup">
+                        <div><input type="checkbox" formControlName="isConfirmCheckbox"><label class="mx-2"> I have read draft document and agree to the terms.<code>*</code></label></div>
+                        <div *ngIf="formGroup.controls['isConfirmCheckbox'].invalid && formGroup.controls['isConfirmCheckbox'].touched">
+                            <div>Please confirm.</div>
                         </div>
                         <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
                             <mat-step>
-                            <!-- <mat-step [stepControl]="firstFormGroup">
-                              <form [formGroup]="firstFormGroup" #formone="ngForm"> -->
+                            <!-- <mat-step [stepControl]="firstformGroup">
+                              <form [formGroup]="firstformGroup" #formone="ngForm"> -->
                                 <ng-template matStepLabel>DC Details</ng-template>
                                 <div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>PROVIDER NAME <code>*</code></label></div>
-                                                <div><input type="text" formControlName="providerName" required></div>
-                                                <div *ngIf="formgroup.controls['providerName'].invalid && (formgroup.controls['providerName'].touched)" class="errormessage">
+                                                <div><input type="text" formControlName="providerName" ></div>
+                                                <div *ngIf="formGroup.controls['providerName'].invalid && (formGroup.controls['providerName'].touched)" class="errormessage">
                                                   <div *ngIf="f.providerName.errors?.required">Provider Name is required.</div>
                                                 </div>
                                             </div>
@@ -37,7 +37,7 @@
                                                         <option [value]="">----select----</option>
                                                         <option *ngFor="let type of providerType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
-                                                    <div *ngIf="formgroup.controls['providerType'].invalid && (formgroup.controls['providerType'].touched)" class="errormessage">
+                                                    <div *ngIf="formGroup.controls['providerType'].invalid && (formGroup.controls['providerType'].touched)" class="errormessage">
                                                         <div *ngIf="f.providerType.errors?.required">Please select this field.</div>
                                                       </div>
                                                 </div>
@@ -51,7 +51,7 @@
                                                         <option [value]="">----select----</option>
                                                         <option *ngFor="let type of DCchainType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
-                                                    <div *ngIf="formgroup.controls['DC_Chain'].invalid && (formgroup.controls['DC_Chain'].touched)" class="errormessage">
+                                                    <div *ngIf="formGroup.controls['DC_Chain'].invalid && (formGroup.controls['DC_Chain'].touched)" class="errormessage">
                                                         <div *ngIf="f.DC_Chain.errors?.required">Please select this field.</div>
                                                       </div>
                                                 </div>
@@ -62,8 +62,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>REGISTRATION NUMBER <code>*</code></label></div>
-                                                <div><input type="text" formControlName="Regi_number" maxlength="30" required></div>
-                                                <div *ngIf="formgroup.controls['Regi_number'].invalid && (formgroup.controls['Regi_number'].touched)" class="errormessage">
+                                                <div><input type="text" formControlName="Regi_number" maxlength="30" ></div>
+                                                <div *ngIf="formGroup.controls['Regi_number'].invalid && (formGroup.controls['Regi_number'].touched)" class="errormessage">
                                                     <div *ngIf="f.Regi_number.errors?.required">Registration Number is required.</div>
                                                   </div>
                                             </div>
@@ -71,8 +71,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>DATE OF INCEPTION<code>*</code></label></div>
-                                                <div><input type="date" placeholder="" formControlName="Inception" required></div>
-                                                <div *ngIf="formgroup.controls['Inception'].invalid && (formgroup.controls['Inception'].touched)" class="errormessage">
+                                                <div><input type="date" placeholder="" formControlName="Inception" ></div>
+                                                <div *ngIf="formGroup.controls['Inception'].invalid && (formGroup.controls['Inception'].touched)" class="errormessage">
                                                     <div *ngIf="f.accountNumber.errors?.required">Date is required.</div>
                                                   </div>
                                             </div>
@@ -81,8 +81,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>OWNER'S NAME<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="Owner_name" required></div>
-                                                <div *ngIf="formgroup.controls['Owner_name'].invalid && (formgroup.controls['Owner_name'].touched)" class="errormessage">
+                                                <div><input type="text" placeholder="" formControlName="Owner_name" ></div>
+                                                <div *ngIf="formGroup.controls['Owner_name'].invalid && (formGroup.controls['Owner_name'].touched)" class="errormessage">
                                                     <div *ngIf="f.Owner_name.errors?.required">Owner Name is required.</div>
                                                   </div>
                                             </div>
@@ -91,8 +91,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>PAN NUMBER<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="PanCard_number" maxlength="15" required></div>
-                                                <div *ngIf="formgroup.controls['PanCard_number'].invalid && (formgroup.controls['PanCard_number'].touched)" class="errormessage">
+                                                <div><input type="text" placeholder="" formControlName="PanCard_number" maxlength="15" ></div>
+                                                <div *ngIf="formGroup.controls['PanCard_number'].invalid && (formGroup.controls['PanCard_number'].touched)" class="errormessage">
                                                     <div *ngIf="f.PanCard_number.errors?.required">Pan Number is required.</div>
                                                   </div>
                                             </div>
@@ -101,8 +101,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>NAME ON PAN CARD<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="nameOnPanCard" required></div>
-                                                <div *ngIf="formgroup.controls['nameOnPanCard'].invalid && (formgroup.controls['nameOnPanCard'].touched)" class="errormessage">
+                                                <div><input type="text" placeholder="" formControlName="nameOnPanCard" ></div>
+                                                <div *ngIf="formGroup.controls['nameOnPanCard'].invalid && (formGroup.controls['nameOnPanCard'].touched)" class="errormessage">
                                                     <div *ngIf="f.nameOnPanCard.errors?.required">PanCard Name is required.</div>
                                                   </div>
                                             </div>
@@ -111,8 +111,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>AADHAR CARD NUMBER<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="Adhar_number" maxlength="15" minlength="10" required></div>
-                                                <div *ngIf="formgroup.controls['Adhar_number'].invalid && (formgroup.controls['Adhar_number'].touched)" class="errormessage">
+                                                <div><input type="text" placeholder="" formControlName="Adhar_number" ></div>
+                                                <div *ngIf="formGroup.controls['Adhar_number'].invalid && (formGroup.controls['Adhar_number'].touched)" class="errormessage">
                                                     <div *ngIf="f.Adhar_number.errors?.required">Aadhar Number is required.</div>
                                                   </div>
                                             </div>
@@ -121,8 +121,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label> NAME ON AADHAR CARD<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="Adhar_name" required></div>
-                                                <div *ngIf="formgroup.controls['Adhar_name'].invalid && (formgroup.controls['Adhar_name'].touched)" class="errormessage">
+                                                <div><input type="text" placeholder="" formControlName="Adhar_name" ></div>
+                                                <div *ngIf="formGroup.controls['Adhar_name'].invalid && (formGroup.controls['Adhar_name'].touched)" class="errormessage">
                                                     <div *ngIf="f.Adhar_name.errors?.required">Aadhar name is required.</div>
                                                   </div>
                                             </div>
@@ -131,8 +131,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>OWNER NAME AS PER OWNERSHIP DOCUMENT<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="Owner_name_asper_document" required></div>
-                                                <div *ngIf="formgroup.controls['Owner_name_asper_document'].invalid && (formgroup.controls['Owner_name_asper_document'].touched)" class="errormessage">
+                                                <div><input type="text" placeholder="" formControlName="Owner_name_asper_document" ></div>
+                                                <div *ngIf="formGroup.controls['Owner_name_asper_document'].invalid && (formGroup.controls['Owner_name_asper_document'].touched)" class="errormessage">
                                                     <div *ngIf="f.Owner_name_asper_document.errors?.required">This Field is required.</div>
                                                   </div>
                                             </div>
@@ -141,8 +141,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>CENTER NAME AS PER OWNERSHIP DOCUMENT<code>*</code></label></div>
-                                                <div><input type="text" placeholder="" formControlName="Center_name" required></div>
-                                                <div *ngIf="formgroup.controls['Center_name'].invalid && (formgroup.controls['Center_name'].touched)" class="errormessage">
+                                                <div><input type="text" placeholder="" formControlName="Center_name" ></div>
+                                                <div *ngIf="formGroup.controls['Center_name'].invalid && (formGroup.controls['Center_name'].touched)" class="errormessage">
                                                     <div *ngIf="f.Center_name.errors?.required">This Field is required.</div>
                                                   </div>
                                             </div>
@@ -181,7 +181,7 @@
                                                         <option *ngFor="let type of ACCREDITATIONType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
                                                 </div> 
-                                                <div *ngIf="formgroup.controls['Accredation'].invalid && (formgroup.controls['Accredation'].touched)" class="errormessage">
+                                                <div *ngIf="formGroup.controls['Accredation'].invalid && (formGroup.controls['Accredation'].touched)" class="errormessage">
                                                     <div *ngIf="f.Accredation.errors?.required">Please select this Field.</div>
                                                   </div>
                                             </div>
@@ -208,16 +208,16 @@
                               <!-- </form> -->
                             </mat-step>
                             <mat-step>
-                            <!-- <mat-step [stepControl]="secondFormGroup">
-                              <form [formGroup]="secondFormGroup" #formtwo="ngForm"> -->
+                            <!-- <mat-step [stepControl]="secondformGroup">
+                              <form [formGroup]="secondformGroup" #formtwo="ngForm"> -->
                                 <ng-template matStepLabel>Contact Details</ng-template>
                                 <div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>ADDRESS 1 <code>*</code></label></div>
-                                                <div><textarea type="text" rows="2" formControlName="address1" required></textarea></div>
-                                                <div *ngIf="formgroup.controls['address1'].invalid && (formgroup.controls['address1'].touched)" class="errormessage">
+                                                <div><textarea type="text" rows="2" formControlName="address1" ></textarea></div>
+                                                <div *ngIf="formGroup.controls['address1'].invalid && (formGroup.controls['address1'].touched)" class="errormessage">
                                                     <div *ngIf="f.address1.errors?.required">This Field is required.</div>
                                                   </div>
                                             </div>
@@ -225,7 +225,7 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>ADDRESS 2 </label></div>
-                                                <div><textarea type="text" rows="2" formControlName="address2" required></textarea></div>
+                                                <div><textarea type="text" rows="2" formControlName="address2" ></textarea></div>
                                             </div>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@
                                                         <option *ngFor="let type of states" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
                                                 </div>
-                                                <div *ngIf="formgroup.controls['state'].invalid && (formgroup.controls['state'].touched)" class="errormessage">
+                                                <div *ngIf="formGroup.controls['state'].invalid && (formGroup.controls['state'].touched)" class="errormessage">
                                                     <div *ngIf="f.state.errors?.required">Please select this Field.</div>
                                                   </div>
                                             </div>
@@ -275,7 +275,7 @@
                                                         <option *ngFor="let city of cities" [value]="city">{{city}}</option>
                                                     </select>
                                                 </div>
-                                                <div *ngIf="formgroup.controls['city'].invalid && (formgroup.controls['city'].touched)" class="errormessage">
+                                                <div *ngIf="formGroup.controls['city'].invalid && (formGroup.controls['city'].touched)" class="errormessage">
                                                     <div *ngIf="f.city.errors?.required">Please select this Field.</div>
                                                   </div>
                                             </div>
@@ -284,9 +284,10 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>PINCODE <code>*</code></label></div>
-                                                <div><input type="text" formControlName="pincode" required></div>
-                                                <div *ngIf="formgroup.controls['pincode'].invalid && (formgroup.controls['pincode'].touched)" class="errormessage">
+                                                <div><input type="text" formControlName="pincode" ></div>
+                                                <div *ngIf="formGroup.controls['pincode'].invalid && (formGroup.controls['pincode'].touched)" class="errormessage">
                                                     <div *ngIf="f.pincode.errors?.required">Pincode is required.</div>
+                                                    <div *ngIf="f.pincode.errors?.minlength">Please enter correct Pincode.</div>
                                                   </div>
                                             </div>
                                         </div>
@@ -307,9 +308,9 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>EMAIL<code>*</code></label></div>
-                                                <div><input type="email" formControlName="emailId" required></div>
-                                                <div *ngIf="formgroup.controls['emailId'].invalid && (formgroup.controls['emailId'].touched)" class="errormessage">
-                                                    <div *ngIf="formgroup.controls['emailId'].errors.email">Please Enter Valid Email.</div>
+                                                <div><input type="email" formControlName="emailId" ></div>
+                                                <div *ngIf="formGroup.controls['emailId'].invalid && (formGroup.controls['emailId'].touched)" class="errormessage">
+                                                    <div *ngIf="formGroup.controls['emailId'].errors.email">Please Enter Valid Email.</div>
                                                   <div *ngIf="f.emailId.errors?.required">Email is required.</div>
                                                 </div>
                                             </div>
@@ -317,28 +318,28 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>CONFIRM EMAIL<code>*</code></label></div>
-                                                <div><input type="email" formControlName="confirmEmailId" required></div>
+                                                <div><input type="email" formControlName="confirmEmailId" ></div>
                                             </div>
-                                            <div *ngIf="formgroup.controls['confirmEmailId'].invalid && (formgroup.controls['confirmEmailId'].touched)" class="errormessage">
-                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors?.required">Please Enter Valid Email. </div>
-                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors.email">Please Enter Valid Email. </div>
-                                                <div *ngIf="formgroup.controls['confirmEmailId'].errors?.match">Cofirm Email & Email do not match</div>
+                                            <div *ngIf="formGroup.controls['confirmEmailId'].invalid && (formGroup.controls['confirmEmailId'].touched)" class="errormessage">
+                                                <div *ngIf="formGroup.controls['confirmEmailId'].errors?.required">Please Enter Valid Email. </div>
+                                                <div *ngIf="formGroup.controls['confirmEmailId'].errors.email">Please Enter Valid Email. </div>
+                                                <div *ngIf="formGroup.controls['confirmEmailId'].errors?.match">Cofirm Email & Email do not match</div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>ANOTHER EMAIL<code></code></label></div>
-                                                <div><input type="email" formControlName="emailId2" required></div>
-                                            <div *ngIf="formgroup.controls['emailId2'].invalid && (formgroup.controls['emailId2'].touched)" class="errormessage">
-                                                <div *ngIf="formgroup.controls['emailId2'].errors.email">Please Enter Valid Email. </div>
+                                                <div><input type="email" formControlName="emailId2" ></div>
+                                            <div *ngIf="formGroup.controls['emailId2'].invalid && (formGroup.controls['emailId2'].touched)" class="errormessage">
+                                                <div *ngIf="formGroup.controls['emailId2'].errors.email">Please Enter Valid Email. </div>
                                             </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NAME 1 <code>*</code></label></div>
-                                                <div><input type="text" formControlName="contact_person1" required></div>
-                                                <div *ngIf="formgroup.controls['contact_person1'].invalid && (formgroup.controls['contact_person1'].touched)" class="errormessage">
+                                                <div><input type="text" formControlName="contact_person1"></div>
+                                                <div *ngIf="formGroup.controls['contact_person1'].invalid && (formGroup.controls['contact_person1'].touched)" class="errormessage">
                                                   <div *ngIf="f.contact_person1.errors?.required">Name is required.</div>
                                                 </div>
                                             </div>
@@ -346,8 +347,8 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NUMBER 1 <code>*</code></label></div>
-                                                <div><input type="text" formControlName="contact_number1" required></div>
-                                                <div *ngIf="formgroup.controls['contact_number1'].invalid && (formgroup.controls['contact_number1'].touched)" class="errormessage">
+                                                <div><input type="text" formControlName="contact_number1"></div>
+                                                <div *ngIf="formGroup.controls['contact_number1'].invalid && (formGroup.controls['contact_number1'].touched)" class="errormessage">
                                                   <div *ngIf="f.contact_number1.errors?.required">Contact Number is required.</div>
                                                 </div>
                                             </div>
@@ -355,19 +356,19 @@
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NAME 2 </label></div>
-                                                <div><input type="text" formControlName="contact_person2" required></div>
+                                                <div><input type="text" formControlName="contact_person2"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>CONTACT PERSON NUMBER 2 </label></div>
-                                                <div><input type="text" formControlName="contact_number2" required></div>
+                                                <div><input type="text" formControlName="contact_number2"></div>
                                             </div>
                                         </div>
                                         <!-- <div class="col-md-4">
                                             <div class="input-group-box">
                                                 <div><label>FAX</label></div>
-                                                <div><input type="text" formControlName="fax" required></div>
+                                                <div><input type="text" formControlName="fax" ></div>
                                             </div>
                                         </div> -->
                                     </div>
@@ -379,8 +380,8 @@
                               <!-- </form> -->
                             </mat-step>
                             <mat-step>
-                            <!-- <mat-step [stepControl]="thirdFormGroup"> -->
-                                <!-- <form [formGroup]="thirdFormGroup" #formthird="ngForm" > -->
+                            <!-- <mat-step [stepControl]="thirdformGroup"> -->
+                                <!-- <form [formGroup]="thirdformGroup" #formthird="ngForm" > -->
                                   <ng-template matStepLabel>Bank Details</ng-template>
                                   <div>
                                     <div class="row">
@@ -388,8 +389,8 @@
                                             <div class="input-group-box">
                                                 <div><label>ACCOUNT NUMBER <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text"  formControlName="accountNumber" maxlength="30" required>
-                                                    <div *ngIf="formgroup.controls['accountNumber'].invalid && (formgroup.controls['accountNumber'].touched)" class="errormessage">
+                                                    <input type="text"  formControlName="accountNumber" maxlength="30">
+                                                    <div *ngIf="formGroup.controls['accountNumber'].invalid && (formGroup.controls['accountNumber'].touched)" class="errormessage">
                                                       <div *ngIf="f.accountNumber.errors?.required">Account Number is required.</div>
                                                     </div>
                                                 </div>
@@ -399,8 +400,8 @@
                                             <div class="input-group-box">
                                                 <div><label>ACCOUNT NAME <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text"  formControlName="accountName" required>
-                                                    <div *ngIf="formgroup.controls['accountName'].invalid && (formgroup.controls['accountName'].touched)" class="errormessage">
+                                                    <input type="text"  formControlName="accountName">
+                                                    <div *ngIf="formGroup.controls['accountName'].invalid && (formGroup.controls['accountName'].touched)" class="errormessage">
                                                       <div *ngIf="f.accountName.errors?.required">Account Name is required.</div>
                                                     </div>
                                                     
@@ -411,9 +412,9 @@
                                             <div class="input-group-box">
                                                 <div><label>IFSC CODE <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text" formControlName="ifscCode" maxlength="30" (input)="fetchBankDetails($event)" required>
+                                                    <input type="text" formControlName="ifscCode" maxlength="30" (input)="fetchBankDetails($event)">
                                                 </div>
-                                                <div *ngIf="formgroup.controls['ifscCode'].invalid && (formgroup.controls['ifscCode'].touched)" class="errormessage">
+                                                <div *ngIf="formGroup.controls['ifscCode'].invalid && (formGroup.controls['ifscCode'].touched)" class="errormessage">
                                                     <div *ngIf="f.ifscCode.errors?.required">Please Enter IFSC Code.</div>
                                                   </div>
                                             </div>
@@ -424,7 +425,7 @@
                                             <div class="input-group-box">
                                                 <div><label>BANK NAME <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text" id="bankNameInput"  formControlName="bankName" required>
+                                                    <input type="text" id="bankNameInput"  formControlName="bankName" >
                                                 </div>
                                             </div>
                                         </div>
@@ -432,7 +433,7 @@
                                             <div class="input-group-box">
                                                 <div><label>BRANCH NAME <code>*</code></label></div>
                                                 <div>
-                                                    <input type="text" id="branchNameInput" formControlName="branchName" required>
+                                                    <input type="text" id="branchNameInput" formControlName="branchName" >
                                                 </div>
                                             </div>
                                         </div>
@@ -444,7 +445,7 @@
                                                         <option [value]="">----select----</option>
                                                         <option *ngFor="let type of ACType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
-                                                    <div *ngIf="formgroup.controls['accountType'].invalid && (formgroup.controls['accountType'].touched)" class="errormessage">
+                                                    <div *ngIf="formGroup.controls['accountType'].invalid && (formGroup.controls['accountType'].touched)" class="errormessage">
                                                         <div *ngIf="f.accountType.errors?.required">Please select this field.</div>
                                                       </div>
                                                 </div>
@@ -459,8 +460,8 @@
                                 <!-- </form> -->
                             </mat-step>
                             <mat-step>
-                            <!-- <mat-step [stepControl]="secondFormGroup">
-                                <form [formGroup]="secondFormGroup" #formtwo="ngForm"> -->
+                            <!-- <mat-step [stepControl]="secondformGroup">
+                                <form [formGroup]="secondformGroup" #formtwo="ngForm"> -->
                                   <ng-template matStepLabel>Doctor Details</ng-template>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -564,8 +565,8 @@
                               </mat-step>
                               <mat-step>
 
-                          <!-- <mat-step [stepControl]="secondFormGroup">
-                            <form [formGroup]="secondFormGroup" #formtwo="ngForm" > -->
+                          <!-- <mat-step [stepControl]="secondformGroup">
+                            <form [formGroup]="secondformGroup" #formtwo="ngForm" > -->
                               <ng-template matStepLabel>Available Test </ng-template>
                                 <div class="row">
                                     <div class="input-search-group-box1">
@@ -617,8 +618,8 @@
 
                           
                       <mat-step>
-                          <!-- <mat-step [stepControl]="secondFormGroup">
-                            <form [formGroup]="secondFormGroup" #formtwo="ngForm"> -->
+                          <!-- <mat-step [stepControl]="secondformGroup">
+                            <form [formGroup]="secondformGroup" #formtwo="ngForm"> -->
                               <ng-template matStepLabel>Outsoursed Center Details</ng-template>
                             <div class="row">
                                 <div class="col-md-4">
@@ -675,7 +676,7 @@
                                                     <select formControlName="FirmType" [(ngModel)]="selectedCompanyFirmType">
                                                         <option *ngFor="let type of DCFirmType" [value]="type.value">{{type.viewValue}}</option>
                                                     </select>
-                                                    <div *ngIf="formgroup.controls['FirmType'].invalid && (formgroup.controls['FirmType'].touched)" class="errormessage">
+                                                    <div *ngIf="formGroup.controls['FirmType'].invalid && (formGroup.controls['FirmType'].touched)" class="errormessage">
                                                         <div *ngIf="f.FirmType.errors?.required">Please select this field.</div>
                                                       </div>
                                                 </div>
@@ -769,9 +770,9 @@
                                             <div class="input-group-box">
                                                 <div>
                                                     <label>On Stamp Paper Date:<code>*</code></label>
-                                                    <input type="date" formControlName="dateOnStampPaper" required>
-                                                    <div *ngIf="formgroup.controls['dateOnStampPaper'].invalid && (formgroup.controls['dateOnStampPaper'].touched)" class="errormessage">
-                                                        <div *ngIf="f.dateOnStampPaper.errors?.required">Provider Name is required.</div>
+                                                    <input type="date" formControlName="dateOnStampPaper" >
+                                                    <div *ngIf="formGroup.controls['dateOnStampPaper'].invalid && (formGroup.controls['dateOnStampPaper'].touched)" class="errormessage">
+                                                        <div *ngIf="f.dateOnStampPaper.errors?.required">Stamp Paper Date is required.</div>
                                                       </div>
                                                 </div>
                                             </div>
