@@ -47,11 +47,13 @@ export class DcVerifyComponent {
     }
   }
 
-  isPanVerify: boolean = false;
-  isAadharVerify: boolean = false;
-  isAccredationVerify: boolean = false;
-  isTDSVerify: boolean = false;    // Current_Bank_Statement_image
-  isRegistrationVerify :boolean =false;
+  isPanVerified: boolean = false;
+  isAadharVerified: boolean = false;
+  isAccreditationVerified: boolean = false;
+  isCurrentBankStatementVerified: boolean = false;    // Current_Bank_Statement_image
+  isEstablishmentCertificateVerified :boolean =false;
+  isAuthorityLetterVerfied :boolean =false;
+  
   panVerified: boolean = false;
   panVerification2: boolean = false;
   accreditationVerified: boolean = false;
@@ -62,11 +64,12 @@ export class DcVerifyComponent {
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
-      isPanVerify: [this.isPanVerify, Validators.required], 
-      isAadharVerify: [this.isAadharVerify, Validators.required], 
-      isAccredationVerify: [this.isAccredationVerify, Validators.required], 
-      isTDSVerify: [this.isTDSVerify, Validators.required], 
-      isRegistrationVerify:[this.isRegistrationVerify, Validators.required],
+      isPanVerified: [this.isPanVerified], 
+      isAadharVerified: [this.isAadharVerified], 
+      isAccreditationVerified: [this.isAccreditationVerified,], 
+      isCurrentBankStatementVerified: [this.isCurrentBankStatementVerified, ], 
+      isEstablishmentCertificateVerified:[this.isEstablishmentCertificateVerified],
+      isAuthorityLetterVerfied:[this.isEstablishmentCertificateVerified],
     });
   }
 
@@ -89,6 +92,11 @@ export class DcVerifyComponent {
         (res: any) => {
           console.log("res", res)
           this.selfemployementData = res.data
+          if (this.selfemployementData?.documentVerifiedStatus){}
+              this.isPanVerified = this.selfemployementData?.documentVerifiedStatus.isPanVerified
+              this.isAadharVerified = this.selfemployementData?.documentVerifiedStatus.isAadharVerified
+              this.isAccreditationVerified = this.selfemployementData?.documentVerifiedStatus.isAccreditationVerified
+              this.isCurrentBankStatementVerified = this.selfemployementData?.documentVerifiedStatus.isCurrentBankStatementVerified
         },
         (err: any) => {
           console.warn(err)
@@ -170,8 +178,8 @@ export class DcVerifyComponent {
     const url = '/selfemp/verification/legal/'
     const getid = this.form.get('id')?.value || this.id
     const body = {"DCVerificationStatusByLegal": value, "id": getid,  "verificationRemark": this.remark,
-    "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
-    "isTDSVerify": this.isTDSVerify ,"isRegistrationVerify": this.isRegistrationVerify }
+    "isPanVerified":  this.isPanVerified, "isAadharVerified": this.isAadharVerified, "isAccreditationVerified": this.isAccreditationVerified,
+    "isCurrentBankStatementVerified": this.isCurrentBankStatementVerified ,"isEstablishmentCertificateVerified": this.isEstablishmentCertificateVerified, 'isAuthorityLetterVerfied': this.isAuthorityLetterVerfied }
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{
