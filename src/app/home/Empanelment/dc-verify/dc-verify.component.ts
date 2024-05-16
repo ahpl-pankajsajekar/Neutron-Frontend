@@ -177,7 +177,7 @@ export class DcVerifyComponent {
   verification(value:string){
     const url = '/selfemp/verification/legal/'
     const getid = this.form.get('id')?.value || this.id
-    const body = {"DCVerificationStatusByLegal": value, "id": getid,  "verificationRemark": this.remark,
+    const body = {"DCVerificationStatusByLegal": value, "id": getid,  "verificationRemarkByLegal": this.remark,
     "isPanVerified":  this.isPanVerified, "isAadharVerified": this.isAadharVerified, "isAccreditationVerified": this.isAccreditationVerified,
     "isCurrentBankStatementVerified": this.isCurrentBankStatementVerified ,"isEstablishmentCertificateVerified": this.isEstablishmentCertificateVerified, 'isAuthorityLetterVerfied': this.isAuthorityLetterVerfied }
     console.log(body)
@@ -189,15 +189,15 @@ export class DcVerifyComponent {
           this.toastrService.success('Thank you, Your DC verified successful', 'Successful', {
             closeButton: true,
           });
-          // this.router.navigateByUrl("/empanelment/dc-docusign")
         }
         else{
           this.toastrService.info('Issue in Document', 'Successful', {
             closeButton: true,
           });
-          // alert("Issue in Document")
         }
-        window.location.reload();
+        // window.location.reload();
+        this.loadData();
+        this.selfemployementData = false
       },
       (error:any)=>{},
     )

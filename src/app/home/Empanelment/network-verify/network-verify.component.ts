@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { event } from 'jquery';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { ToastrService } from 'ngx-toastr';
 import { CommonService } from 'src/app/_services/common.service';
 
 @Component({
@@ -17,7 +19,8 @@ export class NetworkVerifyComponent {
   showAnalytics:any
 
   constructor(private fb: FormBuilder,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -25,28 +28,35 @@ export class NetworkVerifyComponent {
     this.loadData();
   }
 
-  isPanVerify: boolean = false;
-  isAadharVerify: boolean = false;
-  isAccredationVerify: boolean = false;
-  isTDSVerify: boolean = false;    // Current_Bank_Statement_image
-  isRegistrationVerify :boolean =false;
-  panVerified: boolean = false;
-  panVerification2: boolean = false;
-  accreditationVerified: boolean = false;
-  tdsVerified: boolean = false;    // Current_Bank_Statement_image
-  ownershipVerified: boolean = false;  // Shop_Establishment_Certificate_image
-  registrationVerified: boolean = false; // Authority_Letter_image
+  isPanVerified: boolean = false;
+  isAadharVerified: boolean = false;
+  isAccreditationVerified: boolean = false;
+  isCurrentBankStatementVerified: boolean = false;    // Current_Bank_Statement_image
+  isEstablishmentCertificateVerified :boolean =false;
+  isAuthorityLetterVerfied :boolean =false;
+  isPartnershipAgreementVerfied :boolean =false;
+
+  // isPanVerified: boolean = false;
+  // isAadharVerified: boolean = false;
+  // isAccreditationVerified: boolean = false;
+  // isCurrentBankStatementVerified: boolean = false;    // Current_Bank_Statement_image
+  // isEstablishmentCertificateVerified: boolean = false;  // Shop_Establishment_Certificate_image
+  // isAuthorityLetterVerfied: boolean = false; // Authority_Letter_image
+
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
-      isPanVerify: [this.isPanVerify], 
-      isAadharVerify: [this.isAadharVerify,], 
-      isAccredationVerify: [this.isAccredationVerify], 
-      isTDSVerify: [this.isTDSVerify], 
-      isRegistrationVerify:[this.isRegistrationVerify],
+      isPanVerified: [this.isPanVerified], 
+      isAadharVerified: [this.isAadharVerified,], 
+      isAccreditationVerified: [this.isAccreditationVerified], 
+      isCurrentBankStatementVerified: [this.isCurrentBankStatementVerified], 
+      isEstablishmentCertificateVerified:[this.isEstablishmentCertificateVerified],
+      isAuthorityLetterVerfied:[this.isAuthorityLetterVerfied],
+      isPartnershipAgreementVerfied:[this.isPartnershipAgreementVerfied],
     });
   }
-  
+
+
   selfemployementData : any;
   onSearch(): void {
     if (this.form.valid) {
@@ -66,75 +76,98 @@ export class NetworkVerifyComponent {
         (res: any) => {
           console.log("res", res)
           this.selfemployementData = res.data
+          if(this.selfemployementData?.documentVerifiedStatusByNetwork){
+            
+          this.isPanVerified = this.selfemployementData?.documentVerifiedStatusByNetwork.isPanVerified
+          this.isAadharVerified = this.selfemployementData?.documentVerifiedStatusByNetwork.isAadharVerified
+          this.isAccreditationVerified = this.selfemployementData?.documentVerifiedStatusByNetwork.isAccreditationVerified
+          this.isCurrentBankStatementVerified = this.selfemployementData?.documentVerifiedStatusByNetwork.isCurrentBankStatementVerified
+          this.isEstablishmentCertificateVerified = this.selfemployementData?.documentVerifiedStatusByNetwork.isEstablishmentCertificateVerified
+          this.isAuthorityLetterVerfied = this.selfemployementData?.documentVerifiedStatusByNetwork.isAuthorityLetterVerfied
+          this.isPartnershipAgreementVerfied = this.selfemployementData?.documentVerifiedStatusByNetwork.isPartnershipAgreementVerfied
+        }
+          // add in remark
+          this.updateRemark();
+
         },
         (err: any) => {
           console.warn(err)
         })
+        
   }
 
-  onVerificationChange(verificationType: string, event: any): void {
-    let isVerified = event.target.value === 'verify';
+  onVerificationChange(verificationType: string, isVerified: any): void {
+    console.log(isVerified)
     switch (verificationType) {
       case 'pan':
-        this.panVerified = isVerified;
+        this.isPanVerified = isVerified;
         break;
       case 'aadhar':
-        this.panVerification2 = isVerified;
+        this.isAadharVerified = isVerified;
         break;
       case 'accreditation':
-        this.accreditationVerified = isVerified;
+        this.isAccreditationVerified = isVerified;
         break;
       case 'tds':
-        this.tdsVerified = isVerified;
+        this.isCurrentBankStatementVerified = isVerified;
         break;
       case 'ownership':
-        this.ownershipVerified = isVerified;
+        this.isEstablishmentCertificateVerified = isVerified;
         break;
       case 'registration':
-        this.registrationVerified = isVerified;
+        this.isAuthorityLetterVerfied = isVerified;
         break;
     }
-    if (!isVerified) {
-      console.log("inside")
-      this.updateRemark();
-    } else {
-      this.remark = ''; // Reset remark if verification passed
-    }
+    
+    // remark list update everytime
+    this.updateRemark();
+
+    // if (!isVerified) {
+      // this.updateRemark();
+    // } 
+    // else {
+    //   this.remark = ''; // Reset remark if verification passed
+    // }
   }
   
   updateRemark(): void {
     let unverifiedFields: string[] = [];
-    if (!this.panVerified) {
+    if (!this.isPanVerified) {
       unverifiedFields.push('PAN');
     }
-    if (!this.panVerification2) {
+    if (!this.isAadharVerified) {
       unverifiedFields.push('Aadhar');
     }
-    if (!this.accreditationVerified) {
+    if (!this.isAccreditationVerified) {
       unverifiedFields.push('Accreditation');
     }
-    if (!this.tdsVerified) {
+    if (!this.isCurrentBankStatementVerified) {
       unverifiedFields.push('Cancelled Cheque/ Current Bank Statement');
     }
-    if (!this.ownershipVerified) {
+    if (!this.isEstablishmentCertificateVerified) {
       unverifiedFields.push('Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate');
     }
-    if (!this.registrationVerified) {
+    if (!this.isAuthorityLetterVerfied) {
       unverifiedFields.push('Signing Authority');
     }
-  
+    if (unverifiedFields.length > 0) {
     this.remark = `Verification failed for ${unverifiedFields.join(', ')}.`;
+    }
+    else if(unverifiedFields.length == 0){
+      this.remark = ''
+    }
   }
   
 
+  // Apply logic here as per firmType
   areAllCheckboxesVerified(): boolean {
     return (
-      this.panVerified &&
-      this.panVerification2 &&
-      this.accreditationVerified &&
-      this.tdsVerified &&
-      this.ownershipVerified &&
-      this.registrationVerified
+      this.isPanVerified &&
+      this.isAadharVerified &&
+      this.isAccreditationVerified &&
+      this.isCurrentBankStatementVerified &&
+      this.isEstablishmentCertificateVerified &&
+      this.isAuthorityLetterVerfied
     );
   }
 
@@ -142,24 +175,33 @@ export class NetworkVerifyComponent {
 
   remark: string = 'not-verify';
   id: any;
-  verification(value:string){
+  verificationSubmit(value:string){
     console.log("Form submitted!");
     const url = '/selfemp/verification/'
     const getid = this.form.get('id')?.value || this.id
-    const body = {"DCVerificationStatus": value, "id": getid,  "verificationRemark": this.remark,
-     "isPanVerify":  this.isPanVerify, "isAadharVerify": this.isAadharVerify, "isAccredationVerify": this.isAccredationVerify,
-     "isTDSVerify": this.isTDSVerify ,"isRegistrationVerify": this.isRegistrationVerify}
+    const body = {"id": getid, "DCVerificationStatus": value,  "verificationRemarkByNetwork": this.remark,
+    "documentVerifiedStatusByNetwork": {"isPanVerified":  this.isPanVerified, "isAadharVerified": this.isAadharVerified, "isAccreditationVerified": this.isAccreditationVerified,
+     "isCurrentBankStatementVerified": this.isCurrentBankStatementVerified ,"isEstablishmentCertificateVerified": this.isEstablishmentCertificateVerified, "isAuthorityLetterVerfied": this.isAuthorityLetterVerfied, 
+     "isPartnershipAgreementVerfied": this.isPartnershipAgreementVerfied } }
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{
         console.log(res);
         if(value=='verify'){
-          alert("Document verified by Network Team")
+          // alert("Document verified by Network Team")
+          this.toastrService.success('Thank you, Document verified by Network Team', 'Successful', {
+            closeButton: true,
+          });
         }
         else{
-          alert("Issue in Document")
+          // alert("Issue in Document")
+          this.toastrService.info('Issue in Document', 'Alert', {
+            closeButton: true,
+          });
         }
-        window.location.reload();
+        // window.location.reload();
+        this.loadData();
+        this.selfemployementData = false
       },
       (error:any)=>{},
     )
@@ -170,13 +212,8 @@ export class NetworkVerifyComponent {
     this.commonService.getMethod(url).subscribe(
       (res: any) => {
         console.log(res);
-        // Iterate over the records
         this.showAnalytics = res.networkAnalyticsData
         this.providerNames = res.selectDropdown
-        // this.providerNames = res.map((item: any) => ({
-        //   itemValue: item.id,
-        //   itemName: `${item.providerName}`,
-        // }));
         console.log(this.providerNames);
       },
       (error: any) => {
@@ -195,30 +232,6 @@ export class NetworkVerifyComponent {
     }
   }
 
-  
-
-  // multi select dropdown
-  selectedItems:any =[];
-  dropdownList:any = [
-  ]
-  dropdownSettings:IDropdownSettings = {
-    singleSelection: true,
-    defaultOpen: false,
-    idField: "id",
-    textField: "providerName" ,
-    // selectAllText: "Select All",
-    // unSelectAllText: "UnSelect All",
-    enableCheckAll: false,
-    itemsShowLimit: 1,
-    allowSearchFilter: true,
-    // limitSelection: 2,
-    noDataAvailablePlaceholderText: "Data not found."
-  };
-
-  onSubmit(): void {
-    // Placeholder method for form submission logic
-    console.log("Form submitted!");
-  }
 
 }
 
