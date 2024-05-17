@@ -1,0 +1,34 @@
+<div class="form-container">
+    <h2>Provider Candidate</h2>
+    <form [formGroup]="candidateForm" (ngSubmit)="submitForm()">
+      <b><label for="providerName">Provider Name</label></b>
+      <input type="text" id="providerName" formControlName="providerName">
+  
+      <b><label for="addressLine1">Address Line-1</label></b>
+      <input type="text" id="addressLine1" formControlName="addressLine1">
+  
+      <b><label for="addressLine2">Address Line-2</label></b>
+      <input type="text" id="addressLine2" formControlName="addressLine2">
+  
+      <b><label for="pincode">Pincode</label></b>
+      <input type="text" id="pincode" formControlName="pincode">
+  
+      <b><label for="state">State</label></b>
+      <input type="text" id="state" formControlName="state">
+  
+      <b><label for="city">City</label></b>
+      <input type="text" id="city" formControlName="city">
+  
+      <b><label for="contactPersonName">Contact Person Name</label></b>
+      <input type="text" id="contactPersonName" formControlName="contactPersonName">
+  
+      <b><label for="contactPersonEmail">Contact Person Email-ID</label></b>
+      <input type="email" id="contactPersonEmail" formControlName="contactPersonEmail">
+  
+      <b><label for="contactPersonMobile">Contact Person Mobile No.</label></b>
+      <input type="text" id="contactPersonMobile" formControlName="contactPersonMobile">
+  
+      <button type="submit"><b>Submit</b></button>
+    </form>
+  </div>
+  

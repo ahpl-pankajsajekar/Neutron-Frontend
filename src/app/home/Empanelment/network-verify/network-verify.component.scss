@@ -284,11 +284,6 @@ textarea {
   align-items: center; /* Align items vertically */
 }
 
-.radio-container input[type="radio"] {
-  transform: scale(1.5); /* Increase the scale as needed */
-  margin-right: 10px; 
-}
-
 .radio-container label {
   cursor: pointer;
 }
@@ -349,8 +344,9 @@ textarea {
 }
 
 input[type="radio"] {
-  transform: scale(1.8); /* Increase the scale as needed */
-  margin-right: 8px; /* Optional: Add some space between the radio button and the label */
+  
+  margin-right: 6px !important;
+  margin-left: 12px !important;
 }
 
 label {
@@ -362,4 +358,45 @@ label {
   width: 250px;
   max-height: 325px;
   min-height: 180px;
+  align-items: center;
+}
+
+.doc-image:hover {
+  transform: scale(2.0); /* Increase the image size on hover */
+}
+.doc-image-container:hover .radio-buttons {
+  display: block; /* Show radio buttons when container is hovered */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: none; /* Initially hide the radio buttons */
+}
+
+
+.doc-image-container {
+  position: relative;
+  display: inline-block; /* Ensures container size matches image size */
+}
+
+.zoom-controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column; /* Ensure the buttons are stacked vertically */
+}
+
+.zoom-controls button {
+  padding: 5px 10px;
+  margin: 0 0 5px; /* Add margin to separate buttons */
+  font-size: 20px;
 }

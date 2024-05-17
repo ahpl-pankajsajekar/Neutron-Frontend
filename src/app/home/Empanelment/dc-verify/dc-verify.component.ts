@@ -19,6 +19,7 @@ export class DcVerifyComponent {
   activeItem: number | null = null;
 
   showAnalytics:any;
+  zoomScales: { [key: string]: number } = {};
 
   pdfContent: any; // PDF content in base64 format
   pdfUrl: any;
@@ -322,6 +323,22 @@ export class DcVerifyComponent {
     // Clean up
     document.body.removeChild(a);
     URL.revokeObjectURL(this.pdfUrl);
+  }
+
+  zoomIn(imageType: string) {
+    this.zoomScales[imageType] = (this.zoomScales[imageType] || 1) + 0.1;
+    this.updateZoom(imageType);
+  }
+
+  zoomOut(imageType: string) {
+    this.zoomScales[imageType] = (this.zoomScales[imageType] || 1) - 0.1;
+    this.updateZoom(imageType);
+  }
+
+  updateZoom(imageType: string) {
+    const image = document.querySelector(`.doc-image-${imageType}`) as HTMLElement;
+    const scale = this.zoomScales[imageType] || 1;
+    image.style.transform = `scale(${scale})`;
   }
 
 }

@@ -97,13 +97,14 @@ button {
 
 .verification-title {
   font-size: 1.2rem;
-  color: #138a86;
+  color: #b1d35a;
   margin-bottom: 15px;
 }
 
 .provider-details {
   margin-bottom: 20px;
 }
+
 
 .provider-name {
   font-size: 1.1rem;
@@ -344,3 +345,23 @@ textarea {
   max-height: 325px;
   min-height: 180px;
 }
+.zoom-controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column; /* Ensure the buttons are stacked vertically */
+}
+
+.zoom-controls button {
+  padding: 5px 10px;
+  margin: 0 0 5px; /* Add margin to separate buttons */
+  font-size: 20px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

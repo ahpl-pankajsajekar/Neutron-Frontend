@@ -1,6 +1,6 @@
 <div>
   <div class="heading">
-    <h5 class="my-3"><span class="heading-left-line"></span>Legal team DC Verification</h5>
+    <h5 class="my-3"><span class="heading-left-line"></span>LEGAL TEAM ( DC VERIFICATION )</h5>
     <hr />
   </div>
 
@@ -161,64 +161,94 @@
       <div class="col-md-6 border p-3" *ngIf="selfemployementData.pan_image">
         <p>Pan Name: {{selfemployementData.nameOnPanCard}} <br>
             Pan Number: {{selfemployementData.PanCard_number}}</p>
-            <a href="data:image/png;base64,{{ selfemployementData.pan_image }}" target="_blank">
-        <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.pan_image }}" alt="Pan Image"></a>
-        <div class="verifybox"  *ngIf="showDetails != 2"><br>
+            <div class="image-container">
+            <img class="doc-image doc-image-pan" src="data:image/png;base64,{{ selfemployementData.pan_image }}" alt="Pan Image">
+            </div>
+            <div class="verifybox"  *ngIf="showDetails != 2"><br>
       <!-- Pan verification -->
         <input type="radio" name="panVerification" [value]="true" [(ngModel)]="isPanVerified"  (change)="onVerificationChange('pan', isPanVerified)"/> Verified
         <span style="margin-left: 10px;"></span>
         <input type="radio" name="panVerification" [value]="false" [(ngModel)]="isPanVerified"  (change)="onVerificationChange('pan', isPanVerified)"/> Not Verified
         </div>
+        <div class="zoom-controls">
+          <button (click)="zoomIn('pan')">+</button>
+          <button (click)="zoomOut('pan')">-</button>
+        </div>
     </div>
     <div class="col-md-6 border p-3" *ngIf="selfemployementData.aadhar_image">
         <p>Aadhar Name: {{selfemployementData.Adhar_name}}<br>
             Aadhar Number: {{selfemployementData.Adhar_number}}</p>
-            <a href="data:image/png;base64,{{ selfemployementData.aadhar_image }}" target="_blank">
-        <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.aadhar_image }}" alt="Aadhar Image"></a>
-        <div class="verifybox"  *ngIf="showDetails != 2"><br>
+            <div class="image-container">
+            <img class="doc-image doc-image-aadhar" src="data:image/png;base64,{{ selfemployementData.aadhar_image }}" alt="Aadhar Image">
+              </div>
+            <div class="verifybox"  *ngIf="showDetails != 2"><br>
           <input type="radio" name="panVerification2" [value]="true" [(ngModel)]="isAadharVerified"  (change)="onVerificationChange('aadhar', isAadharVerified)"/> Verified
           <span style="margin-left: 10px;"></span>
           <input type="radio" name="panVerification2" [value]="false" [(ngModel)]="isAadharVerified"  (change)="onVerificationChange('aadhar', isAadharVerified)" /> Not Verified              
         </div>
+        <div class="zoom-controls">
+          <button (click)="zoomIn('aadhar')">+</button>
+          <button (click)="zoomOut('aadhar')">-</button>
+        </div>
     </div>
           <div class="col-md-6 border p-3" *ngIf="selfemployementData.Accreditation_image">
               <p>Accredation: {{selfemployementData.Accredation}}</p>
-              <a href="data:image/png;base64,{{  selfemployementData.Accreditation_image }}" target="_blank">
-              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Accreditation_image }}" alt="Accreditation Image"></a>
+              <div class="image-container">
+              <img class="doc-image doc-image-accreditation" src="data:image/png;base64,{{ selfemployementData.Accreditation_image }}" alt="Accreditation Image">
+                </div>
               <div class="verifybox"  *ngIf="showDetails != 2"><br>
                 <input type="radio" name="accreditationVerified" [value]="true" [(ngModel)]="isAccreditationVerified" (change)="onVerificationChange('accreditation', isAccreditationVerified)"/> Verified
                 <span style="margin-left: 10px;"></span>
                 <input type="radio" name="accreditationVerified" [value]="false" [(ngModel)]="isAccreditationVerified" (change)="onVerificationChange('accreditation', isAccreditationVerified)"/> Not Verified              
                     </div>
+                    <div class="zoom-controls">
+                      <button (click)="zoomIn('accreditation')">+</button>
+                      <button (click)="zoomOut('accreditation')">-</button>
+                    </div>
           </div>
           <div class="col-md-6 border p-3" *ngIf="selfemployementData.Current_Bank_Statement_image">
               <p>Cancelled Cheque/ Current Bank Statement: {{selfemployementData.Remark}}</p>
-              <a href="data:image/png;base64,{{  selfemployementData.Current_Bank_Statement_image }}" target="_blank">
-              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Current_Bank_Statement_image }}" alt="CurrentBankStatement"></a>
+              <div class="image-container">
+              <img class="doc-image doc-image-current-bank" src="data:image/png;base64,{{ selfemployementData.Current_Bank_Statement_image }}" alt="CurrentBankStatement">
+              </div>
               <div class="verifybox"  *ngIf="showDetails != 2"><br>
                 <input type="radio" name="tdsVerified"  [value]="true" [(ngModel)]="isCurrentBankStatementVerified" (change)="onVerificationChange('tds', isCurrentBankStatementVerified)"/> Verified
                 <span style="margin-left: 10px;"></span>
                 <input type="radio" name="tdsVerified"  [value]="false" [(ngModel)]="isCurrentBankStatementVerified" (change)="onVerificationChange('tds', isCurrentBankStatementVerified)"/> Not Verified              
               </div>
+              <div class="zoom-controls">
+                <button (click)="zoomIn('current-bank')">+</button>
+                <button (click)="zoomOut('current-bank')">-</button>
+              </div>
           </div>
           <div class="col-md-6 border p-3" *ngIf="selfemployementData.Shop_Establishment_Certificate_image">
               <p>Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:</p>
-              <a href="data:image/png;base64,{{  selfemployementData.Shop_Establishment_Certificate_image }}" target="_blank">
-              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Shop_Establishment_Certificate_image }}" alt="EstablishmentCertificate"></a>
+              <div class="image-container">
+              <img class="doc-image doc-image-shop-establishment" src="data:image/png;base64,{{ selfemployementData.Shop_Establishment_Certificate_image }}" alt="EstablishmentCertificate">
+              </div>
               <div class="verifybox"  *ngIf="showDetails != 2"><br>
                 <input type="radio" name="ownershipVerified" [value]="true" [(ngModel)]="isEstablishmentCertificateVerified" (change)="onVerificationChange('ownership', isEstablishmentCertificateVerified)"/> Verified
                 <span style="margin-left: 10px;"></span>
                 <input type="radio" name="ownershipVerified" [value]="false" [(ngModel)]="isEstablishmentCertificateVerified" (change)="onVerificationChange('ownership', isEstablishmentCertificateVerified)"/> Not Verified              
               </div>
+              <div class="zoom-controls">
+                <button (click)="zoomIn('shop-establishment')">+</button>
+                <button (click)="zoomOut('shop-establishment')">-</button>
+              </div>
           </div>
           <div class="col-md-6 border p-3" *ngIf="selfemployementData.Authority_Letter_image">
               <p>Signing Authority Letter:</p>
-              <a href="data:image/png;base64,{{  selfemployementData.Authority_Letter_image }}" target="_blank">
-              <img class="doc-image" src="data:image/png;base64,{{ selfemployementData.Authority_Letter_image }}" alt="AuthorityLetter" ></a>
+              <div class="image-container">
+              <img class="doc-image doc-image-authority-letter" src="data:image/png;base64,{{ selfemployementData.Authority_Letter_image }}" alt="AuthorityLetter" >
+              </div>
               <div class="verifybox"  *ngIf="showDetails != 2"><br>
                 <input type="radio" name="registrationVerified" [value]="true" [(ngModel)]="isAuthorityLetterVerfied" (change)="onVerificationChange('registration', isAuthorityLetterVerfied)"/> Verified
                 <span style="margin-left: 10px;"></span>
                 <input type="radio" name="registrationVerified" [value]="false" [(ngModel)]="isAuthorityLetterVerfied" (change)="onVerificationChange('registration', isAuthorityLetterVerfied)"/> Not Verified              
+              </div>
+              <div class="zoom-controls">
+                <button (click)="zoomIn('authority-letter')">+</button>
+                <button (click)="zoomOut('authority-letter')">-</button>
               </div>
           </div>
       </div>

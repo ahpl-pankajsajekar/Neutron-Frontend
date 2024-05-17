@@ -15,8 +15,8 @@ export class NetworkVerifyComponent {
   providerNames: any[] = []; // Initialize providerNames as an empty array
   providerIDs: any[] = []; // Initialize providerIDs as an empty array
   isLinear = true; // Initialize isLinear property
-
   showAnalytics:any
+  zoomScales: { [key: string]: number } = {};
 
   constructor(private fb: FormBuilder,
     private commonService: CommonService,
@@ -227,6 +227,22 @@ export class NetworkVerifyComponent {
       this.showDetails = boxNumber; // Show details for the clicked box
       this.selfemployementData = false  // as per tab change data become hide 
     }
+  }
+
+  zoomIn(imageType: string) {
+    this.zoomScales[imageType] = (this.zoomScales[imageType] || 1) + 0.1;
+    this.updateZoom(imageType);
+  }
+
+  zoomOut(imageType: string) {
+    this.zoomScales[imageType] = (this.zoomScales[imageType] || 1) - 0.1;
+    this.updateZoom(imageType);
+  }
+
+  updateZoom(imageType: string) {
+    const image = document.querySelector(`.doc-image-${imageType}`) as HTMLElement;
+    const scale = this.zoomScales[imageType] || 1;
+    image.style.transform = `scale(${scale})`;
   }
 
 

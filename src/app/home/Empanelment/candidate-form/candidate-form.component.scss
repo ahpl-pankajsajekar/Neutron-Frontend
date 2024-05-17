@@ -1,0 +1,57 @@
+.form-container {
+    background-color: #43bacd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 600px; /* Maximum width for larger screens */
+    margin: 0 auto; /* Center the form horizontally */
+    text-align: left; /* Align form elements to the left */
+    border-color:black;
+  }
+  
+  h2 {
+    text-align: center; /* Center the heading */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  button {
+    background-color: #28cd28;
+    color: rgb(92, 149, 92);
+    padding: 10px;
+    border: 2px;
+    cursor: pointer;
+    width: 25%; /* Adjust the width as needed */
+    border-radius: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: block; /* Make the button a block element */
+    margin: 0 auto; /* Center the button horizontally */
+  }
+
+  h2 {
+    text-align: center; /* Center the heading horizontally */
+    color: #1f2bad; /* Set the color of the heading */
+    animation: fadeIn 1s ease-in-out; /* Add animation */
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  

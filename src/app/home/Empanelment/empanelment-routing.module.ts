@@ -11,6 +11,7 @@ import { DcVerifyComponent } from './dc-verify/dc-verify.component';
 import { DcDocusignComponent } from './dc-docusign/dc-docusign.component';
 import {  SuccessModalComponent } from './success-modal/success-modal.component';
 import { NetworkVerifyComponent } from './network-verify/network-verify.component';
+import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,10 @@ const routes: Routes = [
       {
         path: 'success-modal',
         component:  SuccessModalComponent,
+      },
+      {
+        path: 'candidate-form',
+        component:  CandidateFormComponent,
       },
     ]
   }

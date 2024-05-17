@@ -22,6 +22,7 @@ import { SuccessModalComponent } from './success-modal/success-modal.component';
 import { NetworkVerifyComponent } from './network-verify/network-verify.component';
 
 import {MatTabsModule} from '@angular/material/tabs';
+import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     DcDocusignComponent,
     SuccessModalComponent,
     NetworkVerifyComponent,
+    CandidateFormComponent,
     
   ],
   imports: [
