@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/_services/account.service';
 
@@ -16,6 +17,7 @@ export class RegisterComponent implements OnInit {
   submitted = false;
 
   constructor(
+    private toastrService: ToastrService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -49,21 +51,39 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.registerForm.value)
-    if (this.registerForm.valid) {
+    if (this.registerForm.invalid) {
+      this.toastrService.info("All required values should be provided!", 'Required', {
+        closeButton: true,
+      });
+    }
+    else{
       this.loading = true;
       this.accountService.register(this.registerForm.value)
         .pipe(first())
         .subscribe(
           data => {
             this.router.navigate(['../login'], { relativeTo: this.route });
+            setTimeout(() => {
+              this.toastrService.success('User Registered Successfully', 'Successful', {
+                closeButton: true,
+              });
+            },
+            1000);
           },
-          error => {
+          (error:any) => {
+            console.error(error)
+            this.toastrService.error(error.error.non_field_errors[0], 'Incorrect', {
+              closeButton: true,
+            });
+            // already register error not show/ working
+            if(error.error['error']){
+              this.toastrService.error(error['error'], 'error', {
+                closeButton: true,
+              });
+            }
             this.loading = false;
           }
         );
-    }
-    else{
-      alert("please fill up valid form");
     }
   }
 
