@@ -77,7 +77,6 @@ export class NetworkVerifyComponent {
           console.log("res", res)
           this.selfemployementData = res.data
           if(this.selfemployementData?.documentVerifiedStatusByNetwork){
-            
           this.isPanVerified = this.selfemployementData?.documentVerifiedStatusByNetwork.isPanVerified
           this.isAadharVerified = this.selfemployementData?.documentVerifiedStatusByNetwork.isAadharVerified
           this.isAccreditationVerified = this.selfemployementData?.documentVerifiedStatusByNetwork.isAccreditationVerified
@@ -188,13 +187,11 @@ export class NetworkVerifyComponent {
       (res:any)=>{
         console.log(res);
         if(value=='verify'){
-          // alert("Document verified by Network Team")
           this.toastrService.success('Thank you, Document verified by Network Team', 'Successful', {
             closeButton: true,
           });
         }
         else{
-          // alert("Issue in Document")
           this.toastrService.info('Issue in Document', 'Alert', {
             closeButton: true,
           });

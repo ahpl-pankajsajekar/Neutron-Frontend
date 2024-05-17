@@ -47,29 +47,32 @@ export class DcVerifyComponent {
     }
   }
 
+
   isPanVerified: boolean = false;
   isAadharVerified: boolean = false;
   isAccreditationVerified: boolean = false;
   isCurrentBankStatementVerified: boolean = false;    // Current_Bank_Statement_image
   isEstablishmentCertificateVerified :boolean =false;
   isAuthorityLetterVerfied :boolean =false;
+  isPartnershipAgreementVerfied :boolean =false;
   
-  panVerified: boolean = false;
-  panVerification2: boolean = false;
-  accreditationVerified: boolean = false;
-  tdsVerified: boolean = false;    // Current_Bank_Statement_image
-  ownershipVerified: boolean = false;  // Shop_Establishment_Certificate_image
-  registrationVerified: boolean = false; // Authority_Letter_image
+  // panVerified: boolean = false;
+  // panVerification2: boolean = false;
+  // accreditationVerified: boolean = false;
+  // tdsVerified: boolean = false;    // Current_Bank_Statement_image
+  // ownershipVerified: boolean = false;  // Shop_Establishment_Certificate_image
+  // registrationVerified: boolean = false; // Authority_Letter_image
 
   initForm(): void {
     this.form = this.fb.group({
       id: ['', Validators.required], 
       isPanVerified: [this.isPanVerified], 
-      isAadharVerified: [this.isAadharVerified], 
-      isAccreditationVerified: [this.isAccreditationVerified,], 
-      isCurrentBankStatementVerified: [this.isCurrentBankStatementVerified, ], 
+      isAadharVerified: [this.isAadharVerified,], 
+      isAccreditationVerified: [this.isAccreditationVerified], 
+      isCurrentBankStatementVerified: [this.isCurrentBankStatementVerified], 
       isEstablishmentCertificateVerified:[this.isEstablishmentCertificateVerified],
-      isAuthorityLetterVerfied:[this.isEstablishmentCertificateVerified],
+      isAuthorityLetterVerfied:[this.isAuthorityLetterVerfied],
+      isPartnershipAgreementVerfied:[this.isPartnershipAgreementVerfied],
     });
   }
 
@@ -92,79 +95,95 @@ export class DcVerifyComponent {
         (res: any) => {
           console.log("res", res)
           this.selfemployementData = res.data
-          if (this.selfemployementData?.documentVerifiedStatus){}
-              this.isPanVerified = this.selfemployementData?.documentVerifiedStatus.isPanVerified
-              this.isAadharVerified = this.selfemployementData?.documentVerifiedStatus.isAadharVerified
-              this.isAccreditationVerified = this.selfemployementData?.documentVerifiedStatus.isAccreditationVerified
-              this.isCurrentBankStatementVerified = this.selfemployementData?.documentVerifiedStatus.isCurrentBankStatementVerified
+          
+          if(this.selfemployementData?.documentVerifiedStatusByLegal){
+          this.isPanVerified = this.selfemployementData?.documentVerifiedStatusByLegal.isPanVerified
+          this.isAadharVerified = this.selfemployementData?.documentVerifiedStatusByLegal.isAadharVerified
+          this.isAccreditationVerified = this.selfemployementData?.documentVerifiedStatusByLegal.isAccreditationVerified
+          this.isCurrentBankStatementVerified = this.selfemployementData?.documentVerifiedStatusByLegal.isCurrentBankStatementVerified
+          this.isEstablishmentCertificateVerified = this.selfemployementData?.documentVerifiedStatusByLegal.isEstablishmentCertificateVerified
+          this.isAuthorityLetterVerfied = this.selfemployementData?.documentVerifiedStatusByLegal.isAuthorityLetterVerfied
+          this.isPartnershipAgreementVerfied = this.selfemployementData?.documentVerifiedStatusByLegal.isPartnershipAgreementVerfied
+        }
+          // add in remark
+          this.updateRemark();
         },
         (err: any) => {
           console.warn(err)
         })
   }
 
-  onVerificationChange(verificationType: string, event: any): void {
-    let isVerified = event.target.value === 'verify';
+  onVerificationChange(verificationType: string, isVerified: any): void {
+    console.log(isVerified)
     switch (verificationType) {
       case 'pan':
-        this.panVerified = isVerified;
+        this.isPanVerified = isVerified;
         break;
       case 'aadhar':
-        this.panVerification2 = isVerified;
+        this.isAadharVerified = isVerified;
         break;
       case 'accreditation':
-        this.accreditationVerified = isVerified;
+        this.isAccreditationVerified = isVerified;
         break;
       case 'tds':
-        this.tdsVerified = isVerified;
+        this.isCurrentBankStatementVerified = isVerified;
         break;
       case 'ownership':
-        this.ownershipVerified = isVerified;
+        this.isEstablishmentCertificateVerified = isVerified;
         break;
       case 'registration':
-        this.registrationVerified = isVerified;
+        this.isAuthorityLetterVerfied = isVerified;
         break;
     }
-    if (!isVerified) {
-      console.log("inside")
-      this.updateRemark();
-    } else {
-      this.remark = ''; // Reset remark if verification passed
+    
+    // remark list update everytime
+    this.updateRemark();
+
+    // if (!isVerified) {
+      // this.updateRemark();
+    // } 
+    // else {
+    //   this.remark = ''; // Reset remark if verification passed
+    // }
+  }
+  
+  updateRemark(): void {
+    let unverifiedFields: string[] = [];
+    if (!this.isPanVerified) {
+      unverifiedFields.push('PAN');
+    }
+    if (!this.isAadharVerified) {
+      unverifiedFields.push('Aadhar');
+    }
+    if (!this.isAccreditationVerified) {
+      unverifiedFields.push('Accreditation');
+    }
+    if (!this.isCurrentBankStatementVerified) {
+      unverifiedFields.push('Cancelled Cheque/ Current Bank Statement');
+    }
+    if (!this.isEstablishmentCertificateVerified) {
+      unverifiedFields.push('Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate');
+    }
+    if (!this.isAuthorityLetterVerfied) {
+      unverifiedFields.push('Signing Authority');
+    }
+    if (unverifiedFields.length > 0) {
+    this.remark = `Verification failed for ${unverifiedFields.join(', ')}.`;
+    }
+    else if(unverifiedFields.length == 0){
+      this.remark = ''
     }
   }
 
-  updateRemark(): void {
-    let unverifiedFields: string[] = [];
-    if (!this.panVerified) {
-      unverifiedFields.push('PAN');
-    }
-    if (!this.panVerification2) {
-      unverifiedFields.push('Aadhar');
-    }
-    if (!this.accreditationVerified) {
-      unverifiedFields.push('Accreditation');
-    }
-    if (!this.tdsVerified) {
-      unverifiedFields.push('Cancelled Cheque/ Current Bank Statement');
-    }
-    if (!this.ownershipVerified) {
-      unverifiedFields.push('Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate');
-    }
-    if (!this.registrationVerified) {
-      unverifiedFields.push('Signing Authority');
-    }
-  
-    this.remark = `Verification failed for above Documents : ${unverifiedFields.join(', ')}.`;
-  }
 
   areAllCheckboxesVerified(): boolean {
     return (
-      this.panVerified &&
-      this.panVerification2 &&
-      this.accreditationVerified &&
-      this.tdsVerified &&
-      this.ownershipVerified &&
-      this.registrationVerified
+      this.isPanVerified &&
+      this.isAadharVerified &&
+      this.isAccreditationVerified &&
+      this.isCurrentBankStatementVerified &&
+      this.isEstablishmentCertificateVerified &&
+      this.isAuthorityLetterVerfied
     );
   }
 
@@ -177,9 +196,10 @@ export class DcVerifyComponent {
   verification(value:string){
     const url = '/selfemp/verification/legal/'
     const getid = this.form.get('id')?.value || this.id
-    const body = {"DCVerificationStatusByLegal": value, "id": getid,  "verificationRemarkByLegal": this.remark,
-    "isPanVerified":  this.isPanVerified, "isAadharVerified": this.isAadharVerified, "isAccreditationVerified": this.isAccreditationVerified,
-    "isCurrentBankStatementVerified": this.isCurrentBankStatementVerified ,"isEstablishmentCertificateVerified": this.isEstablishmentCertificateVerified, 'isAuthorityLetterVerfied': this.isAuthorityLetterVerfied }
+    const body = {"id": getid, "DCVerificationStatusByLegal": value,  "verificationRemarkByLegal": this.remark,
+    "documentVerifiedStatusByLegal": {"isPanVerified":  this.isPanVerified, "isAadharVerified": this.isAadharVerified, "isAccreditationVerified": this.isAccreditationVerified,
+     "isCurrentBankStatementVerified": this.isCurrentBankStatementVerified ,"isEstablishmentCertificateVerified": this.isEstablishmentCertificateVerified, "isAuthorityLetterVerfied": this.isAuthorityLetterVerfied, 
+     "isPartnershipAgreementVerfied": this.isPartnershipAgreementVerfied } }
     console.log(body)
     this.commonService.postMethod(url, body).subscribe(
       (res:any)=>{

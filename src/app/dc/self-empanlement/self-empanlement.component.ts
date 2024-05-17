@@ -239,30 +239,30 @@ export class SelfEmpanlementComponent {
 
         availableTests: ['',],
 
-        // ECG_FACILITY: ['',],
-        // USG: ['',],
-        // TREAD_MILL_TEST: ['',],
-        // TMT_WT_CAPACITY: ['',],
-        // ECHOCARDIOGRAPHY: ['',],
-        // FUNDOSCOPY_TEST: ['',],
-        // DMLT_LABORATORY_TECHNICIAN: ['',],
-        // BASIC_EYE_TEST: ['',],
-        // X_RAY: ['',],
-        // ELISA_HIV: ['',],
-        // PSA: ['',],
-        // PAP_SMEAR: ['',],
-        // MAMMOGRAM: ['',],
-        // WESTERN_BLOT: ['',],
-        // PULMONARY_FUNCTION_TEST: ['',],
-        // URINE_NICOTINE_QUALITITATIVE: ['',],
-        // HBA1C: ['',],
-        // HBEAG: ['',],
-        // AUDIOMETRY: ['',],
-        // GYNAECOLOGIST: ['',],
-        // MER: ['',],
-        // PATHOLOGY: ['',],
-        // FMR: ['',],
-        // STOOL_ROUTINE: ['',],
+        ECG_FACILITY: ['',],
+        USG: ['',],
+        TREAD_MILL_TEST: ['',],
+        TMT_WT_CAPACITY: ['',],
+        ECHOCARDIOGRAPHY: ['',],
+        FUNDOSCOPY_TEST: ['',],
+        DMLT_LABORATORY_TECHNICIAN: ['',],
+        BASIC_EYE_TEST: ['',],
+        X_RAY: ['',],
+        ELISA_HIV: ['',],
+        PSA: ['',],
+        PAP_SMEAR: ['',],
+        MAMMOGRAM: ['',],
+        WESTERN_BLOT: ['',],
+        PULMONARY_FUNCTION_TEST: ['',],
+        URINE_NICOTINE_QUALITITATIVE: ['',],
+        HBA1C: ['',],
+        HBEAG: ['',],
+        AUDIOMETRY: ['',],
+        GYNAECOLOGIST: ['',],
+        MER: ['',],
+        PATHOLOGY: ['',],
+        FMR: ['',],
+        STOOL_ROUTINE: ['',],
 
         CARDIOLOGY_OUTSOURCED_CENTRE: ['',],
         PATHOLOGY_OUTSOURCED_CENTR: ['',],
@@ -482,11 +482,21 @@ export class SelfEmpanlementComponent {
         },
         (err: any) => {
           const error = err['error'] 
+          if (err['error']['error']) {
+            this.toastrService.error(err['error']['error'], 'Error', {
+              closeButton: true,
+              timeOut: 5000,
+            });
+          }
+          else{
+            Object.keys(err['error']).forEach(key => {
+                this.toastrService.error(err['error'][key][0], key, {
+                  closeButton: true,
+                  timeOut: 5000,
+                });
+            });
+          }
           console.log(error);
-          this.toastrService.error(error, 'Error', {
-            closeButton: true,
-            timeOut: 5000,
-          });
           // alert('All required values should be provided!')
         });
       }
