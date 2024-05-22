@@ -26,6 +26,12 @@
                 <p class="count">{{showAnalytics?.partialVerify.length || 0}}</p>
               </a>
             </div>
+            <div class="tile animated" [class.active]="showDetails === 4" *ngIf="showAnalytics?.partialVerifiedByLegal.length>0"  (click)="toggleDetails(4)">
+              <a >
+                <h2>Request by Legal</h2>
+                <p class="count">{{showAnalytics?.partialVerifiedByLegal.length || 0}}</p>
+              </a>
+            </div>
           </div>
         </div> 
         <!-- show table data -->
@@ -111,6 +117,35 @@
             </tbody>
           </table>
         </div>
+        <div class="details d-flex justify-content-center" *ngIf="showDetails === 4">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">DC Name</th>
+                <th scope="col">DCID</th>
+                <th scope="col">Pincode</th>
+                <th scope="col">Network & Date Time</th>
+                <th scope="col">Legal & Date Time</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of showAnalytics.partialVerifiedByLegal; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.providerName}}</td>
+                <td>{{item.DCID}}</td>
+                <td>{{item.pincode}}</td>
+                <td>{{item?.verifiedByNetworkUser}} - {{item?.verifiedByNetworkDate | date: 'medium'}}</td>
+                <td>{{item?.verifiedByLegalUser}} - {{item?.verifiedByLegalDate | date: 'medium'}}</td>
+                <td (click)="sendRequestForSearch(item.id)" class="viewDc">Open</td>
+              </tr>
+              <tr *ngIf="showAnalytics.partialVerifiedByLegal.length == 0">
+                <td colspan="100%" class="text-center">Data Not found!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
         
         <!-- Search -->
@@ -150,7 +185,6 @@
               <div class="verifybox"  *ngIf="showDetails != 2"><br>
             <!-- Pan verification -->
               <input type="radio" name="panVerification" [value]="true"   [(ngModel)]="isPanVerified"  (change)="onVerificationChange('pan', isPanVerified)"/> Verified
-              <span style="margin-left: 10px;"></span>
               <input type="radio" name="panVerification" [value]="false"  [(ngModel)]="isPanVerified"  (change)="onVerificationChange('pan', isPanVerified)" /> Not Verified
               </div>
               <div class="zoom-controls">
@@ -167,7 +201,6 @@
                 </div>
                   <div class="verifybox"  *ngIf="showDetails != 2"><br>
                 <input type="radio" name="panVerification2" [value]="true"  [(ngModel)]="isAadharVerified"  (change)="onVerificationChange('aadhar', isAadharVerified)"/> Verified
-                <span style="margin-left: 10px;"></span>
                 <input type="radio" name="panVerification2" [value]="false"  [(ngModel)]="isAadharVerified"  (change)="onVerificationChange('aadhar', isAadharVerified)" /> Not Verified              
               </div>
               <div class="zoom-controls">
@@ -182,7 +215,6 @@
                     </div>
                     <div class="verifybox"  *ngIf="showDetails != 2"><br>
                       <input type="radio" name="accreditationVerified" [value]="true"  [(ngModel)]="isAccreditationVerified"  (change)="onVerificationChange('accreditation', isAccreditationVerified)"/> Verified
-                      <span style="margin-left: 10px;"></span>
                       <input type="radio" name="accreditationVerified" [value]="false"  [(ngModel)]="isAccreditationVerified"  (change)="onVerificationChange('accreditation', isAccreditationVerified)"/> Not Verified              
                           </div>
                           <div class="zoom-controls">
@@ -197,7 +229,6 @@
                     </div>
                     <div class="verifybox"  *ngIf="showDetails != 2"><br>
                       <input type="radio" name="tdsVerified" [value]="true"  [(ngModel)]="isCurrentBankStatementVerified"  (change)="onVerificationChange('tds', isCurrentBankStatementVerified)"/> Verified
-                      <span style="margin-left: 10px;"></span>
                       <input type="radio" name="tdsVerified" [value]="false"  [(ngModel)]="isCurrentBankStatementVerified"  (change)="onVerificationChange('tds', isCurrentBankStatementVerified)" /> Not Verified              
                     </div>
                     <div class="zoom-controls">
@@ -209,12 +240,10 @@
                     <p>Shop Establishment Certificate/GST Certificate/Clinical Establishment Certificate:</p>
                     <div class="image-container">
                     <img class="doc-image doc-image-shop-establishment" src="data:image/png;base64,{{ selfemployementData.Shop_Establishment_Certificate_image }}" alt="Ownership Image">
-                  </div>
                     <div class="verifybox"  *ngIf="showDetails != 2"><br>
                       <input type="radio" name="ownershipVerified" [value]="true"  [(ngModel)]="isEstablishmentCertificateVerified"  (change)="onVerificationChange('ownership', isEstablishmentCertificateVerified)"/> Verified
-                      <span style="margin-left: 10px;"></span>
                       <input type="radio" name="ownershipVerified" [value]="false"  [(ngModel)]="isEstablishmentCertificateVerified"  (change)="onVerificationChange('ownership', isEstablishmentCertificateVerified)" /> Not Verified              
-                    </div>
+                    </div></div>
                     <div class="zoom-controls">
                       <button (click)="zoomIn('shop-establishment')">+</button>
                       <button (click)="zoomOut('shop-establishment')">-</button>
@@ -227,7 +256,6 @@
                     </div>
                     <div class="verifybox"  *ngIf="showDetails != 2"><br>
                       <input type="radio" name="registrationVerified" [value]="true"  [(ngModel)]="isAuthorityLetterVerfied"  (change)="onVerificationChange('registration', isAuthorityLetterVerfied)"/> Verified
-                      <span style="margin-left: 10px;"></span>
                       <input type="radio" name="registrationVerified" [value]="false"  [(ngModel)]="isAuthorityLetterVerfied"  (change)="onVerificationChange('registration', isAuthorityLetterVerfied)" /> Not Verified              
                     </div>
                     <div class="zoom-controls">
@@ -239,7 +267,7 @@
   <div class="remark-container">
     <label for="remark">Remark:</label>
     <textarea id="remark" rows="3" name="remark" placeholder="Enter your remark here..." [(ngModel)]="remark"></textarea>
-  </div> 
+  </div>
 
   <div class="button-container" *ngIf="showDetails != 2">
     <button class="verify-button" *ngIf="areAllCheckboxesVerified()" (click)="verificationSubmit('verify')">Submit</button>    
