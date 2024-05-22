@@ -1,6 +1,7 @@
 import { Component, Pipe } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/_services/account.service';
 
@@ -21,6 +22,7 @@ export class LoginComponent {
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -48,10 +50,19 @@ export class LoginComponent {
       next: () => {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.router.navigateByUrl(returnUrl);
+        setTimeout(() => {
+          this.toastrService.success('Login Successful ', 'Successful', {
+            closeButton: true,
+          });
+        },
+        1000);
       },
       error: (error:any) => {
         this.loading = false;
-        alert(error.error.non_field_errors[0]);
+        // alert(error.error.non_field_errors[0]);
+        this.toastrService.info(error.error.non_field_errors[0], 'Incorrect', {
+          closeButton: true,
+        });
       }
     })
   }
