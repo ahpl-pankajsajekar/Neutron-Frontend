@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/_services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-candidate-form',
@@ -19,7 +20,8 @@ export class CandidateFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,13 @@ export class CandidateFormComponent implements OnInit {
       contactPersonName: ['', Validators.required],
       contactPersonEmail: ['', [Validators.required, Validators.email]],
       contactPersonMobile: ['', Validators.required]
+    });
+
+    // Subscribe to pincode changes
+    this.candidateForm.get('pincode')?.valueChanges.subscribe((value: string) => {
+      if (value.length === 6) { // Assuming pincode length is 6
+        this.getPincodeDetails(value);
+      }
     });
   }
 
@@ -50,7 +59,24 @@ export class CandidateFormComponent implements OnInit {
           }
         );
     } else {
-      alert("Please fill out the Detail correctly.");
+      alert("Please fill out the details correctly.");
     }
+  }
+
+  // Function to fetch pincode details from API
+  getPincodeDetails(pincode: string): void {
+    this.http.get(`https://api.postalpincode.in/pincode/${pincode}`).subscribe((response: any) => {
+      if (response && response.length > 0 && response[0]?.Status === 'Success') {
+        const data = response[0]?.PostOffice[0];
+        this.candidateForm.patchValue({
+          state: data?.State,
+          city: data?.District
+        });
+      } else {
+        console.error('Invalid pincode or API response.');
+      }
+    }, (error) => {
+      console.error('Error fetching pincode details:', error);
+    });
   }
 }
