@@ -23,6 +23,7 @@ import { NetworkVerifyComponent } from './network-verify/network-verify.componen
 
 import {MatTabsModule} from '@angular/material/tabs';
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
+import { RequestpageOperationComponent } from './requestpage-operation/requestpage-operation.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CandidateFormComponent } from './candidate-form/candidate-form.componen
     SuccessModalComponent,
     NetworkVerifyComponent,
     CandidateFormComponent,
+    RequestpageOperationComponent,
     
   ],
   imports: [

@@ -43,6 +43,9 @@ body {
 }
 
 .nav-item{
+  padding: 10px;
+    text-decoration: none;
+    color: #000; // Default color
   &:hover{
     color: var(--green);
     font-weight: 500;
@@ -63,4 +66,12 @@ nav a.active {
   color: #ffffff !important;
   font-weight: 500 !important;
   text-transform: capitalize;
+}
+h4 {
+  font-size: 20px; /* Adjust size as needed */
+  font-weight: bold;
+  color: #333; /* Change color as needed */
+  text-align: left; /* Align text to the left */
+  margin: 0; /* Remove default margins */
+  padding-left: 0px; /* Shift text 10px from the left */
 }

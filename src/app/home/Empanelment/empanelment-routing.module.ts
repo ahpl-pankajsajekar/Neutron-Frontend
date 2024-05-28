@@ -12,6 +12,8 @@ import { DcDocusignComponent } from './dc-docusign/dc-docusign.component';
 import {  SuccessModalComponent } from './success-modal/success-modal.component';
 import { NetworkVerifyComponent } from './network-verify/network-verify.component';
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
+import { RequestpageOperationComponent } from './requestpage-operation/requestpage-operation.component';
+
 
 const routes: Routes = [
   {
@@ -65,6 +67,11 @@ const routes: Routes = [
         path: 'candidate-form',
         component:  CandidateFormComponent,
       },
+      {
+        path: 'Requestpage_operation',
+        component:  RequestpageOperationComponent,
+      },
+
     ]
   }
     
