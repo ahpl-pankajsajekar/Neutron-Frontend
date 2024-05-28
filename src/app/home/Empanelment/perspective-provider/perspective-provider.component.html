@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="">
+      <div class="">
+        <div class="form-container1 mt-5">
+          <div class="form-row row">
+            <div class="form-group col-md-6">
+              <label for="firstName">Request Number:</label>
+              <input type="text" id="firstName" placeholder="Primary Ticket Number">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastName">Requested PIN code:</label>
+              <input type="text" id="lastName" placeholder="PIN code">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="">
+        <div class="form-container">
+          <h6> ADD PERSPECTIVE PROVIDER  (Automation)</h6>
+          <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+          <div class="row">
+          <div class="form-group col-md-3">
+            <label for="providerName">Provider Name:</label>
+            <input type="text" id="providerName" formControlName="providerName">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="providerPinCode">Provider Pin Code:</label>
+            <input type="text" id="providerPinCode" formControlName="providerPinCode">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="state">State:</label>
+            <input type="text" id="state" formControlName="state">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="city">City:</label>
+            <input type="text" id="city" formControlName="city">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="Contact_Person_Name">Contact Person Name:</label>
+            <input type="text" id="Contact_Person_Name" formControlName="Contact_Person_Name">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="Contact_Email">Contact Email-ID:</label>
+            <input type="text" id="Contact_Email" formControlName="Contact_Email">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="Contact_Mobile_Number">Contact Mobile Number:</label>
+            <input type="text" id="Contact_Mobile_Number" formControlName="Contact_Mobile_Number">
+          </div>
+          </div>
+          <button type="button" class="submit-btn" (click)="onSubmit()">Submit</button>
+        </form>
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="col-md-12">
+        <div class="action-container animated slideInUp">
+          <h6>Perspective Provider Added for this Request</h6>
+          <div *ngFor="let provider of perspectiveProviders" class="provider-details">
+            <p>Provider Name: {{ provider.name }}</p>
+            <div class="button-group">
+              <button type="button" class="btn" (click)="addAutomaticProvider()">Automatic</button>
+              <button type="button" class="btn" (click)="addManualProvider()">Manual</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  

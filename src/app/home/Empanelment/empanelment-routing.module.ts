@@ -13,6 +13,8 @@ import {  SuccessModalComponent } from './success-modal/success-modal.component'
 import { NetworkVerifyComponent } from './network-verify/network-verify.component';
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { RequestpageOperationComponent } from './requestpage-operation/requestpage-operation.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PerspectiveProviderComponent } from './perspective-provider/perspective-provider.component';
 
 
 const routes: Routes = [
@@ -70,6 +72,14 @@ const routes: Routes = [
       {
         path: 'Requestpage_operation',
         component:  RequestpageOperationComponent,
+      },
+      {
+        path: 'dashboard',
+        component:  DashboardComponent,
+      },
+      {
+        path: 'perspective',
+        component:  PerspectiveProviderComponent,
       },
 
     ]

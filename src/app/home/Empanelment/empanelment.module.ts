@@ -24,6 +24,8 @@ import { NetworkVerifyComponent } from './network-verify/network-verify.componen
 import {MatTabsModule} from '@angular/material/tabs';
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { RequestpageOperationComponent } from './requestpage-operation/requestpage-operation.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PerspectiveProviderComponent } from './perspective-provider/perspective-provider.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { RequestpageOperationComponent } from './requestpage-operation/requestpa
     NetworkVerifyComponent,
     CandidateFormComponent,
     RequestpageOperationComponent,
+    DashboardComponent,
+    PerspectiveProviderComponent,
     
   ],
   imports: [

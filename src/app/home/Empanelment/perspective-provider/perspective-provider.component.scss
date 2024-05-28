@@ -1,0 +1,110 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    color: #555;
+  }
+  
+  .form-container1,
+  .form-container,
+  .action-container {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .h6 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333; // Example color
+  }
+  
+  .form-group {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .submit-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center; /* Center the text horizontally */
+    display: block; /* Ensure the button takes up the full width of its container */
+    margin: 0 auto; /* Center the button within its container */
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .provider-details {
+    margin-top: 20px;
+  }
+  
+  .button-group button {
+    margin-right: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-group button:hover {
+    background-color: #0056b3;
+  }
+  
+  .animated {
+    animation-duration: 1s;
+  }
+  
+  .slideInRight {
+    animation-name: slideInRight;
+  }
+  
+  .slideInUp {
+    animation-name: slideInUp;
+  }
+  
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+  }
+  
