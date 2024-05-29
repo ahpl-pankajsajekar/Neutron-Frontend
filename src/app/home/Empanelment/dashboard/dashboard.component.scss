@@ -12,6 +12,12 @@
       text-transform: uppercase;
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
+
+    .table-container {
+      max-height: 260px; /* Adjust height as needed */
+      overflow-y: auto;
+    }
+    
   
     .section {
       margin-bottom: 30px;

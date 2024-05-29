@@ -31,6 +31,17 @@ export class RequestpageOperationComponent {
     return this.addProviderForm.get('rows') as FormArray;
   }
 
+  selectedZone: string = 'Select Zone';
+
+  ZoneType = [
+    { value: 'East', viewValue: 'East' },
+    { value: 'West', viewValue: 'West' },
+    { value: 'North', viewValue: 'North' },
+    { value: 'South', viewValue: 'South' },
+  ];
+
+  
+
   createAddProviderRow(): FormGroup {
     return this.fb.group({
       zone: ['', Validators.required],

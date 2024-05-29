@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonService } from 'src/app/_services/common.service';
 
@@ -24,9 +25,16 @@ export class PerspectiveProviderComponent {
 
   Form! : FormGroup;
 
+  requestedTicket: any
   constructor(public formBuilder: FormBuilder,
     public commonService: CommonService, 
-     public toastrService: ToastrService) { }
+    public route: ActivatedRoute,
+     public toastrService: ToastrService) {
+        this.route.paramMap.subscribe(params  => {
+          this.requestedTicket = history.state.ticketData
+          console.log(this.requestedTicket);
+        })      
+      }
 
   ngOnInit(): void {
     this.Form = this.formBuilder.group({

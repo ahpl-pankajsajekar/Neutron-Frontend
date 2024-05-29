@@ -1,27 +1,30 @@
 <div class="dashboard">
-    <h1>Dashboard</h1>
-  
-    <div class="section">
-      <h2>Open Requests</h2>
+  <h1>Dashboard</h1>
+
+  <div class="section">
+    <h2>Open Requests</h2>
+    <div class="table-container">
       <table>
         <thead>
           <tr>
             <th>Request No</th>
-            <!-- <th>Provider Name</th> -->
             <th>Request Date</th>
             <th>PIN</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let request of openRequests">
+          <tr *ngFor="let request of openRequests" (click)="onOpenRequestClick(request)">
             <td>{{ request.Ticket_Id }}</td>
-            <!-- <td>{{ request.providerName }}</td> -->
             <td>{{ request.requestedDate | date:'medium' }}</td>
             <td>{{ request.pincode }}</td>
           </tr>
         </tbody>
       </table>
     </div>
+
+  <!-- Other sections... -->
+</div>
+
   
     <div class="section">
       <h2>New Requests</h2>
@@ -68,6 +71,5 @@
           </tbody>
         </table>
       </div>
-
   </div>
   

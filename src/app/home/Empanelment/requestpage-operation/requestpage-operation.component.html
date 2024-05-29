@@ -4,8 +4,12 @@
     <h2 class="text-center">ADD PROVIDER</h2>
     <div *ngFor="let row of addProviderRows.controls; let i = index" class="form-row justify-content-center">
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.zone" placeholder="Zone">
+        <select class="form-select" formControlName="{{i}}.zone">
+          <option value="Select Zone" selected disabled>Select Zone</option>
+          <option *ngFor="let zone of ZoneType" [value]="zone.value">{{ zone.viewValue }}</option>
+        </select>
       </div>
+            
       <div class="col-md-3 mb-3">
         <input type="text" class="form-control" formControlName="{{i}}.pinCode" placeholder="PinCode">
       </div>
