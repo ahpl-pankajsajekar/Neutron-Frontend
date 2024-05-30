@@ -16,6 +16,10 @@ export class CommonService {
     return this.http.post(`${environment.apiUrl}`+ url, data)
   }
 
+  putMethod(url:string, data:any){
+    return this.http.put(`${environment.apiUrl}`+ url, data)
+  }
+
   getMethod(url:string){
     return this.http.get(`${environment.apiUrl}`+ url)
   }

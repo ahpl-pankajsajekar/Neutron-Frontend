@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CommonService } from 'src/app/_services/common.service';
 
 interface PerspectiveProvider {
-  name: string;
+  DignosticCenter_ProviderName: string;
+  Ticket_Id: string;
+  DignosticCenter_State: string;
 }
 
 @Component({
@@ -14,58 +16,68 @@ interface PerspectiveProvider {
   styleUrls: ['./perspective-provider.component.scss']
 })
 export class PerspectiveProviderComponent {
-  providerName: string = '';
-  providerPinCode: string = '';
-  state: string = '';
-  city: string = '';
-  contactPersonName: string = '';
-  contactEmail: string = '';
-  contactMobileNumber: string = '';
+
   perspectiveProviders: PerspectiveProvider[] = [];
 
   Form! : FormGroup;
 
-  requestedTicket: any
+  requestedTicketObj: any
+
+  PTicket_id: any;
+  PTicket_zone: any
+  PTicket_pincode: any
   constructor(public formBuilder: FormBuilder,
     public commonService: CommonService, 
     public route: ActivatedRoute,
+    private router: Router,
      public toastrService: ToastrService) {
         this.route.paramMap.subscribe(params  => {
-          this.requestedTicket = history.state.ticketData
-          console.log(this.requestedTicket);
+          this.requestedTicketObj = history.state.ticketData
+          this.PTicket_id = this.requestedTicketObj.Ticket_Id
+          this.PTicket_zone = this.requestedTicketObj.zone
+          this.PTicket_pincode = this.requestedTicketObj.pincode
+          console.log(this.requestedTicketObj);
         })      
       }
 
   ngOnInit(): void {
+    this.loadData(); // list of perspectiveProviders
     this.Form = this.formBuilder.group({
-      providerName: ['', ], 
-      providerPinCode: ['',],
-      state: ['', ], 
-      city: ['', ], 
-      Contact_Person_Name: ['', ],
-      Contact_Email: ['', ],
-      Contact_Mobile_Number: ['', ]
+      providerName: ['', [Validators.required]], 
+      pincode: ['', [Validators.required]],
+      state: ['',[Validators.required] ], 
+      city: ['', [Validators.required]], 
+      contactPersonName: ['',[Validators.required] ],
+      contactEmailID: ['', [Validators.required]],
+      contactNumber: ['',[Validators.required] ]
     });
   }
 
   onSubmit(): void {
-    console.log(this.Form.value)
+    const formData = this.Form.value
+    formData['zone'] = this.PTicket_zone
+    formData['parent_pincode'] = this.PTicket_pincode
+    formData['parent_ticket_id'] = this.PTicket_id
+    console.log(formData)
     if (this.Form.invalid) {
       this.toastrService.info("All required values should be provided!", 'Required', {
         closeButton: true,
       });
     }
     else{
-      const url = ''
-      this.commonService.postMethod(url, this.Form.value)
+      const url = '/network/ticket/child/'
+      this.commonService.postMethod(url, formData)
         .subscribe(
-          (data: any) => {
+          (res: any) => {
+            console.log(res);
             setTimeout(() => {
-              this.toastrService.success('User Registered Successfully', 'Successful', {
+              this.toastrService.success('Perspective Provider Added', 'Successful', {
                 closeButton: true,
               });
             },
             1000);
+            this.loadData();
+            this.Form.reset();
           },
           (error:any) => {
             console.error(error)
@@ -83,30 +95,32 @@ export class PerspectiveProviderComponent {
     }
   }
 
-  clearForm(): void {
-    // Clear all form fields
-    this.providerName = '';
-    this.providerPinCode = '';
-    this.state = '';
-    this.city = '';
-    this.contactPersonName = '';
-    this.contactEmail = '';
-    this.contactMobileNumber = '';
+
+  loadData(){
+    // get perspectiveProviders list
+    const url = '/prospectiveprovider/tickets/';
+    this.commonService.getMethodWithParams(url, {"parent_ticket_id": this.PTicket_id }).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.perspectiveProviders = res.data
+        console.log(this.perspectiveProviders);
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
 
-  addAutomaticProvider(): void {
-    // Add automatic provider functionality here
-    console.log('Automatic provider added.');
-    const url = ''
-    this.commonService.postMethod(url, this.Form.value)
+
+  addAutomaticProvider(ticket:any): void {
+    const url = '/prospectiveprovider/ticket/'
+    this.commonService.putMethod(url, {'ticket_id': ticket.Ticket_Id})
         .subscribe(
-          (data: any) => {
-            setTimeout(() => {
-              this.toastrService.success('Empalment link send Successfully', 'Successful', {
-                closeButton: true,
-              });
-            },
-            1000);
+          (res: any) => {
+            console.log(res)
+            this.toastrService.success('Empanelment link sent', 'Successful', {
+              closeButton: true,
+            });
           },
           (error:any) => {
             if(error.error['error']){
@@ -117,27 +131,10 @@ export class PerspectiveProviderComponent {
           }
         );
   }
-  addManualProvider(): void {
-    // Add manual provider functionality here
-    console.log('Manual provider added.');
-    const url = ''
-    this.commonService.postMethod(url, this.Form.value)
-        .subscribe(
-          (data: any) => {
-            setTimeout(() => {
-              this.toastrService.success('Empalment link send Successfully', 'Successful', {
-                closeButton: true,
-              });
-            },
-            1000);
-          },
-          (error:any) => {
-            if(error.error['error']){
-              this.toastrService.error(error['error'], 'error', {
-                closeButton: true,
-              });
-            }
-          }
-        );
-      }
+
+  addManualProvider(ticket:any): void {
+      // this.router.navigate(['/selfempanelment'], {queryParams: {id: ticket.Ticket_Id }})
+      const url = this.router.createUrlTree(['/selfempanelment'], { queryParams: { id: ticket.Ticket_Id }}).toString();
+      window.open(url, '_blank');
+    }
 }

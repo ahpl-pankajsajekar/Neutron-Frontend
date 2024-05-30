@@ -1,6 +1,29 @@
 <div class="dashboard">
   <h1>Dashboard</h1>
 
+  
+  <div class="section">
+    <h2>New Requests</h2>
+    <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Request No</th>
+          <th>Request Date</th>
+          <th>PIN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of newRequests" (click)="onOpenRequestClick(request)">
+          <td>{{ request.Ticket_Id }}</td>
+          <td>{{ request.requestedDate | date:'medium' }}</td>
+          <td>{{ request.pincode }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
   <div class="section">
     <h2>Open Requests</h2>
     <div class="table-container">
@@ -8,6 +31,8 @@
         <thead>
           <tr>
             <th>Request No</th>
+            <th>Provider Name</th>
+            <th>Status</th>
             <th>Request Date</th>
             <th>PIN</th>
           </tr>
@@ -15,6 +40,8 @@
         <tbody>
           <tr *ngFor="let request of openRequests" (click)="onOpenRequestClick(request)">
             <td>{{ request.Ticket_Id }}</td>
+            <td>{{ request.providerName }}</td>
+            <td>{{ request.Status_ID }}</td>
             <td>{{ request.requestedDate | date:'medium' }}</td>
             <td>{{ request.pincode }}</td>
           </tr>
@@ -24,31 +51,6 @@
 
   <!-- Other sections... -->
 </div>
-
-  
-    <div class="section">
-      <h2>New Requests</h2>
-      <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Request No</th>
-            <th>Provider Name</th>
-            <th>Request Date</th>
-            <th>PIN</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let request of newRequests">
-            <td>{{ request.Ticket_Id }}</td>
-            <td>{{ request.providerName }}</td>
-            <td>{{ request.requestedDate | date:'medium' }}</td>
-            <td>{{ request.pincode }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 
     <div class="section">
         <h2>Closed Requests</h2>
