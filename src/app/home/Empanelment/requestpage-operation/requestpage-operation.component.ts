@@ -1,138 +1,117 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { CommonService } from 'src/app/_services/common.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-requestpage-operation',
   templateUrl: './requestpage-operation.component.html',
   styleUrls: ['./requestpage-operation.component.scss']
 })
-export class RequestpageOperationComponent {
+export class RequestpageOperationComponent  {
 
-  addProviderForm: FormGroup;
-  delistProviderForm: FormGroup;
-  activateProviderForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.addProviderForm = this.fb.group({
-      rows: this.fb.array([this.createAddProviderRow()])
-    });
-
-    this.delistProviderForm = this.fb.group({
-      rows: this.fb.array([this.createDelistProviderRow()])
-    });
-
-    this.activateProviderForm = this.fb.group({
-      rows: this.fb.array([this.createActivateProviderRow()])
-    });
-  }
-
-  // Add Provider Form
-  get addProviderRows(): FormArray {
-    return this.addProviderForm.get('rows') as FormArray;
-  }
-
-  selectedZone: string = 'Select Zone';
-
+  addProviderForm!: FormGroup;
+  delistProviderForm!: FormGroup;
+  activateProviderForm!: FormGroup;
   ZoneType = [
-    { value: 'East', viewValue: 'East' },
-    { value: 'West', viewValue: 'West' },
-    { value: 'North', viewValue: 'North' },
-    { value: 'South', viewValue: 'South' },
+    { value: 'EastZone', viewValue: 'EastZone' },
+    { value: 'WestZone', viewValue: 'WestZone' },
+    { value: 'NorthZone', viewValue: 'NorthZone' },
+    { value: 'SouthZone', viewValue: 'SouthZone' },
   ];
 
-  
+  constructor(private fb: FormBuilder,
+    public toastrService: ToastrService,
+     public commonService: CommonService) {
 
-  createAddProviderRow(): FormGroup {
-    return this.fb.group({
+  }
+
+
+  ngOnInit(): void {
+    this.addProviderForm = this.fb.group({
+      pincode: ['', Validators.required],
       zone: ['', Validators.required],
-      pinCode: ['', Validators.required],
-      remarks: ['']
+      remark: ['', Validators.required],
+      // rows: this.fb.array([this.createAddProviderRow()])
     });
   }
 
-  // Delist Provider Form
-  get delistProviderRows(): FormArray {
-    return this.delistProviderForm.get('rows') as FormArray;
-  }
+  // get addProviderRows(): FormArray {
+  //   return this.addProviderForm.get('rows') as FormArray;
+  // }
 
-  createDelistProviderRow(): FormGroup {
-    return this.fb.group({
-      providerId: ['', Validators.required],
-      providerName: ['', Validators.required],
-      pinCode: ['', Validators.required]
-    });
-  }
+  // get delistProviderRows(): FormArray {
+  //   return this.delistProviderForm.get('rows') as FormArray;
+  // }
 
-  // Activate Provider Form
-  get activateProviderRows(): FormArray {
-    return this.activateProviderForm.get('rows') as FormArray;
-  }
+  // get activateProviderRows(): FormArray {
+  //   return this.activateProviderForm.get('rows') as FormArray;
+  // }
 
-  createActivateProviderRow(): FormGroup {
-    return this.fb.group({
-      providerId: ['', Validators.required],
-      providerName: ['', Validators.required],
-      pinCode: ['', Validators.required]
-    });
-  }
+  // createAddProviderRow(): FormGroup {
+  //   return this.fb.group({
+  //     zone: ['', Validators.required],
+  //     pinCode: ['', Validators.required],
+  //     remarks: ['']
+  //   });
+  // }
 
-  addNewRow(section: string): void {
-    switch (section) {
-      case 'add':
-        this.addProviderRows.push(this.createAddProviderRow());
-        break;
-      case 'delist':
-        this.delistProviderRows.push(this.createDelistProviderRow());
-        break;
-      case 'activate':
-        this.activateProviderRows.push(this.createActivateProviderRow());
-        break;
-      default:
-        break;
-    }
-  }
+  // createDelistProviderRow(): FormGroup {
+  //   return this.fb.group({
+  //     providerId: ['', Validators.required],
+  //     providerName: ['', Validators.required],
+  //     pinCode: ['', Validators.required]
+  //   });
+  // }
 
-  removeRow(section: string, index: number): void {
-    switch (section) {
-      case 'add':
-        this.addProviderRows.removeAt(index);
-        break;
-      case 'delist':
-        this.delistProviderRows.removeAt(index);
-        break;
-      case 'activate':
-        this.activateProviderRows.removeAt(index);
-        break;
-      default:
-        break;
-    }
-  }
+  // createActivateProviderRow(): FormGroup {
+  //   return this.fb.group({
+  //     providerId: ['', Validators.required],
+  //     providerName: ['', Validators.required],
+  //     pinCode: ['', Validators.required]
+  //   });
+  // }
 
-
-  onSubmit(section: string): void {
-    let form: FormGroup | null = null; // Initialize form variable
-  
-    // Assign value to form based on the section
-    switch (section) {
-      case 'add':
-        form = this.addProviderForm;
-        break;
-      case 'delist':
-        form = this.delistProviderForm;
-        break;
-      case 'activate':
-        form = this.activateProviderForm;
-        break;
-      default:
-        break;
-    }
-  
-    // Check if form is not null and is valid
-    if (form && form.valid) {
-      // Perform submission or API call here
-      console.log(form.value);
+  onSubmitAddProvider(): void {
+    if (this.addProviderForm.valid) 
+      {
+      const formData = this.addProviderForm.value;
+      this.commonService.postMethod('/operation/ticket/', formData).subscribe(
+        (res: any) => {
+          this.toastrService.error('Ticket Created Successful.', 'Successful', {
+            closeButton: true,
+          });
+          console.log('API response:', res);
+        },
+        (error: any) => {
+          this.toastrService.error('Issue in Document', 'Successful', {
+            closeButton: true,
+          });
+          console.error('API error:', error);
+        }
+      );
     } else {
-      alert("Please fill out the details correctly.");
+      alert("Please fill out the details correctly in the ADD PROVIDER section.");
+    }
+  }
+
+  onSubmitDelistProvider(): void {
+    if (this.delistProviderForm.valid) {
+      console.log("Submitting Delist Provider form:", this.delistProviderForm.value);
+      // You can perform further actions here
+    } else {
+      alert("Please fill out the details correctly in the DELIST PROVIDER section.");
+    }
+  }
+
+  onSubmitActivateProvider(): void {
+    if (this.activateProviderForm.valid) {
+      console.log("Submitting Activate Provider form:", this.activateProviderForm.value);
+      // You can perform further actions here
+    } else {
+      alert("Please fill out the details correctly in the ACTIVATE PROVIDER section.");
     }
   }
 }

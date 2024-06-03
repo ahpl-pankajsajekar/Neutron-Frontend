@@ -11,13 +11,15 @@
           <th>Request No</th>
           <th>Request Date</th>
           <th>PIN</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let request of newRequests" (click)="onOpenRequestClick(request)">
+        <tr *ngFor="let request of newRequests">
           <td>{{ request.Ticket_Id }}</td>
           <td>{{ request.requestedDate | date:'medium' }}</td>
           <td>{{ request.pincode }}</td>
+          <td (click)="onOpenRequestClick(request)" class="viewDc"><i class="bi bi-eye-fill"></i></td>
         </tr>
       </tbody>
     </table>
@@ -35,15 +37,17 @@
             <th>Status</th>
             <th>Request Date</th>
             <th>PIN</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let request of openRequests" (click)="onOpenRequestClick(request)">
+          <tr *ngFor="let request of openRequests">
             <td>{{ request.Ticket_Id }}</td>
             <td>{{ request.providerName }}</td>
             <td>{{ request.Status_ID }}</td>
             <td>{{ request.requestedDate | date:'medium' }}</td>
             <td>{{ request.pincode }}</td>
+            <td (click)="onOpenRequestClick(request)" class="viewDc"><i class="bi bi-eye-fill"></i></td>
           </tr>
         </tbody>
       </table>

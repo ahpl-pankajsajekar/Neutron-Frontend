@@ -76,3 +76,12 @@
     }
   }
   
+
+  .viewDc{
+    cursor: pointer;
+    color: #000;
+    &:hover{
+      text-decoration: underline;
+      color: #007bff;
+    }
+  }

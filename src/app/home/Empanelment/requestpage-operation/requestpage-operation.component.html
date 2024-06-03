@@ -2,88 +2,61 @@
   <!-- ADD PROVIDER Section -->
   <div class="mt-4">
     <h2 class="text-center">ADD PROVIDER</h2>
-    <div *ngFor="let row of addProviderRows.controls; let i = index" class="form-row justify-content-center">
+    <form class="form-row justify-content-center" [formGroup]="addProviderForm">
       <div class="col-md-3 mb-3">
-        <select class="form-select" formControlName="{{i}}.zone">
-          <option value="Select Zone" selected disabled>Select Zone</option>
+        <select class="form-select" formControlName="zone">
+          <option selected disabled>Select Zone</option>
           <option *ngFor="let zone of ZoneType" [value]="zone.value">{{ zone.viewValue }}</option>
         </select>
       </div>
-            
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.pinCode" placeholder="PinCode">
+        <input type="[text]" class="form-control" formControlName="pincode" placeholder="PinCode">
       </div>
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.remarks" placeholder="Remarks">
+        <input type="text" class="form-control" formControlName="remark" placeholder="Remarks">
       </div>
       <div class="col-md-1 mb-3">
-        <button type="button" class="btn btn-danger" (click)="removeRow('add', i)">Remove</button>
+        <button type="submit" class="btn btn-primary mb-2" (click)="onSubmitAddProvider()">Submit</button>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="col-auto">
-        <button type="button" class="btn btn-success mb-2" (click)="addNewRow('add')">Add New Row</button>
-      </div>
-      <div class="col-auto">
-        <button type="button" class="btn btn-primary mb-2" (click)="onSubmit('add')">Submit</button>
-      </div>
-    </div>
+  </form>
   </div>
   <hr>
 
-  <!-- DELIST PROVIDER Section -->
-  <div class="mt-4">
+  <!-- <div class="mt-4">
     <h2 class="text-center">DELIST PROVIDER</h2>
-    <div *ngFor="let row of delistProviderRows.controls; let i = index" class="form-row justify-content-center">
+    <form class="form-row justify-content-center" [formGroup]="delistProviderForm">
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.providerId" placeholder="ProviderID">
+        <input type="text" class="form-control" formControlName="providerId" placeholder="ProviderID">
       </div>
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.providerName" placeholder="ProviderName">
+        <input type="text" class="form-control" formControlName="providerName" placeholder="ProviderName">
       </div>
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.pinCode" placeholder="Pincode">
+        <input type="text" class="form-control" formControlName="pinCode" placeholder="Pincode">
       </div>
       <div class="col-md-1 mb-3">
-        <button type="button" class="btn btn-danger" (click)="removeRow('delist', i)">Remove</button>
+        <button type="button" class="btn btn-primary mb-2" (click)="onSubmitDelistProvider()">Delist</button>
       </div>
+    </form>
     </div>
-    <div class="form-row ">
-      <div class="col-auto">
-        <button type="button" class="btn btn-success mb-2" (click)="addNewRow('delist')">Add New Row</button>
-      </div>
-      <div class="col-auto">
-        <button type="button" class="btn btn-primary mb-2" (click)="onSubmit('delist')">Submit</button>
-      </div>
-    </div>
-  </div>
   <hr>
 
-  <!-- ACTIVATE PROVIDER Section -->
   <div class="mt-4">
     <h2 class="text-center">ACTIVATE PROVIDER</h2>
-    <div *ngFor="let row of activateProviderRows.controls; let i = index" class="form-row justify-content-center">
+    <form class="form-row justify-content-center" [formGroup]="activateProviderForm">
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.providerId" placeholder="ProviderID">
+        <input type="text" class="form-control" formControlName="providerId" placeholder="ProviderID">
       </div>
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.providerName" placeholder="ProviderName">
+        <input type="text" class="form-control" formControlName="providerName" placeholder="ProviderName">
       </div>
       <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="{{i}}.pinCode" placeholder="Pincode">
+        <input type="text" class="form-control" formControlName="pinCode" placeholder="Pincode">
       </div>
       <div class="col-md-1 mb-3">
-        <button type="button" class="btn btn-danger" (click)="removeRow('activate', i)">Remove</button>
+        <button type="button" class="btn btn-primary mb-2" (click)="onSubmitActivateProvider()">Activate</button>
       </div>
-    </div>
-    <div class="form-row ">
-      <div class="col-auto">
-        <button type="button" class="btn btn-success mb-2" (click)="addNewRow('activate')">Add New Row</button>
-      </div>
-      <div class="col-auto">
-        <button type="button" class="btn btn-primary mb-2" (click)="onSubmit('activate')">Submit</button>
-      </div>
-    </div>
-  </div>
+    </form>
+    </div> -->
+
 </div>
-<hr>
