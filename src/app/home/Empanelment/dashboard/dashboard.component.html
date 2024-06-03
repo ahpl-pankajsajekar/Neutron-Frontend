@@ -1,30 +1,32 @@
 <div class="dashboard">
   <h1>Dashboard</h1>
 
-  
+
   <div class="section">
     <h2>New Requests</h2>
     <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Request No</th>
-          <th>Request Date</th>
-          <th>PIN</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let request of newRequests">
-          <td>{{ request.Ticket_Id }}</td>
-          <td>{{ request.requestedDate | date:'medium' }}</td>
-          <td>{{ request.pincode }}</td>
-          <td (click)="onOpenRequestClick(request)" class="viewDc"><i class="bi bi-eye-fill"></i></td>
-        </tr>
-      </tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Request No</th>
+            <th>Request Date</th>
+            <th>PIN</th>
+            <!-- <th>Action</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of newRequests" (click)="onOpenRequestClick(request)">
+            <td>{{ request.Ticket_Id }}
+              <span class="badge rounded-pill bg-info" *ngIf="request?.ticketType==2">Child</span>
+            </td>
+            <td>{{ request.requestedDate | date:'medium' }}</td>
+            <td>{{ request.pincode }}</td>
+            <!-- <td  class="viewDc"><i class="bi bi-eye-fill"></i></td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 
   <div class="section">
     <h2>Open Requests</h2>
@@ -34,52 +36,55 @@
           <tr>
             <th>Request No</th>
             <th>Provider Name</th>
-            <th>Status</th>
+            <th>Current Status</th>
             <th>Request Date</th>
             <th>PIN</th>
-            <th>Action</th>
+            <!-- <th>Action</th> -->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let request of openRequests">
             <td>{{ request.Ticket_Id }}</td>
             <td>{{ request.providerName }}</td>
-            <td>{{ request.Status_ID }}</td>
+            <td *ngIf="request.Status_ID==48">Forwarded to DC</td>
+            <td *ngIf="request.Status_ID==49">Document Submitted By DC</td>
+            <td *ngIf="request.Status_ID==50">Forwarded to legal after QC1</td>
+            <td *ngIf="request.Status_ID==51">Document Verified by Legal</td>
+            <td *ngIf="request.Status_ID==52">Issue in Document</td>
             <td>{{ request.requestedDate | date:'medium' }}</td>
             <td>{{ request.pincode }}</td>
-            <td (click)="onOpenRequestClick(request)" class="viewDc"><i class="bi bi-eye-fill"></i></td>
+            <!-- <td (click)="onOpenRequestClick(request)" class="viewDc"><i class="bi bi-eye-fill"></i></td> -->
           </tr>
         </tbody>
       </table>
     </div>
 
-  <!-- Other sections... -->
-</div>
+    <!-- Other sections... -->
+  </div>
 
-    <div class="section">
-        <h2>Closed Requests</h2>
-        <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Request No</th>
-              <th>Provider Name</th>
-              <th>Request Date</th>
-              <th>Closed Date</th>
-              <th>PIN</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let request of closedRequests">
-              <td>{{ request.Ticket_Id }}</td>
-              <td>{{ request.providerName }}</td>
-              <td>{{ request.requestedDate | date:'medium' }}</td>
-              <td>{{ request.dateClosed }}</td>
-              <td>{{ request.pincode }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="section">
+    <h2>Closed Requests</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Request No</th>
+            <th>Provider Name</th>
+            <th>Request Date</th>
+            <th>Closed Date</th>
+            <th>PIN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of closedRequests">
+            <td>{{ request.Ticket_Id }}</td>
+            <td>{{ request.providerName }}</td>
+            <td>{{ request.requestedDate | date:'medium' }}</td>
+            <td>{{ request.dateClosed }}</td>
+            <td>{{ request.pincode }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+</div>

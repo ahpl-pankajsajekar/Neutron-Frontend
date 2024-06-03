@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
 
   isNetworkRole : boolean = false;
   isLegalRole : boolean = false;
+  isOperationRole : boolean = false;
   isITRole : boolean = false;
   isUserNotLoginTemp : boolean = false;
   constructor(private accountService: AccountService){
@@ -45,7 +46,7 @@ export class NavbarComponent implements OnInit {
 
   getRole(){
     const user = this.accountService.userValue
-    const role = user?.role || 4
+    const role = user?.role || 0
     console.warn(role)
     if (role == String(1)) {
       this.isNetworkRole = true;
@@ -54,6 +55,9 @@ export class NavbarComponent implements OnInit {
       this.isLegalRole = true
     }
     else if(role == String(4)){
+      this.isOperationRole = true
+    }
+    else if(role == String(0)){
       this.isUserNotLoginTemp = true
     }
     else{

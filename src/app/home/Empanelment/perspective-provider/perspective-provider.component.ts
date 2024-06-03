@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +20,7 @@ export class PerspectiveProviderComponent {
 
   perspectiveProviders: PerspectiveProvider[] = [];
 
-  Form! : FormGroup;
+  myForm! : FormGroup;
 
   requestedTicketObj: any
 
@@ -28,6 +29,7 @@ export class PerspectiveProviderComponent {
   PTicket_pincode: any
   constructor(public formBuilder: FormBuilder,
     public commonService: CommonService, 
+    public http: HttpClient, 
     public route: ActivatedRoute,
     private router: Router,
      public toastrService: ToastrService) {
@@ -37,12 +39,13 @@ export class PerspectiveProviderComponent {
           this.PTicket_zone = this.requestedTicketObj.zone
           this.PTicket_pincode = this.requestedTicketObj.pincode
           console.log(this.requestedTicketObj);
+          this.getPincodeDetails(this.requestedTicketObj.pincode)
         })      
       }
 
   ngOnInit(): void {
     this.loadData(); // list of perspectiveProviders
-    this.Form = this.formBuilder.group({
+    this.myForm = this.formBuilder.group({
       providerName: ['', [Validators.required]], 
       pincode: ['', [Validators.required]],
       state: ['',[Validators.required] ], 
@@ -54,12 +57,12 @@ export class PerspectiveProviderComponent {
   }
 
   onSubmit(): void {
-    const formData = this.Form.value
+    const formData = this.myForm.value
     formData['zone'] = this.PTicket_zone
     formData['parent_pincode'] = this.PTicket_pincode
     formData['parent_ticket_id'] = this.PTicket_id
     console.log(formData)
-    if (this.Form.invalid) {
+    if (this.myForm.invalid) {
       this.toastrService.info("All required values should be provided!", 'Required', {
         closeButton: true,
       });
@@ -77,17 +80,30 @@ export class PerspectiveProviderComponent {
             },
             1000);
             this.loadData();
-            this.Form.reset();
+            this.myForm.reset();
           },
-          (error:any) => {
-            console.error(error)
-            this.toastrService.error(error.error.non_field_errors[0], 'Incorrect', {
+          (err:any) => {
+            console.error(err)
+            this.toastrService.error(err.error.non_field_errors[0], 'Incorrect', {
               closeButton: true,
             });
             // already register error not show/ working
-            if(error.error['error']){
-              this.toastrService.error(error['error'], 'error', {
+            if (err['error']['error']) {
+              this.toastrService.error(err['error']['error'], 'Error', {
                 closeButton: true,
+                timeOut: 5000,
+              });
+            }
+            else if(err['error']['non_field_errors']){
+              this.toastrService.error(err['error']['non_field_errors'], 'Error', {
+                closeButton: true,
+                timeOut: 5000,
+              });
+            }
+            else{
+              this.toastrService.error(err['error'], 'Error', {
+                closeButton: true,
+                timeOut: 5000,
               });
             }
           }
@@ -111,6 +127,31 @@ export class PerspectiveProviderComponent {
     );
   }
 
+  // Function to fetch pincode details from API
+  getPincodeDetails(pincode: string): void {
+    this.http.get(`https://api.postalpincode.in/pincode/${pincode}`).subscribe((response: any) => {
+      if (response && response.length > 0 && response[0]?.Status === 'Success') {
+        const data = response[0]?.PostOffice[0];
+        this.myForm.patchValue({
+          state: data?.State,
+          city: data?.District,
+          pincode: data?.Pincode
+        });
+      } else {
+        // console.error('Invalid pincode or API response.');
+        this.toastrService.error('Invalid pincode or API response', 'Error', {
+          closeButton: true,
+          timeOut: 5000,
+        });
+      }
+    }, (error) => {
+      // console.error('Error fetching pincode details:', error);
+      this.toastrService.error('Error fetching pincode details', 'Error', {
+        closeButton: true,
+        timeOut: 5000,
+      });
+    });
+  }
 
   addAutomaticProvider(ticket:any): void {
     const url = '/prospectiveprovider/ticket/'

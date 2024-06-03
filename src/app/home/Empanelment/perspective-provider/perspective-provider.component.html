@@ -1,70 +1,72 @@
 <div class="container">
+  <div class="">
     <div class="">
-      <div class="">
-        <div class="form-container1 mt-5">
-          <div class="form-row row">
-            <div class="form-group col-md-6">
-              <label for="firstName">Request Number:</label>
-              <input type="text" [(ngModel)]="requestedTicketObj.Ticket_Id" placeholder="Primary Ticket Number" readonly>
-            </div>
-            <div class="form-group col-md-6">
-              <label >Requested PIN code:</label>
-              <input type="text" [(ngModel)]="requestedTicketObj.pincode" placeholder="PIN code" readonly>
-            </div>
+      <div class="form-container1 mt-5">
+        <div class="form-row row">
+          <div class="form-group col-md-6">
+            <label for="firstName">Request Number:</label>
+            <input type="text" [(ngModel)]="requestedTicketObj.Ticket_Id" placeholder="Primary Ticket Number" readonly>
           </div>
-        </div>
-      </div>
-      
-      <div class="">
-        <div class="form-container">
-          <h6> ADD PERSPECTIVE PROVIDER  (Automation)</h6>
-          <form [formGroup]="Form" (ngSubmit)="onSubmit()">
-          <div class="row">
-          <div class="form-group col-md-3">
-            <label for="providerName">Provider Name:</label>
-            <input type="text" id="providerName" formControlName="providerName">
+          <div class="form-group col-md-6">
+            <label>Requested PIN code:</label>
+            <input type="text" [(ngModel)]="requestedTicketObj.pincode" placeholder="PIN code" readonly>
           </div>
-          <div class="form-group col-md-3">
-            <label for="providerPinCode">Provider Pin Code:</label>
-            <input type="text" id="providerPinCode" formControlName="pincode">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="state">State:</label>
-            <input type="text" id="state" formControlName="state">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="city">City:</label>
-            <input type="text" id="city" formControlName="city">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="Contact_Person_Name">Contact Person Name:</label>
-            <input type="text" id="Contact_Person_Name" formControlName="contactPersonName">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="Contact_Email">Contact Email-ID:</label>
-            <input type="text" id="Contact_Email" formControlName="contactEmailID">
-          </div>
-          <div class="form-group col-md-3">
-            <label for="Contact_Mobile_Number">Contact Mobile Number:</label>
-            <input type="text" id="Contact_Mobile_Number" formControlName="contactNumber">
-          </div>
-          </div>
-          <button type="button" class="submit-btn" (click)="onSubmit()">Submit</button>
-        </form>
         </div>
       </div>
     </div>
-  
-    <div class="col-md-12">
-        <div class="action-container animated slideInUp">
-          <h6>Perspective Provider Added for this Request</h6>
-          <div *ngFor="let provider of perspectiveProviders" class="provider-details">
-            <p>Provider Name: {{ provider.DignosticCenter_ProviderName }} ( {{provider.Ticket_Id}} )
-              <button type="button" class="btn btn-primary btn-sm mx-1" (click)="addAutomaticProvider(provider)">Auto</button>
-              <button type="button" class="btn btn-primary btn-sm mx-1" (click)="addManualProvider(provider)">Manual</button>
-            </p>
+
+    <div class="">
+      <div class="form-container">
+        <h6> ADD PERSPECTIVE PROVIDER (Automation)</h6>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="form-group col-md-3">
+              <label for="providerName">Provider Name:</label>
+              <input type="text" id="providerName" formControlName="providerName">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="providerPinCode">Provider Pin Code:</label>
+              <input type="text" id="providerPinCode" formControlName="pincode" readonly>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="state">State:</label>
+              <input type="text" id="state" formControlName="state" readonly>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="city">City:</label>
+              <input type="text" id="city" formControlName="city" readonly>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="Contact_Person_Name">Contact Person Name:</label>
+              <input type="text" id="Contact_Person_Name" formControlName="contactPersonName">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="Contact_Email">Contact Email-ID:</label>
+              <input type="email" id="Contact_Email" formControlName="contactEmailID">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="Contact_Mobile_Number">Contact Mobile Number:</label>
+              <input type="text" id="Contact_Mobile_Number" formControlName="contactNumber" minlength="10"
+                maxlength="12">
+            </div>
           </div>
-        </div>
+          <button type="button" class="submit-btn" (click)="onSubmit()">Submit</button>
+        </form>
       </div>
+    </div>
   </div>
-  
+
+  <div class="col-md-12">
+    <div class="action-container animated slideInUp" *ngIf="perspectiveProviders.length != 0">
+      <h6>Perspective Provider Added for this Request</h6>
+      <div *ngFor="let provider of perspectiveProviders" class="provider-details">
+        <p>Provider Name: {{ provider.DignosticCenter_ProviderName }} ( {{provider.Ticket_Id}} )
+          <button type="button" class="btn btn-primary btn-sm mx-1"
+            (click)="addAutomaticProvider(provider)">Auto</button>
+          <button type="button" class="btn btn-primary btn-sm mx-1"
+            (click)="addManualProvider(provider)">Manual</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

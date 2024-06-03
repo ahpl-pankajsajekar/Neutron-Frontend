@@ -36,6 +36,16 @@ export class RequestpageOperationComponent  {
       remark: ['', Validators.required],
       // rows: this.fb.array([this.createAddProviderRow()])
     });
+    this.delistProviderForm = this.fb.group({
+          providerId: ['', Validators.required],
+          providerName: ['', Validators.required],
+          pinCode: ['', Validators.required]
+    });
+    this.activateProviderForm = this.fb.group({
+          providerId: ['', Validators.required],
+          providerName: ['', Validators.required],
+          pinCode: ['', Validators.required]
+    });
   }
 
   // get addProviderRows(): FormArray {
@@ -80,20 +90,41 @@ export class RequestpageOperationComponent  {
       const formData = this.addProviderForm.value;
       this.commonService.postMethod('/operation/ticket/', formData).subscribe(
         (res: any) => {
-          this.toastrService.error('Ticket Created Successful.', 'Successful', {
+          this.toastrService.success('Ticket Created Successful.', 'Successful', {
             closeButton: true,
+            timeOut: 5000,
           });
+          this.addProviderForm.reset();
           console.log('API response:', res);
         },
-        (error: any) => {
-          this.toastrService.error('Issue in Document', 'Successful', {
-            closeButton: true,
-          });
+        (err: any) => {
+          const error = err['error'] 
+          if (err['error']['error']) {
+            this.toastrService.error(err['error']['error'], 'Error', {
+              closeButton: true,
+              timeOut: 5000,
+            });
+          }
+          else if(err['error']['non_field_errors']){
+            this.toastrService.error(err['error']['non_field_errors'], 'Error', {
+              closeButton: true,
+              timeOut: 5000,
+            });
+          }
+          else{
+            this.toastrService.error(err['error'], 'Error', {
+              closeButton: true,
+              timeOut: 5000,
+            });
+          }
           console.error('API error:', error);
         }
       );
     } else {
-      alert("Please fill out the details correctly in the ADD PROVIDER section.");
+      this.toastrService.info('Please fill out the details correctly', 'Error', {
+        closeButton: true,
+      });
+      // alert("Please fill out the details correctly in the ADD PROVIDER section.");
     }
   }
 

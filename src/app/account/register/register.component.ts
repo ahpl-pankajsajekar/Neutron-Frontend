@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
     {textValue: 1, textName: "Network"},
     {textValue: 2, textName: "legal"},
     {textValue: 3, textName: "IT"},
+    {textValue: 4, textName: "Operation"},
   ]
   zoneList = [
     {textValue: 'NorthZone', textName: "NorthZone"},
