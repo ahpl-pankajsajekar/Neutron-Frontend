@@ -1,24 +1,3 @@
-<!-- Navigation bar with green background -->
-<nav class="navbar navbar-expand-lg navbar-light bg-green" [ngClass]="{'navbar-hidden': isScrolled}" *ngIf="!isUserNotLoginTemp">
-  <div class="container-fluid">
-    <!-- Logo or brand -->
-    <div class="navbar-brand" href="#">
-      <!-- Your logo here -->
-    </div>
-    <!-- Navigation links -->
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <!-- <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="account/register">Mumbai</a>
-        </li> -->
-        <li class="nav-item">
-          <a class="nav-link username" (click)="logout()" aria-current="page" routerLink="account/login"><i class="fa fa-user" aria-hidden="true"></i> {{emailUserName}} <span class="ms-1" >Logout</span></a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <!-- Navigation bar with white background -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top" [ngClass]="{'fixed-top': isScrolled}">
   <div class="container">
@@ -28,39 +7,61 @@
       <!-- <img src="/assets/images/LK-transformed-2x.jpeg" class="responsive_logo" alt="alinea_logo"> -->
     </div>
     <!-- Toggle button for mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Navigation links -->
     <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item" *ngIf="!isUserNotLoginTemp || isNetworkRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/dc-search" routerLinkActive="active"><i class="fa fa-search nav-icon" aria-hidden="true"></i> Search</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/dc-search"
+            routerLinkActive="active">Search</a>
         </li><br>
         <li class="nav-item" *ngIf="isOperationRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/dashboard" routerLinkActive="active"><i class="fa fa-dashboard nav-icon" aria-hidden="true"></i>&nbsp;Dashboard</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/dashboard"
+            routerLinkActive="active">Dashboard</a>
         </li><br>
         <li class="nav-item" *ngIf="isOperationRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/Requestpage_operation" routerLinkActive="active"><i class="bi bi-app-indicator" aria-hidden="true"></i> Request</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/Requestpage_operation"
+            routerLinkActive="active">Request</a>
         </li><br>
         <li class="nav-item" *ngIf="isOperationRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/perspective" routerLinkActive="active"><i class="fa fa-cog nav-icon" aria-hidden="true"></i> Manage</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/perspective"
+            routerLinkActive="active">Manage</a>
         </li><br>
         <li class="nav-item" *ngIf="isNetworkRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/non-empanelment" routerLinkActive="active"><i class="fa fa-plus nav-icon" aria-hidden="true"></i> DC Empanelment</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/non-empanelment" routerLinkActive="active">DC
+            Empanelment</a>
         </li><br>
         <li class="nav-item" *ngIf="isLegalRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/legal-verify" routerLinkActive="active"><i class="fa fa-check nav-icon" aria-hidden="true"></i> legal Verification</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/legal-verify" routerLinkActive="active">legal
+            Verification</a>
         </li>
         <li class="nav-item" *ngIf="isNetworkRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/network-verify" routerLinkActive="active"><i class="fa fa-check nav-icon" aria-hidden="true"></i> Network Verification</a>
+          <a class="nav-link" aria-current="page" routerLink="empanelment/network-verify"
+            routerLinkActive="active">Network Verification</a>
         </li>
-        <!-- <li class="nav-item" *ngIf="isLegalRole">
-          <a class="nav-link" aria-current="page" routerLink="empanelment/dc-docusign"><i class="fa fa-upload nav-icon" aria-hidden="true"></i> Doc-sign</a>
-        </li> -->
       </ul>
+      <div class="d-flex">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link nav-role" *ngIf="isNetworkRole">Networks</a>
+            <a class="nav-link nav-role" *ngIf="isLegalRole">Legal</a>
+            <a class="nav-link nav-role" *ngIf="isOperationRole">Operations</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Profile Image" class="rounded-circle"
+                width="30" height="30">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#logout" (click)="logout()">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
-
-<!-- Add your additional styling and effects here -->

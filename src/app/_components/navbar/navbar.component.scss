@@ -36,16 +36,17 @@ body {
 .nav-link{
   padding:  0;
   color: var(--black);
-  font-weight: bold;
+  font-weight: 550;
   .nav-icon{
     color: #054240;
   }
 }
 
 .nav-item{
-  padding: 10px;
-    text-decoration: none;
-    color: #000; // Default color
+  font-size: 17px;
+  padding: 10px 2px;
+  text-decoration: none;
+  color: #000; // Default color
   &:hover{
     color: var(--green);
     font-weight: 500;
@@ -53,14 +54,20 @@ body {
   }
 }
 
+
 nav a.active {
-  color: #138a86 !important;
-  padding-bottom: 1px;
-  border-bottom: 2px solid #138a86;
-  i{
-    color: #138a86 !important;
-  }
+  color: #000000;
+  font-weight: 550;
 }
+
+// nav a.active {
+//   color: #138a86 !important;
+//   padding-bottom: 1px;
+//   border-bottom: 2px solid #138a86;
+//   i{
+//     color: #138a86 !important;
+//   }
+// }
 
 .username{
   color: #ffffff !important;
@@ -68,10 +75,15 @@ nav a.active {
   text-transform: capitalize;
 }
 h4 {
+  font-style: "Inter";
   font-size: 20px; /* Adjust size as needed */
-  font-weight: bold;
-  color: #333; /* Change color as needed */
+  font-weight: 600;
+  color: #000000; /* Change color as needed */
   text-align: left; /* Align text to the left */
   margin: 0; /* Remove default margins */
   padding-left: 0px; /* Shift text 10px from the left */
+}
+
+.nav-role{
+  color: #61068B !important;
 }

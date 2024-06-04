@@ -1,90 +1,71 @@
-<div class="dashboard">
-  <h1>Dashboard</h1>
-
-
-  <div class="section">
-    <h2>New Requests</h2>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Request No</th>
-            <th>Request Date</th>
-            <th>PIN</th>
-            <!-- <th>Action</th> -->
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let request of newRequests" (click)="onOpenRequestClick(request)">
-            <td>{{ request.Ticket_Id }}
-              <span class="badge rounded-pill bg-info" *ngIf="request?.ticketType==2">Child</span>
+<section>
+  <div class="container">
+    <div class="row mt-5 d-flex justify-content-around">
+      <div class="col-md-5 col-lg-5">
+        <div class="m-3">
+          <h5>New Requests</h5>
+          <table class="table">
+            <tr>
+              <th>Request No</th>
+              <th>Request Date</th>
+              <th>PIN</th>
+            </tr>
+            <tr *ngFor="let request of newRequests" (click)="onOpenRequestClick(request)">
+              <td>{{ request.Ticket_Id }}</td>
+              <td>{{ request.requestedDate | date:'dd/MM/yy' }}</td>
+              <td>{{ request.pincode }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <div class="m-3">
+          <h5>Open Requests</h5>
+          <table class="table">
+            <tr>
+              <th>Request No</th>
+              <th>Provider Name</th>
+              <th>Current Status</th>
+              <th>Request Date</th>
+              <th>PIN</th>
+            </tr>
+            <tr *ngFor="let request of openRequests">
+            <td>{{ request.Ticket_Id }}</td>
+            <td>{{ request.providerName | slice : 0 : 30 }}</td>
+            <td> 
+              <span *ngIf="request.Status_ID==48">Forwarded to DC</span>
+              <span *ngIf="request.Status_ID==49">Document Submitted By DC</span>
+              <span *ngIf="request.Status_ID==50">Forwarded to legal after QC1</span>
+              <span *ngIf="request.Status_ID==51">Document Verified by Legal</span>
+              <span *ngIf="request.Status_ID==52">Issue in Document</span>
             </td>
-            <td>{{ request.requestedDate | date:'medium' }}</td>
+            <td>{{ request.requestedDate | date:'dd/MM/yy' }}</td>
             <td>{{ request.pincode }}</td>
-            <!-- <td  class="viewDc"><i class="bi bi-eye-fill"></i></td> -->
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 mt-3">
+        <div class="m-3">
+          <h5>Closed Requests</h5>
+          <table class="table">
+            <tr>
+              <th>Request No</th>
+              <th>Provider Name</th>
+              <th>Date Closed</th>
+              <th>Request Date</th>
+              <th>PIN</th>
+            </tr>
+            <tr *ngFor="let request of closedRequests">
+              <td>{{ request.Ticket_Id }}</td>
+              <td>{{ request.providerName | slice : 0 : 30   }}</td>
+              <td>{{ request.dateClosed | date:'dd/MM/yy' }}</td>
+              <td>{{ request.requestedDate | date:'dd/MM/yy' }}</td>
+              <td>{{ request.pincode }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="section">
-    <h2>Open Requests</h2>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Request No</th>
-            <th>Provider Name</th>
-            <th>Current Status</th>
-            <th>Request Date</th>
-            <th>PIN</th>
-            <!-- <th>Action</th> -->
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let request of openRequests">
-            <td>{{ request.Ticket_Id }}</td>
-            <td>{{ request.providerName }}</td>
-            <td *ngIf="request.Status_ID==48">Forwarded to DC</td>
-            <td *ngIf="request.Status_ID==49">Document Submitted By DC</td>
-            <td *ngIf="request.Status_ID==50">Forwarded to legal after QC1</td>
-            <td *ngIf="request.Status_ID==51">Document Verified by Legal</td>
-            <td *ngIf="request.Status_ID==52">Issue in Document</td>
-            <td>{{ request.requestedDate | date:'medium' }}</td>
-            <td>{{ request.pincode }}</td>
-            <!-- <td (click)="onOpenRequestClick(request)" class="viewDc"><i class="bi bi-eye-fill"></i></td> -->
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Other sections... -->
-  </div>
-
-  <div class="section">
-    <h2>Closed Requests</h2>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Request No</th>
-            <th>Provider Name</th>
-            <th>Request Date</th>
-            <th>Closed Date</th>
-            <th>PIN</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let request of closedRequests">
-            <td>{{ request.Ticket_Id }}</td>
-            <td>{{ request.providerName }}</td>
-            <td>{{ request.requestedDate | date:'medium' }}</td>
-            <td>{{ request.dateClosed }}</td>
-            <td>{{ request.pincode }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+</section>

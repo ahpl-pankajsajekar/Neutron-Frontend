@@ -85,3 +85,29 @@
       color: #007bff;
     }
   }
+
+
+  // manual 
+  .row div{
+    background-color: #828282;
+    border-radius: 10px;
+  }
+  .table{
+    tr th{
+      color: #E0E0E0;
+      font-weight: 500;
+      padding: 0.35rem;
+    }
+    td{
+      color: #000;
+      font-weight: 500;
+      padding: 0.25rem;
+    }
+    td span{
+      background: transparent;
+      padding: 0;
+    }
+    tr:hover{
+        cursor: pointer; 
+    }
+  }
