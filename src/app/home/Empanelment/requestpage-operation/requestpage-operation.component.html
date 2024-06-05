@@ -1,62 +1,34 @@
-<div class="container-fluid ">
-  <!-- ADD PROVIDER Section -->
-  <div class="mt-4">
-    <h2 class="text-center">ADD PROVIDER</h2>
-    <form class="form-row justify-content-center" [formGroup]="addProviderForm">
-      <div class="col-md-3 mb-3">
-        <select class="form-select" formControlName="zone">
-          <option selected disabled hidden>Select Zone</option>
-          <option *ngFor="let zone of ZoneType" [value]="zone.value">{{ zone.viewValue }}</option>
-        </select>
-      </div>
-      <div class="col-md-3 mb-3">
-        <input type="number" class="form-control" formControlName="pincode" placeholder="PinCode">
-      </div>
-      <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="remark" placeholder="Remarks">
-      </div>
-      <div class="col-md-1 mb-3">
-        <button type="submit" class="btn btn-primary mb-2" (click)="onSubmitAddProvider()">Submit</button>
-      </div>
-    </form>
+<section>
+  <div class="d-flex justify-content-center">
+    <div class="col-md-10">
+      <h5 class="mb-2">Empanelment Request</h5>
+      <form class="form-row" [formGroup]="addProviderForm">
+        <div class="col-md-3">
+          <select class="form-select" formControlName="zone">
+            <option value="" disabled selected>Zone Selector</option>
+            <option *ngFor="let zone of ZoneType" [value]="zone.value">{{ zone.viewValue }}</option>
+          </select>
+          <div *ngIf="isSubmitted || f['zone'].invalid && f['zone'].touched" class="errormessage">
+            <div *ngIf="f['zone'].errors?.['required']">Please select Zone</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <input type="number" class="form-control" formControlName="pincode" placeholder="PIN Code Requested">
+          <div *ngIf="isSubmitted || f['pincode'].invalid && f['pincode'].touched" class="errormessage">
+            <div *ngIf="f['pincode'].errors?.['required']">PIN Code is required</div>
+            <div *ngIf="f['pincode'].errors?.['minlength']">Please enter correct PIN Code</div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <input type="text" class="form-control" formControlName="remark" placeholder="Remarks">
+          <div *ngIf="isSubmitted || f['remark'].invalid && f['remark'].touched" class="errormessage">
+            <div *ngIf="f['remark'].errors?.['required']">Remarks is required</div>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-primary mb-2" (click)="onSubmitAddProvider()">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <hr>
-
-  <div class="mt-4">
-    <h2 class="text-center">DELIST PROVIDER</h2>
-    <form class="form-row justify-content-center" [formGroup]="delistProviderForm">
-      <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="providerId" placeholder="ProviderID">
-      </div>
-      <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="providerName" placeholder="ProviderName">
-      </div>
-      <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="pinCode" placeholder="Pincode">
-      </div>
-      <div class="col-md-1 mb-3">
-        <button type="button" class="btn btn-primary mb-2" (click)="onSubmitDelistProvider()">Delist</button>
-      </div>
-    </form>
-  </div>
-  <hr>
-
-  <div class="mt-4">
-    <h2 class="text-center">ACTIVATE PROVIDER</h2>
-    <form class="form-row justify-content-center" [formGroup]="activateProviderForm">
-      <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="providerId" placeholder="ProviderID">
-      </div>
-      <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="providerName" placeholder="ProviderName">
-      </div>
-      <div class="col-md-3 mb-3">
-        <input type="text" class="form-control" formControlName="pinCode" placeholder="Pincode">
-      </div>
-      <div class="col-md-1 mb-3">
-        <button type="button" class="btn btn-primary mb-2" (click)="onSubmitActivateProvider()">Activate</button>
-      </div>
-    </form>
-  </div>
-
-</div>
+</section>

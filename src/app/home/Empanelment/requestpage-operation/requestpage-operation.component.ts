@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from 'src/app/_services/common.service';
 import { ToastrService } from 'ngx-toastr';
-
 
 @Component({
   selector: 'app-requestpage-operation',
@@ -13,8 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RequestpageOperationComponent  {
 
   addProviderForm!: FormGroup;
-  delistProviderForm!: FormGroup;
-  activateProviderForm!: FormGroup;
+
   ZoneType = [
     { value: 'EastZone', viewValue: 'EastZone' },
     { value: 'WestZone', viewValue: 'WestZone' },
@@ -25,66 +22,24 @@ export class RequestpageOperationComponent  {
   constructor(private fb: FormBuilder,
     public toastrService: ToastrService,
      public commonService: CommonService) {
-
   }
 
 
   ngOnInit(): void {
     this.addProviderForm = this.fb.group({
-      pincode: ['', Validators.required],
+      pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
       zone: ['', Validators.required],
       remark: ['', Validators.required],
-      // rows: this.fb.array([this.createAddProviderRow()])
-    });
-    this.delistProviderForm = this.fb.group({
-          providerId: ['', Validators.required],
-          providerName: ['', Validators.required],
-          pinCode: ['', Validators.required]
-    });
-    this.activateProviderForm = this.fb.group({
-          providerId: ['', Validators.required],
-          providerName: ['', Validators.required],
-          pinCode: ['', Validators.required]
     });
   }
 
-  // get addProviderRows(): FormArray {
-  //   return this.addProviderForm.get('rows') as FormArray;
-  // }
+  get f(){
+    return this.addProviderForm.controls;
+  }
 
-  // get delistProviderRows(): FormArray {
-  //   return this.delistProviderForm.get('rows') as FormArray;
-  // }
-
-  // get activateProviderRows(): FormArray {
-  //   return this.activateProviderForm.get('rows') as FormArray;
-  // }
-
-  // createAddProviderRow(): FormGroup {
-  //   return this.fb.group({
-  //     zone: ['', Validators.required],
-  //     pinCode: ['', Validators.required],
-  //     remarks: ['']
-  //   });
-  // }
-
-  // createDelistProviderRow(): FormGroup {
-  //   return this.fb.group({
-  //     providerId: ['', Validators.required],
-  //     providerName: ['', Validators.required],
-  //     pinCode: ['', Validators.required]
-  //   });
-  // }
-
-  // createActivateProviderRow(): FormGroup {
-  //   return this.fb.group({
-  //     providerId: ['', Validators.required],
-  //     providerName: ['', Validators.required],
-  //     pinCode: ['', Validators.required]
-  //   });
-  // }
-
+  isSubmitted = false
   onSubmitAddProvider(): void {
+    this.isSubmitted = true
     if (this.addProviderForm.valid) 
       {
       const formData = this.addProviderForm.value;
@@ -95,6 +50,7 @@ export class RequestpageOperationComponent  {
             timeOut: 5000,
           });
           this.addProviderForm.reset();
+          this.isSubmitted = false;
           console.log('API response:', res);
         },
         (err: any) => {
@@ -124,25 +80,7 @@ export class RequestpageOperationComponent  {
       this.toastrService.info('Please fill out the details correctly', 'Error', {
         closeButton: true,
       });
-      // alert("Please fill out the details correctly in the ADD PROVIDER section.");
     }
   }
 
-  onSubmitDelistProvider(): void {
-    if (this.delistProviderForm.valid) {
-      console.log("Submitting Delist Provider form:", this.delistProviderForm.value);
-      // You can perform further actions here
-    } else {
-      alert("Please fill out the details correctly in the DELIST PROVIDER section.");
-    }
-  }
-
-  onSubmitActivateProvider(): void {
-    if (this.activateProviderForm.valid) {
-      console.log("Submitting Activate Provider form:", this.activateProviderForm.value);
-      // You can perform further actions here
-    } else {
-      alert("Please fill out the details correctly in the ACTIVATE PROVIDER section.");
-    }
-  }
 }

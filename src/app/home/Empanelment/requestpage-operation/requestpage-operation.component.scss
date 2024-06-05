@@ -63,4 +63,15 @@
   color: #333; /* Example color */
   font-size: 24px; /* Example font size */
 }
+.btn{
+  text-transform: capitalize;
+}
 
+select{
+  background-color: #E0E0E0;
+}
+
+.errormessage{
+  color: red;
+  font-size: 12px;
+}

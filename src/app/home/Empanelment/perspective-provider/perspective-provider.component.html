@@ -26,9 +26,15 @@
         <div class="row">
           <div class="col-md-3 mb-3">
             <input type="text" class="form-control" id="providerName" placeholder="Provider Name" formControlName="providerName">
+            <div *ngIf="isSubmitted || f['providerName'].invalid && (f['providerName'].touched)" class="errormessage">
+              <div *ngIf="f['providerName'].errors?.['required']">This Field is Required</div>
+            </div>
           </div>
           <div class="col-md-3 mb-3">
             <input type="text" class="form-control" placeholder="PIN Code" formControlName="pincode" readonly>
+            <div *ngIf="isSubmitted || f['pincode'].invalid && (f['pincode'].touched)" class="errormessage">
+              <div *ngIf="f['pincode'].errors?.['required']">This Field is Required</div>
+            </div>
           </div>
           <div class="col-md-3 mb-3">
             <input type="text" class="form-control" id="state" placeholder="State" formControlName="state" readonly>
@@ -38,13 +44,22 @@
           </div>
           <div class="col-md-3 mb-3">
             <input type="text" class="form-control" id="Contact_Person_Name"  placeholder="Contact Person Name" formControlName="contactPersonName" >
+            <div *ngIf="isSubmitted || f['contactPersonName'].invalid && (f['contactPersonName'].touched)" class="errormessage">
+              <div *ngIf="f['contactPersonName'].errors?.['required']">This Field is Required</div>
+            </div>
           </div>
           <div class="col-md-3 mb-3">
             <input type="email" class="form-control" id="Contact_Email" placeholder="Contact Email ID" formControlName="contactEmailID">
+            <div *ngIf="isSubmitted || f['contactEmailID'].invalid && (f['contactEmailID'].touched)" class="errormessage">
+              <div *ngIf="f['contactEmailID'].errors?.['required']">This Field is Required</div>
+            </div>
           </div>
           <div class="col-md-3 mb-3">
             <input type="text" class="form-control" id="Contact_Mobile_Number" placeholder="Contact Mobile No" formControlName="contactNumber"  minlength="10"
             maxlength="12">
+            <div *ngIf="isSubmitted || f['contactNumber'].invalid && (f['contactNumber'].touched)" class="errormessage">
+              <div *ngIf="f['contactNumber'].errors?.['required']">This Field is Required</div>
+            </div>
           </div>
         </div>
         <div class="d-grid col-2 mx-auto mt-4">

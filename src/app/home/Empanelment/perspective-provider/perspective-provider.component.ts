@@ -56,7 +56,14 @@ export class PerspectiveProviderComponent {
     });
   }
 
+  get f(){
+    return this.myForm.controls;
+  }
+  
+
+  isSubmitted = false;
   onSubmit(): void {
+    this.isSubmitted = true;
     const formData = this.myForm.value
     formData['zone'] = this.PTicket_zone
     formData['parent_pincode'] = this.PTicket_pincode
@@ -81,6 +88,7 @@ export class PerspectiveProviderComponent {
             1000);
             this.loadData();
             this.myForm.reset();
+            this.isSubmitted = false;
           },
           (err:any) => {
             console.error(err)
