@@ -23,13 +23,13 @@
     justify-content: center; 
     align-items: center; 
     margin: auto; 
-    border-radius: 20px; 
-    border: 2px solid rgb(24, 131, 131); /* Specify border color and style */
+    // border-radius: 20px; 
+    // border: 2px solid rgb(24, 131, 131); /* Specify border color and style */
   }
 
 .input-search-group-box{
     height: fit-content;
-    width: 350px;
+    // width: 400px;
     color: #138a86;
     margin-right: 3px;
 }
@@ -41,8 +41,9 @@
     color: #138a86;
     border-radius: 10px; 
     border: 1px solid var(--green);
-    padding: 1.263em; 
-    font-size: 16px; 
+    // padding: 1.263em; 
+    // font-size: 24px; 
+    height: 3.5rem;
 }
 
 // ng-multiselect-dropdown{
@@ -69,12 +70,13 @@
  
 .search-button {
     color: #fff;
-    width: 150%;
+    width: 200%;
     background-color:#138a86;
     border-radius: 10px; 
     border: 5;
     padding: 1.263em; 
     font-size: 16px;
+    text-transform: capitalize;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -169,7 +171,7 @@ ng-multiselect-dropdown {
 }
 
 ::ng-deep ng-multiselect-dropdown .dropdown-btn {
-    padding: 1.263em !important;
+    padding: 1em !important;
     border-radius: 10px !important;
     border: 1px solid #138a86 !important;
 }
@@ -178,12 +180,25 @@ ng-multiselect-dropdown {
 }
 
 label{
-    text-align: left;
+    // text-align: left;
     font-size: 10px;
 }
 
 .input-label{
-    text-align: left;
+    // text-align: left;
     font-size: 13px;
     margin-bottom: 0;
+}
+.btn {
+    font-size: 1rem;
+    font-weight: 400;
+    // line-height: 3.0;
+    padding: 10;
+}
+
+.filter-label{
+    color: #000000; /* Black color */
+    padding-left: 0; /* Adjust padding as needed */
+    font-size: 20px; /* Font size adjustment */
+    text-align: left; 
 }

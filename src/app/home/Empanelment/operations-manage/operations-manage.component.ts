@@ -21,11 +21,13 @@ export class OperationsManageComponent {
   }
 
   dcSearchDisplayResponseData = []
+  isSubmited = false
   onSubmit(){
     const qValue = this.DCSerachForm.get('q')?.value;
     if (!qValue) {
       return 
     }
+    this.isSubmited = true
     const url = '/manage/DCsearch/'
     this.commonService.postMethod(url, this.DCSerachForm.value).subscribe({
       next: (res:any) => {

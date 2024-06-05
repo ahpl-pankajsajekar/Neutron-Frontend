@@ -1,69 +1,40 @@
 <section class="dc-search-section">
-  <div class="container hero">
-    <div class="row d-flex justify-content-center">
-      <!-- Centering the row -->
-      <div class="">
-        <h1 class="hero-heading">Search Your DC</h1>
-        <div class="row d-flex justify-content-center">
-          <div class="search-box">
-            <form [formGroup]="DCSerachForm" (ngSubmit)="onSubmit()">
-              <div
-                class="d-flex flex-row justify-content-center align-items-center"
-              >
-                <!-- Centering the search inputs and button -->
-                <div class="input-search-group-box">
-                  <p class="text-left input-label">Enter Provider ID,Name,Pincode,City</p>
-                  <input
-                    type="search"
-                    placeholder="Enter Provider ID,Name,Pincode,City"
-                    formControlName="q"
-                  />
-                </div>
-                <div class="input-search-group-box">
-                  <p class="text-left input-label">Enter Test Name</p>
-                  <!-- <input
-                    type="search"
-                    placeholder="Enter TestName"
-                    formControlName="t"
-                  /> -->
-                  <ng-multiselect-dropdown
-                  type="search" 
-                  [placeholder]="'Select Tests'"
-                  formControlName="t" [settings]="dropdownSettings"
-                  [data]="dropdownList" 
-                [(ngModel)]="selectedItems"
-                >
+  <div class="container hero mt-5">
+    <div class="row d-flex ">
+      <div class="text-center row">
+        <div class="col-md-6 mx-auto">
+          <form [formGroup]="DCSerachForm" (ngSubmit)="onSubmit()">
+            <div class="d-flex flex-row row">
+              <div class="input-search-group-box col-md-9">
+                <input
+                  type="search"
+                  class="form-control"
+                  placeholder="Name, PIN, City"
+                  formControlName="q"
+                />
+              </div>
+                <button class="btn btn-success text-capitalize px-4  col-md-2" type="submit">
+                  Search
+                </button>
+            </div>
+            
+            <div class="row mt-4">
+            <div class=" text-left col-md-9 mx-auto">
+              <label for="filter" class="filter-label">Filter by Test</label>
+              <ng-multiselect-dropdown
+                [placeholder]="'Type in Test Name and select one or more'"
+                formControlName="t"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems">
               </ng-multiselect-dropdown>
-                </div>
-                <div class="search-button-container">
-                  <p class="text-left input-label" style="height: 17px;"></p>
-                  <button
-                    class="search-button"
-                    type="submit"
-                    (click)="onSubmit()">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-              <div
-                class="d-flex flex-row justify-content-center align-items-center"
-              >
-                <!-- <div class="label-search-group-box">
-                  <label>Comma (,) seperate value DCID, DC Name, City, Pincode</label>
-                </div> -->
-                <div class="label-search-group-box">
-                    <label *ngFor="let item of selectedItems">{{item.item_label}}, </label>
-                </div>
-                <div class="search-button-container">
-                </div>
-              </div>
-            </form>
+            </div>
           </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
- 
 
   <!-- Advanced View Link -->
   <div class="advanced-view text-center mt-3">
@@ -79,7 +50,7 @@
           alt="Card image cap"
         />
         <div class="card-body">
-          <h6 class="card-title"><a>HOSPITAL NAme</a></h6>
+          <h6 class="card-title"><a>Hospital Name</a></h6>
           <h6 class="card-title2"><a>(72398)</a></h6>
           <div class="card-detail">
             <p class="card-text">
