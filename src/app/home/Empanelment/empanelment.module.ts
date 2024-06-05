@@ -26,6 +26,7 @@ import { CandidateFormComponent } from './candidate-form/candidate-form.componen
 import { RequestpageOperationComponent } from './requestpage-operation/requestpage-operation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerspectiveProviderComponent } from './perspective-provider/perspective-provider.component';
+import { OperationsManageComponent } from './operations-manage/operations-manage.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PerspectiveProviderComponent } from './perspective-provider/perspective
     RequestpageOperationComponent,
     DashboardComponent,
     PerspectiveProviderComponent,
+    OperationsManageComponent,
     
   ],
   imports: [

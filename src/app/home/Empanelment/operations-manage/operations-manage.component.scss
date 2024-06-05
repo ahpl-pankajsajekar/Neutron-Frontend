@@ -1,0 +1,26 @@
+.btn{
+    text-transform: capitalize;
+}
+
+.form-control{
+    padding: 1.575rem 0.75rem;
+}
+
+.card-body{
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #D9D9D9;
+    min-height: 200px;
+    p{
+        margin-bottom: 1px;
+    }
+}
+.btn-activate{
+    background-color: #04AF0B;
+}
+.btn-deactivate{
+    background-color: #FF8125;
+}
+.btn-delist{
+    background-color: #FD0707;
+}

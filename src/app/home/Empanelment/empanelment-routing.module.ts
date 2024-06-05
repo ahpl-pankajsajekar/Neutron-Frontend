@@ -15,6 +15,7 @@ import { CandidateFormComponent } from './candidate-form/candidate-form.componen
 import { RequestpageOperationComponent } from './requestpage-operation/requestpage-operation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerspectiveProviderComponent } from './perspective-provider/perspective-provider.component';
+import { OperationsManageComponent } from './operations-manage/operations-manage.component';
 
 
 const routes: Routes = [
@@ -72,6 +73,10 @@ const routes: Routes = [
       {
         path: 'Requestpage_operation',
         component:  RequestpageOperationComponent,
+      },
+      {
+        path: 'manage',
+        component: OperationsManageComponent,
       },
       {
         path: 'dashboard',
