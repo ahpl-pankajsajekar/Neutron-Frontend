@@ -1,26 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/_services/common.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy{
+
+  private requestSubmittedSubscription: Subscription = new Subscription();
+
   openRequests: any;
   closedRequests: any;
   newRequests: any;
 
-  constructor(private commonService: CommonService, private router: Router) { }
+  constructor(private commonService: CommonService,
+    public accountService: AccountService,
+     private router: Router) { }
   
   onOpenRequestClick(requestTicket: any) {
-    // Navigate to perspective component and pass Ticket_Id as a parameter
-    this.router.navigate(['/empanelment/perspective'], { state: { ticketData: requestTicket } });
+    if (this.accountService.getRole() == '1'){
+      // Navigate to perspective component and pass Ticket_Id as a parameter
+      this.router.navigate(['/empanelment/perspective'], { state: { ticketData: requestTicket } });
+    }
   }
 
   ngOnInit(): void {
     this.fetchRequests();
+
+    // call from RequestpageOperationComponent after submit form
+    this.requestSubmittedSubscription = this.commonService.requestSubmitted$.subscribe(() => {
+      this.fetchRequests();
+    });
+  }
+  ngOnDestroy() {
+    if (this.requestSubmittedSubscription) {
+      this.requestSubmittedSubscription.unsubscribe();
+    }
   }
 
   fetchRequests(): void {

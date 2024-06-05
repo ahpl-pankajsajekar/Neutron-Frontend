@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -38,4 +39,12 @@ export class CommonService {
     //     }));
   }
 
+
+  private requestSubmittedSource = new Subject<void>();
+  requestSubmitted$ = this.requestSubmittedSource.asObservable();
+
+  notifyRequestSubmitted() {
+    this.requestSubmittedSource.next();
+  }
+  
 }

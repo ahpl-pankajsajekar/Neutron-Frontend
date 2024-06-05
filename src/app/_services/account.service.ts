@@ -41,6 +41,13 @@ export class AccountService {
         }));
   }
 
+
+  getRole(): string {
+    const user = this.userValue;
+    const role = user?.role || '0';
+    return role;
+  }
+
   register(user: User) {
     return this.http.post<User>(`${environment.apiUrl}/api/account/register/`, user);
   }

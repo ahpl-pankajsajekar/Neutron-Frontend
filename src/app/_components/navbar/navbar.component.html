@@ -17,23 +17,23 @@
         <li class="nav-item" *ngIf="!isUserNotLoginTemp || isNetworkRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/dc-search"
             routerLinkActive="active">Search</a>
-        </li><br>
-        <li class="nav-item" *ngIf="isOperationRole">
+        </li>
+        <li class="nav-item" *ngIf="isOperationRole || isNetworkRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/dashboard"
             routerLinkActive="active">Dashboard</a>
-        </li><br>
+        </li>
         <li class="nav-item" *ngIf="isOperationRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/Requestpage_operation"
             routerLinkActive="active">Request</a>
-        </li><br>
+        </li>
         <li class="nav-item" *ngIf="isOperationRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/perspective"
             routerLinkActive="active">Manage</a>
-        </li><br>
+        </li>
         <li class="nav-item" *ngIf="isNetworkRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/non-empanelment" routerLinkActive="active">DC
             Empanelment</a>
-        </li><br>
+        </li>
         <li class="nav-item" *ngIf="isLegalRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/legal-verify" routerLinkActive="active">legal
             Verification</a>
@@ -57,7 +57,7 @@
                 width="30" height="30">
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#logout" (click)="logout()">Logout</a>
+              <a class="dropdown-item" (click)="logout()">Logout</a>
             </div>
           </li>
         </ul>

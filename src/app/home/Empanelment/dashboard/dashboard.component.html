@@ -1,6 +1,6 @@
 <section>
   <div class="container">
-    <div class="mt-5">
+    <div class="mt-5" *ngIf="accountService.getRole() == '4'">
       <app-requestpage-operation></app-requestpage-operation>
     </div>
     <div class="row mt-4 d-flex justify-content-around">
@@ -13,11 +13,13 @@
               <th>Request Date</th>
               <th>PIN</th>
             </tr>
-            <tr *ngFor="let request of newRequests" (click)="onOpenRequestClick(request)">
-              <td>{{ request.Ticket_Id }}</td>
-              <td>{{ request.requestedDate | date:'dd/MM/yy' }}</td>
-              <td>{{ request.pincode }}</td>
-            </tr>
+            <ng-container *ngFor="let request of newRequests">
+              <tr  *ngIf="!request?.ticketType" (click)="onOpenRequestClick(request)" >
+                <td>{{ request.Ticket_Id }}</td>
+                <td>{{ request.requestedDate | date:'dd/MM/yy' }}</td>
+                <td>{{ request.pincode }}</td>
+              </tr>
+            </ng-container>
           </table>
         </div>
       </div>

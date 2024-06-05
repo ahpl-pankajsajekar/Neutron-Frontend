@@ -52,6 +52,9 @@ export class RequestpageOperationComponent  {
           this.addProviderForm.reset();
           this.isSubmitted = false;
           console.log('API response:', res);
+
+          // Notify the DashboardComponent that a request has been submitted
+          this.commonService.notifyRequestSubmitted();
         },
         (err: any) => {
           const error = err['error'] 
