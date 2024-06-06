@@ -26,10 +26,10 @@
           <a class="nav-link" aria-current="page" routerLink="empanelment/manage"
             routerLinkActive="active">Manage</a>
         </li>
-        <li class="nav-item" *ngIf="isNetworkRole">
+        <!-- <li class="nav-item" *ngIf="isNetworkRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/non-empanelment" routerLinkActive="active">DC
             Empanelment</a>
-        </li>
+        </li> -->
         <li class="nav-item" *ngIf="isLegalRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/legal-verify" routerLinkActive="active">legal
             Verification</a>
@@ -49,7 +49,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Profile Image" class="rounded-circle"
+              <img *ngIf="this.emailUserName" [src]="'https://ui-avatars.com/api/?name='+ this.emailUserName + '&size=50&background=39748c&color=ffffff&font-size=0.50&bold=true'" alt="Profile Image" class="rounded-circle"
+                width="30" height="30">
+              <img *ngIf="!this.emailUserName" src="https://www.w3schools.com/howto/img_avatar.png" alt="Profile Image" class="rounded-circle"
                 width="30" height="30">
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

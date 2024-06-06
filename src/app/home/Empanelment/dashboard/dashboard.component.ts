@@ -22,9 +22,15 @@ export class DashboardComponent implements OnInit, OnDestroy{
      private router: Router) { }
   
   onOpenRequestClick(requestTicket: any) {
+    console.log(requestTicket, requestTicket?.requestType );
     if (this.accountService.getRole() == '1'){
-      // Navigate to perspective component and pass Ticket_Id as a parameter
-      this.router.navigate(['/empanelment/perspective'], { state: { ticketData: requestTicket } });
+      if(requestTicket?.requestType == 'Empanel'){
+        // Navigate to perspective component and pass Ticket_Id as a parameter
+        this.router.navigate(['/empanelment/perspective'], { state: { ticketData: requestTicket } });
+      }
+      else{
+        this.router.navigate(['/empanelment/manage'], { state: { ticketData: requestTicket } });
+      }
     }
   }
 

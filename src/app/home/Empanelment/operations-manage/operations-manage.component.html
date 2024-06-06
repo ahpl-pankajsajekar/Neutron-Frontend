@@ -24,9 +24,9 @@
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row gap-1 justify-content-center">
-                                <button class="btn btn-activate">Activate</button>
-                                <button class="btn btn-deactivate">Deactivate</button>
-                                <button class="btn btn-delist">Delist</button>
+                                <button class="btn btn-activate" (click)="UpdateDCStatus(dc, 'Activate')">Activate</button>
+                                <button class="btn btn-deactivate" (click)="UpdateDCStatus(dc, 'Deactivate')">Deactivate</button>
+                                <button class="btn btn-delist" (click)="UpdateDCStatus(dc, 'Delist')">Delist</button>
                             </div>
                         </div>
                     </div>

@@ -10,12 +10,14 @@
           <table class="table">
             <tr>
               <th>Request No</th>
+              <th>Request Type</th>
               <th>Request Date</th>
               <th>PIN</th>
             </tr>
             <ng-container *ngFor="let request of newRequests">
               <tr  *ngIf="!request?.ticketType" (click)="onOpenRequestClick(request)" >
                 <td>{{ request.Ticket_Id }}</td>
+                <td>{{ request?.requestType }}</td>
                 <td>{{ request.requestedDate | date:'dd/MM/yy' }}</td>
                 <td>{{ request.pincode }}</td>
               </tr>
