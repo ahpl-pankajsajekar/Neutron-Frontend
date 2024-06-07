@@ -52,22 +52,24 @@
           </table>
         </div>
       </div>
-      <div class="col-md-6 col-lg-6 mt-3">
+      <div class="col-md-7 col-lg-7 mt-3">
         <div class="m-3">
           <h5>Closed Requests</h5>
           <table class="table">
             <tr>
               <th>Request No</th>
               <th>Provider Name</th>
-              <th>Date Closed</th>
+              <th>Request Type</th>
               <th>Request Date</th>
+              <th>Date Closed</th>
               <th>PIN</th>
             </tr>
             <tr *ngFor="let request of closedRequests">
               <td>{{ request.Ticket_Id }}</td>
               <td>{{ request.providerName | slice : 0 : 30   }}</td>
-              <td>{{ request.dateClosed | date:'dd/MM/yy' }}</td>
+              <td>{{ request?.requestType }}</td>
               <td>{{ request.requestedDate | date:'dd/MM/yy' }}</td>
+              <td>{{ request.closedDate | date:'dd/MM/yy' }}</td>
               <td>{{ request.pincode }}</td>
             </tr>
           </table>

@@ -207,7 +207,7 @@ export class DcVerifyComponent {
         console.log(res);
         if(value=='verify'){
           // alert("Thank you, Your DC verified successful");
-          this.toastrService.success('Thank you, Your DC verified successful', 'Successful', {
+          this.toastrService.success('Thank you, Your DC verified successfully', 'Successful', {
             closeButton: true,
           });
         }
@@ -274,6 +274,7 @@ export class DcVerifyComponent {
         this.toastrService.success('Document has been sent Successfully.', 'Successful', {
           closeButton: true,
         });
+        this.loadData()
       },
       (error:any)=>{
         console.log(error);

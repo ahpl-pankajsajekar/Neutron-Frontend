@@ -3,7 +3,7 @@
         <div class="mt-5 text-center">
             <h5>Activate, Deactivate or Delist Providers</h5>
         </div>
-        <div class="mt-5 row justify-content-center">
+        <div class="mt-5 row justify-content-center" *ngIf="!requestedTicketObj">
             <div class="col-md-5">
                 <p class="ps-2 mb-1 text-muted">Enter Provider Name, PIN, City or ID to Search</p>
                 <form class="d-flex flex-row gap-2" [formGroup]="DCSerachForm" (ngSubmit)="onSubmit()">
@@ -12,6 +12,29 @@
                 </form>
             </div>
         </div>
+        <div class="" style="display: none;">
+            <h6 class="text-center">Results: 0</h6>
+            <div class="row justify-content-center my-4">
+                <div class="col-md-4 mb-4" >
+                    <div class="">
+                        <div class="card-body p-4 mb-3">
+                            <p>Provider ID: 71071</p>
+                            <p>Krishna Hospital - Vasai</p>
+                            <p>G,B-1,Prabhu Niwas, K.T Village,Meena Nagar,Opp., Greter Bank Vasai west</p>
+                            <p>Status: </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex flex-row gap-1 justify-content-center">
+                                <button class="btn btn-activate">Activate</button>
+                                <button class="btn btn-deactivate" disabled>Deactivate</button>
+                                <button class="btn btn-delist">Delist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="mt-5" *ngIf="isSubmited">
             <h6 class="text-center">Results: {{dcSearchDisplayResponseData.length}}</h6>
             <div class="row justify-content-center my-4">
@@ -21,12 +44,13 @@
                             <p>Provider ID: {{dc['DCID']}}</p>
                             <p>{{dc['DC Name']}}</p>
                             <p>{{dc['Address']}}</p>
+                            <p>Status: {{dc['DCStatus'] | titlecase }}</p>
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row gap-1 justify-content-center">
-                                <button class="btn btn-activate" (click)="UpdateDCStatus(dc, 'Activate')">Activate</button>
-                                <button class="btn btn-deactivate" (click)="UpdateDCStatus(dc, 'Deactivate')">Deactivate</button>
-                                <button class="btn btn-delist" (click)="UpdateDCStatus(dc, 'Delist')">Delist</button>
+                                <button class="btn btn-activate" (click)="UpdateDCStatus(dc, 'Activate')" [disabled]="dc['DCStatus'] == 'Activate' ">Activate</button>
+                                <button class="btn btn-deactivate" (click)="UpdateDCStatus(dc, 'Deactivate')" [disabled]="dc['DCStatus'] == 'Deactivate' ">Deactivate</button>
+                                <button class="btn btn-delist" (click)="UpdateDCStatus(dc, 'Delist')" [disabled]="dc['DCStatus'] == 'Delist' ">Delist</button>
                             </div>
                         </div>
                     </div>

@@ -56,6 +56,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
       this.newRequests = data['newTickets'];
       this.openRequests = data['openTickets'];
       this.closedRequests = data['closedTickets']; // Corrected assignment
+      console.log(this.closedRequests);
     },
     (error: any) => {
       console.error('Error fetching requests:', error);

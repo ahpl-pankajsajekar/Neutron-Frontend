@@ -22,7 +22,7 @@
           <a class="nav-link" aria-current="page" routerLink="empanelment/dashboard"
             routerLinkActive="active">Dashboard</a>
         </li>
-        <li class="nav-item" *ngIf="isOperationRole">
+        <li class="nav-item" *ngIf="isOperationRole || isNetworkRole">
           <a class="nav-link" aria-current="page" routerLink="empanelment/manage"
             routerLinkActive="active">Manage</a>
         </li>

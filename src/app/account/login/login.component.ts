@@ -51,7 +51,7 @@ export class LoginComponent {
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.router.navigateByUrl(returnUrl);
         setTimeout(() => {
-          this.toastrService.success('Login Successful ', 'Successful', {
+          this.toastrService.success('Login Successfully ', 'Successful', {
             closeButton: true,
           });
         },
