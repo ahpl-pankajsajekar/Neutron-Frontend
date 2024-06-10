@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/_services/account.service';
 import { CommonService } from 'src/app/_services/common.service';
@@ -21,6 +21,7 @@ export class OperationsManageComponent {
     public accountService: AccountService,
     private toastrService: ToastrService,
     public route: ActivatedRoute,
+    private router: Router,
      private commonService: CommonService){
       
       this.DCSerachForm = this.formBuilder.group({
@@ -49,6 +50,7 @@ export class OperationsManageComponent {
   isSubmited = false
   onSubmit(){
     const qValue = this.DCSerachForm.get('q')?.value;
+    console.log("qValue onSubmit", qValue)
     this.dcSearchDisplayResponseData = []
     if (!qValue) {
       this.dcSearchDisplayResponseData = []
@@ -90,6 +92,12 @@ export class OperationsManageComponent {
                 closeButton: true,
                 timeOut: 5000,
               });
+              if(this.requestedTicketObj){
+                this.router.navigate(['/empanelment/dashboard']);
+              }
+              else{
+                this.onSubmit();
+              }
             },
             (error:any)=>{
               console.log(error);
@@ -111,20 +119,44 @@ export class OperationsManageComponent {
         'DCID' : item.DCID,
         'DCAddress' : item.Address,
         'Pincode' : item.Pincode,
+        'TicketID': item?.Ticket_Id
       }
       console.log(body)
       const networkUser = this.accountService.getRole()
       if (networkUser=='1'){
+        if(this.requestedTicketObj){
+          body['TicketID'] = this.requestedTicketObj.Ticket_Id;
+        }
         this.getConfirmation(status, url, body)
       }
       else{
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You are going to "+ status +" this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, Confirm it!"
+        }).then((result) => {
+          // return result.isConfirmed
         this.commonService.postMethod(url, body).subscribe(
           (res:any)=>{
-            console.log(res);
-            this.toastrService.success(res.message, 'Successful', {
-              closeButton: true,
-              timeOut: 5000,
-            });
+            console.log("res", res);
+            if(res.message=='Ticket Already Exists'){
+              this.toastrService.warning(res.message, 'Warning', {
+                closeButton: true,
+                timeOut: 5000,
+              });
+            }
+            else{
+              this.toastrService.success(res.message, 'Successful', {
+                closeButton: true,
+                timeOut: 5000,
+              });
+              this.router.navigate(['/empanelment/dashboard']);
+            }
+            // this.onSubmit();
           },
           (error:any)=>{
             console.log(error);
@@ -134,6 +166,7 @@ export class OperationsManageComponent {
             });
           }
         )
+        });
       }
 
       

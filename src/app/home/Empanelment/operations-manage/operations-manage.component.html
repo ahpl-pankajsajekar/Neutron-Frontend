@@ -42,9 +42,9 @@
                     <div class="">
                         <div class="card-body p-4 mb-3">
                             <p>Provider ID: {{dc['DCID']}}</p>
-                            <p>{{dc['DC Name']}}</p>
+                            <p>{{dc['DC Name'] | titlecase }}</p>
                             <p>{{dc['Address']}}</p>
-                            <p>Status: {{dc['DCStatus'] | titlecase }}</p>
+                            <p>Status: <span *ngIf="dc['DCStatus']=='Activate'">Active</span><span *ngIf="dc['DCStatus']=='Deactivate'">Deactive</span><span *ngIf="dc['DCStatus']=='Delist'">Delist</span></p>
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row gap-1 justify-content-center">

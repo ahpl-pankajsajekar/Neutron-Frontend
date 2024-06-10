@@ -24,3 +24,10 @@
 .btn-delist{
     background-color: #FD0707;
 }
+
+.btn:disabled,
+.btn[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
