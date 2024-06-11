@@ -1,0 +1,123 @@
+.form-div {
+  margin-top: 20px;
+  background-color: #989fa3;
+  padding: 10px 10px 0 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+.form-label {
+  font-weight: bold;
+}
+
+//   .vertical-text {
+//     writing-mode: vertical-lr; /* Vertical text direction */
+//     text-orientation: mixed; /* Allows the text to be rotated */
+//     transform: rotate(180deg); /* Rotate the text */
+//     position: absolute; /* Position the text */
+//     top: 50%; /* Center vertically */
+//     left: 0; /* Align to the left */
+//     transform-origin: bottom left; /* Rotate around the bottom left corner */
+//   }
+
+.col-md-6 .col-md-5,
+.col-md-4,
+.col-md-3 {
+  height: 45px !important;
+}
+
+.title {
+  margin-left: 20px; /* Adjust this value to align with .container */
+}
+
+.h4 {
+  text-align: left; /* Example of correct text alignment */
+}
+
+//   .vertical-text {
+//     position: absolute;
+//     top: 50%;
+//     left: 0;
+//     transform: rotate(-90deg) translate(-50%, -50%);
+//     transform-origin: left bottom;
+//     font-size: 24px;
+//     font-weight: bold;
+//     white-space: nowrap;
+//   }
+
+.back-btn,
+.next-btn {
+  position: fixed;
+  right: 10px;
+  left: 80px;
+  z-index: 1000; /* Ensure buttons are on top of other elements */
+}
+
+.back-btn {
+  top: 10px;
+}
+
+.next-btn {
+  bottom: 10px;
+}
+
+.vertical-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center; /* Center vertically */
+  transform-origin: top left; /* Rotate from top left corner */
+  transform: rotate(-90deg); /* Rotate text to be vertical */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.vertical-text h3 {
+  margin: 0; /* Remove default margin */
+  padding: 10px; /* Add padding as needed */
+}
+
+.fixed-heading {
+  position: fixed;
+  top: 20px; /* Adjust the top position as needed */
+  left: 50px; /* Adjust the left position for slight right shift */
+  z-index: 1000; /* Ensure it's above other content */
+  background-color: white; /* Set background color if necessary */
+  padding: 10px;
+}
+
+.btn-back {
+  background-color: #000;
+  color: #fff;
+}
+.btn {
+  text-transform: capitalize;
+}
+h5 {
+  font-size: 20px;
+}
+
+.vertical-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center; /* Optional: Adjust as needed */
+  width: 30px; /* Optional: Adjust as needed */
+  font-size: 18px;
+  font-weight: 500;
+}
+.head1 {
+  font-weight: 600;
+  font-size: 20px;
+}

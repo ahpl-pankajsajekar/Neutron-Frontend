@@ -27,6 +27,7 @@ import { RequestpageOperationComponent } from './requestpage-operation/requestpa
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerspectiveProviderComponent } from './perspective-provider/perspective-provider.component';
 import { OperationsManageComponent } from './operations-manage/operations-manage.component';
+import { ManualempanelmentComponent } from './manualempanelment/manualempanelment.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { OperationsManageComponent } from './operations-manage/operations-manage
     DashboardComponent,
     PerspectiveProviderComponent,
     OperationsManageComponent,
+    ManualempanelmentComponent,
     
   ],
   imports: [
