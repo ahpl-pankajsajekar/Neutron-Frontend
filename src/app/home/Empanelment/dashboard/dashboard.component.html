@@ -4,9 +4,11 @@
       <app-requestpage-operation></app-requestpage-operation>
     </div>
     <div class="row mt-4 d-flex justify-content-around">
+      
       <div class="col-md-5 col-lg-5">
         <div class="m-3">
           <h5>New Requests</h5>
+          <div class="table-container">
           <table class="table">
             <tr>
               <th>Request No</th>
@@ -23,11 +25,13 @@
               </tr>
             </ng-container>
           </table>
+          </div>
         </div>
       </div>
       <div class="col-md-6 col-lg-6">
         <div class="m-3">
           <h5>Open Requests</h5>
+          <div class="table-container">
           <table class="table">
             <tr>
               <th>Request No</th>
@@ -51,10 +55,12 @@
             </tr>
           </table>
         </div>
+        </div>
       </div>
       <div class="col-md-7 col-lg-7 mt-3 mb-4">
         <div class="m-3">
           <h5>Closed Requests</h5>
+          <div class="table-container">
           <table class="table">
             <tr>
               <th>Request No</th>
@@ -73,6 +79,7 @@
               <td>{{ request.pincode }}</td>
             </tr>
           </table>
+          </div>
         </div>
       </div>
     </div>

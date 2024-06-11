@@ -46,5 +46,25 @@ export class CommonService {
   notifyRequestSubmitted() {
     this.requestSubmittedSource.next();
   }
+
+
+  // DC search Result
+  private searchResults: any[] = [];
+  private displayResults: any[] = [];
+  private searchTerm: string = '';
+  setResults(results: any[], displayResult: any[], term:string) {
+    this.searchResults = results;
+    this.displayResults = displayResult;
+    this.searchTerm = term;
+  }
+  getResults() {
+    return this.searchResults;
+  }
+  getDisplayResult() {
+    return this.displayResults;
+  }
+  getSearchTerm() {
+    return this.searchTerm;
+  }
   
 }

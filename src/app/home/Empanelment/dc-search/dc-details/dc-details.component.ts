@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
 import { GeocodingService } from 'src/app/_services/geocoding.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -14,9 +14,13 @@ declare var google: any;
   styleUrls: ['./dc-details.component.scss']
 })
 export class DcDetailsComponent implements OnInit {
+
+
+  step: number = 1;
  
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private geocodingService: GeocodingService,
     private commonService: CommonService,
     private sanitizer: DomSanitizer
@@ -55,6 +59,18 @@ export class DcDetailsComponent implements OnInit {
         (err: any) => {
           console.warn(err)
         })
+  }
+
+  backPage(){
+    this.router.navigate(['/empanelment/dc-search'], {queryParams: {'backPage': true}})
+  }
+
+  next() {
+    this.step++;
+  }
+
+  previous() {
+    this.step--;
   }
  
   // show cordinate purpos only

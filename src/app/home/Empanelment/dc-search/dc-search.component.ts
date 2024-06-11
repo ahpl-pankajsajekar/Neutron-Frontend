@@ -1,21 +1,22 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { first } from 'rxjs';
 import { CommonService } from 'src/app/_services/common.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dc-search',
   templateUrl: './dc-search.component.html',
   styleUrls: ['./dc-search.component.scss'],
 })
-export class DcSearchComponent {
+export class DcSearchComponent implements OnInit {
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private _formBuilder: FormBuilder,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private commonService : CommonService) {
   }
 
@@ -32,6 +33,8 @@ export class DcSearchComponent {
     const qValue = this.DCSerachForm.get('q')?.value;
     const tValue = this.DCSerachForm.get('t')?.value || [];
     if (!qValue && tValue.length == 0) {
+      this.tempStoreSearchResult = []
+      this.dcSearchDisplayResponseData = []
       return 
     }
 
@@ -50,6 +53,9 @@ export class DcSearchComponent {
         }
         // count totalItems for pagination and show Total $ result found. 
         this.totalItems = Number(this.tempStoreSearchResult.length)
+
+        // send to service for store result
+        this.commonService.setResults(this.tempStoreSearchResult, this.dcSearchDisplayResponseData, qValue||'');
       },
       error: (error:any) => {
         console.warn(error)
@@ -165,6 +171,20 @@ export class DcSearchComponent {
 
   ngOnChange(){
     console.log(this.selectedItems)
+  }
+
+  ngOnInit(){
+    const backPage = this.activatedRoute.snapshot.queryParamMap.get('backPage')!;
+    if(backPage){
+      this.isSubmit = true
+      const searchTermQ: string = this.commonService.getSearchTerm();
+      this.DCSerachForm.patchValue({
+        q: searchTermQ
+      })
+      this.tempStoreSearchResult = this.commonService.getResults();
+      this.totalItems = Number(this.tempStoreSearchResult.length)
+      this.dcSearchDisplayResponseData = this.commonService.getDisplayResult();
+    }
   }
 
   selectedItems:any =[];

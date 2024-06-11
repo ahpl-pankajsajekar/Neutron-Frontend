@@ -5,21 +5,6 @@
   }
 
 
-img{
-    width: 17em;
-    height: 12em;
-}
-
-h6{
-    font-size: 16px;
-}
-
-p{
-    font-size: 14px;
-    margin-bottom: 0;
-}
-
-
 .dcstatus{
         font-size: 18px;
         color: var(--green);
@@ -49,3 +34,46 @@ p{
   .map{
     border: 1px;
   }
+
+
+  // nims
+
+  .btn{
+      text-transform: capitalize;
+  }
+  .headcard{
+    h6{
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+  .bodycard{
+    border: 1px solid #E0E0E0;
+    padding: 12px;
+    font-size: 16px;
+    color: #828282;
+    border-radius: 7px;
+    border-bottom-width: unset;
+    p{
+      margin-bottom: 2px;
+    }
+  }
+  .cardbody{
+    font-size: 16px;
+    p{
+      margin-bottom: 2px;
+      span{
+        font-size: 16px;
+        font-weight: 600;
+        color: #828282;
+      }
+    }
+  }
+  .newcard{
+    border: 1px solid #E0E0E0;
+    padding: 12px;
+    table tr td{
+      padding: 7px;
+    }
+  }
+  

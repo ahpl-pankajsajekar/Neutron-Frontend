@@ -1,7 +1,7 @@
-<section class="container">
+<!-- <section class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a routerLink="/empanelment/dc-search">Home</a></li>
+          <li class="breadcrumb-item"><a (click)="backPage()">Back</a></li>
           <li class="breadcrumb-item active" aria-current="page">{{selectedItem['DC Name']}} </li>
         </ol>
     </nav>
@@ -69,26 +69,138 @@
               </mat-accordion>
         </div>
     </div>
- 
-    <div>  
- 
-      <!-- <div class="m-4">
-        <h6>Geo-Location Coordinates</h6>
-        <div>
-          latitude:  {{locationCoordinates.lat}}  <br>
-          longitude: {{locationCoordinates.lng}} <br>
-        </div>
-      </div>
-     
-    <div id="map" style="height: 400px; width: 100%; border: 1px solid;"></div>
- 
-       <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.7766684547564!2d72.97507581082337!3d19.204954447836524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b9396c31418b%3A0xb15959cef097b22a!2sMeenatai%20Thakrey%20Chowk%2C%20Uthalsar%2C%20Thane%20West%2C%20Thane%2C%20Maharashtra%20400601!5e0!3m2!1sen!2sin!4v1682584306136!5m2!1sen!2sin"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0"
-                style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>  
-      <iframe id="map" style="height: 400px; width: 100%; border: 1px solid;" allowfullscreen loading="lazy"></iframe> -->
+        <div>  
       <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
         defer></script>
     </div>
+</section> -->
+
+<section class="container-sm">
+  <div class="p-4"  *ngIf="step === 1">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 px-4">
+        <div class="map mb-3">
+          <iframe 
+          width="100%"
+          height="230"
+              style="border: 1px;"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              [src]="mapUrl">
+          </iframe> 
+        </div>
+        <div class="mb-3">
+          <div class="d-flex justify-content-between headcard me-2">
+            <h6>{{ selectedItem['DC Name'] | slice: 0: 60}}</h6>
+            <h6>ACTIVE</h6>
+          </div>
+          <div class="cardbody">
+            <p>Provider ID:  <span>{{ selectedItem.DCID }}</span></p>
+            <p>Address: <span>{{  selectedItem.Address }} </span></p>
+            <p>City: <span>{{  selectedItem.City }} </span></p>
+            <p>Pin: <span>{{  selectedItem.Pincode }}</span></p>
+            <p>State: <span>{{ selectedItem.State }}</span></p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="headcard">
+            <h6>Contact</h6>
+          </div>
+          <div class="bodycard">
+            <p>Primary Contact Name: {{ selectedItem['Contact Person Name 1'] }}</p>
+            <p>Email: {{ selectedItem.E_Mail }}   Mobile: {{ selectedItem['Mobile number 1']}}</p>
+            <p>Secondary Contact Name: </p>
+            <p>Email: {{ selectedItem.E_Mail }} </p>
+            <p>Mobile: {{ selectedItem }}</p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="headcard">
+            <h6>Banking Information</h6>
+          </div>
+          <div class="bodycard">
+            <p>Account Name: </p>
+            <p>Account Number: XXXXXX1234</p>
+            <p>Account Type: </p>
+            <p>Bank Name: </p>
+            <p>City: </p>
+            <p>IFSC: </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 px-4">
+        <div class="newcard mb-3">
+          <div class="headcard">
+            <h6>Test Rates</h6>
+          </div>
+          <div class="textbody">
+            <table class="table">
+              <tr>
+                <th>Test</th>
+                <th class="text-right">Rate</th>
+                <th class="text-right">Date</th>
+              </tr>
+              <tr>
+                <td>CBC</td>
+                <td class="text-right">123</td>
+                <td class="text-right">14/4/23</td>
+              </tr>
+              <tr>
+                <td>ECG</td>
+                <td class="text-right">123</td>
+                <td class="text-right">14/4/23</td>
+              </tr>
+              <tr>
+                <td>CBC</td>
+                <td class="text-right">123</td>
+                <td class="text-right">14/4/23</td>
+              </tr>
+              <tr>
+                <td>TMT</td>
+                <td class="text-right">123</td>
+                <td class="text-right">14/4/23</td>
+              </tr>
+              <tr>
+                <td>FB</td>
+                <td class="text-right">123</td>
+                <td class="text-right">14/4/23</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="headcard">
+            <h6>Ownership</h6>
+          </div>
+          <div class="bodycard">
+            <p>Owner: {{ selectedItem['Contact Person Name 1'] }}</p>
+            <p>Organization Type: {{ selectedItem.E_Mail }}</p>
+            <p>PAN No: </p>
+            <p>PAN Name: {{ selectedItem.E_Mail }} </p>
+            <p>Aadhar No: {{ selectedItem }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-success" (click)="backPage()">Back</button>
+      <button type="button" class="btn btn-success" (click)="next()">Next</button>
+    </div>
+  </div>
+  <div  *ngIf="step === 2">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut itaque culpa esse laudantium soluta repudiandae facilis, omnis veritatis quas officiis recusandae accusantium natus deserunt voluptatibus a amet explicabo praesentium quam!</div>
+        <div class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut itaque culpa esse laudantium soluta repudiandae facilis, omnis veritatis quas officiis recusandae accusantium natus deserunt voluptatibus a amet explicabo praesentium quam!</div>
+        <div class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut itaque culpa esse laudantium soluta repudiandae facilis, omnis veritatis quas officiis recusandae accusantium natus deserunt voluptatibus a amet explicabo praesentium quam!</div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-success" (click)="previous()">Back</button>
+    </div>
+  </div>
 </section>

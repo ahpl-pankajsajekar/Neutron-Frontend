@@ -202,3 +202,25 @@ label{
     font-size: 20px; /* Font size adjustment */
     text-align: left; 
 }
+
+
+
+
+// nims desing
+
+.card-body{
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #D9D9D9;
+    height: 250px;
+    p{
+        margin-bottom: 1px;
+    }
+    span{
+        font-weight: 600;
+    }
+}
+.btn-more{
+    background-color: #636363;
+    text-transform: capitalize;
+}

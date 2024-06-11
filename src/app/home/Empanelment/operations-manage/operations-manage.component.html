@@ -21,7 +21,7 @@
                             <p>Provider ID: 71071</p>
                             <p>Krishna Hospital - Vasai</p>
                             <p>G,B-1,Prabhu Niwas, K.T Village,Meena Nagar,Opp., Greter Bank Vasai west</p>
-                            <p>Status: </p>
+                            <p>Status: <span>Activated</span></p>
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row gap-1 justify-content-center">
@@ -44,7 +44,7 @@
                             <p>Provider ID: {{dc['DCID']}}</p>
                             <p>{{dc['DC Name'] | titlecase }}</p>
                             <p>{{dc['Address']}}</p>
-                            <p>Status: <span *ngIf="dc['DCStatus']=='Activate'">Active</span><span *ngIf="dc['DCStatus']=='Deactivate'">Deactive</span><span *ngIf="dc['DCStatus']=='Delist'">Delist</span></p>
+                            <p>Status: <span *ngIf="dc['DCStatus']=='Activate'">Activated</span><span *ngIf="dc['DCStatus']=='Deactivate'">Deactivated</span><span *ngIf="dc['DCStatus']=='Delist'">Delisted</span></p>
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row gap-1 justify-content-center">
