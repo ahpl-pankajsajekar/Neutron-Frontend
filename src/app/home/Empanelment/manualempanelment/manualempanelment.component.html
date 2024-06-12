@@ -1,665 +1,664 @@
-<form [formGroup]="ManualEmpanelmentForm">
-<div class="container mt-4" *ngIf="step === 1">
-    <div class="d-flex justify-content-end">
-        <button class="btn btn-back m-2">Back</button>
-    </div>
-    <div>
-        <h5 class="head1">Manual Empanelment</h5>
-        <div class="d-flex">
-            <div class="vertical-title ">Name & Location</div>
-            <div class="form-div">
-                <div  class="row">
-                    <div class="col-md-3">
-                        <!-- Provider Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="providerName" formControlName="providerName"
-                                required placeholder="Provider Name">
+<!-- was-validated -->
+<form [formGroup]="ManualEmpanelmentForm" class="">
+    <div class="container mt-4" *ngIf="step === 1">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-back m-2">Back</button>
+        </div>
+        <div>
+            <h5 class="head1">Manual Empanelment</h5>
+            <div class="d-flex">
+                <div class="vertical-title ">Name & Location</div>
+                <div class="form-div">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="">
+                                <input type="text" class="form-control" id="providerName" formControlName="providerName"
+                                    placeholder="Provider Name">
                                 <div *ngIf="f['providerName'].invalid && (f['providerName'].touched)" class="errormessage">
                                     <div *ngIf="f['providerName'].errors?.['required']">Name is required.</div>
-                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="">
+                                <input type="text" class="form-control" id="pincode" formControlName="pincode"
+                                    placeholder="PIN Code" (input)="getPincodeDetails($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="state" formControlName="state"
+                                    placeholder="State" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="city" formControlName="city"
+                                    placeholder="City" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Address Line 1 -->
+                            <div class="">
+                                <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1"
+                                    placeholder="Address Line 1">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Address Line 2 -->
+                            <div class="">
+                                <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2"
+                                    placeholder="Address Line 2">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Landmarks -->
+                            <div class="">
+                                <input type="text" class="form-control" id="landmarks" formControlName="landmarks"
+                                    placeholder="Landmarks">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- Center Telephone -->
+                            <div class="">
+                                <input type="text" class="form-control" id="centerTelephone"
+                                    formControlName="centerTelephone" placeholder="Center Telephone">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Website/URL -->
+                            <div class="">
+                                <input type="text" class="form-control" id="website" formControlName="website"
+                                    placeholder="Website/URL">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- Latitude -->
+                            <div class="">
+                                <input type="text" class="form-control" id="latitude" formControlName="latitude"
+                                    placeholder="Latitude">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- Longitude -->
+                            <div class="">
+                                <input type="text" class="form-control" id="longitude" formControlName="longitude"
+                                    placeholder="Longitude">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- Gmap -->
+                            <div class="">
+                                <input type="text" class="form-control" id="gmap" formControlName="gmap"
+                                    placeholder="Gmap">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="pincode" formControlName="pincode" required
-                                placeholder="PIN Code" (input)="getPincodeDetails($event)">
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <div class="vertical-title ">Contact</div>
+                <div class=" form-div">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- Primary Contact Name -->
+                            <div class="">
+                                <input type="text" class="form-control" id="primaryContactName"
+                                    formControlName="primary_contact_name" placeholder="Primary Contact Name">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Primary Contact Email -->
+                            <div class="">
+                                <input type="text" class="form-control" id="primaryContactEmail"
+                                    formControlName="primary_contact_email" placeholder="Primary Contact Email">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Reenter Contact Email -->
+                            <div class="">
+                                <input type="text" class="form-control" id="reenterContactEmail"
+                                    formControlName="reenter_contact_email" placeholder="Reenter Contact Email">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Secondary Contact Name -->
+                            <div class="">
+                                <input type="text" class="form-control" id="secondaryContactName"
+                                    formControlName="secondary_contact_name" placeholder="Secondary Contact Name">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Secondary Contact Email -->
+                            <div class="">
+                                <input type="text" class="form-control" id="secondaryContactEmail"
+                                    formControlName="secondary_contact_email" placeholder="Secondary Contact Email">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Reenter Contact Email -->
+                            <div class="">
+                                <input type="text" class="form-control" id="reenterContactEmail"
+                                    formControlName="reenter_contact_email1" placeholder="Reenter Contact Email">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <!-- State -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="state" formControlName="state" required
-                                placeholder="State">
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <div class="vertical-title ">Ownership</div>
+                <div class=" form-div">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="">
+                                <select class="form-select" formControlName="Council">
+                                    <option value="" disabled selected> Type of Ownership</option>
+                                    <option *ngFor="let type of Ownership" [value]="type.value">{{ type.viewValue }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <input type="text" class="form-control" id="ownerName" formControlName="owner_name"
+                                    placeholder="Owner's Name">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            
+                            <div class="">
+                                <input type="text" class="form-control" id="cuin" formControlName="cuin"
+                                    placeholder="CUIN">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="PAN Card Name"
+                                    formControlName="PAN_Card_Name" placeholder="PAN Card Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="PAN Card Number"
+                                    formControlName="PAN_Card_Number" placeholder="PAN Card Number ">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="">
+                                <input type="text" class="form-control" id="Aadhaar Card Name"
+                                    formControlName="Aadhaar_Card_Name" placeholder="Aadhaar Card Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="">
+                                <input type="text" class="form-control" id="Aadhaar Card Number"
+                                    formControlName="Aadhaar_Card_Number" placeholder="Aadhaar Card Number">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="">
+                                <input type="text" class="form-control" id="secondaryContactEmail"
+                                    formControlName="secondary_contact_email1" placeholder="Regd Office Address Line1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="">
+                                <input type="text" class="form-control" id="reenterContactEmail"
+                                    formControlName="reenter_contact_email2" placeholder="Regd Office Address Line2">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="">
+                                <input type="text" class="form-control" id="pincode1" formControlName="pincode1"
+                                    placeholder="PIN Code" (input)="getPincodeDetail($event)">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="">
+                                <input type="text" class="form-control" id="state1" formControlName="state1"
+                                    placeholder="State" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="">
+                                <input type="text" class="form-control" id="city1" formControlName="city1"
+                                    placeholder="City" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <input type="text" class="form-control" id="Full Name of Authorized Signatory"
+                                    formControlName="Full_Name_Authorized_Signatory"
+                                    placeholder="Full Name of Authorized Signatory">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <input type="text" class="form-control" id="Designation of Authorized Signatory"
+                                    formControlName="Designation_Authorized_Signatory"
+                                    placeholder="Designation of Authorized Signatory">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <input type="text" class="form-control" id="Email of Authorized Signatory"
+                                    formControlName="Email_Authorized_Signatory"
+                                    placeholder="Email of Authorized Signatory">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <!-- City -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="city" formControlName="city" required
-                                placeholder="City">
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <div class="vertical-title ">Banking</div>
+                <div class=" form-div">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="">
+                                <input type="text" class="form-control" id="Account Name" formControlName="Account_Name"
+                                    placeholder="Account Name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Address Line 1 -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1"
-                                required placeholder="Address Line 1">
+                        <div class="col-md-3">
+                            <div class="">
+                                <input type="text" class="form-control" id="Account Number"
+                                    formControlName="Account_Number" placeholder="Account Number">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Address Line 2 -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2"
-                                placeholder="Address Line 2">
+                        <div class="col-md-3">
+                            <div class="">
+                                <input type="text" class="form-control" id="IFSC Code" formControlName="IFSC_Code"
+                                    placeholder="IFSC Code" (input)="fetchBankDetails($event)">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Landmarks -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="landmarks" formControlName="landmarks"
-                                placeholder="Landmarks">
+                        <div class="col-md-5">
+                            <div class="">
+                                <input type="text" class="form-control" id="BankName" formControlName="Bank_Name"
+                                    [value]="" placeholder="Bank Name">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- Center Telephone -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="centerTelephone"
-                                formControlName="centerTelephone" placeholder="Center Telephone">
+                        <div class="col-md-5">
+                            <div class="">
+                                <input type="text" class="form-control" id="Branch" formControlName="Branch"
+                                    placeholder="Branch">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Website/URL -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="website" formControlName="website"
-                                placeholder="Website/URL">
+                        <div class="col-md-2">
+                            <div class="">
+                                <input type="text" class="form-control" id="City2" formControlName="city2"
+                                    placeholder="City">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- Latitude -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="latitude" formControlName="latitude"
-                                placeholder="Latitude">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- Longitude -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="longitude" formControlName="longitude"
-                                placeholder="Longitude">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- Gmap -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="gmap" formControlName="gmap" placeholder="Gmap">
+                        <div class="col-md-3">
+                            <div class="">
+                                <select class="form-select" formControlName="Account_Type">
+                                    <option value="" disabled selected>Account Type</option>
+                                    <option *ngFor="let type of ACType" [value]="type.value">{{type.viewValue}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="d-flex">
-            <div class="vertical-title ">Contact</div>
-            <div class=" form-div">
-                <div  class="row">
-                    <div class="col-md-4">
-                        <!-- Primary Contact Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="primaryContactName"
-                                formControlName="primary_contact_name" required placeholder="Primary Contact Name">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Primary Contact Email -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="primaryContactEmail"
-                                formControlName="primary_contact_email" placeholder="Primary Contact Email">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Reenter Contact Email -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="reenterContactEmail"
-                                formControlName="reenter_contact_email" placeholder="Reenter Contact Email">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Secondary Contact Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="secondaryContactName"
-                                formControlName="secondary_contact_name" required placeholder="Secondary Contact Name">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Secondary Contact Email -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="secondaryContactEmail"
-                                formControlName="secondary_contact_email" placeholder="Secondary Contact Email">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Reenter Contact Email -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="reenterContactEmail"
-                                formControlName="reenter_contact_email1" placeholder="Reenter Contact Email">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="d-flex">
-            <div class="vertical-title ">Ownership</div>
-            <div class=" form-div">
-                <div  class="row">
-                    <div class="col-md-4">
-                        <!-- Type of Ownership -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Council">
-                                <option value="" disabled selected> Type of Ownership</option>
-                                <option *ngFor="let type of Ownership" [value]="type.value">{{ type.viewValue }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Owner's Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="ownerName" formControlName="owner_name"
-                                placeholder="Owner's Name">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- CUIN -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="cuin" formControlName="cuin" placeholder="CUIN">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- Provider Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="PAN Card Name" formControlName="PAN_Card_Name"
-                                required placeholder="PAN Card Name">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- PIN Code -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="PAN Card Number"
-                                formControlName="PAN_Card_Number" required placeholder="PAN Card Number ">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- State -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Adhar Card Name"
-                                formControlName="Adhar_Card_Name" required placeholder="Adhar Card Name">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- City -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Adhar Card Number"
-                                formControlName="Adhar_Card_Number" required placeholder="Adhar Card Number">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Secondary Contact Email -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="secondaryContactEmail"
-                                formControlName="secondary_contact_email1" placeholder="Regd Office Address Line1">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Reenter Contact Email -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="reenterContactEmail"
-                                formControlName="reenter_contact_email2" placeholder="Regd Office Address Line2">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- Type of Ownership -->
-                        <div class="mb-3">
-                                <input type="text" class="form-control" id="pincode1" formControlName="pincode1" required
-                                placeholder="PIN Code" (input)="getPincodeDetail($event)">
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <!-- Owner's Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="state1" formControlName="state1"
-                                placeholder="State">
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <!-- CUIN -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="city1" formControlName="city1"
-                                placeholder="City">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Type of Ownership -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Full Name of Authorized Signatory"
-                                formControlName="Full_Name_Authorized_Signatory" required
-                                placeholder="Full Name of Authorized Signatory">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Owner's Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Destination of Authorized Signatory"
-                                formControlName="Destination_Authorized_Signatory"
-                                placeholder="Destination of Authorized Signatory">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- CUIN -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Email of Authorized Signatory"
-                                formControlName="Email_Authorized_Signatory"
-                                placeholder="Email of Authorized Signatory">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="d-flex">
-            <div class="vertical-title ">Banking</div>
-            <div class=" form-div">
-                <div  class="row">
-                    <div class="col-md-6">
-                        <!-- Primary Contact Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Account Name" formControlName="Account_Name"
-                                required placeholder="Account Name">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- Primary Contact Email -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Account Number" formControlName="Account_Number"
-                                placeholder="Account Number">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="IFSC Code" formControlName="IFSC_Code"
-                                placeholder="IFSC Code" (input)="fetchBankDetails($event)">
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="BankName" formControlName="Bank_Name" [value]=""
-                                placeholder="Bank Name">
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Branch" formControlName="Branch"
-                                placeholder="Branch">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="City2" formControlName="city2"
-                                placeholder="City">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Account_Type">
-                                <option value="" disabled selected>Account Type</option>
-                                <option *ngFor="let type of ACType" [value]="type.value">{{type.viewValue}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="d-flex justify-content-end mt-4">
+            <button class="btn btn-back m-2 " (click)="next()">Next <i class="bi bi-arrow-right"></i> </button>
         </div>
     </div>
-    <div class="d-flex justify-content-end mt-4">
-        <button class="btn btn-back m-2 " (click)="next()">Next <i class="bi bi-arrow-right"></i> </button>
-    </div>
-</div>
 
 
-<div class="container mt-4" *ngIf="step === 2">
-    <div class="d-flex justify-content-end">
-        <button class="btn btn-back m-2" (click)="previous()"> <i class="bi bi-arrow-left"></i> Previous</button>
-    </div>
-    <div>
+    <div class="container mt-4" *ngIf="step === 2">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-back m-2" (click)="previous()"> <i class="bi bi-arrow-left"></i> Previous</button>
+        </div>
+        <div>
+
+            <div class="d-flex">
+                <div class="vertical-title ">Tests Available</div>
+                <div class="form-div">
+                    <div class="row">
+                        <h6>Please select tests that you offer across all sections below</h6>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Bio_Chemistry">
+                                    <option value="" disabled selected>Bio Chemistry</option>
+                                    <option *ngFor="let item of DC_TESTS_BioChemistry"
+                                        [value]="item.item_Standard_Code">{{ item.item_Standard_Description}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="KLL">
+                                    <option value="" disabled selected>Kidney/Liver/Lipid</option>
+                                    <option *ngFor="let item of DC_TESTS_KidneyLiverLipid"
+                                        [value]="item.item_Standard_Code">{{item.item_Standard_Description}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="">
+                                <select class="form-select" formControlName="Home_Visit_test">
+                                    <option value="" disabled selected>Home Visit Test</option>
+                                    <option *ngFor="let item of DC_TESTS_HomeVisitTests"
+                                        [value]="item.item_Standard_Code">{{ item.item_Standard_Description }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+
+                            <div class="mb-2">
+                                <select class="form-select" formControlName="Specialized">
+                                    <option value="" disabled selected>Specialized</option>
+                                    <option *ngFor="let item of DC_TESTS_Specialized" [value]="item.item_Standard_Code">
+                                        {{ item.item_Standard_Description }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!-- Specialized Radiology -->
+                            <div class="">
+                                <select class="form-select" formControlName="Radiology">
+                                    <option value="" disabled selected>Radiology</option>
+                                    <option *ngFor="let item of DC_TESTS_Radiology" [value]="item.item_Standard_Code">{{
+                                        item.item_Standard_Description }}
+                                    </option>
+                                </select>
+                                <ng-multiselect-dropdown [placeholder]="'Radiology'" [data]="DC_TESTS_Radiology"
+                                    [(ngModel)]="selectedTestsItems" [settings]="dropdownSettings"
+                                    formControlName="Radiology">
+                                </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <div class="vertical-title ">Staff Physicians</div>
+                <div class=" form-div">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="MD Pathologist Name"
+                                    formControlName="MD_Pathologist_Name" placeholder="MD Pathologist Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Qualifications">
+                                    <option value="" disabled selected>Qualifications</option>
+                                    <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue
+                                        }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="Registration Number"
+                                    formControlName="Registration_Number" placeholder="Registration Number">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Council1">
+                                    <option value="" disabled selected>Select Council</option>
+                                    <option *ngFor="let council of councils" [value]="council.value">{{
+                                        council.viewValue }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="MD Cardiologist Name"
+                                    formControlName="MD_Cardiologist_Name" placeholder="MD Cardiologist Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Qualifications1">
+                                    <option value="" disabled selected>Qualifications</option>
+                                    <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue
+                                        }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="Registration Number"
+                                    formControlName="Registration_Number1" placeholder="Registration Number">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Council2">
+                                    <option value="" disabled selected>Select Council</option>
+                                    <option *ngFor="let council of councils" [value]="council.value">{{
+                                        council.viewValue }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="MD Radiologist Name"
+                                    formControlName="MD_Radiologist_Name" placeholder="MD Radiologist Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Qualifications2">
+                                    <option value="" disabled selected>Qualifications</option>
+                                    <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue
+                                        }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="Registration Number"
+                                    formControlName="Registration_Number2" placeholder="Registration Number">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="council3">
+                                    <option value="" disabled selected>Select Council</option>
+                                    <option *ngFor="let council of councils" [value]="council.value">{{
+                                        council.viewValue }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="Gynaecologist Name"
+                                    formControlName="Gynaecologist_Name" placeholder="Gynaecologist Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Qualifications3">
+                                    <option value="" disabled selected>Qualifications</option>
+                                    <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue
+                                        }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="Registration Number"
+                                    formControlName="Registration_Number3" placeholder="Registration Number">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Council4">
+                                    <option value="" disabled selected>Select Council</option>
+                                    <option *ngFor="let council of councils" [value]="council.value">{{
+                                        council.viewValue }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <input type="text" class="form-control" id="MBBS Doctor Name"
+                                    formControlName="MBBS_Doctor_Name" placeholder="MBBS Doctor Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="">
+                                <select class="form-select" formControlName="Qualifications4">
+                                    <option value="" disabled selected>Qualifications</option>
+                                    <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue
+                                        }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="">
+                                <input type="text" class="form-control" id="Registration Number"
+                                    formControlName="Registration_Number4" placeholder="Registration Number">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="">
+                                <select class="form-select" formControlName="Council5">
+                                    <option value="" disabled selected>Select Council</option>
+                                    <option *ngFor="let council of councils" [value]="council.value">{{
+                                        council.viewValue }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="d-flex">
-            <div class="vertical-title ">Tests Available</div>
+            <div class="vertical-title "></div>
             <div class="form-div">
-                <div  class="row">
-                    <h6>Please select tests that you offer across all sections below</h6>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="">
+                            <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
+                                formControlName="upload_Pan">
+                            <!-- Button that triggers file input -->
+                            <button type="button" class="form-control btn btn-primary w-100" id="Upload Pan"
+                                (click)="triggerFileInput()">
+                                Upload PAN
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="">
+                            <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
+                                formControlName="Upload_Aadhar">
+                            <!-- Button that triggers file input -->
+                            <button type="button" class="form-control btn btn-primary w-100" id="Upload Aadhaar"
+                                (click)="triggerFileInput()">
+                                Upload Aadhaar
+                            </button>
+                        </div>
+                    </div>
                     <div class="col-md-3">
-                        <!-- Provider Name -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Bio_Chemistry">
-                                <option value="" disabled selected>Bio Chemistry</option>
-                                <option *ngFor="let item of DC_TESTS_BioChemistry" [value]="item.item_Standard_Code">{{ item.item_Standard_Description}}</option>
-                            </select>
+                        <div class="">
+                            <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
+                                formControlName="Cancelled_Cheque">
+                            <!-- Button that triggers file input -->
+                            <button type="button" class="form-control btn btn-primary w-100" id="Cancelled Cheque"
+                                (click)="triggerFileInput()">
+                                Cancelled Cheque
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <!-- PIN Code -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="KLL">
-                                <option value="" disabled selected>Kidney/Liver/Lipid</option>
-                                <option *ngFor="let item of DC_TESTS_KidneyLiverLipid" [value]="item.item_Standard_Code">{{item.item_Standard_Description}}</option>
-                            </select>
+                        <div class="">
+                            <!-- Hidden file input -->
+                            <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
+                                formControlName="Shops">
+
+                            <!-- Button that triggers file input -->
+                            <button type="button" class="form-control btn btn-primary w-100" id="Shops"
+                                (click)="triggerFileInput()">
+                                Shops/Establishments
+                            </button>
                         </div>
+
                     </div>
                     <div class="col-md-2">
-                        <!-- State -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Home_Visit_test">
-                                <option value="" disabled selected>Home Visit Test</option>
-                                <option *ngFor="let item of DC_TESTS_HomeVisitTests" [value]="item.item_Standard_Code">{{ item.item_Standard_Description }}</option>
-                            </select>
+                        <div class="">
+                            <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
+                                formControlName="Signing_Authority">
+                            <!-- Button that triggers file input -->
+                            <button type="button" class="form-control btn btn-primary w-100" id="Signing Authority"
+                                (click)="triggerFileInput()">
+                                Authority Letter
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <!-- City -->
-                        <div class="mb-2">
-                            <select class="form-select" formControlName="Specialized">
-                                <option value="" disabled selected>Specialized</option>
-                                <option *ngFor="let item of DC_TESTS_Specialized" [value]="item.item_Standard_Code">{{ item.item_Standard_Description }}
-                                </option>
-                            </select>
+                    <div class="d-flex justify-content-end">
+                        <div class="col-md-3">
+
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="Stamp date" formControlName="Stamp_date"
+                                    placeholder="Stamp Paper Date dd/mm/yy">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- Specialized Radiology -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Radiology">
-                                <option value="" disabled selected>Radiology</option>
-                                <option *ngFor="let item of DC_TESTS_Radiology" [value]="item.item_Standard_Code">{{ item.item_Standard_Description }}
-                                </option>
-                            </select>
-                            <ng-multiselect-dropdown
-                                [placeholder]="'Radiology'"
-                                [data]="DC_TESTS_Radiology"
-                                [(ngModel)]="selectedTestsItems"
-                                [settings]="dropdownSettings"
-                                formControlName="Radiology">
-                            </ng-multiselect-dropdown>
+                        <div class="col-md-3">
+                            <div class="">
+                                <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
+                                    formControlName="Stamp_Paper">
+                                <!-- Button that triggers file input -->
+                                <button type="button" class="form-control btn btn-primary w-100" id="Stamp Paper"
+                                    (click)="triggerFileInput()">
+                                    Stamp Paper
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="d-flex">
-            <div class="vertical-title ">Staff Physicians</div>
-            <div class=" form-div">
-                <div  class="row">
-                    <div class="col-md-3">
-                        <!-- Provider Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="MD Pathologist Name"
-                                formControlName="MD_Pathologist_Name" required placeholder="MD Pathologist Name">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- PIN Code -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Qualifications">
-                                <option value="" disabled selected>Qualifications</option>
-                                <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- City -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Registration Number"
-                                formControlName="Registration_Number" required placeholder="Registration Number">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- State -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Council1">
-                                <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- Provider Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="MD Cardiologist Name"
-                                formControlName="MD_Cardiologist_Name" required placeholder="MD Cardiologist Name">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- PIN Code -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Qualifications1">
-                                <option value="" disabled selected>Qualifications</option>
-                                <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- City -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Registration Number"
-                                formControlName="Registration_Number1" required placeholder="Registration Number">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- State -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Council2">
-                                <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- Provider Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="MD Radiologist Name"
-                                formControlName="MD_Radiologist_Name" placeholder="MD Radiologist Name">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- PIN Code -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Qualifications2">
-                                <option value="" disabled selected>Qualifications</option>
-                                <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- City -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Registration Number"
-                                formControlName="Registration_Number2" required placeholder="Registration Number">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- State -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="council3">
-                                <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <!-- Provider Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Gynaecologist Name"
-                                formControlName="Gynaecologist_Name" required placeholder="Gynaecologist Name">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- PIN Code -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Qualifications3">
-                                <option value="" disabled selected>Qualifications</option>
-                                <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- City -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Registration Number"
-                                formControlName="Registration_Number3" required placeholder="Registration Number">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- State -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Council4">
-                                <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- Provider Name -->
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="MBBS Doctor Name"
-                                formControlName="MBBS_Doctor_Name" required placeholder="MBBS Doctor Name">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <!-- PIN Code -->
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Qualifications4">
-                                <option value="" disabled selected>Qualifications</option>
-                                <option *ngFor="let item of Qualifications" [value]="item.value">{{ item.viewValue }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="Registration Number"
-                                formControlName="Registration_Number4" required placeholder="Registration Number">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <select class="form-select" formControlName="Council5">
-                                <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+        <div class="d-flex justify-content-center mt-5">
+            <div class=" d-flex justify-content-center">
+                <button type="submit" class="btn btn-lg btn-success" id="submit">
+                    Submit
+                </button>
             </div>
         </div>
     </div>
-    
-    <div class="d-flex">
-        <div class="vertical-title "></div>
-    <div class="form-div">
-        <div  class="row">
-            <div class="col-md-2">
-                <div class="mb-3">
-                    <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
-                        formControlName="upload_Pan">
-                    <!-- Button that triggers file input -->
-                    <button type="button" class="form-control btn btn-primary w-100" id="Upload Pan"
-                        (click)="triggerFileInput()">
-                        Upload PAN
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="mb-3">
-                    <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
-                        formControlName="Upload_Aadhar">
-                    <!-- Button that triggers file input -->
-                    <button type="button" class="form-control btn btn-primary w-100" id="Upload Aadhar"
-                        (click)="triggerFileInput()">
-                        Upload Aadhar
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="mb-3">
-                    <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
-                        formControlName="Cancelled_Cheque">
-                    <!-- Button that triggers file input -->
-                    <button type="button" class="form-control btn btn-primary w-100" id="Cancelled Cheque"
-                        (click)="triggerFileInput()">
-                        Cancelled Cheque
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="mb-3">
-                    <!-- Hidden file input -->
-                    <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
-                        formControlName="Shops">
-
-                    <!-- Button that triggers file input -->
-                    <button type="button" class="form-control btn btn-primary w-100" id="Shops"
-                        (click)="triggerFileInput()">
-                        Shops/Establishments
-                    </button>
-                </div>
-
-            </div>
-            <div class="col-md-2">
-                <div class="mb-3">
-                    <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
-                        formControlName="Signing_Authority">
-                    <!-- Button that triggers file input -->
-                    <button type="button" class="form-control btn btn-primary w-100" id="Signing Authority"
-                        (click)="triggerFileInput()">
-                        Authority Letter
-                    </button>
-                </div>
-            </div>
-            <div class="d-flex justify-content-end">
-                <div class="col-md-3">
-                    <!-- City -->
-                    <div class="mb-2">
-                        <input type="text" class="form-control" id="Stamp date" formControlName="Stamp_date" required
-                            placeholder="Stamp Paper Date dd/mm/yy">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
-                            formControlName="Stamp_Paper">
-                        <!-- Button that triggers file input -->
-                        <button type="button" class="form-control btn btn-primary w-100" id="Stamp Paper"
-                            (click)="triggerFileInput()">
-                            Stamp Paper
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-            <div class="d-flex justify-content-center mt-5">
-                <div class="mb-3 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-lg btn-success" id="submit" required>
-                        Submit
-                    </button>
-                </div>
-            </div>
-</div>
 </form>

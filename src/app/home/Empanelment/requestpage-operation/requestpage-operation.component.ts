@@ -31,6 +31,9 @@ export class RequestpageOperationComponent  {
       zone: ['', Validators.required],
       remark: ['', Validators.required],
     });
+    // set zone as per operation User
+    const setZone = 'WestZone'
+    this.addProviderForm.controls['zone'].setValue(setZone);  // ('WestZone', { onlySelf: true }) dont understand
   }
 
   get f(){

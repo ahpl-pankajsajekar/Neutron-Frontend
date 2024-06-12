@@ -111,15 +111,15 @@ export class ManualempanelmentComponent implements OnInit {
       cuin:[''],
       PAN_Card_Name:[''],
       PAN_Card_Number:[''],
-      Adhar_Card_Name:[''],
-      Adhar_Card_Number:[''],
+      Aadhaar_Card_Name:[''],
+      Aadhaar_Card_Number:[''],
       secondary_contact_email1:[''],
       reenter_contact_email2:[''],
-      Pin_code1:[''],
+      pincode1:[''],
       state1:[''],
       city1:[''],
       Full_Name_Authorized_Signatory:[''],
-      Destination_Authorized_Signatory:[''],
+      Designation_Authorized_Signatory:[''],
       Email_Authorized_Signatory:[''],
       Account_Name:[''],
       Account_Number:[''],
@@ -231,7 +231,12 @@ export class ManualempanelmentComponent implements OnInit {
             city: data?.District
           });
         } else {
+          this.toastrService.info("Invalid Pincode", "Incorrect");
           console.error('Invalid pincode or API response.');
+          this.ManualEmpanelmentForm.patchValue({
+            state: '',
+            city: ''
+          });
         }
       }, (error) => {
         console.error('Error fetching pincode details:', error);
@@ -251,7 +256,12 @@ export class ManualempanelmentComponent implements OnInit {
             city1: data?.District
           });
         } else {
+          this.toastrService.info("Invalid Pincode", "Incorrect");
           console.error('Invalid pincode or API response.');
+          this.ManualEmpanelmentForm.patchValue({
+            state1: '',
+            city1: ''
+          });
         }
       }, (error) => {
         console.error('Error fetching pincode details:', error);

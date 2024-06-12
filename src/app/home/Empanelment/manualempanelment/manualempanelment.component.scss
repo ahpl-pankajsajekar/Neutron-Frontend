@@ -32,10 +32,9 @@
 //     transform-origin: bottom left; /* Rotate around the bottom left corner */
 //   }
 
-.col-md-6 .col-md-5,
-.col-md-4,
-.col-md-3 {
-  height: 45px !important;
+.col-md-6, .col-md-5, .col-md-4, .col-md-3, .col-md-2 {
+  margin-bottom: 7px;
+  // height: 55px !important;
 }
 
 .title {
@@ -112,8 +111,8 @@ h5 {
 .vertical-title {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  text-align: center; /* Optional: Adjust as needed */
-  width: 30px; /* Optional: Adjust as needed */
+  text-align: center; 
+  width: 30px;
   font-size: 18px;
   font-weight: 500;
 }
@@ -122,22 +121,18 @@ h5 {
   font-size: 20px;
 }
 
-
 .btn-lg{
   font-size: 25px;
 }
 
 .errormessage{
   color: red;
-  font-size: 10px;
-  padding: 0; 
+  font-size: 12px;
+  padding-left: 10px; 
 }
-
 
 ng-multiselect-dropdown {
   background-color: #fff;
   border-radius: 10px; 
-  // border: 1px solid var(--green);
-  // padding: 1.263em;
   font-size: 16px; 
 }
