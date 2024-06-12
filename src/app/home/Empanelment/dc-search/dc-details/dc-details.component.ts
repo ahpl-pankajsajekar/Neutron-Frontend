@@ -15,7 +15,6 @@ declare var google: any;
 })
 export class DcDetailsComponent implements OnInit {
 
-
   step: number = 1;
  
   constructor(
@@ -37,7 +36,7 @@ export class DcDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.selectedItem = history.state.data;
-      console.log("test", this.selectedItem);
+      console.log("state data:", this.selectedItem);
       // Extract address from selectedItem and perform geocoding
       if (this.selectedItem && this.selectedItem.Address) {
         const address = this.selectedItem.Address;
@@ -46,19 +45,7 @@ export class DcDetailsComponent implements OnInit {
     });
     
     this.DCdetailsData = []
-    this.loadData()
-  }
-
-  loadData(){
-    const dcId = history.state.data.DCID
-    const url = "/DC/detail/?dc="+dcId
-      this.commonService.getMethod(url).subscribe(
-        (res: any) => {
-          this.DCdetailsData = res.data[0]
-        },
-        (err: any) => {
-          console.warn(err)
-        })
+    this.loadDCData()
   }
 
   backPage(){
@@ -68,9 +55,24 @@ export class DcDetailsComponent implements OnInit {
   next() {
     this.step++;
   }
-
   previous() {
     this.step--;
+  }
+
+  LoadDCDetailsData : any;
+  loadDCData(){
+    console.log("loadDCData--------")
+    const dcId = history.state.data.DCID
+    const url = '/DC/detail/'
+    this.commonService.getMethodWithParams(url, {dc: dcId}).subscribe(
+      (res:any)=>{
+        this.LoadDCDetailsData = res.data[0]
+        console.log("loads data", this.LoadDCDetailsData)
+      },
+      (err:any)=>{
+        console.log(err)
+      }
+    )
   }
  
   // show cordinate purpos only

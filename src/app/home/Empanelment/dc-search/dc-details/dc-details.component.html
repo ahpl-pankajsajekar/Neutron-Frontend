@@ -94,10 +94,10 @@
         <div class="mb-3">
           <div class="d-flex justify-content-between headcard me-2">
             <h6>{{ selectedItem['DC Name'] | slice: 0: 60}}</h6>
-            <h6>ACTIVE</h6>
+            <h6>{{LoadDCDetailsData?.DCStatus }}</h6>
           </div>
           <div class="cardbody">
-            <p>Provider ID:  <span>{{ selectedItem.DCID }}</span></p>
+            <p>Provider ID:  <span>{{ selectedItem?.DCID }}</span></p>
             <p>Address: <span>{{  selectedItem.Address }} </span></p>
             <p>City: <span>{{  selectedItem.City }} </span></p>
             <p>Pin: <span>{{  selectedItem.Pincode }}</span></p>
@@ -111,9 +111,9 @@
           <div class="bodycard">
             <p>Primary Contact Name: {{ selectedItem['Contact Person Name 1'] }}</p>
             <p>Email: {{ selectedItem.E_Mail }}   Mobile: {{ selectedItem['Mobile number 1']}}</p>
-            <p>Secondary Contact Name: </p>
-            <p>Email: {{ selectedItem.E_Mail }} </p>
-            <p>Mobile: {{ selectedItem }}</p>
+            <p>Secondary Contact Name: {{ LoadDCDetailsData['Contact Person Name 2']}}</p>
+            <p>Email: {{ LoadDCDetailsData['E_Mail 2'] }} </p>
+            <p>Mobile: {{ LoadDCDetailsData['Mobile number 2'] }}</p>
           </div>
         </div>
         <div class="mb-3">
@@ -177,9 +177,17 @@
           <div class="bodycard">
             <p>Owner: {{ selectedItem['Contact Person Name 1'] }}</p>
             <p>Organization Type: {{ selectedItem.E_Mail }}</p>
-            <p>PAN No: </p>
-            <p>PAN Name: {{ selectedItem.E_Mail }} </p>
-            <p>Aadhar No: {{ selectedItem }}</p>
+            <p>PAN No: {{ LoadDCDetailsData['PAN Number'] }} </p>
+            <p>PAN Name: {{ LoadDCDetailsData['PAN Name'] }} </p>
+            <p>Aadhar No:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Aadhar Name:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Authorised Signatory Name:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Authorised Signatory Designation:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Authorised Signatory Email:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Registered Office Address:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>City:  {{ LoadDCDetailsData['City'] }}  </p>
+            <p>PIN:  {{ LoadDCDetailsData['Pincode'] }}  </p>
+            <p>State:  {{ LoadDCDetailsData['State'] }}  </p>
           </div>
         </div>
       </div>
