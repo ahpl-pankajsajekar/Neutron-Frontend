@@ -121,3 +121,23 @@ h5 {
   font-weight: 600;
   font-size: 20px;
 }
+
+
+.btn-lg{
+  font-size: 25px;
+}
+
+.errormessage{
+  color: red;
+  font-size: 10px;
+  padding: 0; 
+}
+
+
+ng-multiselect-dropdown {
+  background-color: #fff;
+  border-radius: 10px; 
+  // border: 1px solid var(--green);
+  // padding: 1.263em;
+  font-size: 16px; 
+}

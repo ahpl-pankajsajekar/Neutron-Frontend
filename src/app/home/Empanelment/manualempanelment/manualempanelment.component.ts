@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'; // Check th
 import { HttpClient } from '@angular/common/http';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { DC_TESTS_BioChemistry, DC_TESTS_HomeVisitTests, DC_TESTS_KidneyLiverLipid, DC_TESTS_Radiology, DC_TESTS_Specialized } from 'src/app/dc/self-empanlement/dc_tests_list';
+import { CouncilsServiceDataList, QualificationsServiceDataList } from 'src/app/_services/list_data';
 
 @Component({
   selector: 'app-manualempanelment',
@@ -13,43 +15,49 @@ import { ToastrService } from 'ngx-toastr';
 
 export class ManualempanelmentComponent implements OnInit {
   nameLocationFormGroup!: FormGroup;// Check the declaration of this property
+
+  ManualEmpanelmentForm!: FormGroup;
+  
+  findInvalidControls(formGroup: FormGroup) {
+    const invalidControls = [];
+    const controls = formGroup.controls;
+    for (const controlName in controls) {
+      const control = controls[controlName];
+      if (control.invalid) {
+        invalidControls.push({ name: controlName });
+      }
+    }
+    return invalidControls;
+  }
+
+  get f() { return this.ManualEmpanelmentForm.controls; }
  
 
-  // councils: string[] = ['Council 1', 'Council 2', 'Council 3', 'Council 4'];
-  // Qualifications: string[] = ['Council 1', 'Council 2', 'Council 3', 'Council 4'];
-  Bio_Chemistry: string[] = ['Council 1', 'Council 2', 'Council 3', 'Council 4'];
-  
-  // KLL: string[] = ['Council 1', 'Council 2', 'Council 3', 'Council 4'];
-  Home_Visit_test: string[] = ['Council 1', 'Council 2', 'Council 3', 'Council 4'];
-  Specialized: string[] = ['Council 1', 'Council 2', 'Council 3', 'Council 4'];
-  // Radiology: string[] = ['Council 1', 'Council 2', 'Council 3', 'Council 4'];
-  Account_Type: string[] = ['Council 1', 'Council 2', 'Council 3', 'Council 4'];
-  
-  // councils = [
-  //   { value: 'Council 1', viewValue: 'Council 1' },
-  //   { value: 'Council 2', viewValue: 'Council 2' },
-  //   { value: 'Council 3', viewValue: 'Council 3' },
-  // ]
-  councils = [
-    { value: 'MCI', viewValue: 'Medical Council of India' },
-    { value: 'DCI', viewValue: 'Dental Council of India' },
-    { value: 'NMC', viewValue: 'National Medical Commission' },
-    { value: 'INC', viewValue: 'Indian Nursing Council' },
-    { value: 'PCI', viewValue: 'Pharmacy Council of India' },
-    { value: 'CCIM', viewValue: 'Central Council of Indian Medicine' },
-    { value: 'CCH', viewValue: 'Central Council of Homeopathy' },
-    { value: 'COC', viewValue: 'Central Council of Homoeopathy' },
-    { value: 'BOG', viewValue: 'Board of Governors in Supersession of the MCI' },
-    { value: 'NBE', viewValue: 'National Board of Examinations' },
-    { value: 'Other', viewValue: 'Other' }
-    // Add more councils as needed
-];
+  selectedTestsItems:any =[];
+  dropdownSettings:IDropdownSettings = {
+    singleSelection: false,
+    idField: "item_Standard_Code",
+    textField: "item_Standard_Description",
+    selectAllText: "Select All",
+    // unSelectAllText: "UnSelect All",
+    enableCheckAll: false,
+    itemsShowLimit: 0,
+    allowSearchFilter: true,
+    noDataAvailablePlaceholderText: "There is no Test availabale."
+  };
 
-  // Qualifications = [
-  //   { value: 'Council 1', viewValue: 'Council 1' },
-  //   { value: 'Council 2', viewValue: 'Council 2' },
-  //   { value: 'Council 3', viewValue: 'Council 3' },
-  // ]
+
+  DC_TESTS_Radiology = DC_TESTS_Radiology
+  DC_TESTS_Specialized = DC_TESTS_Specialized
+  DC_TESTS_HomeVisitTests = DC_TESTS_HomeVisitTests
+  DC_TESTS_KidneyLiverLipid = DC_TESTS_KidneyLiverLipid
+  DC_TESTS_BioChemistry = DC_TESTS_BioChemistry
+
+  
+  Qualifications = QualificationsServiceDataList
+  councils = CouncilsServiceDataList
+  
+
 
   Ownership = [
     { value: 'Self', viewValue: 'Self' },
@@ -58,12 +66,6 @@ export class ManualempanelmentComponent implements OnInit {
     { value: 'Public', viewValue: 'Public' },
   ];
 
-  Radiology = [
-    { value: 'East', viewValue: 'East' },
-    { value: 'West', viewValue: 'West' },
-    { value: 'North', viewValue: 'North' },
-    { value: 'South', viewValue: 'South' },
-  ];
 
   ACType = [
     { value: 'Saving', viewValue: 'Saving' },
@@ -75,30 +77,6 @@ export class ManualempanelmentComponent implements OnInit {
     { value: 'Current ', viewValue: 'Current ' },
   ];
 
-  Qualifications = [
-    { value: 'MBBS', viewValue: 'MBBS (Bachelor of Medicine, Bachelor of Surgery)' },
-    { value: 'BAMS', viewValue: 'BAMS (Bachelor of Ayurvedic Medicine and Surgery)' },
-    { value: 'BHMS', viewValue: 'BHMS (Bachelor of Homeopathic Medicine and Surgery)' },
-    { value: 'BUMS', viewValue: 'BUMS (Bachelor of Unani Medicine and Surgery)' },
-    { value: 'BNYS', viewValue: 'BNYS (Bachelor of Naturopathy and Yogic Sciences)' },
-    { value: 'BDS', viewValue: 'BDS (Bachelor of Dental Surgery)' },
-    { value: 'MD', viewValue: 'MD (Doctor of Medicine)' },
-    { value: 'MS', viewValue: 'MS (Master of Surgery)' },
-    { value: 'DNB', viewValue: 'DNB (Diplomate of National Board)' },
-    { value: 'MDS', viewValue: 'MDS (Master of Dental Surgery)' },
-    { value: 'DM', viewValue: 'DM (Doctorate of Medicine)' },
-    { value: 'MCh', viewValue: 'MCh (Master of Chirurgiae)' },
-    { value: 'DGO', viewValue: 'DGO (Diploma in Gynecology and Obstetrics)' },
-    { value: 'DCH', viewValue: 'DCH (Diploma in Child Health)' },
-    { value: 'DA', viewValue: 'DA (Diploma in Anesthesiology)' },
-    { value: 'DLO', viewValue: 'DLO (Diploma in Otorhinolaryngology)' },
-    { value: 'DO', viewValue: 'DO (Diploma in Ophthalmology)' },
-    { value: 'DOrtho', viewValue: 'D.Ortho (Diploma in Orthopedics)' },
-    { value: 'DPM', viewValue: 'DPM (Diploma in Psychological Medicine)' },
-    { value: 'PhD', viewValue: 'Ph.D. (Doctor of Philosophy)' },
-    { value: 'Fellowship', viewValue: 'Fellowship' },
-    { value: 'Other', viewValue: 'Other' }
-];
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient,
     private toastrService: ToastrService,
@@ -109,7 +87,7 @@ export class ManualempanelmentComponent implements OnInit {
   }
 
   initializeForm(): void {
-    this.nameLocationFormGroup = this.formBuilder.group({
+    this.ManualEmpanelmentForm = this.formBuilder.group({
       providerName: ['', Validators.required],
       pincode: ['', Validators.required],
       state: ['', Validators.required],
@@ -187,7 +165,9 @@ export class ManualempanelmentComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.nameLocationFormGroup.valid) {
+    const formData = this.ManualEmpanelmentForm.value
+    if (this.ManualEmpanelmentForm.valid) {
+      console.log(formData)
       // Place your form submission logic here
       console.log('Form is valid, submitting...');
     } else {
@@ -246,9 +226,29 @@ export class ManualempanelmentComponent implements OnInit {
       this.http.get(`https://api.postalpincode.in/pincode/${pincode}`).subscribe((response: any) => {
         if (response && response.length > 0 && response[0]?.Status === 'Success') {
           const data = response[0]?.PostOffice[0];
-          this.nameLocationFormGroup.patchValue({
+          this.ManualEmpanelmentForm.patchValue({
             state: data?.State,
             city: data?.District
+          });
+        } else {
+          console.error('Invalid pincode or API response.');
+        }
+      }, (error) => {
+        console.error('Error fetching pincode details:', error);
+      });
+    }
+    
+  }
+  getPincodeDetail(event: Event): void {
+    const pincode1= (event.target as HTMLInputElement).value
+    console.log(pincode1)
+    if(pincode1.length==6){
+      this.http.get(`https://api.postalpincode.in/pincode/${pincode1}`).subscribe((response: any) => {
+        if (response && response.length > 0 && response[0]?.Status === 'Success') {
+          const data = response[0]?.PostOffice[0];
+          this.ManualEmpanelmentForm.patchValue({
+            state1: data?.State,
+            city1: data?.District
           });
         } else {
           console.error('Invalid pincode or API response.');

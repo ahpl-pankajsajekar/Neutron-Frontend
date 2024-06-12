@@ -1,3 +1,4 @@
+<form [formGroup]="ManualEmpanelmentForm">
 <div class="container mt-4" *ngIf="step === 1">
     <div class="d-flex justify-content-end">
         <button class="btn btn-back m-2">Back</button>
@@ -7,16 +8,18 @@
         <div class="d-flex">
             <div class="vertical-title ">Name & Location</div>
             <div class="form-div">
-                <form [formGroup]="nameLocationFormGroup" (ngSubmit)="onSubmit()" class="row">
+                <div  class="row">
                     <div class="col-md-3">
                         <!-- Provider Name -->
                         <div class="mb-3">
                             <input type="text" class="form-control" id="providerName" formControlName="providerName"
                                 required placeholder="Provider Name">
+                                <div *ngIf="f['providerName'].invalid && (f['providerName'].touched)" class="errormessage">
+                                    <div *ngIf="f['providerName'].errors?.['required']">Name is required.</div>
+                                  </div>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <!-- PIN Code -->
                         <div class="mb-3">
                             <input type="text" class="form-control" id="pincode" formControlName="pincode" required
                                 placeholder="PIN Code" (input)="getPincodeDetails($event)">
@@ -91,14 +94,14 @@
                             <input type="text" class="form-control" id="gmap" formControlName="gmap" placeholder="Gmap">
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 
         <div class="d-flex">
             <div class="vertical-title ">Contact</div>
             <div class=" form-div">
-                <form [formGroup]="nameLocationFormGroup" (ngSubmit)="onSubmit()" class="row">
+                <div  class="row">
                     <div class="col-md-4">
                         <!-- Primary Contact Name -->
                         <div class="mb-3">
@@ -141,14 +144,14 @@
                                 formControlName="reenter_contact_email1" placeholder="Reenter Contact Email">
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 
         <div class="d-flex">
             <div class="vertical-title ">Ownership</div>
             <div class=" form-div">
-                <form [formGroup]="nameLocationFormGroup" (ngSubmit)="onSubmit()" class="row">
+                <div  class="row">
                     <div class="col-md-4">
                         <!-- Type of Ownership -->
                         <div class="mb-3">
@@ -217,21 +220,21 @@
                     <div class="col-md-2">
                         <!-- Type of Ownership -->
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="PIN Code1" formControlName="Pin_code1" required
-                                placeholder="PIN Code">
+                                <input type="text" class="form-control" id="pincode1" formControlName="pincode1" required
+                                placeholder="PIN Code" (input)="getPincodeDetail($event)">
                         </div>
                     </div>
                     <div class="col-md-5">
                         <!-- Owner's Name -->
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="State1" formControlName="state1"
+                            <input type="text" class="form-control" id="state1" formControlName="state1"
                                 placeholder="State">
                         </div>
                     </div>
                     <div class="col-md-5">
                         <!-- CUIN -->
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="City1" formControlName="city1"
+                            <input type="text" class="form-control" id="city1" formControlName="city1"
                                 placeholder="City">
                         </div>
                     </div>
@@ -259,14 +262,14 @@
                                 placeholder="Email of Authorized Signatory">
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 
         <div class="d-flex">
             <div class="vertical-title ">Banking</div>
             <div class=" form-div">
-                <form [formGroup]="nameLocationFormGroup" (ngSubmit)="onSubmit()" class="row">
+                <div  class="row">
                     <div class="col-md-6">
                         <!-- Primary Contact Name -->
                         <div class="mb-3">
@@ -313,7 +316,7 @@
                             </select>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -332,15 +335,14 @@
         <div class="d-flex">
             <div class="vertical-title ">Tests Available</div>
             <div class="form-div">
-                <form [formGroup]="nameLocationFormGroup" (ngSubmit)="onSubmit()" class="row">
+                <div  class="row">
                     <h6>Please select tests that you offer across all sections below</h6>
                     <div class="col-md-3">
                         <!-- Provider Name -->
                         <div class="mb-3">
                             <select class="form-select" formControlName="Bio_Chemistry">
                                 <option value="" disabled selected>Bio Chemistry</option>
-                                <option *ngFor="let council of Bio_Chemistry" [value]="Bio_Chemistry">{{ Bio_Chemistry
-                                    }}</option>
+                                <option *ngFor="let item of DC_TESTS_BioChemistry" [value]="item.item_Standard_Code">{{ item.item_Standard_Description}}</option>
                             </select>
                         </div>
                     </div>
@@ -349,7 +351,7 @@
                         <div class="mb-3">
                             <select class="form-select" formControlName="KLL">
                                 <option value="" disabled selected>Kidney/Liver/Lipid</option>
-                                <option *ngFor="let type of KLL" [value]="type.value">{{type.viewValue}}</option>
+                                <option *ngFor="let item of DC_TESTS_KidneyLiverLipid" [value]="item.item_Standard_Code">{{item.item_Standard_Description}}</option>
                             </select>
                         </div>
                     </div>
@@ -358,8 +360,7 @@
                         <div class="mb-3">
                             <select class="form-select" formControlName="Home_Visit_test">
                                 <option value="" disabled selected>Home Visit Test</option>
-                                <option *ngFor="let council of Home_Visit_test" [value]="Home_Visit_test">{{
-                                    Home_Visit_test }}</option>
+                                <option *ngFor="let item of DC_TESTS_HomeVisitTests" [value]="item.item_Standard_Code">{{ item.item_Standard_Description }}</option>
                             </select>
                         </div>
                     </div>
@@ -368,7 +369,7 @@
                         <div class="mb-2">
                             <select class="form-select" formControlName="Specialized">
                                 <option value="" disabled selected>Specialized</option>
-                                <option *ngFor="let council of Specialized" [value]="Specialized">{{ Specialized }}
+                                <option *ngFor="let item of DC_TESTS_Specialized" [value]="item.item_Standard_Code">{{ item.item_Standard_Description }}
                                 </option>
                             </select>
                         </div>
@@ -378,19 +379,26 @@
                         <div class="mb-3">
                             <select class="form-select" formControlName="Radiology">
                                 <option value="" disabled selected>Radiology</option>
-                                <option *ngFor="let item of Radiology" [value]="item.value">{{ item.viewValue }}
+                                <option *ngFor="let item of DC_TESTS_Radiology" [value]="item.item_Standard_Code">{{ item.item_Standard_Description }}
                                 </option>
                             </select>
+                            <ng-multiselect-dropdown
+                                [placeholder]="'Radiology'"
+                                [data]="DC_TESTS_Radiology"
+                                [(ngModel)]="selectedTestsItems"
+                                [settings]="dropdownSettings"
+                                formControlName="Radiology">
+                            </ng-multiselect-dropdown>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 
         <div class="d-flex">
             <div class="vertical-title ">Staff Physicians</div>
             <div class=" form-div">
-                <form [formGroup]="nameLocationFormGroup" (ngSubmit)="onSubmit()" class="row">
+                <div  class="row">
                     <div class="col-md-3">
                         <!-- Provider Name -->
                         <div class="mb-3">
@@ -454,7 +462,7 @@
                         <div class="mb-3">
                             <select class="form-select" formControlName="Council2">
                                 <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council">{{ council }}</option>
+                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}</option>
                             </select>
                         </div>
                     </div>
@@ -487,7 +495,7 @@
                         <div class="mb-3">
                             <select class="form-select" formControlName="council3">
                                 <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council">{{ council }}</option>
+                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}</option>
                             </select>
                         </div>
                     </div>
@@ -521,7 +529,7 @@
                         <div class="mb-3">
                             <select class="form-select" formControlName="Council4">
                                 <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council">{{ council }}</option>
+                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}</option>
                             </select>
                         </div>
                     </div>
@@ -543,29 +551,29 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <!-- City -->
                         <div class="mb-3">
                             <input type="text" class="form-control" id="Registration Number"
                                 formControlName="Registration_Number4" required placeholder="Registration Number">
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <!-- State -->
                         <div class="mb-3">
                             <select class="form-select" formControlName="Council5">
                                 <option value="" disabled selected>Select Council</option>
-                                <option *ngFor="let council of councils" [value]="council">{{ council }}</option>
+                                <option *ngFor="let council of councils" [value]="council.value">{{ council.viewValue }}</option>
                             </select>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
+    
+    <div class="d-flex">
+        <div class="vertical-title "></div>
     <div class="form-div">
-        <form [formGroup]="nameLocationFormGroup" (ngSubmit)="onSubmit()" class="row">
+        <div  class="row">
             <div class="col-md-2">
-                <!-- Provider Name -->
                 <div class="mb-3">
                     <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
                         formControlName="upload_Pan">
@@ -577,7 +585,6 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <!-- PIN Code -->
                 <div class="mb-3">
                     <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
                         formControlName="Upload_Aadhar">
@@ -589,7 +596,6 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <!-- State -->
                 <div class="mb-3">
                     <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
                         formControlName="Cancelled_Cheque">
@@ -601,7 +607,6 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <!-- City -->
                 <div class="mb-3">
                     <!-- Hidden file input -->
                     <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
@@ -616,7 +621,6 @@
 
             </div>
             <div class="col-md-2">
-                <!-- City -->
                 <div class="mb-3">
                     <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
                         formControlName="Signing_Authority">
@@ -628,14 +632,14 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <!-- City -->
                     <div class="mb-2">
                         <input type="text" class="form-control" id="Stamp date" formControlName="Stamp_date" required
                             placeholder="Stamp Paper Date dd/mm/yy">
                     </div>
                 </div>
-                <div class="col-md-3 ">
+                <div class="col-md-3">
                     <div class="mb-3">
                         <input type="file" id="fileInput" class="d-none" (change)="onFileSelected($event)"
                             formControlName="Stamp_Paper">
@@ -647,18 +651,15 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-    <div class="form-div">
-        <form [formGroup]="nameLocationFormGroup" (ngSubmit)="onSubmit()" class="row justify-content-center">
-            <div class="col-md-3 d-flex justify-content-center">
-                <!-- Provider Name -->
-                <div class="mb-3 w-100">
-                    <button type="submit" class="btn btn-primary w-100" id="submit" required>
+    </div>
+            <div class="d-flex justify-content-center mt-5">
+                <div class="mb-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-lg btn-success" id="submit" required>
                         Submit
                     </button>
                 </div>
             </div>
-        </form>
-    </div>
 </div>
+</form>

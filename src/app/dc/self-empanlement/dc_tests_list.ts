@@ -1863,3 +1863,242 @@ export const DC_TESTS_DATA:any = [
             "item_Correct_Nomenclature": "X Ray Thoraco-Lumbar",
         }
 ]
+
+
+
+export const DC_TESTS_Radiology: any = [
+    {
+        "item_Standard_Code": 100501,
+        "item_Standard_Description": "X-Ray - Right Hand",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "73120",
+        "item_Description_of_Code": "Radiologic examination of the hand, minimum of two views.",
+        "item_Correct_Nomenclature": "X ray - Right Hand"
+    },
+    {
+        "item_Standard_Code": 100502,
+        "item_Standard_Description": "MRI - Brain",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "70551",
+        "item_Description_of_Code": "Magnetic resonance imaging of the brain.",
+        "item_Correct_Nomenclature": "MRI Brain"
+    },
+    {
+        "item_Standard_Code": 100503,
+        "item_Standard_Description": "CT Scan - Chest",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "71260",
+        "item_Description_of_Code": "Computed tomography of the chest with contrast.",
+        "item_Correct_Nomenclature": "CT Scan Chest"
+    },
+    {
+        "item_Standard_Code": 100504,
+        "item_Standard_Description": "Ultrasound - Abdomen",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "76700",
+        "item_Description_of_Code": "Ultrasound imaging of the abdomen.",
+        "item_Correct_Nomenclature": "Ultrasound Abdomen"
+    },
+    {
+        "item_Standard_Code": 100505,
+        "item_Standard_Description": "Mammography",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "77067",
+        "item_Description_of_Code": "Radiologic examination of the breast.",
+        "item_Correct_Nomenclature": "Mammography"
+    }
+    
+]
+export const DC_TESTS_Specialized: any = [
+    {
+        "item_Standard_Code": 100401,
+        "item_Standard_Description": "Thyroid Panel",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "84443",
+        "item_Description_of_Code": "Blood test to measure thyroid hormone levels.",
+        "item_Correct_Nomenclature": "Thyroid Panel"
+    },
+    {
+        "item_Standard_Code": 100402,
+        "item_Standard_Description": "HIV Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "87389",
+        "item_Description_of_Code": "Blood test for detecting HIV antibodies.",
+        "item_Correct_Nomenclature": "HIV Test"
+    },
+    {
+        "item_Standard_Code": 100403,
+        "item_Standard_Description": "PSA Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "84153",
+        "item_Description_of_Code": "Blood test for measuring the level of prostate-specific antigen (PSA).",
+        "item_Correct_Nomenclature": "PSA Test"
+    },
+    {
+        "item_Standard_Code": 100404,
+        "item_Standard_Description": "Vitamin D Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "82306",
+        "item_Description_of_Code": "Blood test to measure the level of vitamin D in the body.",
+        "item_Correct_Nomenclature": "Vitamin D Test"
+    },
+    {
+        "item_Standard_Code": 100405,
+        "item_Standard_Description": "Allergy Panel",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "86003",
+        "item_Description_of_Code": "Blood test to identify specific allergies.",
+        "item_Correct_Nomenclature": "Allergy Panel"
+    }    
+]
+export const DC_TESTS_HomeVisitTests: any = [
+    {
+        "item_Standard_Code": 100301,
+        "item_Standard_Description": "Home Blood Sugar Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "82947",
+        "item_Description_of_Code": "Test for measuring blood sugar levels at home.",
+        "item_Correct_Nomenclature": "Home Blood Sugar Test"
+    },
+    {
+        "item_Standard_Code": 100302,
+        "item_Standard_Description": "Home Urine Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "81000",
+        "item_Description_of_Code": "Test for analyzing urine at home.",
+        "item_Correct_Nomenclature": "Home Urine Test"
+    },
+    {
+        "item_Standard_Code": 100303,
+        "item_Standard_Description": "Home Cholesterol Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "82465",
+        "item_Description_of_Code": "Test for measuring cholesterol levels at home.",
+        "item_Correct_Nomenclature": "Home Cholesterol Test"
+    },
+    {
+        "item_Standard_Code": 100304,
+        "item_Standard_Description": "Home Hemoglobin Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "85018",
+        "item_Description_of_Code": "Test for measuring hemoglobin levels at home.",
+        "item_Correct_Nomenclature": "Home Hemoglobin Test"
+    },
+    {
+        "item_Standard_Code": 100305,
+        "item_Standard_Description": "Home Pregnancy Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "81025",
+        "item_Description_of_Code": "Test for detecting pregnancy at home.",
+        "item_Correct_Nomenclature": "Home Pregnancy Test"
+    }    
+]
+export const DC_TESTS_KidneyLiverLipid: any = [
+    {
+        "item_Standard_Code": 100201,
+        "item_Standard_Description": "Liver Function Test (LFT)",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "80076",
+        "item_Description_of_Code": "Blood test used to measure the levels of liver enzymes, proteins, and bilirubin.",
+        "item_Correct_Nomenclature": "LFT"
+    },
+    {
+        "item_Standard_Code": 100202,
+        "item_Standard_Description": "Lipid Profile",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "80061",
+        "item_Description_of_Code": "Blood test that measures the amount of cholesterol and triglycerides in the blood.",
+        "item_Correct_Nomenclature": "Lipid Profile"
+    },
+    {
+        "item_Standard_Code": 100203,
+        "item_Standard_Description": "Renal Function Panel",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "80069",
+        "item_Description_of_Code": "Blood test to assess kidney function by measuring levels of various substances in the blood.",
+        "item_Correct_Nomenclature": "Renal Function Panel"
+    },
+    {
+        "item_Standard_Code": 100204,
+        "item_Standard_Description": "Albumin Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "82040",
+        "item_Description_of_Code": "Blood test to measure the level of albumin, a protein made by the liver.",
+        "item_Correct_Nomenclature": "Albumin Test"
+    },
+    {
+        "item_Standard_Code": 100205,
+        "item_Standard_Description": "Creatinine Test",
+        "item_Alias": false,
+        "item_Type_of_Code": "CPT Code",
+        "item_Final_Code": "82565",
+        "item_Description_of_Code": "Blood test to measure the level of creatinine, which provides information about kidney function.",
+        "item_Correct_Nomenclature": "Creatinine Test"
+    }    
+]
+export const DC_TESTS_BioChemistry: any = [
+    {
+    "item_Standard_Code": 100101,
+    "item_Standard_Description": "Complete Blood Count (CBC)",
+    "item_Alias": false,
+    "item_Type_of_Code": "CPT Code",
+    "item_Final_Code": "85025",
+    "item_Description_of_Code": "Blood test used to evaluate overall health and detect a wide range of disorders.",
+    "item_Correct_Nomenclature": "CBC"
+},
+{
+    "item_Standard_Code": 100102,
+    "item_Standard_Description": "Basic Metabolic Panel (BMP)",
+    "item_Alias": false,
+    "item_Type_of_Code": "CPT Code",
+    "item_Final_Code": "80048",
+    "item_Description_of_Code": "Blood test that measures sugar level, electrolyte and fluid balance, and kidney function.",
+    "item_Correct_Nomenclature": "BMP"
+},
+{
+    "item_Standard_Code": 100103,
+    "item_Standard_Description": "Hemoglobin A1c",
+    "item_Alias": false,
+    "item_Type_of_Code": "CPT Code",
+    "item_Final_Code": "83036",
+    "item_Description_of_Code": "Blood test that measures the average level of blood sugar over the past 2 to 3 months.",
+    "item_Correct_Nomenclature": "Hemoglobin A1c"
+},
+{
+    "item_Standard_Code": 100104,
+    "item_Standard_Description": "Electrolyte Panel",
+    "item_Alias": false,
+    "item_Type_of_Code": "CPT Code",
+    "item_Final_Code": "80051",
+    "item_Description_of_Code": "Blood test to measure the levels of electrolytes like sodium, potassium, chloride, and bicarbonate.",
+    "item_Correct_Nomenclature": "Electrolyte Panel"
+},
+{
+    "item_Standard_Code": 100105,
+    "item_Standard_Description": "Calcium Test",
+    "item_Alias": false,
+    "item_Type_of_Code": "CPT Code",
+    "item_Final_Code": "82310",
+    "item_Description_of_Code": "Blood test to measure the amount of calcium in the blood.",
+    "item_Correct_Nomenclature": "Calcium Test"
+}
+]
