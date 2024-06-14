@@ -77,3 +77,27 @@
     }
   }
   
+  .bg-light{
+    padding: 10px 10px;
+    span{
+      margin: 0 3px;
+      background-color: #ffffff;
+      padding: 7px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+  .cardbody{
+    ul{
+      padding: 0;
+      list-style: square;
+    }
+    li{
+      padding: 0;
+    }
+    li::marker {
+      list-style: square;
+      color: #dddd;
+      font-size: 1.5em;
+    }
+  }

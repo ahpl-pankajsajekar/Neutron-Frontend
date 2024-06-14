@@ -5,6 +5,9 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { DC_TESTS_BioChemistry, DC_TESTS_HomeVisitTests, DC_TESTS_KidneyLiverLipid, DC_TESTS_Radiology, DC_TESTS_Specialized } from 'src/app/dc/self-empanlement/dc_tests_list';
 import { CouncilsServiceDataList, QualificationsServiceDataList } from 'src/app/_services/list_data';
+import { CommonService } from 'src/app/_services/common.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manualempanelment',
@@ -60,27 +63,26 @@ export class ManualempanelmentComponent implements OnInit {
 
 
   Ownership = [
-    { value: 'Self', viewValue: 'Self' },
-    { value: 'LLP', viewValue: 'LLP' },
-    { value: 'Private', viewValue: 'Private' },
-    { value: 'Public', viewValue: 'Public' },
+    { value: 'Sole Proprietorship Firm', viewValue: 'Sole Proprietorship Firm' },
+    { value: 'LLP/Partnership Firm', viewValue: 'LLP/Partnership Firm' },
+    { value: 'Private Limited Company', viewValue: 'Private Limited Company' },
   ];
-
-
   ACType = [
     { value: 'Saving', viewValue: 'Saving' },
     { value: 'Current ', viewValue: 'Current ' },
   ];
 
-  KLL= [
-    { value: 'Saving', viewValue: 'Saving' },
-    { value: 'Current ', viewValue: 'Current ' },
-  ];
 
-
-  constructor(private formBuilder: FormBuilder, private http: HttpClient,
+  ticketId: any;
+  constructor(private formBuilder: FormBuilder,
+    private commonService: CommonService,
+    private http: HttpClient,
     private toastrService: ToastrService,
-  ) { }
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+  ) {
+    this.ticketId = this.activatedRoute.snapshot.queryParamMap.get('id');
+   }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -166,14 +168,49 @@ export class ManualempanelmentComponent implements OnInit {
 
   onSubmit(): void {
     const formData = this.ManualEmpanelmentForm.value
-    if (this.ManualEmpanelmentForm.valid) {
-      console.log(formData)
-      // Place your form submission logic here
-      console.log('Form is valid, submitting...');
-    } else {
-      // Handle form validation errors
+    console.log(formData)
+    if (this.ManualEmpanelmentForm.invalid){
       console.log('Form is invalid, cannot submit.');
     }
+    else {
+      // Place your form submission logic here
+      console.log('Form is valid, submitting...');
+      const url = '/manualempanelment/add/' + this.ticketId + '/';
+      this.commonService.postMethod(url, formData).subscribe(
+        (res: any) => {
+          console.log('res', res);
+          // alert("Form Submitted Successfully");
+          this.toastrService.success('Form Submitted Successfully', 'Successful', {
+            closeButton: true,
+            timeOut: 5000,
+          });
+          Swal.fire({
+            title: "Empanelment",
+            text: "hank you for submitting the form!",
+            icon: "success",
+          })
+          // this.router.navigateByUrl("/selfempanelment/thankyou")
+        },
+        (err: any) => {
+          const error = err['error'] 
+          if (err['error']['error']) {
+            this.toastrService.error(err['error']['error'], 'Error', {
+              closeButton: true,
+              timeOut: 5000,
+            });
+          }
+          else{
+            Object.keys(err['error']).forEach(key => {
+                this.toastrService.error(err['error'][key][0], key, {
+                  closeButton: true,
+                  timeOut: 5000,
+                });
+            });
+          }
+          console.log(error);
+        });
+  
+    } 
   }
 
   triggerFileInput(): void {
@@ -197,21 +234,19 @@ export class ManualempanelmentComponent implements OnInit {
     this.http.get<any>('https://bank-apis.justinclicks.com/API/V1/IFSC/' + IFSC_Code)
       .subscribe(data => {
         console.log('API Response:', data)
-        const BankName = document.getElementById('BankName') as HTMLInputElement;
-        BankName.value = data.BANK;
-        const Branch = document.getElementById('Branch') as HTMLInputElement;
-        Branch.value = data.BRANCH;
-        const City2 = document.getElementById('City2') as HTMLInputElement;
-        City2.value = data.CITY;
-
-        this.nameLocationFormGroup.patchValue({
+        // const BankName = document.getElementById('BankName') as HTMLInputElement;
+        // BankName.value = data.BANK;
+        // const Branch = document.getElementById('Branch') as HTMLInputElement;
+        // Branch.value = data.BRANCH;
+        // const City2 = document.getElementById('City2') as HTMLInputElement;
+        // City2.value = data.CITY;
+        this.ManualEmpanelmentForm.patchValue({
           Bank_Name:  data.BANK,
           Branch:  data.BRANCH,
           City2: data.CITY
         })
       }, error => {
         console.error('Error:', error);
-        // alert("Please enter valid IFSC Code.")
         this.toastrService.info('Please enter valid IFSC Code.', '', {
           closeButton: true,
           timeOut: 5000,

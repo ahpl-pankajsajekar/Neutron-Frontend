@@ -281,19 +281,19 @@
                         <div class="col-md-5">
                             <div class="">
                                 <input type="text" class="form-control" id="BankName" formControlName="Bank_Name"
-                                    [value]="" placeholder="Bank Name">
+                                    [value]="" placeholder="Bank Name" readonly>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="">
                                 <input type="text" class="form-control" id="Branch" formControlName="Branch"
-                                    placeholder="Branch">
+                                    placeholder="Branch" readonly>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="">
                                 <input type="text" class="form-control" id="City2" formControlName="city2"
-                                    placeholder="City">
+                                    placeholder="City" readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -374,10 +374,10 @@
                                         item.item_Standard_Description }}
                                     </option>
                                 </select>
-                                <ng-multiselect-dropdown [placeholder]="'Radiology'" [data]="DC_TESTS_Radiology"
+                                <!-- <ng-multiselect-dropdown [placeholder]="'Radiology'" [data]="DC_TESTS_Radiology"
                                     [(ngModel)]="selectedTestsItems" [settings]="dropdownSettings"
                                     formControlName="Radiology">
-                                </ng-multiselect-dropdown>
+                                </ng-multiselect-dropdown> -->
                             </div>
                         </div>
                     </div>
@@ -632,9 +632,13 @@
                     </div>
                     <div class="d-flex justify-content-end">
                         <div class="col-md-3">
-
+                            <div class="mb-2 pt-1 text-right">
+                                <label>Stamp Paper Date</label>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
                             <div class="mb-2">
-                                <input type="text" class="form-control" id="Stamp date" formControlName="Stamp_date"
+                                <input type="date" class="form-control" id="Stamp date" formControlName="Stamp_date"
                                     placeholder="Stamp Paper Date dd/mm/yy">
                             </div>
                         </div>
@@ -655,7 +659,7 @@
         </div>
         <div class="d-flex justify-content-center mt-5">
             <div class=" d-flex justify-content-center">
-                <button type="submit" class="btn btn-lg btn-success" id="submit">
+                <button type="submit" class="btn btn-lg btn-success" id="submit" (click)="onSubmit()">
                     Submit
                 </button>
             </div>

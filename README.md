@@ -42,3 +42,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `npm install font-awesome`
 `npm install jquery`
 `npm i mdb-angular-ui-kit`
+`npm install sweetalert2`

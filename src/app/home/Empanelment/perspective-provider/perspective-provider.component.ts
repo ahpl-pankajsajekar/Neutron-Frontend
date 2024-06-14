@@ -208,11 +208,7 @@ export class PerspectiveProviderComponent {
 
   addManualProvider(ticket: any): void {
     // this.router.navigate(['/selfempanelment'], {queryParams: {id: ticket.Ticket_Id }})
-    const url = this.router
-      .createUrlTree(['/selfempanelment'], {
-        queryParams: { id: ticket.Ticket_Id },
-      })
-      .toString();
-    window.open(url, '_blank');
+    const url = this.router.createUrlTree(['/empanelment/manualempanelment'], { queryParams: { id: ticket.Ticket_Id },
+      }).toString(); window.open(url, '_blank');
   }
 }

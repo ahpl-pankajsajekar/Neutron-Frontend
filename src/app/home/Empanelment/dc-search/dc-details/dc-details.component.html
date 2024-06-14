@@ -116,7 +116,7 @@
             <p>Mobile: {{ LoadDCDetailsData['Mobile number 2'] }}</p>
           </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3" *ngIf="accountService.getRole() == '1'">
           <div class="headcard">
             <h6>Banking Information</h6>
           </div>
@@ -130,6 +130,52 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 px-4">
+        <div class="mb-3">
+          <div class="headcard me-2">
+            <h6>Available Tests</h6>
+          </div>
+          <div class="bg-light">
+            <span class="active">Biochemistry</span>
+            <span class="">Kidney/Liver/Lipid</span>
+            <span class="">Home Visit</span>
+          </div>
+          <div class="cardbody p-3">
+            <ul class="">
+              <li>TMT</li>
+              <li>CBC</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mb-3" *ngIf="accountService.getRole() == '1'">
+          <div class="headcard">
+            <h6>Ownership</h6>
+          </div>
+          <div class="bodycard">
+            <p>Owner: {{ selectedItem['Contact Person Name 1'] }}</p>
+            <p>Organization Type: {{ selectedItem.E_Mail }}</p>
+            <p>PAN No: {{ LoadDCDetailsData['PAN Number'] }} </p>
+            <p>PAN Name: {{ LoadDCDetailsData['PAN Name'] }} </p>
+            <p>Aadhar No:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Aadhar Name:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Authorised Signatory Name:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Authorised Signatory Designation:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Authorised Signatory Email:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>Registered Office Address:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
+            <p>City:  {{ LoadDCDetailsData['City'] }}  </p>
+            <p>PIN:  {{ LoadDCDetailsData['Pincode'] }}  </p>
+            <p>State:  {{ LoadDCDetailsData['State'] }}  </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-success" (click)="backPage()">Back</button>
+      <button type="button" class="btn btn-success" (click)="next()">Next</button>
+    </div>
+  </div>
+  <div class="p-4"  *ngIf="step === 2">
+    <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 px-4">
         <div class="newcard mb-3">
           <div class="headcard">
@@ -170,41 +216,6 @@
             </table>
           </div>
         </div>
-        <div class="mb-3">
-          <div class="headcard">
-            <h6>Ownership</h6>
-          </div>
-          <div class="bodycard">
-            <p>Owner: {{ selectedItem['Contact Person Name 1'] }}</p>
-            <p>Organization Type: {{ selectedItem.E_Mail }}</p>
-            <p>PAN No: {{ LoadDCDetailsData['PAN Number'] }} </p>
-            <p>PAN Name: {{ LoadDCDetailsData['PAN Name'] }} </p>
-            <p>Aadhar No:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
-            <p>Aadhar Name:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
-            <p>Authorised Signatory Name:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
-            <p>Authorised Signatory Designation:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
-            <p>Authorised Signatory Email:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
-            <p>Registered Office Address:  {{ LoadDCDetailsData['PAN Number'] }}  </p>
-            <p>City:  {{ LoadDCDetailsData['City'] }}  </p>
-            <p>PIN:  {{ LoadDCDetailsData['Pincode'] }}  </p>
-            <p>State:  {{ LoadDCDetailsData['State'] }}  </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="d-flex justify-content-between">
-      <button type="button" class="btn btn-success" (click)="backPage()">Back</button>
-      <button type="button" class="btn btn-success" (click)="next()">Next</button>
-    </div>
-  </div>
-  <div  *ngIf="step === 2">
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut itaque culpa esse laudantium soluta repudiandae facilis, omnis veritatis quas officiis recusandae accusantium natus deserunt voluptatibus a amet explicabo praesentium quam!</div>
-        <div class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut itaque culpa esse laudantium soluta repudiandae facilis, omnis veritatis quas officiis recusandae accusantium natus deserunt voluptatibus a amet explicabo praesentium quam!</div>
-        <div class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut itaque culpa esse laudantium soluta repudiandae facilis, omnis veritatis quas officiis recusandae accusantium natus deserunt voluptatibus a amet explicabo praesentium quam!</div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
       </div>
     </div>
     <div class="d-flex justify-content-between">

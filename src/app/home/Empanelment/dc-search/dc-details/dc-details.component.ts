@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/_services/common.service';
 import { GeocodingService } from 'src/app/_services/geocoding.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { AccountService } from 'src/app/_services/account.service';
 
  
 // import { google } from '@types/googlemaps'
@@ -22,7 +23,8 @@ export class DcDetailsComponent implements OnInit {
     private router: Router,
     private geocodingService: GeocodingService,
     private commonService: CommonService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public accountService: AccountService,
   ) { }
  
   selectedItem: any;
