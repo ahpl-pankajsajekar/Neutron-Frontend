@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { event } from 'jquery';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { CommonService } from 'src/app/_services/common.service';
@@ -35,13 +34,6 @@ export class NetworkVerifyComponent {
   isEstablishmentCertificateVerified :boolean =false;
   isAuthorityLetterVerfied :boolean =false;
   isPartnershipAgreementVerfied :boolean =false;
-
-  // isPanVerified: boolean = false;
-  // isAadharVerified: boolean = false;
-  // isAccreditationVerified: boolean = false;
-  // isCurrentBankStatementVerified: boolean = false;    // Current_Bank_Statement_image
-  // isEstablishmentCertificateVerified: boolean = false;  // Shop_Establishment_Certificate_image
-  // isAuthorityLetterVerfied: boolean = false; // Authority_Letter_image
 
   initForm(): void {
     this.form = this.fb.group({
