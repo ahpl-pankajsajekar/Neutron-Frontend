@@ -7,15 +7,17 @@
             <div class="col-md-5">
                 <p class="ps-2 mb-1 text-muted">Enter Provider Name, PIN, City or ID to Search</p>
                 <form class="d-flex flex-row gap-2" [formGroup]="DCSerachForm" (ngSubmit)="onSubmit()">
-                    <input type="text" class="form-control" formControlName="q" placeholder="Name, PIN, City, Provider ID">
+                    <input type="text" class="form-control" formControlName="q"
+                        placeholder="Name, PIN, City, Provider ID">
                     <button class="btn btn-success px-4" type="submit">Search</button>
                 </form>
             </div>
         </div>
+        <!-- <button mat-raised-button (click)="openDialog()">Pick one</button> -->
         <div class="" style="display: none;">
             <h6 class="text-center">Results: 0</h6>
             <div class="row justify-content-center my-4">
-                <div class="col-md-4 mb-4" >
+                <div class="col-md-4 mb-4">
                     <div class="">
                         <div class="alert alert-warning" role="alert">
                             Activate - HDFC - Fraud - User name(Time)
@@ -47,13 +49,24 @@
                             <p>Provider ID: {{dc['DCID']}}</p>
                             <p>{{dc['DC Name'] | titlecase }}</p>
                             <p>{{dc['Address']}}</p>
-                            <p>Status: <span *ngIf="dc['DCStatus']=='Activate'">Activated</span><span *ngIf="dc['DCStatus']=='Deactivate'">Deactivated</span><span *ngIf="dc['DCStatus']=='Delist'">Delisted</span></p>
+                            <p>Status: <span *ngIf="dc['DCStatus']=='Activate'">Activated</span><span
+                                    *ngIf="dc['DCStatus']=='Deactivate'">Deactivated</span><span
+                                    *ngIf="dc['DCStatus']=='Delist'">Delisted</span></p>
+                            <p *ngIf="dc?.['insurerList']">Activated: <span class="badge text-bg-light mx-1" *ngFor="let item of dc?.['insurerList']">
+                                    <span *ngIf="item.Active">{{item.Name}} </span>
+                                </span>
+                                <br>Deactivated: <span *ngFor="let item of dc?.['insurerList']" class="badge text-bg-light mx-1">
+                                    <span *ngIf="item.Deactive">{{item.Name}} </span>
+                                </span>
+                            </p>
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row gap-1 justify-content-center">
-                                <button class="btn btn-activate" (click)="UpdateDCStatus(dc, 'Activate')" [disabled]="dc['DCStatus'] == 'Activate' ">Activate</button>
-                                <button class="btn btn-deactivate" (click)="UpdateDCStatus(dc, 'Deactivate')" [disabled]="dc['DCStatus'] == 'Deactivate' ">Deactivate</button>
-                                <button class="btn btn-delist" (click)="UpdateDCStatus(dc, 'Delist')" [disabled]="dc['DCStatus'] == 'Delist' ">Delist</button>
+                                <button class="btn btn-info" (click)="openModifyDialog(dc)">Modify</button>
+                                <!-- <button class="btn btn-activate" (click)="UpdateDCStatus(dc, 'Activate')" [disabled]="dc['DCStatus'] == 'Activate' ">Activate</button>
+                                <button class="btn btn-deactivate" (click)="UpdateDCStatus(dc, 'Deactivate')" [disabled]="dc['DCStatus'] == 'Deactivate' ">Deactivate</button> -->
+                                <button class="btn btn-delist" (click)="UpdateDCStatus(dc, 'Delist')"
+                                    [disabled]="dc['DCStatus'] == 'Delist' ">Delist</button>
                             </div>
                         </div>
                     </div>

@@ -28,6 +28,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerspectiveProviderComponent } from './perspective-provider/perspective-provider.component';
 import { OperationsManageComponent } from './operations-manage/operations-manage.component';
 import { ManualempanelmentComponent } from './manualempanelment/manualempanelment.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModifyModalComponent } from './operations-manage/modify-modal/modify-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { ManualempanelmentComponent } from './manualempanelment/manualempanelmen
     PerspectiveProviderComponent,
     OperationsManageComponent,
     ManualempanelmentComponent,
+    ModifyModalComponent
     
   ],
   imports: [
@@ -60,6 +63,7 @@ import { ManualempanelmentComponent } from './manualempanelment/manualempanelmen
     MatInputModule,
     MatFormFieldModule,
     MatPaginatorModule,
+    MatDialogModule,
     NgMultiSelectDropDownModule,
 
     MatIconModule,

@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/_services/account.service';
 import { CommonService } from 'src/app/_services/common.service';
 import Swal from 'sweetalert2';
+import { ModifyModalComponent } from './modify-modal/modify-modal.component';
+
+export interface ModifyDialogData{
+  insurerList: any;
+  DcName: any;
+}
 
 @Component({
   selector: 'app-operations-manage',
@@ -18,11 +25,12 @@ export class OperationsManageComponent {
   requestedTicketObj: any;
   requestedProviderID: any;
   constructor(private formBuilder: FormBuilder,
-    public accountService: AccountService,
+    private accountService: AccountService,
     private toastrService: ToastrService,
-    public route: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router,
-     private commonService: CommonService){
+    public dialog: MatDialog,
+    private commonService: CommonService){
       
       this.DCSerachForm = this.formBuilder.group({
         q : ['', [Validators.required]],
@@ -70,8 +78,45 @@ export class OperationsManageComponent {
       },
       error: (error:any) => {
         console.warn(error)
-      }})
+      }});
+
     }
+    
+  animal: any;
+  name: any;
+  
+  insurerList = [
+    {Name:'HDFC', Active: true, Deactive: false},
+    {Name:'IPRU', Active: true, Deactive: false},
+    {Name:'Max Life', Active: true, Deactive: false},
+    {Name:'Relaince', Active: true, Deactive: false},
+    {Name:'RS', Active: true, Deactive: false},
+    {Name:'SBI', Active: true, Deactive: false},
+  ]
+  openDialog(): void {
+      const dialogRef = this.dialog.open(ModifyModalComponent, {
+        width: '500px',
+        height: '370px',
+        // data: {name: this.name, animal: this.animal}
+        data: { insurerList: this.insurerList }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.animal = result;
+      });
+  }
+  openModifyDialog(dc:any): void {
+      const dialogRef = this.dialog.open(ModifyModalComponent, {
+        width: '500px',
+        height: '370px',
+        data: { insurerList: dc['insurerList'], DcName: dc['DC Name'] },
+        // data: { insurerList: this.insurerList, DcName: dc['DC Name'] }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.animal = result;
+      });
+  }
 
     getConfirmation(status:string, url:string,  body:any){
       Swal.fire({
@@ -139,33 +184,34 @@ export class OperationsManageComponent {
           cancelButtonColor: "#d33",
           confirmButtonText: "Yes, Confirm it!"
         }).then((result) => {
-          // return result.isConfirmed
-        this.commonService.postMethod(url, body).subscribe(
-          (res:any)=>{
-            console.log("res", res);
-            if(res.message=='Ticket Already Exists'){
-              this.toastrService.warning(res.message, 'Warning', {
-                closeButton: true,
-                timeOut: 5000,
-              });
-            }
-            else{
-              this.toastrService.success(res.message, 'Successful', {
-                closeButton: true,
-                timeOut: 5000,
-              });
-              this.router.navigate(['/empanelment/dashboard']);
-            }
-            // this.onSubmit();
-          },
-          (error:any)=>{
-            console.log(error);
-            this.toastrService.error(error.error, 'Error', {
-              closeButton: true,
-              timeOut: 5000,
-            });
+          if (result.isConfirmed){
+            this.commonService.postMethod(url, body).subscribe(
+              (res:any)=>{
+                console.log("res", res);
+                if(res.message=='Ticket Already Exists'){
+                  this.toastrService.warning(res.message, 'Warning', {
+                    closeButton: true,
+                    timeOut: 5000,
+                  });
+                }
+                else{
+                  this.toastrService.success(res.message, 'Successful', {
+                    closeButton: true,
+                    timeOut: 5000,
+                  });
+                  this.router.navigate(['/empanelment/dashboard']);
+                }
+                // this.onSubmit();
+              },
+              (error:any)=>{
+                console.log(error);
+                this.toastrService.error(error.error, 'Error', {
+                  closeButton: true,
+                  timeOut: 5000,
+                });
+              }
+            )
           }
-        )
         });
       }
 

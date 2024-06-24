@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{ModifyData.DcName | slice:0:40}}</h1>
+<mat-dialog-content>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Active</th>
+          <th>Deactive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let insurer of TempModifyInsurerData">
+          <td>{{ insurer.Name }}</td>
+          <td><input type="radio" [checked]="insurer.Active" [name]="insurer.Name" (change)="toggleActive(insurer)"></td>
+          <td><input type="radio" [checked]="insurer.Deactive" [name]="insurer.Name" (change)="toggleDeactive(insurer)"></td>
+          <!-- <td>{{ insurer.Active }}{{ insurer.Deactive }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+</mat-dialog-content>
+<div mat-dialog-actions class="justify-content-center">
+  <button mat-button (click)="onNoClick()">Back</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Submit</button>
+</div> 
