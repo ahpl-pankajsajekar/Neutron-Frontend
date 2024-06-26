@@ -73,10 +73,12 @@
         <table class="table">
           <tr *ngFor="let provider of perspectiveProviders">
             <th class="align-middle">{{ provider.DignosticCenter_ProviderName | titlecase }}</th>
-            <th class="text-end"><button type="button" class="btn btn-auto"
-              (click)="addAutomaticProvider(provider)">Auto Add</button></th>
-            <th><button type="button" class="btn btn-manual"
-              (click)="addManualProvider(provider)">Manual Add</button></th>
+            <th class="text-end"><button type="button" class="btn btn-auto mx-2"
+              (click)="addAutomaticProvider(provider)">Auto Add</button>
+            <button type="button" class="btn btn-manual mx-2"
+              (click)="addManualProvider(provider)">Manual Add</button>
+            <button type="button" class="btn btn-delete mx-2"
+              (click)="DeleteProvider(provider)">Delete</button></th>
           </tr>
         </table>
       </div>

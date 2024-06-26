@@ -188,7 +188,7 @@ export class PerspectiveProviderComponent {
   addAutomaticProvider(ticket: any): void {
     const url = '/prospectiveprovider/ticket/';
     this.commonService
-      .putMethod(url, { ticket_id: ticket.Ticket_Id })
+      .putMethod(url, { ticket_id: ticket.id })
       .subscribe(
         (res: any) => {
           console.log(res);
@@ -206,9 +206,31 @@ export class PerspectiveProviderComponent {
       );
   }
 
+  DeleteProvider(ticket: any): void {
+    const url = '/prospectiveprovider/ticket/closed/';
+    this.commonService
+      .putMethod(url, { TicketId: ticket.id })
+      .subscribe(
+        (res: any) => {
+          console.log(res);
+          this.toastrService.success('Closed Prospective Provider', 'Successful', {
+            closeButton: true,
+          });
+          this.loadData();
+        },
+        (error: any) => {
+          if (error.error['error']) {
+            this.toastrService.error(error['error'], 'error', {
+              closeButton: true,
+            });
+          }
+        }
+      );
+  }
+
   addManualProvider(ticket: any): void {
     // this.router.navigate(['/selfempanelment'], {queryParams: {id: ticket.Ticket_Id }})
-    const url = this.router.createUrlTree(['/empanelment/manualempanelment'], { queryParams: { id: ticket.Ticket_Id },
+    const url = this.router.createUrlTree(['/empanelment/manualempanelment'], { queryParams: { id: ticket.id },
       }).toString(); window.open(url, '_blank');
   }
 }
